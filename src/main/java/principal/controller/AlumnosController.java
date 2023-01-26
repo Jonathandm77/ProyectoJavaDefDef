@@ -22,6 +22,7 @@ import principal.persistencia.CocheDAO;
 import principal.persistencia.CocheRepo;
 import principal.persistencia.ProfesorDAO;
 import principal.persistencia.ProfesorRepo;
+import principal.servicio.implementacion.AlumnoServiceImpl;
 import principal.servicio.interfaces.AlumnoService;
 
 
@@ -35,7 +36,7 @@ import principal.servicio.interfaces.AlumnoService;
 		ProfesorDAO profeDAO=new ProfesorDAO();
 		
 		@Autowired
-		private AlumnoService alumnoService;
+		private AlumnoServiceImpl alumnoService;
 		@Autowired
 		private ProfesorRepo profeRepo;
 		@Autowired
@@ -61,29 +62,29 @@ import principal.servicio.interfaces.AlumnoService;
 			Profesor ProfeNuevo=alumnoNew.getProfesor();
 			alumnoNew.setProfesor(ProfeNuevo);
 			ProfeNuevo.getAlumnos().add(alumnoNew);
-			alumnoRepo.save(alumnoNew);
+			alumnoService.insertarAlumno(alumnoNew);
 			return "redirect:/alumnos";
 		}
 		
 		@PostMapping("/edit/{id}")
 		public String editarAlumno(@PathVariable Integer id, @ModelAttribute("alumnoaEditar") Alumno alumnoEditado, BindingResult bidingresult) {
-			Alumno alumnoaEditar=alumnoRepo.findById(id).get();
+			Alumno alumnoaEditar=alumnoService.obtenerAlumnoPorId(id);
 			alumnoaEditar.setNombre(alumnoEditado.getNombre());
 			alumnoaEditar.setNotas(alumnoEditado.getNotas());
-			alumnoRepo.save(alumnoaEditar);
+			alumnoService.insertarAlumno(alumnoaEditar);
 			return "redirect:/alumnos";
 		}
 		
 		@GetMapping({"/delete/{id}"})
 		String deleteAlumno(Model model, @PathVariable Integer id) {
-			Alumno alumnoaEliminar=alumnoRepo.findById(id).get();
-			alumnoRepo.delete(alumnoaEliminar);
+			Alumno alumnoaEliminar=alumnoService.obtenerAlumnoPorId(id);
+			alumnoService.eliminarAlumno(alumnoaEliminar);
 			return "redirect:/alumnos";
 		}
 		
 		@GetMapping({"/{id}"})
 		String idAlumno(Model model, @PathVariable Integer id) {
-			Alumno alumnoMostrar=alumnoRepo.findById(id).get();
+			Alumno alumnoMostrar=alumnoService.obtenerAlumnoPorId(id);
 			model.addAttribute("alumnoMostrar", alumnoMostrar);
 			return "alumno";
 		}

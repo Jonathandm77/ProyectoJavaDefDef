@@ -14,6 +14,7 @@ import principal.modelo.Rol;
 import principal.modelo.Usuario;
 import principal.modelo.dto.AlumnoDTO;
 import principal.modelo.dto.UsuarioDTO;
+import principal.persistencia.AlumnoRepo;
 import principal.persistencia.RolRepo;
 import principal.persistencia.UsuarioRepo;
 import principal.servicio.interfaces.AlumnoService;
@@ -21,52 +22,11 @@ import principal.servicio.interfaces.UsuarioService;
 @Service
 public class AlumnoServiceImpl implements AlumnoService{
 	@Autowired
-	private UsuarioRepo usuarioRepo;
+	private AlumnoRepo alumnoRepo;
 	
-	@Autowired
-	private RolRepo rolRepo;
-	 
-	@Override
-	public Usuario insertarUsuario(Usuario user) {
-		usuarioRepo.save(user);
-		return null;
-	}
-	@Override
-	public Usuario insertarUsuarioDTO(UsuarioDTO userDTO) {
-		Usuario nuevoUsuario = new Usuario(userDTO.getNombre(), userDTO.getUsername(), passwordEncoder.encode(userDTO.getPassword()));
-        usuarioRepo.save(nuevoUsuario);
-        Optional<Rol> rolNuevo=rolRepo.findByNombre("ROLE_USER");
-		nuevoUsuario.getRoles().add(rolNuevo.get());
-		return usuarioRepo.save(nuevoUsuario);
-	}
-	@Override
-	public List<Usuario> listarUsuarios() {
-		return usuarioRepo.findAll();
-	}
-	@Override
-	public Usuario obtenerUsuarioPorId(Integer id) {
-		
-		return usuarioRepo.findById(id).get();
-	}
-	@Override
-	public Usuario obtenerUsuarioPorNombre(String nombre) {
-	
-		return usuarioRepo.findByUsername(nombre).get();
-	}
-	@Override
-	public void eliminarUsuario(Usuario user) {
-		usuarioRepo.delete(user);
-		
-	}
-	@Override
-	public void eliminarUsuarioPorId(Integer id) {
-		usuarioRepo.delete(usuarioRepo.findById(id).get());
-		
-	}
 	@Override
 	public Alumno insertarAlumno(Alumno user) {
-		// TODO Auto-generated method stub
-		return null;
+		return alumnoRepo.save(user);
 	}
 	@Override
 	public Alumno insertarAlumnoDTO(AlumnoDTO alumnoDTO) {
@@ -75,27 +35,25 @@ public class AlumnoServiceImpl implements AlumnoService{
 	}
 	@Override
 	public List<Alumno> listarAlumnos() {
-		// TODO Auto-generated method stub
-		return null;
+		return alumnoRepo.findAll();
 	}
 	@Override
 	public Alumno obtenerAlumnoPorId(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		return alumnoRepo.findById(id).get();
 	}
 	@Override
 	public Alumno obtenerAlumnoPorNombre(String nombre) {
-		// TODO Auto-generated method stub
-		return null;
+		alumnoRepo.findByNombre(nombre);
+		return alumnoRepo.findByNombre(nombre).get();
 	}
 	@Override
 	public void eliminarAlumno(Alumno user) {
-		// TODO Auto-generated method stub
+		alumnoRepo.delete(user);
 		
 	}
 	@Override
 	public void eliminarAlumnoPorId(Integer id) {
-		// TODO Auto-generated method stub
+		alumnoRepo.deleteById(id);
 		
 	}
 

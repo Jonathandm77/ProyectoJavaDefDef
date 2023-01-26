@@ -8,6 +8,6 @@ import principal.modelo.Profesor;
 
 public interface ProfesorRepo extends JpaRepository<Profesor, Integer> {
 
-	public Optional<Profesor> findById(Integer id);
+	public Optional<Profesor> findByNombre(String nombre);
 	
 }

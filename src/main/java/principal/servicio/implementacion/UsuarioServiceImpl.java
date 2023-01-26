@@ -44,7 +44,7 @@ public class UsuarioServiceImpl implements UsuarioService{
 	@Override
 	public Usuario insertarUsuarioDTO(UsuarioDTO userDTO) {
 		Usuario nuevoUsuario = new Usuario(userDTO.getNombre(), userDTO.getUsername(), passwordEncoder.encode(userDTO.getPassword()));
-        usuarioRepo.save(nuevoUsuario);
+        
         Optional<Rol> rolNuevo=rolRepo.findByNombre("ROLE_USER");
 		nuevoUsuario.getRoles().add(rolNuevo.get());
 		return usuarioRepo.save(nuevoUsuario);
