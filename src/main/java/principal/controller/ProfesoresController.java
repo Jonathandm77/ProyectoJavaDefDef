@@ -21,6 +21,9 @@ import principal.persistencia.CocheDAO;
 import principal.persistencia.CocheRepo;
 import principal.persistencia.ProfesorDAO;
 import principal.persistencia.ProfesorRepo;
+import principal.servicio.implementacion.AlumnoServiceImpl;
+import principal.servicio.implementacion.CocheServiceImpl;
+import principal.servicio.implementacion.ProfesorServiceImpl;
 
 
 
@@ -28,23 +31,23 @@ import principal.persistencia.ProfesorRepo;
 	@RequestMapping("/profesores")
 	public class ProfesoresController {
 		
-		AlumnoDAO alumnoDAO=new AlumnoDAO();
+		/*AlumnoDAO alumnoDAO=new AlumnoDAO();
 		CocheDAO cocheDAO=new CocheDAO();
-		ProfesorDAO profeDAO=new ProfesorDAO();
+		ProfesorDAO profeDAO=new ProfesorDAO();*/
 		
 		@Autowired
-		private AlumnoRepo alumnoRepo;
+		private AlumnoServiceImpl alumnoService;
 		@Autowired
-		private ProfesorRepo profeRepo;
+		private ProfesorServiceImpl profeService;
 		@Autowired
-		private CocheRepo cocheRepo;
+		private CocheServiceImpl cocheService;
 		
 		
 		@GetMapping(value={"","/"})
 		String homealumnos(Model model) {
-			ArrayList<Coche> misCoches=(ArrayList<Coche>) cocheRepo.findAll();
-	        ArrayList<Alumno> misAlumnos= (ArrayList<Alumno>) alumnoRepo.findAll();
-	        ArrayList<Profesor> misProfesores= (ArrayList<Profesor>) profeRepo.findAll();
+			ArrayList<Coche> misCoches=(ArrayList<Coche>) cocheService.listarCoches();
+	        ArrayList<Alumno> misAlumnos= (ArrayList<Alumno>) alumnoService.listarAlumnos();
+	        ArrayList<Profesor> misProfesores= (ArrayList<Profesor>) profeService.listarProfesores();
 	       
 	        model.addAttribute("listaCoches", misCoches);
 	        model.addAttribute("listaAlumnos", misAlumnos);
@@ -57,22 +60,22 @@ import principal.persistencia.ProfesorRepo;
 		
 		@PostMapping("/add")
 		public String addProfesor(@ModelAttribute("profeNuevo") Profesor profeNew, BindingResult bidingresult) {
-			profeRepo.save(profeNew);
+			profeService.insertarProfesor(profeNew);
 			return "redirect:/profesores";
 		}
 		
 		@PostMapping("/edit/{id}")
 		public String editarProfe(@PathVariable Integer id, @ModelAttribute("profeaEditar") Profesor profeEditado, BindingResult bidingresult) {
-			Profesor profeaEditar=profeRepo.findById(id).get();
+			Profesor profeaEditar=profeService.obtenerProfesorPorId(id);
 			profeaEditar.setNombre(profeEditado.getNombre());
-			profeRepo.save(profeaEditar);
+			profeService.insertarProfesor(profeaEditar);
 			return "redirect:/profesores";
 		}
 		
 		@GetMapping({"/delete/{id}"})
 		String deleteProfe(Model model, @PathVariable Integer id) {
-			Profesor profeaEliminar=profeRepo.findById(id).get();
-			profeRepo.delete(profeaEliminar);
+			Profesor profeaEliminar=profeService.obtenerProfesorPorId(id);
+			profeService.eliminarProfesor(profeaEliminar);
 			return "redirect:/profesores";
 		}
 
