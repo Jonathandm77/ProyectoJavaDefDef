@@ -23,29 +23,32 @@ import principal.persistencia.CocheDAO;
 import principal.persistencia.CocheRepo;
 import principal.persistencia.ProfesorDAO;
 import principal.persistencia.ProfesorRepo;
+import principal.servicio.implementacion.AlumnoServiceImpl;
+import principal.servicio.implementacion.CocheServiceImpl;
+import principal.servicio.implementacion.ProfesorServiceImpl;
 
 
 
 	@Controller
 	@RequestMapping("/coches")
 	public class CochesController {
-		AlumnoDAO alumnoDAO=new AlumnoDAO();
+		/*AlumnoDAO alumnoDAO=new AlumnoDAO();
 		CocheDAO cocheDAO=new CocheDAO();
-		ProfesorDAO profeDAO=new ProfesorDAO();
+		ProfesorDAO profeDAO=new ProfesorDAO();*/
 		
 		@Autowired
-		private AlumnoRepo alumnoRepo;
+		private AlumnoServiceImpl alumnoService;
 		@Autowired
-		private ProfesorRepo profeRepo;
+		private ProfesorServiceImpl profeService;
 		@Autowired
-		private CocheRepo cocheRepo;
+		private CocheServiceImpl cocheService;
 		
 		
 		@GetMapping(value={"","/"})
 		String homealumnos(Model model) {
-			ArrayList<Coche> misCoches=(ArrayList<Coche>) cocheRepo.findAll();
-	        ArrayList<Alumno> misAlumnos= (ArrayList<Alumno>) alumnoRepo.findAll();
-	        ArrayList<Profesor> misProfesores= (ArrayList<Profesor>) profeRepo.findAll();
+			ArrayList<Coche> misCoches=(ArrayList<Coche>) cocheService.listarCoches();
+	        ArrayList<Alumno> misAlumnos= (ArrayList<Alumno>) alumnoService.listarAlumnos();
+	        ArrayList<Profesor> misProfesores= (ArrayList<Profesor>) profeService.listarProfesores();
 	       
 	        model.addAttribute("listaCoches", misCoches);
 	        model.addAttribute("listaAlumnos", misAlumnos);
@@ -69,24 +72,24 @@ import principal.persistencia.ProfesorRepo;
 			Integer.parseInt(fechaString[2])};
 			LocalDate fechaAInsertar=LocalDate.of(fecha[0], fecha[1], fecha[3]);
 			cocheNew.setFechaITV(fechaAInsertar);*/
-			cocheRepo.save(cocheNew);
+			cocheService.insertarCoche(cocheNew);
 			return "redirect:/coches";
 		}
 		
 		@PostMapping("/edit/{id}")
 		public String editarCoche(@PathVariable Integer id, @ModelAttribute("cocheaEditar") Coche cocheEditado, BindingResult bidingresult) {
-			Coche cocheaEditar=cocheRepo.findById(id).get();
+			Coche cocheaEditar=cocheService.obtenerCochePorId(id);
 			cocheaEditar.setMatricula(cocheEditado.getMatricula());
 			cocheaEditar.setFechaITV(cocheEditado.getFechaITV());
-			cocheRepo.save(cocheaEditar);
+			cocheService.insertarCoche(cocheaEditar);
 			return "redirect:/coches";
 		}
 		
 		@GetMapping({"/delete/{id}"})
 		String deleteCoche(Model model, @PathVariable Integer id) {
-			Coche cocheaEliminar=cocheRepo.findById(id).get();
-			ArrayList<Alumno> misAlumnos= (ArrayList<Alumno>) alumnoRepo.findAll();
-			ArrayList<Coche> misCoches=(ArrayList<Coche>) cocheRepo.findAll();
+			Coche cocheaEliminar=cocheService.obtenerCochePorId(id);
+			ArrayList<Alumno> misAlumnos= (ArrayList<Alumno>) alumnoService.listarAlumnos();
+			ArrayList<Coche> misCoches=(ArrayList<Coche>) cocheService.listarCoches();
 			for(Alumno a:misAlumnos) {
 				if(a.getCoche().getId()==cocheaEliminar.getId()) {
 					if(misCoches==null) {
@@ -97,11 +100,11 @@ import principal.persistencia.ProfesorRepo;
 					
 					a.setCoche(misCoches.get(0));//si no queda ningun coche crear coche generico
 					misCoches.get(0).getAlumnos().add(a);
-					alumnoRepo.save(a);
+					alumnoService.insertarAlumno(a);
 				}
 				}
 			cocheaEliminar.getAlumnos().clear();
-			cocheRepo.delete(cocheaEliminar);
+			cocheService.eliminarCoche(cocheaEliminar);
 			return "redirect:/coches";
 			}
 		}
