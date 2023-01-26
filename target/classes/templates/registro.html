@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head th:insert="librerias::librerias">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+    <title>Bocadillos app</title>
+
+   <!-- <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">-->
+
+    <!-- Bootstrap core CSS -->
+   <!-- <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">-->
+
+    <!-- Custom styles for this template -->
+   <!-- <link href="album.css" rel="stylesheet">-->
+  </head>
+
+  <body>
+
+    <header>
+
+          <div th:insert="top::top"></div>
+
+         
+    </header>
+    <div class="row">
+    	<div class="col-4 mt-5 m-auto">
+    		<h1 class="h3 text-grey-900">Nuevo Registro</h1>
+    		<form method="post" th:action="@{/usuarios/addRegistro}" th:object="${newUserDTO}">
+    			<div class="form-row">
+    				<div class="form-group col-8">
+    					<label for="inputnombre">Nickname</label>
+    					<input placeholder="Nombre" th:field="*{nombre}" type="text" id="nombre" name="nombre" required="true" class="form-control text-grape-900"/>
+    				</div>
+    			</div>
+    			<div class="form-row">
+    				<div class="form-group col-8">
+    					<label for="inputnombre">Usuario/a</label>
+    					<input th:field="*{username}" placeholder="Usuario/a" type="text" id="username" name="username" required="true" class="form-control text-grape-900"/>
+    				</div>
+    			</div>
+    			<div class="form-row">
+    				<div class="form-group col-8">
+    					<label for="inputPass">Contraseña</label>
+    					<div class="input-group" id="show_hide_password"> 
+    						<input placeholder="Password" type="password" name="password" id="password" required="true" class="form-control text-grape-900"/>
+    						<div class="input-group-text">
+    							<a href=""><i class="fa fa-eye-slash" aria-hidden="true"> </i></a>
+    						</div>
+    					</div>
+    				</div>
+    			</div>
+    			<div class="form-row m-auto">
+    				<input type="submit" value="Registrar" class="btn btn-primary float-right mt-3" th:href="@{/usuarios/registro}"/>
+    			</div>
+    		</form>
+    	</div>
+    </div>
+  </body>
+</html>

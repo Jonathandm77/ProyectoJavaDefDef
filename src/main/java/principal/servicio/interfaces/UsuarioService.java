@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import principal.modelo.Usuario;
+import principal.modelo.dto.UsuarioDTO;
 
 
 public interface UsuarioService extends UserDetailsService{

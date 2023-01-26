@@ -9,6 +9,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import principal.modelo.Rol;
+import principal.modelo.Usuario;
+import principal.modelo.dto.UsuarioDTO;
+import principal.persistencia.UsuarioRepo;
 import principal.servicio.interfaces.UsuarioService;
 @Service
 public class UsuarioServiceImpl implements UsuarioService{
@@ -18,10 +22,10 @@ public class UsuarioServiceImpl implements UsuarioService{
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
-		Optional<UsuarioDTO> usuario=usuarioRepo.findByUsername(username);
+		Optional<Usuario> usuario=usuarioRepo.findByUsername(username);
 		
 		if(usuario.isPresent()) {
-			UsuarioDTO springUsermio=usuario.get();
+			Usuario springUsermio=usuario.get();
 			return springUsermio;
 		}else {
 			throw new UsernameNotFoundException("Usuario no encontrado");
@@ -29,33 +33,33 @@ public class UsuarioServiceImpl implements UsuarioService{
 		
 	}
 	@Override
-	public UsuarioDTO insertarUsuario(UsuarioDTO user) {
+	public Usuario insertarUsuario(Usuario user) {
 		usuarioRepo.save(user);
 		return null;
 	}
 	@Override
-	public UsuarioDTO insertarUsuarioDTO(UsuarioDTO userDTO) {
-		UsuarioDTO nuevoUsuario = new UsuarioDTO(userDTO.getNombre(), userDTO.getUsername(), passwordEncoder.encode(userDTO.getPassword()));
+	public Usuario insertarUsuarioDTO(UsuarioDTO userDTO) {
+		Usuario nuevoUsuario = new Usuario(userDTO.getNombre(), userDTO.getUsername(), passwordEncoder.encode(userDTO.getPassword()));
         usuarioRepo.save(nuevoUsuario);
 		nuevoUsuario.getRoles().add(new Rol("ROL_ADMIN"));
 		return usuarioRepo.save(nuevoUsuario);
 	}
 	@Override
-	public List<UsuarioDTO> listarUsuarios() {
+	public List<Usuario> listarUsuarios() {
 		return usuarioRepo.findAll();
 	}
 	@Override
-	public UsuarioDTO obtenerUsuarioPorId(Integer id) {
+	public Usuario obtenerUsuarioPorId(Integer id) {
 		
 		return usuarioRepo.findById(id).get();
 	}
 	@Override
-	public UsuarioDTO obtenerUsuarioPorNombre(String nombre) {
+	public Usuario obtenerUsuarioPorNombre(String nombre) {
 	
 		return usuarioRepo.findByUsername(nombre).get();
 	}
 	@Override
-	public void eliminarUsuario(UsuarioDTO user) {
+	public void eliminarUsuario(Usuario user) {
 		usuarioRepo.delete(user);
 		
 	}
@@ -64,5 +68,7 @@ public class UsuarioServiceImpl implements UsuarioService{
 		usuarioRepo.delete(usuarioRepo.findById(id).get());
 		
 	}
+
+	
 
 }
