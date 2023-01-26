@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<head th:insert="librerias::librerias">
+</head>
+
+<body>
+
+	<div th:insert="top"></div>
+	
+	<div class="container">
+		<header>
+			
+		</header>
+		<div class="row pl-5 pr-5">
+			<div class="col-9">
+				<h5> Ficha de alumno </h5>
+				<div class="card border border primary" th:object="${alumnoMostrar}">
+					<div class="card-body row pt-4 pb-4">
+						<div class="col-7">
+							<div class="card">
+								<div class="card-header text-dark bg-light">Ficha del alumno
+
+								</div>
+								<div class="card-body">
+									<div class="mb-2">
+										<h5 th:text="*{nombre}" class="mb-2 card-text">Nombre del alumno</h5>
+									</div>
+									<p><a th:href="@{/alumnos}" class="btn btn-primary mt-3">Cerrar</a></p>
+								</div>
+							</div>
+						</div>
+						<div class="col-5">
+							<div class="card">
+								<div class="card-header text-dark bg-light">Datos del alumno
+								</div>
+								<div class="card-body">
+									<span>
+										<span>Nombre:<p th:text="${alumnoMostrar.nombre}" class="card-text mb-2 card-text"></p></span>
+									</span>
+									<span>
+										<span>Apellidos:<p th:text="${alumnoMostrar.Apellidos}" class="card-text mb-2 card-text"></p></span>
+									</span>
+									<span>
+										<span>DNI:<p th:text="${alumnoMostrar.dni}" class="card-text mb-2 card-text"></p></span>
+									</span>
+									<span>
+										<span>Profesor:<p th:text="${alumnoMostrar.profesor.nombre}+' '+${alumnoMostrar.profesor.apellidos}" class="card-text mb-2 card-text"></p></span>
+									</span>
+									<span>
+										<span>Coche:<p th:text="${alumnoMostrar.coche.marca}+' '+${alumnoMostrar.coche.modelo}" class="card-text mb-2 card-text"></p></span>
+									</span>
+								</div>
+							</div>
+						</div>
+						
+						<div class="col-5">
+							<div class="card">
+								<div class="card-header text-dark bg-light">Notas
+								</div>
+								<div class="card-body">
+									<span>
+										<span><p th:text="${alumnoMostrar.notas}" class="card-text mb-2 card-text"></p></span>
+									</span>
+								
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
