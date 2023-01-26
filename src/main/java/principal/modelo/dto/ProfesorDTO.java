@@ -15,8 +15,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "Profesores")
 public class ProfesorDTO {
 	private Integer id;
 	

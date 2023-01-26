@@ -8,11 +8,11 @@ import principal.modelo.dto.ProfesorDTO;
 
 
 public interface ProfesorService{
-	public Profesor insertarProfesor(Profesor user); 
-	public Profesor insertarProfesorDTO(ProfesorDTO alumnoDTO);
-	public List<Profesor> listarProfesors();
+	public Profesor insertarProfesor(Profesor profe); 
+	public Profesor insertarProfesorDTO(ProfesorDTO profeDTO);
+	public List<Profesor> listarProfesores();
 	public Profesor obtenerProfesorPorId (Integer id);
 	public Profesor obtenerProfesorPorNombre (String nombre);
-	public void eliminarProfesor(Profesor user);
+	public void eliminarProfesor(Profesor profe);
 	public void eliminarProfesorPorId(Integer id);
 }

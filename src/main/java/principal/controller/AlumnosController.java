@@ -23,6 +23,8 @@ import principal.persistencia.CocheRepo;
 import principal.persistencia.ProfesorDAO;
 import principal.persistencia.ProfesorRepo;
 import principal.servicio.implementacion.AlumnoServiceImpl;
+import principal.servicio.implementacion.CocheServiceImpl;
+import principal.servicio.implementacion.ProfesorServiceImpl;
 import principal.servicio.interfaces.AlumnoService;
 
 
@@ -31,22 +33,22 @@ import principal.servicio.interfaces.AlumnoService;
 	@RequestMapping("/alumnos")
 	public class AlumnosController {
 		
-		AlumnoDAO alumnoDAO=new AlumnoDAO();
+		/*AlumnoDAO alumnoDAO=new AlumnoDAO();
 		CocheDAO cocheDAO=new CocheDAO();
-		ProfesorDAO profeDAO=new ProfesorDAO();
+		ProfesorDAO profeDAO=new ProfesorDAO();*/
 		
 		@Autowired
 		private AlumnoServiceImpl alumnoService;
 		@Autowired
-		private ProfesorRepo profeRepo;
+		private ProfesorServiceImpl profeService;
 		@Autowired
-		private CocheRepo cocheRepo;
+		private CocheServiceImpl cocheService;
 		
 		@GetMapping(value={"","/"})
 		String homealumnos(Model model) {
-			ArrayList<Coche> misCoches=(ArrayList<Coche>) cocheRepo.findAll();
+			ArrayList<Coche> misCoches=(ArrayList<Coche>) cocheService.listarCoches();
 	        ArrayList<Alumno> misAlumnos= (ArrayList<Alumno>) alumnoService.listarAlumnos();
-	        ArrayList<Profesor> misProfesores= (ArrayList<Profesor>) profeRepo.findAll();
+	        ArrayList<Profesor> misProfesores= (ArrayList<Profesor>) profeService.listarProfesores();
 	       
 	        model.addAttribute("listaCoches", misCoches);
 	        model.addAttribute("listaAlumnos", misAlumnos);

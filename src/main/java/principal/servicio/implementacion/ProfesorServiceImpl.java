@@ -26,7 +26,7 @@ public class ProfesorServiceImpl implements ProfesorService{
 	}
 
 	@Override
-	public List<Profesor> listarProfesors() {
+	public List<Profesor> listarProfesores() {
 		// TODO Auto-generated method stub
 		return profeRepo.findAll();
 	}
