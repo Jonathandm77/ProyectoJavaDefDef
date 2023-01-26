@@ -16,6 +16,8 @@
         <mapping class="principal.modelo.Alumno"/>
 		<mapping class="principal.modelo.Profesor"/>
 		<mapping class="principal.modelo.Coche"/>
+		<mapping class="principal.modelo.Usuario"/>
+		<mapping class="principal.modelo.Rol"/>
 		
 
     </session-factory>

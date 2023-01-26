@@ -12,12 +12,16 @@ import org.springframework.stereotype.Service;
 import principal.modelo.Rol;
 import principal.modelo.Usuario;
 import principal.modelo.dto.UsuarioDTO;
+import principal.persistencia.RolRepo;
 import principal.persistencia.UsuarioRepo;
 import principal.servicio.interfaces.UsuarioService;
 @Service
 public class UsuarioServiceImpl implements UsuarioService{
 	@Autowired
 	private UsuarioRepo usuarioRepo;
+	
+	@Autowired
+	private RolRepo rolRepo;
 	private BCryptPasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -41,7 +45,8 @@ public class UsuarioServiceImpl implements UsuarioService{
 	public Usuario insertarUsuarioDTO(UsuarioDTO userDTO) {
 		Usuario nuevoUsuario = new Usuario(userDTO.getNombre(), userDTO.getUsername(), passwordEncoder.encode(userDTO.getPassword()));
         usuarioRepo.save(nuevoUsuario);
-		nuevoUsuario.getRoles().add(new Rol("ROL_ADMIN"));
+        Optional<Rol> rolNuevo=rolRepo.findByNombre("ROLE_USER");
+		nuevoUsuario.getRoles().add(rolNuevo.get());
 		return usuarioRepo.save(nuevoUsuario);
 	}
 	@Override
