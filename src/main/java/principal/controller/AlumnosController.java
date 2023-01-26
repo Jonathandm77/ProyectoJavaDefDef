@@ -22,6 +22,7 @@ import principal.persistencia.CocheDAO;
 import principal.persistencia.CocheRepo;
 import principal.persistencia.ProfesorDAO;
 import principal.persistencia.ProfesorRepo;
+import principal.servicio.interfaces.AlumnoService;
 
 
 
@@ -34,7 +35,7 @@ import principal.persistencia.ProfesorRepo;
 		ProfesorDAO profeDAO=new ProfesorDAO();
 		
 		@Autowired
-		private AlumnoRepo alumnoRepo;
+		private AlumnoService alumnoService;
 		@Autowired
 		private ProfesorRepo profeRepo;
 		@Autowired
@@ -43,7 +44,7 @@ import principal.persistencia.ProfesorRepo;
 		@GetMapping(value={"","/"})
 		String homealumnos(Model model) {
 			ArrayList<Coche> misCoches=(ArrayList<Coche>) cocheRepo.findAll();
-	        ArrayList<Alumno> misAlumnos= (ArrayList<Alumno>) alumnoRepo.findAll();
+	        ArrayList<Alumno> misAlumnos= (ArrayList<Alumno>) alumnoService.listarAlumnos();
 	        ArrayList<Profesor> misProfesores= (ArrayList<Profesor>) profeRepo.findAll();
 	       
 	        model.addAttribute("listaCoches", misCoches);

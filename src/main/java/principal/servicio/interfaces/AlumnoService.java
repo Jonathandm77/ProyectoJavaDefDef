@@ -2,7 +2,6 @@ package principal.servicio.interfaces;
 
 import java.util.List;
 
-import org.springframework.security.core.userdetails.UserDetailsService;
 
 import principal.modelo.Alumno;
 import principal.modelo.dto.AlumnoDTO;
