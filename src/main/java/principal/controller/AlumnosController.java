@@ -90,5 +90,12 @@ import principal.servicio.interfaces.AlumnoService;
 			model.addAttribute("alumnoMostrar", alumnoMostrar);
 			return "alumno";
 		}
+		
+		@GetMapping({"/search/{nombre}"})
+		String buscarAlumnoPorNombre(Model model,@ModelAttribute("alumnoaBuscar") Alumno alumnoBuscado, BindingResult bidingresult) {
+			
+			return null;
+			
+		}
 
 }
