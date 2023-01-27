@@ -55,6 +55,7 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 	        
 			model.addAttribute("profeNuevo", new Profesor());
 			model.addAttribute("profeaEditar", new Profesor());
+			model.addAttribute("profeaBuscar", new Profesor());
 			return "profesores";
 		}
 		
@@ -77,6 +78,22 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 			Profesor profeaEliminar=profeService.obtenerProfesorPorId(id);
 			profeService.eliminarProfesor(profeaEliminar);
 			return "redirect:/profesores";
+		}
+		
+		@PostMapping({"/search/{nombre}"})
+		String buscarProfesorPorNombre(Model model,@ModelAttribute("profeaBuscar") Profesor profeBuscado, BindingResult bidingresult) {
+			ArrayList<Profesor> ProfeNombres = new ArrayList<Profesor>();
+			ArrayList<Profesor> misProfesores= (ArrayList<Profesor>) profeService.listarProfesores();
+			for(Profesor a:misProfesores) {
+				if(a.getNombre().equals(profeBuscado.getNombre())) {
+					ProfeNombres.add(a);
+				}
+			}
+			model.addAttribute("profeNombre",ProfeNombres);
+			
+			
+			return "profesoresBuscadosPorNombre";
+			
 		}
 
 }

@@ -71,16 +71,16 @@
 
 		</div>
 
-		<div class="col-md-auto">
-			<button th:attr="data-target='#modal-search'+${alumno.id}" class="btn btn-primary" type="button" data-toggle="modal"
+		<div th:object="${alumno}" class="col-md-auto">
+			<button th:attr="data-target='#modal-search'" class="btn btn-primary" type="button" data-toggle="modal"
 				data-target="#buscarAlumnoPorNombre">Buscar por nombre</button>
 		</div>
 		</div>
 	</div>
 	
-	<!-- buscar por nombre modal
+	<!-- buscar por nombre modal-->
 	<div th:each="alumno:${listaAlumnos}">
-		<div class="modal fade" th:id="modal-search+${alumno.id}">
+		<div class="modal fade" th:id="modal-search">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -90,37 +90,30 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						<p class="error-text">Introduce el nombre para buscar
-							<strong><span th:text="${alumno.nombre}"> </span></strong>
-						</p>
-						-->
+						<p class="error-text">Introduce el nombre para buscar</p>
 						
-						<!--formulario nombre
-						<form action="#" th:action="@{/alumnos/search/{nombre}(nombre=${alumno.nombre})}" th:object="${alumnoABuscar}"
+						
+						<!--formulario nombre-->
+						<form action="#" th:action="@{/alumnos/search/{nombre}(nombre=${alumno.nombre})}" th:object="${alumnoaBuscar}"
 							method="post">
 							<div class"form-row">
 								<div class="form-group mt-1">
 									<label for="texto">Nombre</label>
-									<input type="text" th:field="*{nombre}" class="form-control" id="exampleInputName"
-										th:attr="placeholder=${alumno.nombre}" />
-
-									<label for="texto">Notas</label>
-									<input type="text" th:field="*{notas}" class="form-control" id="notas"
-										th:attr="placeholder=${alumno.notas}" />
+									<input type="text" th:field="*{nombre}" class="form-control" id="exampleInputName"/>
 								</div>
 							</div>
 					</div>
 					<div class="modal-footer">
 						<button class="btn btn-secondary btn-sm" data-dismiss="modal"
 							aria-hidden="true">Cancelar</button>
-						<input id="sent" type="submit" value="Modificar" class="btn btn-primary float-right" />
+						<input id="sent" type="submit" th:value="Buscar" class="btn btn-primary float-right"/>
 					</div>
 					</form>
 				</div>
 			</div>
 		</div>
 
-	</div>-->
+	</div>
 	<!-- fin modal buscar por nombre-->
 
 <!-- create modal-->

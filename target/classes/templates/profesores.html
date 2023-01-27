@@ -6,6 +6,7 @@
 </head>
 
 <body>
+<div class="container">
 
 	<div th:insert="top"></div>
 
@@ -57,15 +58,64 @@
 	</table>
 	
 	<div>
-			<div>
+	<div class="row">
+			<div class="col-md-auto">
 				<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#crearProfe"> + </button>
 				
 			</div>
 			
-			<div> 
-					
+			<div th:object="${profe}" class="col-md-auto"> 
+					<button th:attr="data-target='#modal-search'" class="btn btn-primary" type="button" data-toggle="modal"
+				data-target="#buscarProfePorNombre">Buscar profesor por nombre</button>
+		</div>
+	</div>
+	</div>
+	
+	<!-- buscar por nombre modal-->
+	<div th:each="profe:${listaProfesores}">
+		<div class="modal fade" th:id="modal-search">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="exampleModalLabel">Buscar Profesor</h4>
+						<button class="close btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">x</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<p class="error-text">Introduce el nombre para buscar</p>
+						
+						
+						<!--formulario nombre-->
+						<form action="#" th:action="@{/profesores/search/{nombre}(nombre=${profe.nombre})}" th:object="${profeaBuscar}"
+							method="post">
+							<div class"form-row">
+								<div class="form-group mt-1">
+									<label for="texto">Nombre</label>
+									<input type="text" th:field="*{nombre}" class="form-control" id="exampleInputName"/>
+								</div>
+							</div>
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-secondary btn-sm" data-dismiss="modal"
+							aria-hidden="true">Cancelar</button>
+						<input id="sent" type="submit" th:value="Buscar" class="btn btn-primary float-right"/>
+					</div>
+					</form>
+				</div>
+			</div>
 		</div>
 
+	</div>
+	<!-- fin modal buscar por nombre-->
+	
+	
+	
+	
+	
+	
+		
+<!--create modal-->
 				<div class="modal fade" id="crearProfe">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
@@ -163,7 +213,7 @@
 				</div>
 				<!-- fin delete modal-->
 				
-				
+	</div>	
 </body>
 
 

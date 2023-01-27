@@ -56,6 +56,7 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 	        
 			model.addAttribute("cocheNuevo", new Coche());
 			model.addAttribute("cocheaEditar", new Coche());
+			model.addAttribute("cocheaBuscar", new Coche());
 			return "coches";
 		}
 		
@@ -107,6 +108,23 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 			cocheService.eliminarCoche(cocheaEliminar);
 			return "redirect:/coches";
 			}
+		
+		
+		@PostMapping({"/search/{marca}"})
+		String buscarCochePorMarca(Model model,@ModelAttribute("cocheaBuscar") Coche cocheBuscado,BindingResult bidingresult) {
+			ArrayList<Coche> cochesMarca= new ArrayList<Coche>();
+			ArrayList<Coche> misCoches= (ArrayList<Coche>) cocheService.listarCoches();
+			for(Coche c:misCoches) {
+				if(c.getMarca().equals(cocheBuscado.getMarca())) {
+					cochesMarca.add(c);
+				}
+			}
+			model.addAttribute("cochesMarca",cochesMarca);
+			
+			
+			return "cochesBuscadosPorMarca";
+			
+		}
 		}
 
 
