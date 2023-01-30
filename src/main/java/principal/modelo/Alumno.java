@@ -1,5 +1,7 @@
 package principal.modelo;
 
+import java.util.HashSet;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -66,11 +68,22 @@ public Alumno(String nombre, String dni) {
 
 
 
+
 	
 
 //getters setters
 
 
+
+	public Alumno(Integer id, String dni, String nombre, String apellidos, String notas, Profesor profesor, Coche coche) {
+	this.id = id;
+	this.dni = dni;
+	this.nombre = nombre;
+	this.apellidos = apellidos;
+	this.notas = notas;
+	this.profesor = new Profesor();
+	this.coche = new Coche();
+}
 
 	public String getNombre() {
 		return nombre;

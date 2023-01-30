@@ -1,5 +1,6 @@
 package principal.servicio.implementacion;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,6 +11,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import principal.modelo.Alumno;
+import principal.modelo.Coche;
+import principal.modelo.Profesor;
 import principal.modelo.Rol;
 import principal.modelo.Usuario;
 import principal.modelo.dto.AlumnoDTO;
@@ -29,12 +32,15 @@ public class AlumnoServiceImpl implements AlumnoService{
 		return alumnoRepo.save(user);
 	}
 	@Override
-	public Alumno insertarAlumnoDTO(AlumnoDTO alumnoDTO) {
-		// TODO Auto-generated method stub
-		return null;
+	public Alumno insertarAlumnoDTO(AlumnoDTO a) {
+		Alumno nuevoAlumno=new Alumno(a.getId(),a.getDni(),a.getNombre(),a.getApellidos(),a.getNotas(),a.getProfesor(),a.getCoche());
+
+		
+		return alumnoRepo.save(nuevoAlumno);
 	}
 	@Override
 	public List<Alumno> listarAlumnos() {
+		
 		return alumnoRepo.findAll();
 	}
 	@Override
@@ -55,6 +61,11 @@ public class AlumnoServiceImpl implements AlumnoService{
 	public void eliminarAlumnoPorId(Integer id) {
 		alumnoRepo.deleteById(id);
 		
+	}
+	
+	public ArrayList<Alumno> encontrarAlumnosPorNombre(String nombre) {
+		ArrayList<Alumno> lista=(ArrayList<Alumno>) alumnoRepo.findAllByNombre(nombre);
+		return lista;
 	}
 
 	

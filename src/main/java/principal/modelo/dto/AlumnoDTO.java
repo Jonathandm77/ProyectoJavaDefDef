@@ -1,5 +1,7 @@
 package principal.modelo.dto;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import principal.modelo.Coche;
+import principal.modelo.Profesor;
 
 public class AlumnoDTO {
 	private Integer id;
@@ -20,6 +25,9 @@ public class AlumnoDTO {
 	
 	private String notas;
 	
+	private Profesor profesor;
+	private Coche coche;
+	
 	
 	
 	
@@ -34,6 +42,23 @@ public class AlumnoDTO {
 	
 	
 
+
+
+public Profesor getProfesor() {
+		return profesor;
+	}
+
+	public void setProfesor(Profesor profesor) {
+		this.profesor = profesor;
+	}
+
+	public Coche getCoche() {
+		return coche;
+	}
+
+	public void setCoche(Coche coche) {
+		this.coche = coche;
+	}
 
 public AlumnoDTO() {
 	}
