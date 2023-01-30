@@ -1,9 +1,11 @@
 package principal.servicio.implementacion;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import principal.modelo.Alumno;
 import principal.modelo.Profesor;
 import principal.modelo.dto.ProfesorDTO;
 import principal.persistencia.ProfesorRepo;
@@ -53,6 +55,11 @@ public class ProfesorServiceImpl implements ProfesorService{
 	public void eliminarProfesorPorId(Integer id) {
 		profeRepo.deleteById(id);
 		
+	}
+	
+	public ArrayList<Profesor> encontrarProfesoresPorNombre(String nombre) {
+		ArrayList<Profesor> lista=(ArrayList<Profesor>) profeRepo.findAllByNombre(nombre);
+		return lista;
 	}
 	
 	

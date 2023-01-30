@@ -82,14 +82,9 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 		
 		@PostMapping({"/search/{nombre}"})
 		String buscarProfesorPorNombre(Model model,@ModelAttribute("profeaBuscar") Profesor profeBuscado, BindingResult bidingresult) {
-			ArrayList<Profesor> ProfeNombres = new ArrayList<Profesor>();
-			ArrayList<Profesor> misProfesores= (ArrayList<Profesor>) profeService.listarProfesores();
-			for(Profesor a:misProfesores) {
-				if(a.getNombre().equals(profeBuscado.getNombre())) {
-					ProfeNombres.add(a);
-				}
-			}
-			model.addAttribute("profeNombre",ProfeNombres);
+			ArrayList<Profesor> misProfesores= (ArrayList<Profesor>) profeService.encontrarProfesoresPorNombre(profeBuscado.getNombre());
+			
+			model.addAttribute("profeNombre",misProfesores);
 			
 			
 			return "profesoresBuscadosPorNombre";

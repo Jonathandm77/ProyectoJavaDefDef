@@ -94,7 +94,6 @@ import principal.servicio.interfaces.AlumnoService;
 		
 		@PostMapping({"/search/{nombre}"})
 		String buscarAlumnoPorNombre(Model model,@ModelAttribute("alumnoaBuscar") Alumno alumnoBuscado, BindingResult bidingresult) {
-			ArrayList<Alumno> AlumnosNombre = new ArrayList<Alumno>();
 			ArrayList<Alumno> misAlumnos= alumnoService.encontrarAlumnosPorNombre(alumnoBuscado.getNombre());
 			model.addAttribute("alumnosNombre",misAlumnos);
 			
