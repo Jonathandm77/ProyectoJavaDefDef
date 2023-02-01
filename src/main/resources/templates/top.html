@@ -135,7 +135,7 @@
 					<div class="topbar-divider d-none d-sm-block">
 
 						<li sec:authorize="isAnonymous()" class="nav-link  text-gray-600">
-							<a class="btn btn-primary btn-sm  " href="/login">Login</a>
+							<a class="btn btn-primary btn-sm  " href="/login">Iniciar Sesión</a>
 						</li>
 						<li sec:authorize="isAuthenticated()"class="nav-link  text-gray-600">
 						<form th:action="@{/logout}" method="post">

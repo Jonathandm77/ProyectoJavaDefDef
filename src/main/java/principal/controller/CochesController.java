@@ -86,6 +86,13 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 			return "redirect:/coches";
 		}
 		
+		@GetMapping({"/{id}"})
+		String idCoche(Model model, @PathVariable Integer id) {
+			Coche cocheMostrar=cocheService.obtenerCochePorId(id);
+			model.addAttribute("cocheMostrar", cocheMostrar);
+			return "coche";
+		}
+		
 		@GetMapping({"/delete/{id}"})
 		String deleteCoche(Model model, @PathVariable Integer id) {
 			Coche cocheaEliminar=cocheService.obtenerCochePorId(id);

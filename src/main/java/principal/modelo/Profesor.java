@@ -23,13 +23,6 @@ public class Profesor {
 	//@Column(name="id")
 	private Integer id;
 	
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	@Column(name="DNI")
 	private String dni;
@@ -78,6 +71,13 @@ public class Profesor {
 
 	// getters y setters
 
+	public Integer getId() {
+		return id;
+	}
+	
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	public String getNombre() {
 		return nombre;
 	}

@@ -65,6 +65,13 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 			return "redirect:/profesores";
 		}
 		
+		@GetMapping({"/{id}"})
+		String idProfesor(Model model, @PathVariable Integer id) {
+			Profesor profeMostrar=profeService.obtenerProfesorPorId(id);
+			model.addAttribute("profeMostrar", profeMostrar);
+			return "profesor";
+		}
+		
 		@PostMapping("/edit/{id}")
 		public String editarProfe(@PathVariable Integer id, @ModelAttribute("profeaEditar") Profesor profeEditado, BindingResult bidingresult) {
 			Profesor profeaEditar=profeService.obtenerProfesorPorId(id);
