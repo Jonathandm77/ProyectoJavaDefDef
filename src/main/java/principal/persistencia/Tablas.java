@@ -19,7 +19,7 @@ public class Tablas {
 		Coche c1 = new Coche("5894 GHL", "2023", "Peugeot");
 		Rol rolBasico = new Rol("ROLE_USER");
 		Rol rolAdmin = new Rol("ROLE_ADMIN");
-		Usuario usuarioAdmin = new Usuario("admin", "admin", "admin");
+		Usuario usuarioAdmin = new Usuario("admin", "admin", "$2a$12$jcd/P/f86nT9YXQbx/3tJeQye8h0aMhNm6EzzKkZMNLUCtIxpTNJa");
 		usuarioAdmin.getRoles().add(rolAdmin);
 
 		/*
