@@ -85,6 +85,14 @@
 
 					<div class="topbar-divider d-none d-sm-block"></div>
 					
+					<li class="nav-item dropdown no-arrow" sec:authorize="hasAuthority('ROLE_ADMIN')">
+								<a class="nav-link dropdown-toggle text-gray-600" href="/seguridad/panel">
+									<i class="fas fa-users fa-sm fa-fw mr-3 text-gray-600"></i>
+									Configuración Admin
+								</a>
+								<div class="dropdown-divider"></div>
+							</li>
+						<div class="topbar-divider d-none d-sm-block"></div>
 				
 
 					<!-- Nav Item - User Information -->
