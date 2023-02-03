@@ -1,0 +1,25 @@
+.article {
+  display: flex;
+  flex-direction: row;
+  width: 60%;
+}
+.article img {
+  width: 400px;
+  height: 100%;
+}
+.article h2 {
+  font-size: 2em;
+}
+.article p {
+  font-size: 1.2em;
+}
+.article .articleContent {
+  width: 60%;
+  margin-left: 20px;
+}
+a{
+  all: unset;
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=a.css.map */
