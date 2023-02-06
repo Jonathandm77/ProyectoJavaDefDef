@@ -1,7 +1,13 @@
+#news{
+	display: flex;
+	flex-direction:column;
+	align-items: center;
+}
+
 .article {
   display: flex;
   flex-direction: row;
-  width: 60%;
+  width: 99%;
 }
 .article img {
   width: 400px;
@@ -14,7 +20,7 @@
   font-size: 1.2em;
 }
 .article .articleContent {
-  width: 60%;
+  width: 70%;
   margin-left: 20px;
 }
 a{
