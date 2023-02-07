@@ -40,12 +40,12 @@ public class Profesor {
 	@OneToMany(mappedBy = "profesor", fetch = FetchType.EAGER)
 	private Set<Alumno> alumnos;
 
-	@ManyToMany(mappedBy = "profesores", fetch = FetchType.EAGER)
-	private Set<Coche> coches;
+	@OneToMany(mappedBy = "profesor", cascade=CascadeType.MERGE,orphanRemoval=true)
+	private Set<ProfesoresCoches> coches;
 
 	public Profesor() {
 		alumnos = new HashSet<Alumno>();
-		coches = new HashSet<Coche>();
+		coches = new HashSet<ProfesoresCoches>();
 	}
 
 	public Profesor(String nombre, String dni) {
@@ -53,13 +53,13 @@ public class Profesor {
 		this.nombre = nombre;
 		this.dni = dni;
 		alumnos = new HashSet<Alumno>();
-		coches = new HashSet<Coche>();
+		coches = new HashSet<ProfesoresCoches>();
 
 	}
 	
 	
 
-	public Profesor(Integer id, String dni, String nombre, String apellidos, Set<Alumno> alumnos, Set<Coche> coches) {
+	public Profesor(Integer id, String dni, String nombre, String apellidos, Set<Alumno> alumnos, Set<ProfesoresCoches> coches) {
 		super();
 		this.id = id;
 		this.dni = dni;
@@ -111,11 +111,11 @@ public class Profesor {
 		this.alumnos = alumnos;
 	}
 
-	public Set<Coche> getCoches() {
+	public Set<ProfesoresCoches> getCoches() {
 		return coches;
 	}
 
-	public void setCoches(Set<Coche> coches) {
+	public void setCoches(Set<ProfesoresCoches> coches) {
 		this.coches = coches;
 	}
 

@@ -44,13 +44,8 @@ public class Coche {
 	
 
 	
-	@ManyToMany(cascade = {CascadeType.MERGE}, fetch = FetchType.EAGER)
-	@JoinTable(
-			name="profesores_coches",
-			joinColumns = {@JoinColumn(name="Id_Coche")},
-			inverseJoinColumns = {@JoinColumn(name="Id_Profesor")}
-	)
-	private Set<Profesor> profesores;
+	@OneToMany(mappedBy = "coche", cascade=CascadeType.MERGE,orphanRemoval=true)
+	private Set<ProfesoresCoches> profesores;
 	
 	
 	
@@ -61,7 +56,7 @@ public class Coche {
 	
 	public Coche() {
 		alumnos=new HashSet<Alumno>();
-		profesores=new HashSet<Profesor>();
+		profesores=new HashSet<ProfesoresCoches>();
 	}
 
 
@@ -70,7 +65,7 @@ public class Coche {
 		this.modelo = modelo;
 		this.marca = marca;
 		alumnos=new HashSet<Alumno>();
-		profesores=new HashSet<Profesor>();
+		profesores=new HashSet<ProfesoresCoches>();
 	}
 	
 	
@@ -117,10 +112,10 @@ public class Coche {
 	public void setAlumnos(Set<Alumno> alumnos) {
 		this.alumnos = alumnos;
 	}
-	public Set<Profesor> getProfesores() {
+	public Set<ProfesoresCoches> getProfesores() {
 		return profesores;
 	}
-	public void setProfesores(Set<Profesor> profesores) {
+	public void setProfesores(Set<ProfesoresCoches> profesores) {
 		this.profesores = profesores;
 	}
 
