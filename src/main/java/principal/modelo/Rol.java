@@ -30,6 +30,12 @@ public class Rol {
 	public Rol() {
 		usuarios = new HashSet<Usuario>();
 	}
+	public Set<Usuario> getUsuarios() {
+		return usuarios;
+	}
+	public void setUsuarios(Set<Usuario> usuarios) {
+		this.usuarios = usuarios;
+	}
 	public Rol(String nombre) {
 		this.nombre=nombre;
 		usuarios = new HashSet<Usuario>();

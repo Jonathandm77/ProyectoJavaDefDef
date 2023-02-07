@@ -5474,3 +5474,328 @@ org.attoparser.ParseException: (Line = 16, Column = 1) Incomplete structure: "<s
 2023-02-06 12:24:48.854  INFO 2732 --- [RMI TCP Connection(4)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2023-02-06 12:24:48.855  INFO 2732 --- [RMI TCP Connection(4)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2023-02-06 12:24:48.860  INFO 2732 --- [RMI TCP Connection(4)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-02-07 20:17:11.822  INFO 4088 --- [main] principal.App                            : Starting App using Java 17.0.4.1 on DESKTOP-CC9VUPT with PID 4088 (C:\Users\jonat\Documents\workspace-spring-tool-suite-4-4.16.1.RELEASE\ProyectoDEF\target\classes started by jonat in C:\Users\jonat\Documents\workspace-spring-tool-suite-4-4.16.1.RELEASE\ProyectoDEF)
+2023-02-07 20:17:11.826  INFO 4088 --- [main] principal.App                            : No active profile set, falling back to 1 default profile: "default"
+2023-02-07 20:17:12.321  INFO 4088 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-07 20:17:12.385  INFO 4088 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 58 ms. Found 6 JPA repository interfaces.
+2023-02-07 20:17:12.802  INFO 4088 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8095 (http)
+2023-02-07 20:17:12.810  INFO 4088 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-02-07 20:17:12.810  INFO 4088 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.65]
+2023-02-07 20:17:12.900  INFO 4088 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-02-07 20:17:12.900  INFO 4088 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1038 ms
+2023-02-07 20:17:13.028  INFO 4088 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-02-07 20:17:13.166  INFO 4088 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-02-07 20:17:13.227  INFO 4088 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-02-07 20:17:13.269  INFO 4088 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.10.Final
+2023-02-07 20:17:13.412  INFO 4088 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-02-07 20:17:13.516  INFO 4088 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL55Dialect
+2023-02-07 20:17:14.005  INFO 4088 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-02-07 20:17:14.014  INFO 4088 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-02-07 20:17:14.335  WARN 4088 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-02-07 20:17:14.417  WARN 4088 --- [main] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/ignore1']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-02-07 20:17:14.418  INFO 4088 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/ignore1']
+2023-02-07 20:17:14.418  WARN 4088 --- [main] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/ignore2']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-02-07 20:17:14.418  INFO 4088 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/ignore2']
+2023-02-07 20:17:14.456  INFO 4088 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@691a5c3a, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5570dc21, org.springframework.security.web.context.SecurityContextPersistenceFilter@7c4a5ef2, org.springframework.security.web.header.HeaderWriterFilter@ed1d2cf, org.springframework.security.web.authentication.logout.LogoutFilter@6fe337a5, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@b75f3f4, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@34d3409d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5eb9bf7d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1477d4e6, org.springframework.security.web.session.SessionManagementFilter@5f81507a, org.springframework.security.web.access.ExceptionTranslationFilter@a0bdbe2, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4e481512]
+2023-02-07 20:17:14.565  INFO 4088 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-02-07 20:17:14.758  INFO 4088 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8095 (http) with context path ''
+2023-02-07 20:17:14.764  INFO 4088 --- [main] principal.App                            : Started App in 3.286 seconds (JVM running for 3.877)
+2023-02-07 20:17:21.185  INFO 4088 --- [http-nio-8095-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-02-07 20:17:21.185  INFO 4088 --- [http-nio-8095-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-02-07 20:17:21.186  INFO 4088 --- [http-nio-8095-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-02-07 20:18:24.265  INFO 4088 --- [RMI TCP Connection(3)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2023-02-07 20:18:24.295  INFO 4088 --- [RMI TCP Connection(3)-127.0.0.1] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-02-07 20:18:24.297  INFO 4088 --- [RMI TCP Connection(3)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-02-07 20:18:24.303  INFO 4088 --- [RMI TCP Connection(3)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-02-07 20:18:24.304  INFO 4088 --- [RMI TCP Connection(3)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-02-07 20:18:24.310  INFO 4088 --- [RMI TCP Connection(3)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-02-07 20:18:29.735  INFO 18024 --- [main] principal.App                            : Starting App using Java 17.0.4.1 on DESKTOP-CC9VUPT with PID 18024 (C:\Users\jonat\Documents\workspace-spring-tool-suite-4-4.16.1.RELEASE\ProyectoDEF\target\classes started by jonat in C:\Users\jonat\Documents\workspace-spring-tool-suite-4-4.16.1.RELEASE\ProyectoDEF)
+2023-02-07 20:18:29.736  INFO 18024 --- [main] principal.App                            : No active profile set, falling back to 1 default profile: "default"
+2023-02-07 20:18:30.219  INFO 18024 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-07 20:18:30.281  INFO 18024 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 54 ms. Found 6 JPA repository interfaces.
+2023-02-07 20:18:30.690  INFO 18024 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8095 (http)
+2023-02-07 20:18:30.698  INFO 18024 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-02-07 20:18:30.698  INFO 18024 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.65]
+2023-02-07 20:18:30.788  INFO 18024 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-02-07 20:18:30.788  INFO 18024 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1020 ms
+2023-02-07 20:18:30.867  INFO 18024 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-02-07 20:18:30.880  INFO 18024 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-02-07 20:18:30.906  INFO 18024 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-02-07 20:18:30.932  INFO 18024 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL55Dialect
+2023-02-07 20:18:30.981  INFO 18024 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-02-07 20:18:30.981  INFO 18024 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-02-07 20:18:31.270  WARN 18024 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-02-07 20:18:31.352  WARN 18024 --- [main] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/ignore1']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-02-07 20:18:31.352  INFO 18024 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/ignore1']
+2023-02-07 20:18:31.352  WARN 18024 --- [main] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/ignore2']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-02-07 20:18:31.352  INFO 18024 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/ignore2']
+2023-02-07 20:18:31.386  INFO 18024 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@43414b88, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@52a605c3, org.springframework.security.web.context.SecurityContextPersistenceFilter@2566247d, org.springframework.security.web.header.HeaderWriterFilter@5e8a678a, org.springframework.security.web.authentication.logout.LogoutFilter@129348e8, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@560c3758, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@63d14dbf, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@bb1b872, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@13fad0c7, org.springframework.security.web.session.SessionManagementFilter@4d3bde85, org.springframework.security.web.access.ExceptionTranslationFilter@35a2ea5a, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1a22325d]
+2023-02-07 20:18:31.492  INFO 18024 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-02-07 20:18:31.670  INFO 18024 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8095 (http) with context path ''
+2023-02-07 20:18:31.676  INFO 18024 --- [main] principal.App                            : Started App in 2.224 seconds (JVM running for 4.519)
+2023-02-07 20:20:33.484  INFO 18024 --- [RMI TCP Connection(4)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2023-02-07 20:20:33.495  INFO 18024 --- [RMI TCP Connection(4)-127.0.0.1] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-02-07 20:20:33.502  INFO 18024 --- [RMI TCP Connection(4)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-02-07 20:20:33.503  INFO 18024 --- [RMI TCP Connection(4)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-02-07 20:20:33.510  INFO 18024 --- [RMI TCP Connection(4)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-02-07 20:20:36.958  INFO 5352 --- [main] principal.App                            : Starting App using Java 17.0.4.1 on DESKTOP-CC9VUPT with PID 5352 (C:\Users\jonat\Documents\workspace-spring-tool-suite-4-4.16.1.RELEASE\ProyectoDEF\target\classes started by jonat in C:\Users\jonat\Documents\workspace-spring-tool-suite-4-4.16.1.RELEASE\ProyectoDEF)
+2023-02-07 20:20:36.959  INFO 5352 --- [main] principal.App                            : No active profile set, falling back to 1 default profile: "default"
+2023-02-07 20:20:37.409  INFO 5352 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-07 20:20:37.465  INFO 5352 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 49 ms. Found 6 JPA repository interfaces.
+2023-02-07 20:20:37.870  INFO 5352 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8095 (http)
+2023-02-07 20:20:37.878  INFO 5352 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-02-07 20:20:37.878  INFO 5352 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.65]
+2023-02-07 20:20:37.969  INFO 5352 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-02-07 20:20:37.969  INFO 5352 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 974 ms
+2023-02-07 20:20:38.046  INFO 5352 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-02-07 20:20:38.060  INFO 5352 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-02-07 20:20:38.086  INFO 5352 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-02-07 20:20:38.108  INFO 5352 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL55Dialect
+2023-02-07 20:20:38.152  INFO 5352 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-02-07 20:20:38.152  INFO 5352 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-02-07 20:20:38.443  WARN 5352 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-02-07 20:20:38.526  WARN 5352 --- [main] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/ignore1']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-02-07 20:20:38.527  INFO 5352 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/ignore1']
+2023-02-07 20:20:38.527  WARN 5352 --- [main] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/ignore2']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-02-07 20:20:38.527  INFO 5352 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/ignore2']
+2023-02-07 20:20:38.560  INFO 5352 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@67cd193d, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@34525143, org.springframework.security.web.context.SecurityContextPersistenceFilter@596d17f4, org.springframework.security.web.header.HeaderWriterFilter@6a0aa5e2, org.springframework.security.web.authentication.logout.LogoutFilter@7b9b6a56, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@1002f859, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@18ab513d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@260ccf0, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@126e2710, org.springframework.security.web.session.SessionManagementFilter@2389f546, org.springframework.security.web.access.ExceptionTranslationFilter@58b30e3e, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3f3a529f]
+2023-02-07 20:20:38.666  INFO 5352 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-02-07 20:20:38.849  INFO 5352 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8095 (http) with context path ''
+2023-02-07 20:20:38.855  INFO 5352 --- [main] principal.App                            : Started App in 2.184 seconds (JVM running for 4.386)
+2023-02-07 20:22:06.612  INFO 5352 --- [RMI TCP Connection(5)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2023-02-07 20:22:06.623  INFO 5352 --- [RMI TCP Connection(5)-127.0.0.1] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-02-07 20:22:06.630  INFO 5352 --- [RMI TCP Connection(5)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-02-07 20:22:06.631  INFO 5352 --- [RMI TCP Connection(5)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-02-07 20:22:06.637  INFO 5352 --- [RMI TCP Connection(5)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-02-07 20:22:10.419  INFO 16032 --- [main] principal.App                            : Starting App using Java 17.0.4.1 on DESKTOP-CC9VUPT with PID 16032 (C:\Users\jonat\Documents\workspace-spring-tool-suite-4-4.16.1.RELEASE\ProyectoDEF\target\classes started by jonat in C:\Users\jonat\Documents\workspace-spring-tool-suite-4-4.16.1.RELEASE\ProyectoDEF)
+2023-02-07 20:22:10.420  INFO 16032 --- [main] principal.App                            : No active profile set, falling back to 1 default profile: "default"
+2023-02-07 20:22:10.888  INFO 16032 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-07 20:22:10.942  INFO 16032 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 47 ms. Found 6 JPA repository interfaces.
+2023-02-07 20:22:11.344  INFO 16032 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8095 (http)
+2023-02-07 20:22:11.352  INFO 16032 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-02-07 20:22:11.353  INFO 16032 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.65]
+2023-02-07 20:22:11.451  INFO 16032 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-02-07 20:22:11.451  INFO 16032 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 998 ms
+2023-02-07 20:22:11.535  INFO 16032 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-02-07 20:22:11.550  INFO 16032 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-02-07 20:22:11.579  INFO 16032 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-02-07 20:22:11.603  INFO 16032 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL55Dialect
+2023-02-07 20:22:11.652  INFO 16032 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-02-07 20:22:11.652  INFO 16032 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-02-07 20:22:11.951  WARN 16032 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-02-07 20:22:12.036  WARN 16032 --- [main] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/ignore1']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-02-07 20:22:12.036  INFO 16032 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/ignore1']
+2023-02-07 20:22:12.036  WARN 16032 --- [main] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/ignore2']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-02-07 20:22:12.036  INFO 16032 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/ignore2']
+2023-02-07 20:22:12.070  INFO 16032 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1529d534, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1a22325d, org.springframework.security.web.context.SecurityContextPersistenceFilter@5e8a678a, org.springframework.security.web.header.HeaderWriterFilter@5b6ec94a, org.springframework.security.web.authentication.logout.LogoutFilter@46ab8e4b, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@126e2710, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4d3bde85, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@63d14dbf, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3c5cb013, org.springframework.security.web.session.SessionManagementFilter@596d17f4, org.springframework.security.web.access.ExceptionTranslationFilter@630bd5e7, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@344cf00f]
+2023-02-07 20:22:12.177  INFO 16032 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-02-07 20:22:12.354  INFO 16032 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8095 (http) with context path ''
+2023-02-07 20:22:12.361  INFO 16032 --- [main] principal.App                            : Started App in 2.218 seconds (JVM running for 4.474)
+2023-02-07 20:22:27.512  INFO 16032 --- [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2023-02-07 20:22:27.523  INFO 16032 --- [RMI TCP Connection(2)-127.0.0.1] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-02-07 20:22:27.529  INFO 16032 --- [RMI TCP Connection(2)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-02-07 20:22:27.530  INFO 16032 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-02-07 20:22:27.536  INFO 16032 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-02-07 20:23:05.455  INFO 12760 --- [main] principal.App                            : Starting App using Java 17.0.4.1 on DESKTOP-CC9VUPT with PID 12760 (C:\Users\jonat\Documents\workspace-spring-tool-suite-4-4.16.1.RELEASE\ProyectoDEF\target\classes started by jonat in C:\Users\jonat\Documents\workspace-spring-tool-suite-4-4.16.1.RELEASE\ProyectoDEF)
+2023-02-07 20:23:05.456  INFO 12760 --- [main] principal.App                            : No active profile set, falling back to 1 default profile: "default"
+2023-02-07 20:23:05.899  INFO 12760 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-07 20:23:05.955  INFO 12760 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 48 ms. Found 6 JPA repository interfaces.
+2023-02-07 20:23:06.357  INFO 12760 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8095 (http)
+2023-02-07 20:23:06.365  INFO 12760 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-02-07 20:23:06.365  INFO 12760 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.65]
+2023-02-07 20:23:06.458  INFO 12760 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-02-07 20:23:06.459  INFO 12760 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 972 ms
+2023-02-07 20:23:06.535  INFO 12760 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-02-07 20:23:06.547  INFO 12760 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-02-07 20:23:06.572  INFO 12760 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-02-07 20:23:06.594  INFO 12760 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL55Dialect
+2023-02-07 20:23:06.641  INFO 12760 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-02-07 20:23:06.641  INFO 12760 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-02-07 20:23:06.929  WARN 12760 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-02-07 20:23:07.012  WARN 12760 --- [main] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/ignore1']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-02-07 20:23:07.012  INFO 12760 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/ignore1']
+2023-02-07 20:23:07.012  WARN 12760 --- [main] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/ignore2']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-02-07 20:23:07.012  INFO 12760 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/ignore2']
+2023-02-07 20:23:07.045  INFO 12760 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3a61d819, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@508abc74, org.springframework.security.web.context.SecurityContextPersistenceFilter@89178b4, org.springframework.security.web.header.HeaderWriterFilter@600b3bee, org.springframework.security.web.authentication.logout.LogoutFilter@743f58c3, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@1bca9b64, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@64836643, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@45a05350, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@77b01226, org.springframework.security.web.session.SessionManagementFilter@20ad64c, org.springframework.security.web.access.ExceptionTranslationFilter@e21d73, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3d8b9dee]
+2023-02-07 20:23:07.149  INFO 12760 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-02-07 20:23:07.327  INFO 12760 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8095 (http) with context path ''
+2023-02-07 20:23:07.332  INFO 12760 --- [main] principal.App                            : Started App in 2.183 seconds (JVM running for 4.137)
+2023-02-07 20:23:42.882  INFO 12760 --- [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2023-02-07 20:23:42.894  INFO 12760 --- [RMI TCP Connection(2)-127.0.0.1] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-02-07 20:23:42.901  INFO 12760 --- [RMI TCP Connection(2)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-02-07 20:23:42.902  INFO 12760 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-02-07 20:23:42.908  INFO 12760 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-02-07 20:23:46.384  INFO 12716 --- [main] principal.App                            : Starting App using Java 17.0.4.1 on DESKTOP-CC9VUPT with PID 12716 (C:\Users\jonat\Documents\workspace-spring-tool-suite-4-4.16.1.RELEASE\ProyectoDEF\target\classes started by jonat in C:\Users\jonat\Documents\workspace-spring-tool-suite-4-4.16.1.RELEASE\ProyectoDEF)
+2023-02-07 20:23:46.385  INFO 12716 --- [main] principal.App                            : No active profile set, falling back to 1 default profile: "default"
+2023-02-07 20:23:46.828  INFO 12716 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-07 20:23:46.882  INFO 12716 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 47 ms. Found 6 JPA repository interfaces.
+2023-02-07 20:23:47.288  INFO 12716 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8095 (http)
+2023-02-07 20:23:47.296  INFO 12716 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-02-07 20:23:47.296  INFO 12716 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.65]
+2023-02-07 20:23:47.384  INFO 12716 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-02-07 20:23:47.384  INFO 12716 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 968 ms
+2023-02-07 20:23:47.464  INFO 12716 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-02-07 20:23:47.477  INFO 12716 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-02-07 20:23:47.503  INFO 12716 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-02-07 20:23:47.525  INFO 12716 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL55Dialect
+2023-02-07 20:23:47.567  INFO 12716 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-02-07 20:23:47.568  INFO 12716 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-02-07 20:23:47.854  WARN 12716 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-02-07 20:23:47.936  WARN 12716 --- [main] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/ignore1']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-02-07 20:23:47.937  INFO 12716 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/ignore1']
+2023-02-07 20:23:47.937  WARN 12716 --- [main] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/ignore2']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-02-07 20:23:47.937  INFO 12716 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/ignore2']
+2023-02-07 20:23:47.970  INFO 12716 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1f05d08c, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2c6d442d, org.springframework.security.web.context.SecurityContextPersistenceFilter@41935a9d, org.springframework.security.web.header.HeaderWriterFilter@3f465ae, org.springframework.security.web.authentication.logout.LogoutFilter@28c75c93, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@799557c8, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@565030b7, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2eb73a42, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@71842e18, org.springframework.security.web.session.SessionManagementFilter@308d4981, org.springframework.security.web.access.ExceptionTranslationFilter@7fa86ddd, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7207f3c2]
+2023-02-07 20:23:48.074  INFO 12716 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-02-07 20:23:48.253  INFO 12716 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8095 (http) with context path ''
+2023-02-07 20:23:48.259  INFO 12716 --- [main] principal.App                            : Started App in 2.149 seconds (JVM running for 4.143)
+2023-02-07 20:23:58.352  INFO 12716 --- [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2023-02-07 20:23:58.364  INFO 12716 --- [RMI TCP Connection(2)-127.0.0.1] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-02-07 20:23:58.371  INFO 12716 --- [RMI TCP Connection(2)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-02-07 20:23:58.372  INFO 12716 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-02-07 20:23:58.380  INFO 12716 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-02-07 20:24:47.441  INFO 6400 --- [main] principal.App                            : Starting App using Java 17.0.4.1 on DESKTOP-CC9VUPT with PID 6400 (C:\Users\jonat\Documents\workspace-spring-tool-suite-4-4.16.1.RELEASE\ProyectoDEF\target\classes started by jonat in C:\Users\jonat\Documents\workspace-spring-tool-suite-4-4.16.1.RELEASE\ProyectoDEF)
+2023-02-07 20:24:47.442  INFO 6400 --- [main] principal.App                            : No active profile set, falling back to 1 default profile: "default"
+2023-02-07 20:24:47.909  INFO 6400 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-07 20:24:47.964  INFO 6400 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 48 ms. Found 6 JPA repository interfaces.
+2023-02-07 20:24:48.360  INFO 6400 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8095 (http)
+2023-02-07 20:24:48.367  INFO 6400 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-02-07 20:24:48.367  INFO 6400 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.65]
+2023-02-07 20:24:48.458  INFO 6400 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-02-07 20:24:48.458  INFO 6400 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 980 ms
+2023-02-07 20:24:48.536  INFO 6400 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-02-07 20:24:48.549  INFO 6400 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-02-07 20:24:48.575  INFO 6400 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-02-07 20:24:48.596  INFO 6400 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL55Dialect
+2023-02-07 20:24:48.640  INFO 6400 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-02-07 20:24:48.640  INFO 6400 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-02-07 20:24:48.928  WARN 6400 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-02-07 20:24:49.011  WARN 6400 --- [main] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/ignore1']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-02-07 20:24:49.012  INFO 6400 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/ignore1']
+2023-02-07 20:24:49.012  WARN 6400 --- [main] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/ignore2']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-02-07 20:24:49.012  INFO 6400 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/ignore2']
+2023-02-07 20:24:49.044  INFO 6400 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@126e2710, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1529d534, org.springframework.security.web.context.SecurityContextPersistenceFilter@596d17f4, org.springframework.security.web.header.HeaderWriterFilter@6a0aa5e2, org.springframework.security.web.authentication.logout.LogoutFilter@7b9b6a56, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@34525143, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@18ab513d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@260ccf0, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1a22325d, org.springframework.security.web.session.SessionManagementFilter@2389f546, org.springframework.security.web.access.ExceptionTranslationFilter@58b30e3e, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5aa5b3af]
+2023-02-07 20:24:49.148  INFO 6400 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-02-07 20:24:49.323  INFO 6400 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8095 (http) with context path ''
+2023-02-07 20:24:49.330  INFO 6400 --- [main] principal.App                            : Started App in 2.177 seconds (JVM running for 4.811)
+2023-02-07 20:26:17.346  INFO 6400 --- [RMI TCP Connection(5)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2023-02-07 20:26:17.368  INFO 6400 --- [RMI TCP Connection(5)-127.0.0.1] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-02-07 20:26:17.375  INFO 6400 --- [RMI TCP Connection(5)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-02-07 20:26:17.376  INFO 6400 --- [RMI TCP Connection(5)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-02-07 20:26:17.382  INFO 6400 --- [RMI TCP Connection(5)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-02-07 20:26:20.901  INFO 2732 --- [main] principal.App                            : Starting App using Java 17.0.4.1 on DESKTOP-CC9VUPT with PID 2732 (C:\Users\jonat\Documents\workspace-spring-tool-suite-4-4.16.1.RELEASE\ProyectoDEF\target\classes started by jonat in C:\Users\jonat\Documents\workspace-spring-tool-suite-4-4.16.1.RELEASE\ProyectoDEF)
+2023-02-07 20:26:20.903  INFO 2732 --- [main] principal.App                            : No active profile set, falling back to 1 default profile: "default"
+2023-02-07 20:26:21.367  INFO 2732 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-07 20:26:21.426  INFO 2732 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 47 ms. Found 6 JPA repository interfaces.
+2023-02-07 20:26:21.827  INFO 2732 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8095 (http)
+2023-02-07 20:26:21.837  INFO 2732 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-02-07 20:26:21.837  INFO 2732 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.65]
+2023-02-07 20:26:21.927  INFO 2732 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-02-07 20:26:21.927  INFO 2732 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 990 ms
+2023-02-07 20:26:22.003  INFO 2732 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-02-07 20:26:22.016  INFO 2732 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-02-07 20:26:22.042  INFO 2732 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-02-07 20:26:22.067  INFO 2732 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL55Dialect
+2023-02-07 20:26:22.108  INFO 2732 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-02-07 20:26:22.108  INFO 2732 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-02-07 20:26:22.399  WARN 2732 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-02-07 20:26:22.480  WARN 2732 --- [main] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/ignore1']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-02-07 20:26:22.480  INFO 2732 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/ignore1']
+2023-02-07 20:26:22.480  WARN 2732 --- [main] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/ignore2']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-02-07 20:26:22.480  INFO 2732 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/ignore2']
+2023-02-07 20:26:22.513  INFO 2732 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@14091e24, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@45ecdd32, org.springframework.security.web.context.SecurityContextPersistenceFilter@28c75c93, org.springframework.security.web.header.HeaderWriterFilter@42fdf45e, org.springframework.security.web.authentication.logout.LogoutFilter@1016b44e, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@2e60d4f4, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@95aeee4, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@341c0dfc, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@408980aa, org.springframework.security.web.session.SessionManagementFilter@5e7ea81b, org.springframework.security.web.access.ExceptionTranslationFilter@7156f8cf, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1e9a10e9]
+2023-02-07 20:26:22.618  INFO 2732 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-02-07 20:26:22.793  INFO 2732 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8095 (http) with context path ''
+2023-02-07 20:26:22.799  INFO 2732 --- [main] principal.App                            : Started App in 2.177 seconds (JVM running for 4.137)
+2023-02-07 20:26:26.527  INFO 2732 --- [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2023-02-07 20:26:26.538  INFO 2732 --- [RMI TCP Connection(2)-127.0.0.1] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-02-07 20:26:26.545  INFO 2732 --- [RMI TCP Connection(2)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-02-07 20:26:26.546  INFO 2732 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-02-07 20:26:26.553  INFO 2732 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-02-07 20:26:45.600  INFO 18640 --- [main] principal.App                            : Starting App using Java 17.0.4.1 on DESKTOP-CC9VUPT with PID 18640 (C:\Users\jonat\Documents\workspace-spring-tool-suite-4-4.16.1.RELEASE\ProyectoDEF\target\classes started by jonat in C:\Users\jonat\Documents\workspace-spring-tool-suite-4-4.16.1.RELEASE\ProyectoDEF)
+2023-02-07 20:26:45.601  INFO 18640 --- [main] principal.App                            : No active profile set, falling back to 1 default profile: "default"
+2023-02-07 20:26:46.059  INFO 18640 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-07 20:26:46.115  INFO 18640 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 48 ms. Found 6 JPA repository interfaces.
+2023-02-07 20:26:46.516  INFO 18640 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8095 (http)
+2023-02-07 20:26:46.524  INFO 18640 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-02-07 20:26:46.524  INFO 18640 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.65]
+2023-02-07 20:26:46.614  INFO 18640 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-02-07 20:26:46.615  INFO 18640 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 981 ms
+2023-02-07 20:26:46.695  INFO 18640 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-02-07 20:26:46.709  INFO 18640 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-02-07 20:26:46.738  INFO 18640 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-02-07 20:26:46.757  INFO 18640 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL55Dialect
+2023-02-07 20:26:46.801  INFO 18640 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-02-07 20:26:46.801  INFO 18640 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-02-07 20:26:47.110  WARN 18640 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-02-07 20:26:47.200  WARN 18640 --- [main] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/ignore1']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-02-07 20:26:47.200  INFO 18640 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/ignore1']
+2023-02-07 20:26:47.200  WARN 18640 --- [main] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/ignore2']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-02-07 20:26:47.200  INFO 18640 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/ignore2']
+2023-02-07 20:26:47.236  INFO 18640 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4e9d203e, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@39f7cc46, org.springframework.security.web.context.SecurityContextPersistenceFilter@7b9b6a56, org.springframework.security.web.header.HeaderWriterFilter@256d8f17, org.springframework.security.web.authentication.logout.LogoutFilter@3314f179, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@1f57fa23, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@55a5eea3, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@600b3bee, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5687ade6, org.springframework.security.web.session.SessionManagementFilter@659e003e, org.springframework.security.web.access.ExceptionTranslationFilter@64245ca9, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4f836d9]
+2023-02-07 20:26:47.344  INFO 18640 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-02-07 20:26:47.527  INFO 18640 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8095 (http) with context path ''
+2023-02-07 20:26:47.533  INFO 18640 --- [main] principal.App                            : Started App in 2.207 seconds (JVM running for 4.414)
+2023-02-07 20:29:08.043  INFO 18640 --- [RMI TCP Connection(6)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2023-02-07 20:29:08.053  INFO 18640 --- [RMI TCP Connection(6)-127.0.0.1] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-02-07 20:29:08.059  INFO 18640 --- [RMI TCP Connection(6)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-02-07 20:29:08.061  INFO 18640 --- [RMI TCP Connection(6)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-02-07 20:29:08.066  INFO 18640 --- [RMI TCP Connection(6)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-02-07 20:29:26.331  INFO 3208 --- [main] principal.App                            : Starting App using Java 17.0.4.1 on DESKTOP-CC9VUPT with PID 3208 (C:\Users\jonat\Documents\workspace-spring-tool-suite-4-4.16.1.RELEASE\ProyectoDEF\target\classes started by jonat in C:\Users\jonat\Documents\workspace-spring-tool-suite-4-4.16.1.RELEASE\ProyectoDEF)
+2023-02-07 20:29:26.332  INFO 3208 --- [main] principal.App                            : No active profile set, falling back to 1 default profile: "default"
+2023-02-07 20:29:26.782  INFO 3208 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-07 20:29:26.836  INFO 3208 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 47 ms. Found 6 JPA repository interfaces.
+2023-02-07 20:29:27.244  INFO 3208 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8095 (http)
+2023-02-07 20:29:27.251  INFO 3208 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-02-07 20:29:27.252  INFO 3208 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.65]
+2023-02-07 20:29:27.342  INFO 3208 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-02-07 20:29:27.343  INFO 3208 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 980 ms
+2023-02-07 20:29:27.422  INFO 3208 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-02-07 20:29:27.434  INFO 3208 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-02-07 20:29:27.461  INFO 3208 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-02-07 20:29:27.484  INFO 3208 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL55Dialect
+2023-02-07 20:29:27.529  INFO 3208 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-02-07 20:29:27.529  INFO 3208 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-02-07 20:29:27.823  WARN 3208 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-02-07 20:29:27.906  WARN 3208 --- [main] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/ignore1']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-02-07 20:29:27.907  INFO 3208 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/ignore1']
+2023-02-07 20:29:27.907  WARN 3208 --- [main] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/ignore2']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-02-07 20:29:27.907  INFO 3208 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/ignore2']
+2023-02-07 20:29:27.942  INFO 3208 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4d145177, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1f57fa23, org.springframework.security.web.context.SecurityContextPersistenceFilter@5f3c866c, org.springframework.security.web.header.HeaderWriterFilter@64245ca9, org.springframework.security.web.authentication.logout.LogoutFilter@74ed7111, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@89ff043, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7b9b6a56, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@e21d73, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4e9d203e, org.springframework.security.web.session.SessionManagementFilter@256d8f17, org.springframework.security.web.access.ExceptionTranslationFilter@7cc7e441, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@32675dd4]
+2023-02-07 20:29:28.055  INFO 3208 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-02-07 20:29:28.245  INFO 3208 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8095 (http) with context path ''
+2023-02-07 20:29:28.251  INFO 3208 --- [main] principal.App                            : Started App in 2.186 seconds (JVM running for 4.415)
+2023-02-07 20:29:50.439  INFO 3208 --- [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2023-02-07 20:29:50.449  INFO 3208 --- [RMI TCP Connection(2)-127.0.0.1] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-02-07 20:29:50.455  INFO 3208 --- [RMI TCP Connection(2)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-02-07 20:29:50.457  INFO 3208 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-02-07 20:29:50.462  INFO 3208 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-02-07 20:30:18.769  INFO 4628 --- [main] principal.App                            : Starting App using Java 17.0.4.1 on DESKTOP-CC9VUPT with PID 4628 (C:\Users\jonat\Documents\workspace-spring-tool-suite-4-4.16.1.RELEASE\ProyectoDEF\target\classes started by jonat in C:\Users\jonat\Documents\workspace-spring-tool-suite-4-4.16.1.RELEASE\ProyectoDEF)
+2023-02-07 20:30:18.770  INFO 4628 --- [main] principal.App                            : No active profile set, falling back to 1 default profile: "default"
+2023-02-07 20:30:19.229  INFO 4628 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-07 20:30:19.284  INFO 4628 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 48 ms. Found 6 JPA repository interfaces.
+2023-02-07 20:30:19.689  INFO 4628 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8095 (http)
+2023-02-07 20:30:19.697  INFO 4628 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-02-07 20:30:19.697  INFO 4628 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.65]
+2023-02-07 20:30:19.788  INFO 4628 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-02-07 20:30:19.789  INFO 4628 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 985 ms
+2023-02-07 20:30:19.870  INFO 4628 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-02-07 20:30:19.885  INFO 4628 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-02-07 20:30:19.912  INFO 4628 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-02-07 20:30:19.936  INFO 4628 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL55Dialect
+2023-02-07 20:30:19.991  INFO 4628 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-02-07 20:30:19.991  INFO 4628 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-02-07 20:30:20.298  WARN 4628 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-02-07 20:30:20.380  WARN 4628 --- [main] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/ignore1']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-02-07 20:30:20.380  INFO 4628 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/ignore1']
+2023-02-07 20:30:20.380  WARN 4628 --- [main] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/ignore2']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-02-07 20:30:20.380  INFO 4628 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/ignore2']
+2023-02-07 20:30:20.414  INFO 4628 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3d8b9dee, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@45cddfd3, org.springframework.security.web.context.SecurityContextPersistenceFilter@7a482b3a, org.springframework.security.web.header.HeaderWriterFilter@6e111aeb, org.springframework.security.web.authentication.logout.LogoutFilter@66e62e19, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@5608e254, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@129348e8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5c7d675c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@40dc2ade, org.springframework.security.web.session.SessionManagementFilter@46ab8e4b, org.springframework.security.web.access.ExceptionTranslationFilter@16e0afab, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4e9d203e]
+2023-02-07 20:30:20.520  INFO 4628 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-02-07 20:30:20.702  INFO 4628 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8095 (http) with context path ''
+2023-02-07 20:30:20.709  INFO 4628 --- [main] principal.App                            : Started App in 2.224 seconds (JVM running for 4.45)
+2023-02-07 20:38:24.912  INFO 4628 --- [RMI TCP Connection(10)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2023-02-07 20:38:24.958  INFO 4628 --- [RMI TCP Connection(10)-127.0.0.1] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-02-07 20:38:24.965  INFO 4628 --- [RMI TCP Connection(10)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-02-07 20:38:24.966  INFO 4628 --- [RMI TCP Connection(10)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-02-07 20:38:24.972  INFO 4628 --- [RMI TCP Connection(10)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
