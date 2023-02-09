@@ -42,10 +42,13 @@ public class Coche {
 	@OneToMany(mappedBy = "coche", fetch = FetchType.EAGER)
 	private Set<Alumno> alumnos;
 	
+	@OneToMany(mappedBy = "coche", fetch = FetchType.EAGER)
+	private Set<ProfesoresCochesLlaves> llaves;
+	
 
 	
 	@OneToMany(mappedBy = "coche", cascade=CascadeType.MERGE,orphanRemoval=true)
-	private Set<ProfesoresCoches> profesores;
+	private Set<ProfesoresCochesLlaves> profesores;
 	
 	
 	
@@ -56,7 +59,9 @@ public class Coche {
 	
 	public Coche() {
 		alumnos=new HashSet<Alumno>();
-		profesores=new HashSet<ProfesoresCoches>();
+		profesores=new HashSet<ProfesoresCochesLlaves>();
+		llaves=new HashSet<ProfesoresCochesLlaves>();
+		
 	}
 
 
@@ -65,7 +70,18 @@ public class Coche {
 		this.modelo = modelo;
 		this.marca = marca;
 		alumnos=new HashSet<Alumno>();
-		profesores=new HashSet<ProfesoresCoches>();
+		profesores=new HashSet<ProfesoresCochesLlaves>();
+		llaves=new HashSet<ProfesoresCochesLlaves>();
+	}
+	
+	public void addLlave(Profesor p, Llave l) {
+		ProfesoresCochesLlaves pc=new ProfesoresCochesLlaves(p,this,l);
+		if(llaves.contains(pc)) {
+			llaves.remove(pc);
+		}
+		llaves.add(pc);
+		p.getLlaves().add(pc);
+		p.getCoches().add(pc);
 	}
 	
 	
@@ -77,6 +93,18 @@ public class Coche {
 	}
 	public Integer getId() {
 		return id;
+	}
+	
+	
+
+
+	public Set<ProfesoresCochesLlaves> getLlaves() {
+		return llaves;
+	}
+
+
+	public void setLlaves(Set<ProfesoresCochesLlaves> llaves) {
+		this.llaves = llaves;
 	}
 
 
@@ -112,10 +140,10 @@ public class Coche {
 	public void setAlumnos(Set<Alumno> alumnos) {
 		this.alumnos = alumnos;
 	}
-	public Set<ProfesoresCoches> getProfesores() {
+	public Set<ProfesoresCochesLlaves> getProfesores() {
 		return profesores;
 	}
-	public void setProfesores(Set<ProfesoresCoches> profesores) {
+	public void setProfesores(Set<ProfesoresCochesLlaves> profesores) {
 		this.profesores = profesores;
 	}
 

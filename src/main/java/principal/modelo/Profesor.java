@@ -39,36 +39,58 @@ public class Profesor {
 	
 	@OneToMany(mappedBy = "profesor", fetch = FetchType.EAGER)
 	private Set<Alumno> alumnos;
+	
+	@OneToMany(mappedBy = "profesor", fetch = FetchType.EAGER)
+	private Set<ProfesoresCochesLlaves> llaves;
 
 	@OneToMany(mappedBy = "profesor", cascade=CascadeType.MERGE,orphanRemoval=true)
-	private Set<ProfesoresCoches> coches;
+	private Set<ProfesoresCochesLlaves> coches;
 
 	public Profesor() {
 		alumnos = new HashSet<Alumno>();
-		coches = new HashSet<ProfesoresCoches>();
+		coches = new HashSet<ProfesoresCochesLlaves>();
+		llaves=new HashSet<ProfesoresCochesLlaves>();
 	}
 
-	public Profesor(String nombre, String dni) {
-		
-		this.nombre = nombre;
+	
+	
+	
+
+	public Profesor(String dni, String nombre) {
 		this.dni = dni;
+		this.nombre = nombre;
 		alumnos = new HashSet<Alumno>();
-		coches = new HashSet<ProfesoresCoches>();
-
+		coches = new HashSet<ProfesoresCochesLlaves>();
+		llaves=new HashSet<ProfesoresCochesLlaves>();
 	}
-	
-	
 
-	public Profesor(Integer id, String dni, String nombre, String apellidos, Set<Alumno> alumnos, Set<ProfesoresCoches> coches) {
-		super();
+
+
+
+
+	public Profesor(Integer id, String dni, String nombre, String apellidos, Set<Alumno> alumnos, Set<ProfesoresCochesLlaves> coches) {
 		this.id = id;
 		this.dni = dni;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
-		this.alumnos = alumnos;
-		this.coches = coches;
+		alumnos = new HashSet<Alumno>();
+		coches = new HashSet<ProfesoresCochesLlaves>();
+		llaves=new HashSet<ProfesoresCochesLlaves>();
 	}
 
+	
+	public void addCoche(Coche c, Llave l) {
+		ProfesoresCochesLlaves pc=new ProfesoresCochesLlaves(this,c,l);
+		if(coches.contains(pc)) {
+			coches.remove(pc);
+		}
+		coches.add(pc);
+		c.getProfesores().add(pc);
+		c.getLlaves().add(pc);
+			
+	}
+	
+	
 	// getters y setters
 
 	public Integer getId() {
@@ -111,13 +133,30 @@ public class Profesor {
 		this.alumnos = alumnos;
 	}
 
-	public Set<ProfesoresCoches> getCoches() {
+	public Set<ProfesoresCochesLlaves> getCoches() {
 		return coches;
 	}
 
-	public void setCoches(Set<ProfesoresCoches> coches) {
+	public void setCoches(Set<ProfesoresCochesLlaves> coches) {
 		this.coches = coches;
 	}
+	
+
+	public Set<ProfesoresCochesLlaves> getLlaves() {
+		return llaves;
+	}
+
+
+
+
+
+	public void setLlaves(Set<ProfesoresCochesLlaves> llaves) {
+		this.llaves = llaves;
+	}
+
+
+
+
 
 	@Override
 	public String toString() {

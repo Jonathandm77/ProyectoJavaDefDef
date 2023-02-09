@@ -15,8 +15,9 @@
  			 <class>principal.modelo.Alumno</class>
  			 <class>principal.modelo.Coche</class>
  			 <class>principal.modelo.Profesor</class>
- 			  <class>modelo.Usuario</class>
-             <class>modelo.Rol</class>
+ 			  <class>principal.modelo.Usuario</class>
+             <class>principal.modelo.Rol</class>
+             <class>principal.modelo.Llave</class>
 
                        
         <properties>

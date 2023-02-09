@@ -6,16 +6,18 @@ import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="profesores_coches")
-public class ProfesoresCoches {
+@Table(name="profesores_coches_llaves")
+public class ProfesoresCochesLlaves {
 	
 	@EmbeddedId
-	private ProfesoresCochesId id;
+	private ProfesoresCochesLlavesId id;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@MapsId("profesor_id")
@@ -25,35 +27,40 @@ public class ProfesoresCoches {
 	@MapsId("coche_id")
 	private Coche coche;
 	
+	@ManyToOne(fetch=FetchType.EAGER)
+	@MapsId("llave_id")
+	private Llave llave;
+	
 
-	public ProfesoresCoches() {
-		super();
+	public ProfesoresCochesLlaves() {
+
 	}
 
-	public ProfesoresCoches(Profesor p, Coche c) {
+	public ProfesoresCochesLlaves(Profesor p, Coche c, Llave l) {
 		this.coche=c;
 		this.profesor=p;
-		this.id=new ProfesoresCochesId(p.getId(), c.getId());
-	}
-	
+		this.llave=l;
+		this.id=new ProfesoresCochesLlavesId(p.getId(), c.getId(),l.getId());
+}
+
 	@Override
 	public boolean equals(Object o) {
 		if(o==null || getClass() !=o.getClass()) { 
 			return false;
 		}
-		ProfesoresCoches that=(ProfesoresCoches) o;
-		return Objects.equals(coche, that.coche) && Objects.equals(profesor, that.profesor);
+		ProfesoresCochesLlaves that=(ProfesoresCochesLlaves) o;
+		return Objects.equals(coche, that.coche) && Objects.equals(profesor, that.profesor) && Objects.equals(llave, that.llave);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(profesor, coche);
+		return Objects.hash(profesor, coche, llave);
 	}
-	public ProfesoresCochesId getId() {
+	public ProfesoresCochesLlavesId getId() {
 		return id;
 	}
 
-	public void setId(ProfesoresCochesId id) {
+	public void setId(ProfesoresCochesLlavesId id) {
 		this.id = id;
 	}
 
@@ -72,6 +79,15 @@ public class ProfesoresCoches {
 	public void setCoche(Coche coche) {
 		this.coche = coche;
 	}
+
+	public Llave getLlave() {
+		return llave;
+	}
+
+	public void setLlave(Llave llave) {
+		this.llave = llave;
+	}
+	
 
 
 	
