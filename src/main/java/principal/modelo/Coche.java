@@ -42,12 +42,12 @@ public class Coche {
 	@OneToMany(mappedBy = "coche", fetch = FetchType.EAGER)
 	private Set<Alumno> alumnos;
 	
-	@OneToMany(mappedBy = "coche", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "llave", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<ProfesoresCochesLlaves> llaves;
 	
 
 	
-	@OneToMany(mappedBy = "coche", cascade=CascadeType.MERGE,orphanRemoval=true)
+	@OneToMany(mappedBy = "profesor", cascade=CascadeType.MERGE,orphanRemoval=true)
 	private Set<ProfesoresCochesLlaves> profesores;
 	
 	
