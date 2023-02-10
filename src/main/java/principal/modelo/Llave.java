@@ -21,7 +21,7 @@ public class Llave {
 	private Profesor profesor;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_coche", nullable = false)
+	@JoinColumn(name = "coche_id", nullable = false)
 	private Coche coche;
 
 	public Integer getId() {

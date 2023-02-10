@@ -47,7 +47,7 @@ public class Coche {
 	
 
 	
-	@OneToMany(mappedBy = "profesor", cascade=CascadeType.MERGE,orphanRemoval=true)
+	@OneToMany(mappedBy = "profesor", cascade=CascadeType.ALL,orphanRemoval=true)
 	private Set<ProfesoresCochesLlaves> profesores;
 	
 	

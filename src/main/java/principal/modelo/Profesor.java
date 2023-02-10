@@ -43,7 +43,7 @@ public class Profesor {
 	@OneToMany(mappedBy = "llave", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<ProfesoresCochesLlaves> llaves;
 
-	@OneToMany(mappedBy = "coche", cascade=CascadeType.MERGE,orphanRemoval=true)
+	@OneToMany(mappedBy = "coche", cascade=CascadeType.ALL,orphanRemoval=true)
 	private Set<ProfesoresCochesLlaves> coches;
 
 	public Profesor() {
