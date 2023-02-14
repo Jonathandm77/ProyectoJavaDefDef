@@ -49,7 +49,7 @@
 
 				<td>
 					<a th:attr="data-target='#modal-edit'+${alumno.id}" data-toggle="modal" data-target="#modal-edit"
-						class="btn btn-primary btn-sm text-white pointer">
+						class="btn btn-primary btn-sm text-white pointer modifyButton">
 						Modificar
 					</a>
 				</td>
@@ -94,7 +94,7 @@
 						
 						
 						<!--formulario nombre-->
-						<form action="#" th:action="@{/alumnos/search/{nombre}(nombre=${alumno.nombre})}" th:object="${alumnoaBuscar}"
+						<form action="#" th:action="@{/alumnos/search}" th:object="${alumnoaBuscar}"
 							method="post">
 							<div class"form-row">
 								<div class="form-group mt-1">
@@ -218,11 +218,11 @@
 							<div class"form-row">
 								<div class="form-group mt-1">
 									<label for="texto">Nombre</label>
-									<input type="text" th:field="*{nombre}" class="form-control" id="exampleInputName"
+									<input type="text" th:field="*{nombre}" class="form-control exampleInputName"
 										th:attr="placeholder=${alumno.nombre}" />
 
 									<label for="texto">Notas</label>
-									<input type="text" th:field="*{notas}" class="form-control" id="notas"
+									<input type="text" th:field="*{notas}" class="form-control notes"
 										th:attr="placeholder=${alumno.notas}" />
 								</div>
 							</div>
@@ -230,7 +230,7 @@
 					<div class="modal-footer">
 						<button class="btn btn-secondary btn-sm" data-dismiss="modal"
 							aria-hidden="true">Cancelar</button>
-						<input id="sent" type="submit" value="Modificar" class="btn btn-primary float-right" />
+						<input type="submit" value="Modificar" class="btn btn-primary float-right sent" />
 					</div>
 					</form>
 				</div>
