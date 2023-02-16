@@ -17,7 +17,7 @@ import javax.persistence.Table;
 public class ProfesoresCochesLlaves {
 	
 	@EmbeddedId
-	private ProfesoresCochesLlavesId id;
+	private ProfesoresCochesLlavesId id=new ProfesoresCochesLlavesId();
 	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@MapsId("profesor_id")
@@ -33,7 +33,7 @@ public class ProfesoresCochesLlaves {
 	
 
 	public ProfesoresCochesLlaves() {
-
+		
 	}
 
 	public ProfesoresCochesLlaves(Profesor p, Coche c, Llave l) {

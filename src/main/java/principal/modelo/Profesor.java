@@ -40,10 +40,10 @@ public class Profesor {
 	@OneToMany(mappedBy = "profesor", fetch = FetchType.EAGER)
 	private Set<Alumno> alumnos;
 	
-	@OneToMany(mappedBy = "llave", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "llave", cascade = CascadeType.MERGE, orphanRemoval = true)
 	private Set<ProfesoresCochesLlaves> llaves;
 
-	@OneToMany(mappedBy = "coche", cascade=CascadeType.ALL,orphanRemoval=true)
+	@OneToMany(mappedBy = "coche", cascade=CascadeType.MERGE,orphanRemoval=true)
 	private Set<ProfesoresCochesLlaves> coches;
 
 	public Profesor() {
