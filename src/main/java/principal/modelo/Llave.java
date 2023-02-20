@@ -1,4 +1,5 @@
 package principal.modelo;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,13 +17,11 @@ public class Llave {
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Integer id;
 	
-	@OneToOne
-	@JoinColumn(name="profesor_id", nullable=false)
-	private Profesor profesor;
+	@OneToOne(cascade = CascadeType.ALL)
+	private ProfesoresCochesLlaves profesor;
 	
-	@ManyToOne
-	@JoinColumn(name = "coche_id", nullable = false)
-	private Coche coche;
+	@ManyToOne(cascade = CascadeType.ALL)
+	private ProfesoresCochesLlaves coche;
 
 	public Integer getId() {
 		return id;
@@ -32,23 +31,30 @@ public class Llave {
 		this.id = id;
 	}
 
-	public Profesor getProfesor() {
+	public ProfesoresCochesLlaves getProfesor() {
 		return profesor;
 	}
 
-	public void setProfesor(Profesor profesor) {
+	public void setProfesor(ProfesoresCochesLlaves profesor) {
 		this.profesor = profesor;
 	}
 
-	public Coche getCoche() {
+	public ProfesoresCochesLlaves getCoche() {
 		return coche;
 	}
 
-	public void setCoche(Coche coche) {
+	public void setCoche(ProfesoresCochesLlaves coche) {
 		this.coche = coche;
 	}
-
-	public Llave(Profesor profesor, Coche coche) {
+	
+	public void addCocheProfesor(Coche c, Profesor p) {
+		ProfesoresCochesLlaves pc=new ProfesoresCochesLlaves(p,c, this);
+		ProfesoresCochesLlavesId id=new ProfesoresCochesLlavesId(p.getId(),c.getId(),this.id);
+		pc.setId(id);
+		this.setCoche(pc);
+		this.setProfesor(pc);
+	}
+	public Llave(ProfesoresCochesLlaves profesor, ProfesoresCochesLlaves coche) {
 		this.profesor = profesor;
 		this.coche = coche;
 	}

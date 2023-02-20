@@ -2,6 +2,7 @@ package principal.modelo;
 
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -17,17 +18,17 @@ import javax.persistence.Table;
 public class ProfesoresCochesLlaves {
 	
 	@EmbeddedId
-	private ProfesoresCochesLlavesId id=new ProfesoresCochesLlavesId();
+	private ProfesoresCochesLlavesId id;
 	
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	@MapsId("profesor_id")
 	private Profesor profesor;
 	
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	@MapsId("coche_id")
 	private Coche coche;
 	
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	@MapsId("llave_id")
 	private Llave llave;
 	

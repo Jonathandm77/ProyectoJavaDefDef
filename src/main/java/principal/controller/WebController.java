@@ -82,8 +82,6 @@ public class WebController {
 		p1.getAlumnos().add(a1);
 		a1.setCoche(c1);
 		c1.getAlumnos().add(a1);
-		llave1.setCoche(c1);
-		llave1.setProfesor(p1);
 		
 		
 		//c1.getProfesores().add(p1);
@@ -92,11 +90,15 @@ public class WebController {
 		p2.getAlumnos().add(a2);
 		a2.setCoche(c2);
 		c2.getAlumnos().add(a2);
+		
 		c2.addLlave(p2,llave2);
-		llave2.setCoche(c2);
-		llave2.setProfesor(p2);
+		llave1.addCocheProfesor(c2, p2);
+		p1.addCoche(c1, llave1);
+		llave2.addCocheProfesor(c2, p2);
 		
 		p2.addCoche(c2, llave2);
+		c1.addLlave(p1,llave1); //el metodo addLlave tambien añade la llave al profesor
+		
 		//c2.getProfesores().add(p2);
 
 		/*RolRepo rolRepo = new RolRepo();
@@ -121,9 +123,8 @@ public class WebController {
 		llaveService.insertarLlave(llave1);
 		llaveService.insertarLlave(llave2);
 		
-		c1.addLlave(p1,llave1); //el metodo addLlave tambien añade la llave al profesor
-		p1.addCoche(c1, llave1);
-		
+
+	
 
 	}
 }

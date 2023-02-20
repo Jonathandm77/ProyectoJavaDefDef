@@ -28,7 +28,7 @@ public class ProfesoresCochesLlavesId implements Serializable{
 	public ProfesoresCochesLlavesId(Integer idP, Integer idC, Integer idL) {
 		this.profesorId = idP;
 		this.cocheId = idC;
-		this.cocheId=idL;
+		this.llaveId=idL;
 	}
 	
 	@Override

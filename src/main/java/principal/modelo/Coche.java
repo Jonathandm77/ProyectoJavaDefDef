@@ -76,6 +76,8 @@ public class Coche {
 	
 	public void addLlave(Profesor p, Llave l) {
 		ProfesoresCochesLlaves pc=new ProfesoresCochesLlaves(p,this,l);
+		ProfesoresCochesLlavesId id=new ProfesoresCochesLlavesId(p.getId(),this.id,l.getId());
+		pc.setId(id);
 		if(llaves.contains(pc)) {
 			llaves.remove(pc);
 		}
