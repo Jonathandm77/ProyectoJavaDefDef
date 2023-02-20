@@ -49,8 +49,6 @@ public class Llave {
 	
 	public void addCocheProfesor(Coche c, Profesor p) {
 		ProfesoresCochesLlaves pc=new ProfesoresCochesLlaves(p,c, this);
-		ProfesoresCochesLlavesId id=new ProfesoresCochesLlavesId(p.getId(),c.getId(),this.id);
-		pc.setId(id);
 		this.setCoche(pc);
 		this.setProfesor(pc);
 	}
