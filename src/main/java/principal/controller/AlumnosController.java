@@ -1,7 +1,7 @@
 package principal.controller;
 
 import java.util.ArrayList;
-
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -99,6 +99,16 @@ import principal.servicio.interfaces.AlumnoService;
 			
 			
 			return "alumnosBuscadosPorNombre";
+			
+		}
+		
+		@GetMapping({"/getAll"})
+		List<Alumno> obtenerTodosAlumnos(Model model,BindingResult bidingresult) {
+			List<Alumno> misAlumnos= alumnoService.listarAlumnos();
+			
+			
+			
+			return misAlumnos;
 			
 		}
 
