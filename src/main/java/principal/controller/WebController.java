@@ -44,7 +44,6 @@ public class WebController {
 	@GetMapping("/")
 	String home() {
 		
-		//crearTablas();
 		 
 		return "index";
 			
@@ -70,7 +69,8 @@ public class WebController {
 		Llave llave1=new Llave();
 		Llave llave2=new Llave();
 		Usuario usuarioAdmin = new Usuario("admin", "admin", "$2a$12$jcd/P/f86nT9YXQbx/3tJeQye8h0aMhNm6EzzKkZMNLUCtIxpTNJa");
-		usuarioAdmin.getRoles().add(rolAdmin);
+		Usuario usuarioBasico = new Usuario("basic", "basic", "$2a$12$.LxoR0UizFfliIRjthfELu3aNpoRfnfSt6Y.B0CwKWvKmFg.OZyxK");
+		
 
 		/*
 		 * LocalDate fecha=LocalDate.of(2024, 5, 13); c1.setFechaITV(fecha);
@@ -108,9 +108,11 @@ public class WebController {
 		ProfesorRepo profesorRepo = new ProfesorRepo();
 		CocheRepo cocheRepo = new CocheRepo();*/
 		
-		//usuarioService.insertarUsuario(usuarioAdmin);
-		//rolRepo.save(rolAdmin);
-		//rolRepo.save(rolBasico);
+		rolRepo.save(rolAdmin);
+		usuarioService.insertarUsuarioAdmin(usuarioAdmin);
+		rolRepo.save(rolBasico);
+		usuarioService.insertarUsuarioBasico(usuarioBasico);
+		
 		cocheService.insertarCoche(c1);
 		cocheService.insertarCoche(c2);
 		

@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 import principal.modelo.Rol;
 import principal.modelo.Usuario;
 import principal.modelo.dto.UsuarioDTO;
-import principal.persistencia.RolRepo;
 import principal.persistencia.UsuarioRepo;
+import principal.servicio.interfaces.RolService;
 import principal.servicio.interfaces.UsuarioService;
 @Service
 public class UsuarioServiceImpl implements UsuarioService{
@@ -21,7 +21,8 @@ public class UsuarioServiceImpl implements UsuarioService{
 	private UsuarioRepo usuarioRepo;
 	
 	@Autowired
-	private RolRepo rolRepo;
+	private RolServiceImpl rolService;
+	
 	private BCryptPasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -41,12 +42,24 @@ public class UsuarioServiceImpl implements UsuarioService{
 		usuarioRepo.save(user);
 		return null;
 	}
+	
+	
+	public Usuario insertarUsuarioBasico(Usuario user) {
+		user.getRoles().add(rolService.obtenerRolPorId(2));
+		return usuarioRepo.save(user);
+	}
+	
+	public Usuario insertarUsuarioAdmin(Usuario user) {
+		user.getRoles().add(rolService.obtenerRolPorId(1));
+		return usuarioRepo.save(user);
+	}
+	
 	@Override
 	public Usuario insertarUsuarioDTO(UsuarioDTO userDTO) {
 		Usuario nuevoUsuario = new Usuario(userDTO.getNombre(), userDTO.getUsername(), passwordEncoder.encode(userDTO.getPassword()));
         
-        Optional<Rol> rolNuevo=rolRepo.findByNombre("ROLE_USER");
-		nuevoUsuario.getRoles().add(rolNuevo.get());
+        Rol rolNuevo=rolService.obtenerRolPorId(2); //role User
+		nuevoUsuario.getRoles().add(rolNuevo);
 		return usuarioRepo.save(nuevoUsuario);
 	}
 	@Override
