@@ -91,13 +91,14 @@ public class WebController {
 		a2.setCoche(c2);
 		c2.getAlumnos().add(a2);
 		
-		c2.addLlave(p2,llave2);
+		
+		/*c2.addLlave(p2,llave2);
 		llave1.addCocheProfesor(c2, p2);
 		p1.addCoche(c1, llave1);
 		llave2.addCocheProfesor(c2, p2);
 		
 		p2.addCoche(c2, llave2);
-		c1.addLlave(p1,llave1); //el metodo addLlave tambien añade la llave al profesor
+		c1.addLlave(p1,llave1);*/ //el metodo addLlave tambien añade la llave al profesor
 		
 		//c2.getProfesores().add(p2);
 
@@ -120,10 +121,11 @@ public class WebController {
 		alumnoService.insertarAlumno(a1);
 		alumnoService.insertarAlumno(a2);
 		
+		p1.juegoLlaves(c1, llave1);
+		p2.juegoLlaves(c2, llave2);
 		llaveService.insertarLlave(llave1);
 		llaveService.insertarLlave(llave2);
 		
-
 	
 
 	}

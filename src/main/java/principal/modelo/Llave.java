@@ -18,10 +18,10 @@ public class Llave {
 	private Integer id;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	private ProfesoresCochesLlaves profesor;
+	private ProfesoresCoches profesor;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	private ProfesoresCochesLlaves coche;
+	private ProfesoresCoches coche;
 
 	public Integer getId() {
 		return id;
@@ -31,28 +31,28 @@ public class Llave {
 		this.id = id;
 	}
 
-	public ProfesoresCochesLlaves getProfesor() {
+	public ProfesoresCoches getProfesor() {
 		return profesor;
 	}
 
-	public void setProfesor(ProfesoresCochesLlaves profesor) {
+	public void setProfesor(ProfesoresCoches profesor) {
 		this.profesor = profesor;
 	}
 
-	public ProfesoresCochesLlaves getCoche() {
+	public ProfesoresCoches getCoche() {
 		return coche;
 	}
 
-	public void setCoche(ProfesoresCochesLlaves coche) {
+	public void setCoche(ProfesoresCoches coche) {
 		this.coche = coche;
 	}
 	
 	public void addCocheProfesor(Coche c, Profesor p) {
-		ProfesoresCochesLlaves pc=new ProfesoresCochesLlaves(p,c, this);
+		ProfesoresCoches pc=new ProfesoresCoches(p,c, this);
 		this.setCoche(pc);
 		this.setProfesor(pc);
 	}
-	public Llave(ProfesoresCochesLlaves profesor, ProfesoresCochesLlaves coche) {
+	public Llave(ProfesoresCoches profesor, ProfesoresCoches coche) {
 		this.profesor = profesor;
 		this.coche = coche;
 	}

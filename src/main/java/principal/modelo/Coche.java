@@ -43,12 +43,12 @@ public class Coche {
 	private Set<Alumno> alumnos;
 	
 	@OneToMany(mappedBy = "llave", cascade = CascadeType.MERGE, orphanRemoval = true)
-	private Set<ProfesoresCochesLlaves> llaves;
+	private Set<ProfesoresCoches> llaves;
 	
 
 	
 	@OneToMany(mappedBy = "profesor", cascade=CascadeType.MERGE,orphanRemoval=true)
-	private Set<ProfesoresCochesLlaves> profesores;
+	private Set<ProfesoresCoches> profesores;
 	
 	
 	
@@ -59,8 +59,8 @@ public class Coche {
 	
 	public Coche() {
 		alumnos=new HashSet<Alumno>();
-		profesores=new HashSet<ProfesoresCochesLlaves>();
-		llaves=new HashSet<ProfesoresCochesLlaves>();
+		profesores=new HashSet<ProfesoresCoches>();
+		llaves=new HashSet<ProfesoresCoches>();
 		
 	}
 
@@ -70,19 +70,19 @@ public class Coche {
 		this.modelo = modelo;
 		this.marca = marca;
 		alumnos=new HashSet<Alumno>();
-		profesores=new HashSet<ProfesoresCochesLlaves>();
-		llaves=new HashSet<ProfesoresCochesLlaves>();
+		profesores=new HashSet<ProfesoresCoches>();
+		llaves=new HashSet<ProfesoresCoches>();
 	}
 	
-	public void addLlave(Profesor p, Llave l) {
-		ProfesoresCochesLlaves pc=new ProfesoresCochesLlaves(p,this,l);
+	/*public void addLlave(Profesor p, Llave l) {
+		ProfesoresCoches pc=new ProfesoresCoches(p,this,l);
 		if(llaves.contains(pc)) {
 			llaves.remove(pc);
 		}
 		llaves.add(pc);
 		p.getLlaves().add(pc);
 		p.getCoches().add(pc);
-	}
+	}*/
 	
 	
 	//getters setters
@@ -98,12 +98,12 @@ public class Coche {
 	
 
 
-	public Set<ProfesoresCochesLlaves> getLlaves() {
+	public Set<ProfesoresCoches> getLlaves() {
 		return llaves;
 	}
 
 
-	public void setLlaves(Set<ProfesoresCochesLlaves> llaves) {
+	public void setLlaves(Set<ProfesoresCoches> llaves) {
 		this.llaves = llaves;
 	}
 
@@ -140,10 +140,10 @@ public class Coche {
 	public void setAlumnos(Set<Alumno> alumnos) {
 		this.alumnos = alumnos;
 	}
-	public Set<ProfesoresCochesLlaves> getProfesores() {
+	public Set<ProfesoresCoches> getProfesores() {
 		return profesores;
 	}
-	public void setProfesores(Set<ProfesoresCochesLlaves> profesores) {
+	public void setProfesores(Set<ProfesoresCoches> profesores) {
 		this.profesores = profesores;
 	}
 

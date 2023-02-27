@@ -14,11 +14,11 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="profesores_coches_llaves")
-public class ProfesoresCochesLlaves {
+@Table(name="profesores_coches")
+public class ProfesoresCoches {
 	
 	@EmbeddedId
-	private ProfesoresCochesLlavesId id;
+	private ProfesoresCochesId id;
 	
 	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	@MapsId("profesor_id")
@@ -28,20 +28,20 @@ public class ProfesoresCochesLlaves {
 	@MapsId("coche_id")
 	private Coche coche;
 	
-	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-	@MapsId("llave_id")
+	@OneToOne
+	@JoinColumn(name="id_llave")
 	private Llave llave;
 	
 
-	public ProfesoresCochesLlaves() {
+	public ProfesoresCoches() {
 		
 	}
 
-	public ProfesoresCochesLlaves(Profesor p, Coche c, Llave l) {
+	public ProfesoresCoches(Profesor p, Coche c, Llave l) {
 		this.coche=c;
 		this.profesor=p;
 		this.llave=l;
-		this.id=new ProfesoresCochesLlavesId(p.getId(), c.getId(),l.getId());
+		this.id=new ProfesoresCochesId(p.getId(), c.getId());
 }
 
 	@Override
@@ -49,7 +49,7 @@ public class ProfesoresCochesLlaves {
 		if(o==null || getClass() !=o.getClass()) { 
 			return false;
 		}
-		ProfesoresCochesLlaves that=(ProfesoresCochesLlaves) o;
+		ProfesoresCoches that=(ProfesoresCoches) o;
 		return Objects.equals(coche, that.coche) && Objects.equals(profesor, that.profesor) && Objects.equals(llave, that.llave);
 	}
 
@@ -57,11 +57,11 @@ public class ProfesoresCochesLlaves {
 	public int hashCode() {
 		return Objects.hash(profesor, coche, llave);
 	}
-	public ProfesoresCochesLlavesId getId() {
+	public ProfesoresCochesId getId() {
 		return id;
 	}
 
-	public void setId(ProfesoresCochesLlavesId id) {
+	public void setId(ProfesoresCochesId id) {
 		this.id = id;
 	}
 

@@ -41,15 +41,15 @@ public class Profesor {
 	private Set<Alumno> alumnos;
 	
 	@OneToMany(mappedBy = "llave", cascade = CascadeType.MERGE, orphanRemoval = true)
-	private Set<ProfesoresCochesLlaves> llaves;
+	private Set<ProfesoresCoches> llaves;
 
 	@OneToMany(mappedBy = "coche", cascade=CascadeType.MERGE,orphanRemoval=true)
-	private Set<ProfesoresCochesLlaves> coches;
+	private Set<ProfesoresCoches> coches;
 
 	public Profesor() {
 		alumnos = new HashSet<Alumno>();
-		coches = new HashSet<ProfesoresCochesLlaves>();
-		llaves=new HashSet<ProfesoresCochesLlaves>();
+		coches = new HashSet<ProfesoresCoches>();
+		llaves=new HashSet<ProfesoresCoches>();
 	}
 
 	
@@ -60,33 +60,35 @@ public class Profesor {
 		this.dni = dni;
 		this.nombre = nombre;
 		alumnos = new HashSet<Alumno>();
-		coches = new HashSet<ProfesoresCochesLlaves>();
-		llaves=new HashSet<ProfesoresCochesLlaves>();
+		coches = new HashSet<ProfesoresCoches>();
+		llaves=new HashSet<ProfesoresCoches>();
 	}
 
 
 
 
 
-	public Profesor(Integer id, String dni, String nombre, String apellidos, Set<Alumno> alumnos, Set<ProfesoresCochesLlaves> coches) {
+	public Profesor(Integer id, String dni, String nombre, String apellidos, Set<Alumno> alumnos, Set<ProfesoresCoches> coches) {
 		this.id = id;
 		this.dni = dni;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		alumnos = new HashSet<Alumno>();
-		coches = new HashSet<ProfesoresCochesLlaves>();
-		llaves=new HashSet<ProfesoresCochesLlaves>();
+		coches = new HashSet<ProfesoresCoches>();
+		llaves=new HashSet<ProfesoresCoches>();
 	}
 
 	
-	public void addCoche(Coche c, Llave l) {
-		ProfesoresCochesLlaves pc=new ProfesoresCochesLlaves(this,c,l);
+	public void juegoLlaves(Coche c, Llave l) {
+		ProfesoresCoches pc=new ProfesoresCoches(this,c,l);
 		if(coches.contains(pc)) {
 			coches.remove(pc);
 		}
 		coches.add(pc);
 		c.getProfesores().add(pc);
 		c.getLlaves().add(pc);
+		l.setCoche(pc);
+		l.setProfesor(pc);
 			
 	}
 	
@@ -133,16 +135,16 @@ public class Profesor {
 		this.alumnos = alumnos;
 	}
 
-	public Set<ProfesoresCochesLlaves> getCoches() {
+	public Set<ProfesoresCoches> getCoches() {
 		return coches;
 	}
 
-	public void setCoches(Set<ProfesoresCochesLlaves> coches) {
+	public void setCoches(Set<ProfesoresCoches> coches) {
 		this.coches = coches;
 	}
 	
 
-	public Set<ProfesoresCochesLlaves> getLlaves() {
+	public Set<ProfesoresCoches> getLlaves() {
 		return llaves;
 	}
 
@@ -150,7 +152,7 @@ public class Profesor {
 
 
 
-	public void setLlaves(Set<ProfesoresCochesLlaves> llaves) {
+	public void setLlaves(Set<ProfesoresCoches> llaves) {
 		this.llaves = llaves;
 	}
 
