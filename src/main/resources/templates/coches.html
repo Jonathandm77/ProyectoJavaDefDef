@@ -22,7 +22,7 @@
 				<td>Matricula</td>
 				<td>Modelo</td>
 				<td>FechaITV</td>
-				<td colspan="2" sec:authorize="hasAuthority('ROLE_ADMIN')">Acciones</td>
+				<td colspan="2" >Acciones</td>
 
 
 			</tr>
@@ -48,13 +48,13 @@
 				<td>
 					<span th:text="${coche.fechaITV}"></span>
 				</td>
-				<td sec:authorize="hasAuthority('ROLE_ADMIN')">
+				<td >
 					<a th:attr="data-target='#modal-edit'+${coche.id}" data-toggle="modal" data-target="#modal-edit"
 						class="btn btn-primary btn-sm text-white pointer">
 						Modificar
 					</a>
 				</td>
-				<td sec:authorize="hasAuthority('ROLE_ADMIN')">
+				<td >
 					<a th:attr="data-target='#modal-delete'+${coche.id}" data-toggle="modal" data-target="#modal-delete"
 						class="btn btn-primary btn-sm text-white pointer">
 						Eliminar
@@ -68,7 +68,7 @@
 	<div>
 	<div class="row">
 		<div class="col-md-auto">
-			<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#crearCoche" sec:authorize="hasAuthority('ROLE_ADMIN')"> Añadir Coche </button>
+			<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#crearCoche" > Añadir Coche </button>
 
 		</div>
 

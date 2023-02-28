@@ -21,7 +21,7 @@
 				<td>Nombre alumno</td>
 				<td>Coche</td>
 				<td>Nombre Profesor</td>
-				<td colspan="2" sec:authorize="hasAuthority('ROLE_ADMIN')">Acciones</td>
+				<td colspan="2" >Acciones</td>
 
 			</tr>
 		</thead>
@@ -47,13 +47,13 @@
 					<span th:text="${alumno.profesor.nombre}"></span>
 				</td>
 
-				<td sec:authorize="hasAuthority('ROLE_ADMIN')">
+				<td >
 					<a th:attr="data-target='#modal-edit'+${alumno.id}" data-toggle="modal" data-target="#modal-edit"
 						class="btn btn-primary btn-sm text-white pointer modifyButton">
 						Modificar
 					</a>
 				</td>
-				<td sec:authorize="hasAuthority('ROLE_ADMIN')">
+				<td >
 					<a th:attr="data-target='#modal-delete'+${alumno.id}" data-toggle="modal"
 						data-target="#modal-delete" class="btn btn-primary btn-sm text-white pointer">
 						Eliminar
@@ -67,7 +67,7 @@
 	<div>
 		<div class="row">
 		<div class="col-md-auto">
-			<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#crearAlumno" sec:authorize="hasAuthority('ROLE_ADMIN')"> Añadir alumno </button>
+			<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#crearAlumno" > Añadir alumno </button>
 
 		</div>
 
@@ -214,7 +214,7 @@
 						</p>
 						<!--formulario nombre a editar-->
 						<form action="#" th:action="@{/alumnos/edit/{id}(id=${alumno.id})}" th:object="${alumnoaEditar}"
-							method="post">
+							method="post" class="editModal">
 							<div class"form-row">
 								<div class="form-group mt-1">
 									<label for="texto">Nombre</label>
@@ -242,6 +242,6 @@
 
 	</div>
 </body>
-<script th:src="@{/js/scriptNotas.js}"></script>
+<script th:src="@{/js/editFormAlumnos.js}"></script>
 
 </html>
