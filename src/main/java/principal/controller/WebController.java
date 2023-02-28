@@ -66,10 +66,12 @@ public class WebController {
 		Coche c2 = new Coche("5894 DSF", "2021", "Seat");
 		Rol rolBasico = new Rol("ROLE_USER");
 		Rol rolAdmin = new Rol("ROLE_ADMIN");
+		Rol rolProfesor = new Rol("ROLE_TEACHER");
 		Llave llave1=new Llave();
 		Llave llave2=new Llave();
 		Usuario usuarioAdmin = new Usuario("admin", "admin", "$2a$12$jcd/P/f86nT9YXQbx/3tJeQye8h0aMhNm6EzzKkZMNLUCtIxpTNJa");
 		Usuario usuarioBasico = new Usuario("basic", "basic", "$2a$12$.LxoR0UizFfliIRjthfELu3aNpoRfnfSt6Y.B0CwKWvKmFg.OZyxK");
+		Usuario usuarioProfesor=new Usuario("profesor","profesor","$2a$12$2XW9SiZRnDqsRl6WwoHpiePuCxF4HmXY/1AkRfqIcoJ8GiOk0n9LS");
 		
 
 		/*
@@ -112,6 +114,9 @@ public class WebController {
 		usuarioService.insertarUsuarioAdmin(usuarioAdmin);
 		rolRepo.save(rolBasico);
 		usuarioService.insertarUsuarioBasico(usuarioBasico);
+		rolRepo.save(rolProfesor);
+		usuarioService.insertarUsuarioProfesor(usuarioProfesor);
+		
 		
 		cocheService.insertarCoche(c1);
 		cocheService.insertarCoche(c2);
