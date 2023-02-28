@@ -17,6 +17,6 @@ public class LoginController {
 	@PostMapping("/logout")
 	public String logout(Model model) {
 		
-		return "login";
+		return "redirect:/login";
 	}
 }

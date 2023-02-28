@@ -1,10 +1,13 @@
 package principal.servicio.implementacion;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import principal.modelo.Alumno;
 import principal.modelo.Coche;
 import principal.modelo.dto.CocheDTO;
 import principal.persistencia.CocheRepo;
@@ -55,6 +58,11 @@ public class CocheServiceImpl implements CocheService {
 	public void eliminarCochePorId(Integer id) {
 		cocheRepo.deleteById(id);
 		
+	}
+	
+	public Coche encontrarCochePorMatricula(String matricula) {
+		Coche coche =cocheRepo.findByMatricula(matricula);
+		return coche;
 	}
 
 }

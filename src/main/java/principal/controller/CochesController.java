@@ -132,6 +132,17 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 			return "cochesBuscadosPorMarca";
 			
 		}
+		
+		@PostMapping({"/searchMatricula/{matricula}"})
+		String buscarCochePorMatricula(@ModelAttribute("cocheaBuscar") Coche cocheBuscado,BindingResult bidingresult) {
+			Coche cochematricula= cocheService.encontrarCochePorMatricula(cocheBuscado.getMatricula());
+			Integer id=cochematricula.getId();
+			
+			
+			
+			return "redirect:/coches/"+id;
+			
+		}
 		}
 
 

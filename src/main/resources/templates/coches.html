@@ -10,7 +10,7 @@
 	<div th:insert="top"></div>
 <div class="container">
 
-	<h1>Cosas Coches</h1>
+	<h1>Registro de Coches</h1>
 
 
 
@@ -22,7 +22,7 @@
 				<td>Matricula</td>
 				<td>Modelo</td>
 				<td>FechaITV</td>
-				<td colspan="2">Acciones</td>
+				<td colspan="2" sec:authorize="hasAuthority('ROLE_ADMIN')">Acciones</td>
 
 
 			</tr>
@@ -48,13 +48,13 @@
 				<td>
 					<span th:text="${coche.fechaITV}"></span>
 				</td>
-				<td>
+				<td sec:authorize="hasAuthority('ROLE_ADMIN')">
 					<a th:attr="data-target='#modal-edit'+${coche.id}" data-toggle="modal" data-target="#modal-edit"
 						class="btn btn-primary btn-sm text-white pointer">
 						Modificar
 					</a>
 				</td>
-				<td>
+				<td sec:authorize="hasAuthority('ROLE_ADMIN')">
 					<a th:attr="data-target='#modal-delete'+${coche.id}" data-toggle="modal" data-target="#modal-delete"
 						class="btn btn-primary btn-sm text-white pointer">
 						Eliminar
@@ -68,13 +68,18 @@
 	<div>
 	<div class="row">
 		<div class="col-md-auto">
-			<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#crearCoche"> + </button>
+			<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#crearCoche" sec:authorize="hasAuthority('ROLE_ADMIN')"> Añadir Coche </button>
 
 		</div>
 
 		<div th:object="${coche}" class="col-md-auto">
 			<button th:attr="data-target='#modal-search'" class="btn btn-primary" type="button" data-toggle="modal"
 				data-target="#buscarCochePorMarca">Buscar por marca</button>
+		</div>
+		
+		<div th:object="${coche}" class="col-md-auto">
+			<button th:attr="data-target='#modal-search-matricula'" class="btn btn-primary" type="button" data-toggle="modal"
+				data-target="#buscarCochePorMatricula">Buscar por Matrícula</button>
 		</div>
 	</div>
 	</div>
@@ -116,6 +121,44 @@
 
 	</div>
 	<!-- fin modal buscar por marca-->
+	
+		<!-- buscar por matricula modal-->
+	<div th:each="coche:${listaCoches}">
+		<div class="modal fade" th:id="modal-search-matricula">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="exampleModalLabel">Buscar Coche</h4>
+						<button class="close btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">x</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<p class="error-text">Introduce la matrícula para buscar</p>
+
+
+						<!--formulario marca-->
+						<form action="#" th:action="@{/coches/searchMatricula/{matricula}(matricula=${coche.matricula})}"
+							th:object="${cocheaBuscar}" method="post">
+							<div class"form-row">
+								<div class="form-group mt-1">
+									<label for="texto">Matrícula</label>
+									<input type="text" th:field="*{matricula}" class="form-control" id="exampleInputName" />
+								</div>
+							</div>
+					
+					<div class="modal-footer">
+						<button class="btn btn-secondary btn-sm" data-dismiss="modal"
+							aria-hidden="true">Cancelar</button>
+						<input id="sent" type="submit" th:value="Buscar" class="btn btn-primary float-right" />
+					</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<!-- fin modal buscar por matricula-->
 
 	<div class="modal fade" id="crearCoche">
 		<div class="modal-dialog" role="document">
