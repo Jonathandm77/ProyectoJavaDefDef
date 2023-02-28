@@ -44,9 +44,10 @@ public class CocheServiceImpl implements CocheService {
 	}
 
 	@Override
-	public Coche obtenerCochePorMarca(String marca) {
+	public ArrayList<Coche> obtenerCochesPorMarca(String marca) {
 		// TODO Auto-generated method stub
-		return cocheRepo.findByMarca(marca).get();
+		ArrayList<Coche> cochesmarca=cocheRepo.findAllByMarca(marca);
+		return cochesmarca;
 	}
 
 	@Override

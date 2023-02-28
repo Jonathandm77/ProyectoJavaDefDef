@@ -1,5 +1,6 @@
 package principal.servicio.interfaces;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -12,7 +13,7 @@ public interface CocheService{
 	public Coche insertarCocheDTO(CocheDTO cocheDTO);
 	public List<Coche> listarCoches();
 	public Coche obtenerCochePorId (Integer id);
-	public Coche obtenerCochePorMarca (String marca);
+	public ArrayList obtenerCochesPorMarca (String marca);
 	public void eliminarCoche(Coche coche);
 	public void eliminarCochePorId(Integer id);
 }

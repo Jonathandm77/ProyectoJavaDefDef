@@ -119,13 +119,7 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 		
 		@PostMapping({"/search/{marca}"})
 		String buscarCochePorMarca(Model model,@ModelAttribute("cocheaBuscar") Coche cocheBuscado,BindingResult bidingresult) {
-			ArrayList<Coche> cochesMarca= new ArrayList<Coche>();
-			ArrayList<Coche> misCoches= (ArrayList<Coche>) cocheService.listarCoches();
-			for(Coche c:misCoches) {
-				if(c.getMarca().equals(cocheBuscado.getMarca())) {
-					cochesMarca.add(c);
-				}
-			}
+			ArrayList<Coche> cochesMarca= cocheService.obtenerCochesPorMarca(cocheBuscado.getMarca());
 			model.addAttribute("cochesMarca",cochesMarca);
 			
 			
