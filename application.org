@@ -19936,3 +19936,5 @@ org.springframework.expression.spel.SpelEvaluationException: EL1011E: Method cal
 2023-03-01 10:19:31.402  INFO 5684 --- [main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: homealumnosUsingGET_4
 2023-03-01 10:19:31.403  INFO 5684 --- [main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: homealumnosUsingGET_5
 2023-03-01 10:19:31.416  INFO 5684 --- [main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: homeusuariosUsingGET_1
+2023-03-01 10:19:31.419  INFO 5684 --- [main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: homealumnosUsingGET_6
+2023-03-01 10:19:31.431  INFO 5684 --- [main] principal.App                            : Started App in 3.672 seconds (JVM running for 4.316)
