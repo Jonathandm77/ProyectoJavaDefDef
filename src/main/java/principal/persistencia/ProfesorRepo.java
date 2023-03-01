@@ -10,6 +10,7 @@ import principal.modelo.Profesor;
 public interface ProfesorRepo extends JpaRepository<Profesor, Integer> {
 
 	public Optional<Profesor> findByNombre(String nombre);
+	public Profesor findByDni(String dni);
 
 	public ArrayList<Profesor> findAllByNombre(String nombre);
 	

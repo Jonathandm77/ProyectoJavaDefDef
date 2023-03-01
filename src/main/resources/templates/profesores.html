@@ -72,8 +72,53 @@
 					<button th:attr="data-target='#modal-search'" class="btn btn-primary" type="button"
 						data-toggle="modal" data-target="#buscarProfePorNombre">Buscar profesor por nombre</button>
 				</div>
+				
+				<div th:object="${profe}" class="col-md-auto">
+					<button th:attr="data-target='#modal-search-DNI'" class="btn btn-primary" type="button"
+						data-toggle="modal" data-target="#buscarProfePorDni">Buscar profesor por DNI</button>
+				</div>
 			</div>
 		</div>
+		
+		
+		<!-- buscar por dni modal-->
+		<div th:each="profe:${listaProfesores}">
+			<div class="modal fade" th:id="modal-search-DNI">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title" id="exampleModalLabel">Buscar Profesor</h4>
+							<button class="close btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">x</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<p class="error-text">Introduce el DNI para buscar</p>
+
+
+							<!--formulario dni-->
+							<form action="#" th:action="@{/profesores/searchDni/{dni}(dni=${profe.dni})}"
+								th:object="${profeaBuscar}" method="post">
+								<div class"form-row">
+									<div class="form-group mt-1">
+										<label for="texto">DNI</label>
+										<input type="text" th:field="*{dni}" class="form-control"
+											id="exampleInputDni" />
+									</div>
+								</div>
+						</div>
+						<div class="modal-footer">
+							<button class="btn btn-secondary btn-sm" data-dismiss="modal"
+								aria-hidden="true">Cancelar</button>
+							<input id="sent" type="submit" th:value="Buscar" class="btn btn-primary float-right" />
+						</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<!-- fin modal buscar por dni-->
 
 		<!-- buscar por nombre modal-->
 		<div th:each="profe:${listaProfesores}">

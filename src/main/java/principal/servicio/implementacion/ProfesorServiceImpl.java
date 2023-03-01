@@ -2,6 +2,8 @@ package principal.servicio.implementacion;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -63,7 +65,10 @@ public class ProfesorServiceImpl implements ProfesorService{
 	}
 	
 	
-
+	public Profesor encontrarProfesorPorDni(String dni) {
+		Profesor lista= profeRepo.findByDni(dni);
+		return lista;
+	}
 	
 
 }

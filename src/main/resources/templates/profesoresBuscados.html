@@ -11,7 +11,14 @@
 		<header>
 			
 		</header>
-		<div class="row col-5">
+		
+	<div th:if="${profesBuscados == null}">
+  <h1>No hay profesores</h1>
+
+
+
+		
+		<div th:if="${profesBuscados != null}" class="row col-5">
 			<div class="col-9">
 				<h5> Datos del profesor </h5>
 				<div class="card border border primary" th:each="profe:${profesBuscados}">
