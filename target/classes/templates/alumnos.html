@@ -101,7 +101,7 @@
 						
 						<!--formulario dni-->
 						<form action="#" th:action="@{/alumnos/searchDni/{dni}(dni=${alumno.dni})}" th:object="${alumnoaBuscar}"
-							method="get">
+							method="post">
 							<div class"form-row">
 								<div class="form-group mt-1">
 									<label for="texto">DNI</label>

@@ -12,6 +12,11 @@
 		<header>
 			
 		</header>
+		
+		<div th:if="${alumnosBuscados.Empty}">
+		<h1>No hay alumnos que coincidan con tu búsqueda</h1>
+		</div>
+		
 		<div class="row col-5">
 			<div class="col-9">
 				<h5> Datos de los alumnos</h5>

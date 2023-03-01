@@ -103,10 +103,10 @@ import principal.servicio.interfaces.AlumnoService;
 			
 		}
 		
-		@GetMapping({"/searchDni/{dni}"})
+		@PostMapping({"/searchDni/{dni}"})
 		String buscarAlumnoPorDni(Model model,@ModelAttribute("alumnoaBuscar") Alumno alumnoBuscado, BindingResult bidingresult) {
-			Alumno misAlumnos= alumnoService.encontrarAlumnosPorDni(alumnoBuscado.getDni());
-			model.addAttribute("alumnosBuscados",misAlumnos);
+			Optional<Alumno> misAlumnos= alumnoService.encontrarAlumnosPorDni(alumnoBuscado.getDni());
+			model.addAttribute("alumnosBuscados",misAlumnos.get());
 			
 			
 			return "AlumnosBuscados";

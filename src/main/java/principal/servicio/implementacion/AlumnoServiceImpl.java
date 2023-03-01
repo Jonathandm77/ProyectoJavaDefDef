@@ -68,8 +68,8 @@ public class AlumnoServiceImpl implements AlumnoService{
 		return lista;
 	}
 	
-	public Alumno encontrarAlumnosPorDni(String dni) {
-		Alumno lista= alumnoRepo.findByDni(dni);
+	public Optional<Alumno> encontrarAlumnosPorDni(String dni) {
+		Optional<Alumno> lista= alumnoRepo.findByDni(dni);
 		return lista;
 	}
 
