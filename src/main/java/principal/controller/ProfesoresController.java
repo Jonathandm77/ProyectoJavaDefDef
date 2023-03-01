@@ -87,14 +87,14 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 			return "redirect:/profesores";
 		}
 		
-		@PostMapping({"/search/{nombre}"})
+		@PostMapping({"/searchName/{nombre}"})
 		String buscarProfesorPorNombre(Model model,@ModelAttribute("profeaBuscar") Profesor profeBuscado, BindingResult bidingresult) {
 			ArrayList<Profesor> misProfesores= (ArrayList<Profesor>) profeService.encontrarProfesoresPorNombre(profeBuscado.getNombre());
 			
-			model.addAttribute("profeNombre",misProfesores);
+			model.addAttribute("profesBuscados",misProfesores);
 			
 			
-			return "profesoresBuscadosPorNombre";
+			return "profesoresBuscados";
 			
 		}
 

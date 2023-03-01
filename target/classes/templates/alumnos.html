@@ -75,8 +75,54 @@
 			<button th:attr="data-target='#modal-search'" class="btn btn-primary" type="button" data-toggle="modal"
 				data-target="#buscarAlumnoPorNombre">Buscar por nombre</button>
 		</div>
+		
+		<div th:object="${alumnoDni}" class="col-md-auto">
+			<button th:attr="data-target='#modal-search-Dni'" class="btn btn-primary" type="button" data-toggle="modal"
+				data-target="#buscarAlumnoPorDni">Buscar por DNI</button>
+		</div>
 		</div>
 	</div>
+	
+	
+		<!-- buscar por dni modal-->
+	<div th:each="alumno:${listaAlumnos}">
+		<div class="modal fade" th:id="modal-search-Dni">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="exampleModalLabel">Buscar Alumno</h4>
+						<button class="close btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">x</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<p class="error-text">Introduce el DNI para buscar</p>
+						
+						
+						<!--formulario dni-->
+						<form action="#" th:action="@{/alumnos/searchDni/{dni}(dni=${alumno.dni})}" th:object="${alumnoaBuscar}"
+							method="get">
+							<div class"form-row">
+								<div class="form-group mt-1">
+									<label for="texto">DNI</label>
+									<input type="text" th:field="*{dni}" class="form-control" id="exampleInputDni"/>
+								</div>
+							</div>
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-secondary btn-sm" data-dismiss="modal"
+							aria-hidden="true">Cancelar</button>
+						<input id="sentDni" type="submit" th:value="Buscar" class="btn btn-primary float-right"/>
+					</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<!-- fin modal buscar por dni-->
+	
+	
 	
 	<!-- buscar por nombre modal-->
 	<div th:each="alumno:${listaAlumnos}">
@@ -94,8 +140,8 @@
 						
 						
 						<!--formulario nombre-->
-						<form action="#" th:action="@{/alumnos/search}" th:object="${alumnoaBuscar}"
-							method="post">
+						<form action="#" th:action="@{/alumnos/searchName/{nombre}(nombre=${alumno.nombre})}" th:object="${alumnoaBuscar}"
+							method="get">
 							<div class"form-row">
 								<div class="form-group mt-1">
 									<label for="texto">Nombre</label>

@@ -2,6 +2,7 @@ package principal.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -92,13 +93,23 @@ import principal.servicio.interfaces.AlumnoService;
 			return "alumno";
 		}
 		
-		@PostMapping({"/search"})
+		@GetMapping({"/searchName/{nombre}"})
 		String buscarAlumnoPorNombre(Model model,@ModelAttribute("alumnoaBuscar") Alumno alumnoBuscado, BindingResult bidingresult) {
 			ArrayList<Alumno> misAlumnos= alumnoService.encontrarAlumnosPorNombre(alumnoBuscado.getNombre());
-			model.addAttribute("alumnosNombre",misAlumnos);
+			model.addAttribute("alumnosBuscados",misAlumnos);
 			
 			
-			return "alumnosBuscadosPorNombre";
+			return "AlumnosBuscados";
+			
+		}
+		
+		@GetMapping({"/searchDni/{dni}"})
+		String buscarAlumnoPorDni(Model model,@ModelAttribute("alumnoaBuscar") Alumno alumnoBuscado, BindingResult bidingresult) {
+			Alumno misAlumnos= alumnoService.encontrarAlumnosPorDni(alumnoBuscado.getDni());
+			model.addAttribute("alumnosBuscados",misAlumnos);
+			
+			
+			return "AlumnosBuscados";
 			
 		}
 		

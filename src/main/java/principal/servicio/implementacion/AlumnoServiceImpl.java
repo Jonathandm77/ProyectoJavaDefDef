@@ -67,6 +67,11 @@ public class AlumnoServiceImpl implements AlumnoService{
 		ArrayList<Alumno> lista=(ArrayList<Alumno>) alumnoRepo.findAllByNombre(nombre);
 		return lista;
 	}
+	
+	public Alumno encontrarAlumnosPorDni(String dni) {
+		Alumno lista= alumnoRepo.findByDni(dni);
+		return lista;
+	}
 
 	
 
