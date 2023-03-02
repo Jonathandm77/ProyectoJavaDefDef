@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head th:insert="librerias::librerias">
+    <title>Cambio de Contraseña</title>
+    
+  </head>
+  <body>
+ 	<div th:insert="top"></div>
+    <div class="container">
+      <h1>Cambio de Contraseña</h1>
+      <form action="#" th:action="@{/seguridad/changePassword})}" th:object="${usuarioaEditar}" class="w-50 p-3">
+        <div class="form-group">
+          <label for="inputPassword">Contraseña Actual</label>
+          <input type="password" class="form-control" id="inputPassword" placeholder="Contraseña Actual">
+        </div>
+        <div class="form-group">
+          <label for="inputNewPassword">Nueva Contraseña</label>
+          <input type="password" class="form-control" id="inputNewPassword" placeholder="Nueva Contraseña">
+        </div>
+        <div class="form-group">
+          <label for="inputConfirmPassword">Confirmar Nueva Contraseña</label>
+          <input type="password" class="form-control" id="inputConfirmPassword" placeholder="Confirmar Nueva Contraseña">
+        </div>
+        <button type="submit" class="btn btn-primary mt-3 float-end">Cambiar Contraseña</button>
+      </form>
+    </div>
+  </body>
+</html>
