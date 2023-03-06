@@ -1,9 +1,10 @@
 package principal.controller;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,12 +23,16 @@ import principal.servicio.implementacion.UsuarioServiceImpl;
 public class PasswordController {
 	
 	@Autowired UsuarioServiceImpl userService;
+
 	
 	private BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
 	
 	@GetMapping(value={"","/"})
 	String homeSecurity(Model model) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    Usuario actualUser =(Usuario) auth.getPrincipal();
 	model.addAttribute("usuarioPassword", new CambioContrasenaDTO());
+	model.addAttribute("usuarioActual", actualUser);
 	
 	return "cambioPassword";
 	}
@@ -43,6 +48,19 @@ public class PasswordController {
 		    	actualUser.setPassword(encoder.encode(userDTO.getNueva()));
 		    	userService.insertarUsuario((Usuario) actualUser);
 		    }
+		    	
+		return "cambioPassword";
+	}
+	
+	@PostMapping("/changeData")
+	public String cambioDatos(@ModelAttribute("usuarioActual") Usuario user, BindingResult bidingresult) {
+		 
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    Usuario actualUser =(Usuario) auth.getPrincipal();
+		    actualUser.setNombre(user.getNombre());
+		    actualUser.setUsername(user.getUsername());
+		    userService.insertarUsuario(actualUser);
+		    
 		    	
 		return "cambioPassword";
 	}
