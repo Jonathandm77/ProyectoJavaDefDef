@@ -90,7 +90,7 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 			return "alumno";
 		}
 		
-		@GetMapping({"/searchName/{nombre}"})
+		@PostMapping({"/searchName"})
 		String buscarAlumnoPorNombre(Model model,@ModelAttribute("alumnoaBuscar") Alumno alumnoBuscado, BindingResult bidingresult) {
 			ArrayList<Alumno> misAlumnos= alumnoService.encontrarAlumnosPorNombre(alumnoBuscado.getNombre());
 			model.addAttribute("alumnosBuscados",misAlumnos);
@@ -100,7 +100,7 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 			
 		}
 		
-		@PostMapping({"/searchDni/{dni}"})
+		@PostMapping({"/searchDni"})
 		String buscarAlumnoPorDni(Model model,@ModelAttribute("alumnoaBuscar") Alumno alumnoBuscado, BindingResult bidingresult) {
 			ArrayList<Alumno> misAlumnos= alumnoService.encontrarAlumnosPorDni(alumnoBuscado.getDni());
 			model.addAttribute("alumnosBuscados",misAlumnos);

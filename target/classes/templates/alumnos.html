@@ -100,7 +100,7 @@
 						
 						
 						<!--formulario dni-->
-						<form action="#" th:action="@{/alumnos/searchDni/{dni}(dni=${alumno.dni})}" th:object="${alumnoaBuscar}"
+						<form  th:action="@{/alumnos/searchDni}" th:object="${alumnoaBuscar}"
 							method="post">
 							<div class"form-row">
 								<div class="form-group mt-1">
@@ -140,8 +140,8 @@
 						
 						
 						<!--formulario nombre-->
-						<form action="#" th:action="@{/alumnos/searchName/{nombre}(nombre=${alumno.nombre})}" th:object="${alumnoaBuscar}"
-							method="get">
+						<form action="#" th:action="@{/alumnos/searchName}" th:object="${alumnoaBuscar}"
+							method="post">
 							<div class"form-row">
 								<div class="form-group mt-1">
 									<label for="texto">Nombre</label>

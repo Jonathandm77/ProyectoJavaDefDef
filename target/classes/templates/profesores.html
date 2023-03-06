@@ -97,7 +97,7 @@
 
 
 							<!--formulario dni-->
-							<form action="#" th:action="@{/profesores/searchDni/{dni}(dni=${profe.dni})}"
+							<form action="#" th:action="@{/profesores/searchDni}"
 								th:object="${profeaBuscar}" method="post">
 								<div class"form-row">
 									<div class="form-group mt-1">
@@ -136,7 +136,7 @@
 
 
 							<!--formulario nombre-->
-							<form action="#" th:action="@{/profesores/searchName/{nombre}(nombre=${profe.nombre})}"
+							<form action="#" th:action="@{/profesores/searchName}"
 								th:object="${profeaBuscar}" method="post">
 								<div class"form-row">
 									<div class="form-group mt-1">
