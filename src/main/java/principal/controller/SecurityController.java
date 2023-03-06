@@ -1,6 +1,7 @@
 package principal.controller;
 
-import javax.annotation.PostConstruct;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -20,7 +21,7 @@ import principal.servicio.implementacion.UsuarioServiceImpl;
 
 @RequestMapping("/seguridad/password")
 @Controller
-public class PasswordController {
+public class SecurityController {
 	
 	@Autowired UsuarioServiceImpl userService;
 
@@ -28,11 +29,14 @@ public class PasswordController {
 	private BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
 	
 	@GetMapping(value={"","/"})
-	String homeSecurity(Model model) {
+	String homeSecurity(Model model,HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Usuario actualUser =(Usuario) auth.getPrincipal();
 	model.addAttribute("usuarioPassword", new CambioContrasenaDTO());
 	model.addAttribute("usuarioActual", actualUser);
+	if (request.getQueryString() != null && request.getQueryString().contains("cambio")) {
+        model.addAttribute("campoPasswordFoco", true);
+    }
 	
 	return "cambioPassword";
 	}
