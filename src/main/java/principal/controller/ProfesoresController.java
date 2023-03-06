@@ -100,7 +100,7 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 		
 		@PostMapping({"/searchDni/{dni}"})
 		String buscarProfesorPorDni(Model model,@ModelAttribute("profeaBuscar") Profesor profeBuscado, BindingResult bidingresult) {
-			Profesor profesor= profeService.encontrarProfesorPorDni(profeBuscado.getDni());
+			ArrayList<Profesor> profesor= profeService.encontrarProfesorPorDni(profeBuscado.getDni());
 			
 			model.addAttribute("profesBuscados",profesor);
 			

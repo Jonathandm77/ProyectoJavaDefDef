@@ -65,8 +65,8 @@ public class ProfesorServiceImpl implements ProfesorService{
 	}
 	
 	
-	public Profesor encontrarProfesorPorDni(String dni) {
-		Profesor lista= profeRepo.findByDni(dni);
+	public ArrayList<Profesor> encontrarProfesorPorDni(String dni) {
+		ArrayList<Profesor> lista= profeRepo.findByDni(dni);
 		return lista;
 	}
 	
