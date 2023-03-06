@@ -34,9 +34,6 @@ public class SecurityController {
 	    Usuario actualUser =(Usuario) auth.getPrincipal();
 	model.addAttribute("usuarioPassword", new CambioContrasenaDTO());
 	model.addAttribute("usuarioActual", actualUser);
-	if (request.getQueryString() != null && request.getQueryString().contains("cambio")) {
-        model.addAttribute("campoPasswordFoco", true);
-    }
 	
 	return "cambioPassword";
 	}
