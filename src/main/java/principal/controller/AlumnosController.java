@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,21 +13,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import principal.modelo.AjaxResponseBody;
 import principal.modelo.Alumno;
 import principal.modelo.Coche;
 import principal.modelo.Profesor;
-import principal.persistencia.AlumnoDAO;
-import principal.persistencia.AlumnoRepo;
-import principal.persistencia.CocheDAO;
-import principal.persistencia.CocheRepo;
-import principal.persistencia.ProfesorDAO;
-import principal.persistencia.ProfesorRepo;
+import principal.modelo.dto.AlumnoAjaxDTO;
 import principal.servicio.implementacion.AlumnoServiceImpl;
 import principal.servicio.implementacion.CocheServiceImpl;
 import principal.servicio.implementacion.ProfesorServiceImpl;
-import principal.servicio.interfaces.AlumnoService;
 
 
 
@@ -121,6 +118,23 @@ import principal.servicio.interfaces.AlumnoService;
 			
 			return misAlumnos;
 			
+		}
+		
+		@PostMapping(value={"/guardarAjax"})
+		public ResponseEntity<?> ajaxAlumno(@RequestBody AlumnoAjaxDTO alumno) {
+			
+			AjaxResponseBody alumnoJSON=new AjaxResponseBody();
+			
+			Alumno alumnoEditado=alumnoService.obtenerAlumnoPorId(alumno.getId());
+			alumnoEditado.setNombre(alumno.getNombre());
+			alumnoService.insertarAlumno(alumnoEditado);
+			
+			alumnoJSON.setMensaje("ta bien");
+			
+			alumnoJSON.setAlumnoJSON(alumnoEditado);
+			
+			//meollo
+			return ResponseEntity.ok(alumnoJSON);
 		}
 
 }

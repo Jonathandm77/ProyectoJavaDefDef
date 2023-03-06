@@ -1,7 +1,5 @@
 package principal.modelo;
 
-import java.util.HashSet;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="Alumnos")
@@ -32,12 +32,12 @@ public class Alumno {
 	private String notas;
 	
 	
-	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name ="id_profesor", nullable = false)
 	private Profesor profesor;
 	
-	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "id_Coche", nullable = false)
 	private Coche coche;
