@@ -51,6 +51,7 @@ public class SecurityController {
 	model.addAttribute("listaProfesores", profeService.listarProfesores());
 	model.addAttribute("profeNuevo", new Profesor());
 	model.addAttribute("profeaEliminar", new Profesor());
+	model.addAttribute("profeaBuscar", new Profesor());
 	model.addAttribute("listaCoches",cocheService.listarCoches());
 	
 	return "cambioPassword";
@@ -134,5 +135,13 @@ public class SecurityController {
 		return "redirect:/seguridad/password#operat";
 	}
 	
-	
+	@PostMapping("/searchProfesorByName")
+	String buscarProfesorPorNombre(Model model,@ModelAttribute("profeaBuscar") Profesor profeBuscado, BindingResult bidingresult) {
+		ArrayList<Profesor> misProfes= profeService.encontrarProfesoresPorNombre(profeBuscado.getNombre());
+		model.addAttribute("profesBuscados",misProfes);
+		
+		
+		return "profesoresBuscados";
+		
+	}
 }
