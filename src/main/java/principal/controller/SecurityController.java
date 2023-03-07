@@ -15,8 +15,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import principal.modelo.Alumno;
+import principal.modelo.Profesor;
 import principal.modelo.Usuario;
 import principal.modelo.dto.CambioContrasenaDTO;
+import principal.servicio.implementacion.AlumnoServiceImpl;
+import principal.servicio.implementacion.CocheServiceImpl;
+import principal.servicio.implementacion.ProfesorServiceImpl;
 import principal.servicio.implementacion.UsuarioServiceImpl;
 
 @RequestMapping("/seguridad/password")
@@ -24,6 +29,9 @@ import principal.servicio.implementacion.UsuarioServiceImpl;
 public class SecurityController {
 	
 	@Autowired UsuarioServiceImpl userService;
+	@Autowired ProfesorServiceImpl profeService;
+	@Autowired CocheServiceImpl cocheService;
+	@Autowired AlumnoServiceImpl alumnoService;
 
 	
 	private BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
@@ -34,6 +42,10 @@ public class SecurityController {
 	    Usuario actualUser =(Usuario) auth.getPrincipal();
 	model.addAttribute("usuarioPassword", new CambioContrasenaDTO());
 	model.addAttribute("usuarioActual", actualUser);
+	model.addAttribute("alumnoNuevo", new Alumno());
+	model.addAttribute("alumnoaEliminar",new Alumno());
+	model.addAttribute("listaProfesores", profeService.listarProfesores());
+	model.addAttribute("listaCoches",cocheService.listarCoches());
 	
 	return "cambioPassword";
 	}
@@ -66,4 +78,20 @@ public class SecurityController {
 		return "cambioPassword";
 	}
 	
+	@PostMapping("/addAlumno")
+	public String addAlumno(@ModelAttribute("alumnoNuevo") Alumno alumnoNew, BindingResult bidingresult) {
+		Profesor ProfeNuevo=alumnoNew.getProfesor();
+		alumnoNew.setProfesor(ProfeNuevo);
+		ProfeNuevo.getAlumnos().add(alumnoNew);
+		alumnoService.insertarAlumno(alumnoNew);
+		return "redirect:/seguridad/password#operat";
+	}
+	
+	
+	@GetMapping("/deleteAlumno")
+	String deleteAlumno(@ModelAttribute("alumnoaEliminar")Alumno a) {
+		alumnoService.eliminarAlumnoPorId(a.getId());
+		
+		return "redirect:/seguridad/password#operat";
+	}
 }
