@@ -1,6 +1,8 @@
 package principal.controller;
 
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +46,7 @@ public class SecurityController {
 	model.addAttribute("usuarioActual", actualUser);
 	model.addAttribute("alumnoNuevo", new Alumno());
 	model.addAttribute("alumnoaEliminar",new Alumno());
+	model.addAttribute("alumnoaBuscar",new Alumno());
 	model.addAttribute("listaProfesores", profeService.listarProfesores());
 	model.addAttribute("listaCoches",cocheService.listarCoches());
 	
@@ -93,5 +96,26 @@ public class SecurityController {
 		alumnoService.eliminarAlumnoPorId(a.getId());
 		
 		return "redirect:/seguridad/password#operat";
+	}
+	
+	@PostMapping({"/searchAlumnoByName"})
+	String buscarAlumnoPorNombre(Model model,@ModelAttribute("alumnoaBuscar") Alumno alumnoBuscado, BindingResult bidingresult) {
+		ArrayList<Alumno> misAlumnos= alumnoService.encontrarAlumnosPorNombre(alumnoBuscado.getNombre());
+		model.addAttribute("alumnosBuscados",misAlumnos);
+		
+		
+		return "AlumnosBuscados";
+		
+	}
+	
+	@PostMapping({"/searchAlumnoByDni"})
+	String buscarAlumnoPorDni(Model model,@ModelAttribute("alumnoaBuscar") Alumno alumnoBuscado, BindingResult bidingresult) {
+		ArrayList<Alumno> misAlumnos= alumnoService.encontrarAlumnosPorDni(alumnoBuscado.getDni());
+		model.addAttribute("alumnosBuscados",misAlumnos);
+		
+		
+		
+		return "AlumnosBuscados";
+		
 	}
 }
