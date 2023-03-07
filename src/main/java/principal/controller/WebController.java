@@ -69,9 +69,9 @@ public class WebController {
 		Rol rolProfesor = new Rol("ROLE_TEACHER");
 		Llave llave1=new Llave();
 		Llave llave2=new Llave();
-		Usuario usuarioAdmin = new Usuario("admin", "admin", "$2a$12$jcd/P/f86nT9YXQbx/3tJeQye8h0aMhNm6EzzKkZMNLUCtIxpTNJa");
-		Usuario usuarioBasico = new Usuario("basic", "basic", "$2a$12$.LxoR0UizFfliIRjthfELu3aNpoRfnfSt6Y.B0CwKWvKmFg.OZyxK");
-		Usuario usuarioProfesor=new Usuario("profesor","profesor","$2a$12$2XW9SiZRnDqsRl6WwoHpiePuCxF4HmXY/1AkRfqIcoJ8GiOk0n9LS");
+		Usuario usuarioAdmin = new Usuario("admin", "admin", "admin");
+		Usuario usuarioBasico = new Usuario("basic", "basic", "basic");
+		Usuario usuarioProfesor=new Usuario("profesor","profesor","profesor");
 		
 
 		/*

@@ -23,7 +23,7 @@ public class UsuarioServiceImpl implements UsuarioService{
 	@Autowired
 	private RolServiceImpl rolService;
 	
-	private BCryptPasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
+	private BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
@@ -46,25 +46,33 @@ public class UsuarioServiceImpl implements UsuarioService{
 	
 	public Usuario insertarUsuarioBasico(Usuario user) {
 		user.getRoles().add(rolService.obtenerRolPorId(2));
+		String rawPassword=user.getPassword();
+		user.setPassword(encoder.encode(rawPassword));
 		return usuarioRepo.save(user);
 	}
 	
 	public Usuario insertarUsuarioAdmin(Usuario user) {
 		user.getRoles().add(rolService.obtenerRolPorId(1));
+		String rawPassword=user.getPassword();
+		user.setPassword(encoder.encode(rawPassword));
 		return usuarioRepo.save(user);
 	}
 	
 	public Usuario insertarUsuarioProfesor(Usuario user) {
 		user.getRoles().add(rolService.obtenerRolPorId(3)); //role Teacher
+		String rawPassword=user.getPassword();
+		user.setPassword(encoder.encode(rawPassword));
 		return usuarioRepo.save(user);
 	}
 	
 	@Override
-	public Usuario insertarUsuarioDTO(UsuarioDTO userDTO) {
-		Usuario nuevoUsuario = new Usuario(userDTO.getNombre(), userDTO.getUsername(), passwordEncoder.encode(userDTO.getPassword()));
+	public Usuario insertarUsuarioDTO(UsuarioDTO user) {
+		Usuario nuevoUsuario = new Usuario(user.getNombre(), user.getUsername(), encoder.encode(user.getPassword()));
         
         Rol rolNuevo=rolService.obtenerRolPorId(2); //role User
 		nuevoUsuario.getRoles().add(rolNuevo);
+		String rawPassword=user.getPassword();
+		user.setPassword(encoder.encode(rawPassword));
 		return usuarioRepo.save(nuevoUsuario);
 	}
 	@Override
