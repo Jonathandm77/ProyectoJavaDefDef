@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -48,6 +49,8 @@ public class SecurityController {
 	model.addAttribute("alumnoaEliminar",new Alumno());
 	model.addAttribute("alumnoaBuscar",new Alumno());
 	model.addAttribute("listaProfesores", profeService.listarProfesores());
+	model.addAttribute("profeNuevo", new Profesor());
+	model.addAttribute("profeaEliminar", new Profesor());
 	model.addAttribute("listaCoches",cocheService.listarCoches());
 	
 	return "cambioPassword";
@@ -98,7 +101,7 @@ public class SecurityController {
 		return "redirect:/seguridad/password#operat";
 	}
 	
-	@PostMapping({"/searchAlumnoByName"})
+	@PostMapping("/searchAlumnoByName")
 	String buscarAlumnoPorNombre(Model model,@ModelAttribute("alumnoaBuscar") Alumno alumnoBuscado, BindingResult bidingresult) {
 		ArrayList<Alumno> misAlumnos= alumnoService.encontrarAlumnosPorNombre(alumnoBuscado.getNombre());
 		model.addAttribute("alumnosBuscados",misAlumnos);
@@ -108,7 +111,7 @@ public class SecurityController {
 		
 	}
 	
-	@PostMapping({"/searchAlumnoByDni"})
+	@PostMapping("/searchAlumnoByDni")
 	String buscarAlumnoPorDni(Model model,@ModelAttribute("alumnoaBuscar") Alumno alumnoBuscado, BindingResult bidingresult) {
 		ArrayList<Alumno> misAlumnos= alumnoService.encontrarAlumnosPorDni(alumnoBuscado.getDni());
 		model.addAttribute("alumnosBuscados",misAlumnos);
@@ -118,4 +121,18 @@ public class SecurityController {
 		return "AlumnosBuscados";
 		
 	}
+	
+	@PostMapping("/addProfesor")
+	public String addAlumnProfesor(@ModelAttribute("profeNuevo") Profesor profeNew, BindingResult bidingresult) {
+		profeService.insertarProfesor(profeNew);
+		return "redirect:/seguridad/password#operat";
+	}
+	
+	@GetMapping("/deleteProfesor")
+	String deleteProfe(@ModelAttribute("profeaEliminar") Profesor profe) {
+		profeService.eliminarProfesorPorId(profe.getId());
+		return "redirect:/seguridad/password#operat";
+	}
+	
+	
 }
