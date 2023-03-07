@@ -69,7 +69,7 @@ public class SecurityController {
 		    	userService.insertarUsuario((Usuario) actualUser);
 		    }
 		    	
-		return "cambioPassword";
+		return "redirect:/seguridad/password#contras";
 	}
 	
 	@PostMapping("/changeData")
@@ -82,7 +82,7 @@ public class SecurityController {
 		    userService.insertarUsuario(actualUser);
 		    
 		    	
-		return "cambioPassword";
+		return "redirect:/seguridad/password#data";
 	}
 	
 	@PostMapping("/addAlumno")

@@ -110,12 +110,6 @@ public class WebController {
 		ProfesorRepo profesorRepo = new ProfesorRepo();
 		CocheRepo cocheRepo = new CocheRepo();*/
 		
-		rolRepo.save(rolAdmin);
-		usuarioService.insertarUsuarioAdmin(usuarioAdmin);
-		rolRepo.save(rolBasico);
-		usuarioService.insertarUsuarioBasico(usuarioBasico);
-		rolRepo.save(rolProfesor);
-		usuarioService.insertarUsuarioProfesor(usuarioProfesor);
 		
 		
 		cocheService.insertarCoche(c1);
@@ -124,6 +118,14 @@ public class WebController {
 		
 		profeService.insertarProfesor(p1);
 		profeService.insertarProfesor(p2);
+		
+		rolRepo.save(rolAdmin);
+		usuarioService.insertarUsuarioAdmin(usuarioAdmin);
+		rolRepo.save(rolBasico);
+		usuarioService.insertarUsuarioBasico(usuarioBasico);
+		rolRepo.save(rolProfesor);
+		usuarioProfesor.setIdProfesor(p1.getId());
+		usuarioService.insertarUsuarioProfesor(usuarioProfesor);
 		
 		alumnoService.insertarAlumno(a1);
 		alumnoService.insertarAlumno(a2);

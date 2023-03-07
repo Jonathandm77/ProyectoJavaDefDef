@@ -12,11 +12,10 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.JoinColumn;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -40,6 +39,9 @@ public class Usuario implements UserDetails {
 	
 	@Column(name="password")
 	private String password;
+	
+	@Column(name="id_profesor")
+	private Integer idProfesor;
 
 	@ManyToMany(cascade= {CascadeType.ALL}, fetch = FetchType.EAGER)
 	@JoinTable(
@@ -53,12 +55,30 @@ public class Usuario implements UserDetails {
 		roles=new HashSet<Rol>();
 	}
 	
-	public Usuario(String nombre, String usuario, String pass) {
-		this.nombre=nombre;
-		this.username=usuario;
-		this.password=pass;
+	
+
+	public Usuario(String nombre, String username, String password) {
+		super();
+		this.nombre = nombre;
+		this.username = username;
+		this.password = password;
 		roles=new HashSet<Rol>();
 	}
+	
+	
+
+
+
+	public Usuario(String nombre, String username, String password, Integer idProfesor) {
+		super();
+		this.nombre = nombre;
+		this.username = username;
+		this.password = password;
+		this.idProfesor = idProfesor;
+		roles=new HashSet<Rol>();
+	}
+
+
 
 	public Integer getId() {
 		return id;
@@ -98,6 +118,15 @@ public class Usuario implements UserDetails {
 
 	public void setRoles(Set<Rol> roles) {
 		this.roles = roles;
+	}
+	
+
+	public Integer getIdProfesor() {
+		return idProfesor;
+	}
+
+	public void setIdProfesor(Integer idProfesor) {
+		this.idProfesor = idProfesor;
 	}
 
 	@Override

@@ -1,13 +1,13 @@
 package principal.controller;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,12 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import principal.modelo.Alumno;
 import principal.modelo.Coche;
 import principal.modelo.Profesor;
-import principal.persistencia.AlumnoDAO;
-import principal.persistencia.AlumnoRepo;
-import principal.persistencia.CocheDAO;
-import principal.persistencia.CocheRepo;
-import principal.persistencia.ProfesorDAO;
-import principal.persistencia.ProfesorRepo;
 import principal.servicio.implementacion.AlumnoServiceImpl;
 import principal.servicio.implementacion.CocheServiceImpl;
 import principal.servicio.implementacion.ProfesorServiceImpl;
@@ -93,7 +87,7 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 			return "coche";
 		}
 		
-		@GetMapping({"/delete/{id}"})
+		@DeleteMapping({"/delete/{id}"})
 		String deleteCoche(Model model, @PathVariable Integer id) {
 			Coche cocheaEliminar=cocheService.obtenerCochePorId(id);
 			ArrayList<Alumno> misAlumnos= (ArrayList<Alumno>) alumnoService.listarAlumnos();
