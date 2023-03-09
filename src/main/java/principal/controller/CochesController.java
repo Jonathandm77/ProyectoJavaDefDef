@@ -2,6 +2,7 @@ package principal.controller;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,9 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import principal.modelo.Alumno;
 import principal.modelo.Coche;
+import principal.modelo.Llave;
 import principal.modelo.Profesor;
+import principal.modelo.ProfesoresCoches;
+import principal.modelo.dto.CocheAEditarMatriculaDTO;
 import principal.servicio.implementacion.AlumnoServiceImpl;
 import principal.servicio.implementacion.CocheServiceImpl;
+import principal.servicio.implementacion.LlaveServiceImpl;
 import principal.servicio.implementacion.ProfesorServiceImpl;
 
 
@@ -36,6 +41,8 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 		private ProfesorServiceImpl profeService;
 		@Autowired
 		private CocheServiceImpl cocheService;
+		@Autowired
+		private LlaveServiceImpl llaveService;
 		
 		
 		@GetMapping(value={"","/"})
@@ -72,13 +79,14 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 		}
 		
 		@PostMapping("/edit/{id}")
-		public String editarCoche(@PathVariable Integer id, @ModelAttribute("cocheaEditar") Coche cocheEditado, BindingResult bidingresult) {
+		public String editarCoche(@PathVariable Integer id, @ModelAttribute("cocheaEditar") CocheAEditarMatriculaDTO cocheEditado, BindingResult bidingresult) {
 			Coche cocheaEditar=cocheService.obtenerCochePorId(id);
 			cocheaEditar.setMatricula(cocheEditado.getMatricula());
-			cocheaEditar.setFechaITV(cocheEditado.getFechaITV());
+			//cocheaEditar.setFechaITV(cocheEditado.getFechaITV());
 			cocheService.insertarCoche(cocheaEditar);
 			return "redirect:/coches";
 		}
+		
 		
 		@GetMapping({"/{id}"})
 		String idCoche(Model model, @PathVariable Integer id) {
@@ -92,6 +100,8 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 			Coche cocheaEliminar=cocheService.obtenerCochePorId(id);
 			ArrayList<Alumno> misAlumnos= (ArrayList<Alumno>) alumnoService.listarAlumnos();
 			ArrayList<Coche> misCoches=(ArrayList<Coche>) cocheService.listarCoches();
+			ArrayList<Profesor> misProfes=(ArrayList<Profesor>) profeService.listarProfesores();
+			List<Llave> misLlaves=llaveService.listarLlaves();
 			for(Alumno a:misAlumnos) {
 				if(a.getCoche().getId()==cocheaEliminar.getId()) {
 					if(misCoches==null) {
@@ -105,7 +115,23 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 					alumnoService.insertarAlumno(a);
 				}
 				}
+			
+			for(Llave a:misLlaves) {
+				if(a.getCoche().getCoche()==cocheaEliminar) {
+					a.setCoche(null);
+				}
+				}
+			
+			for(Profesor a:misProfes) {
+				
+					for(ProfesoresCoches c:a.getCoches()) {
+						
+					}
+				}
+				
 			cocheaEliminar.getAlumnos().clear();
+			cocheaEliminar.getLlaves().clear();
+			cocheaEliminar.getProfesores().clear();
 			cocheService.eliminarCoche(cocheaEliminar);
 			return "redirect:/coches";
 			}

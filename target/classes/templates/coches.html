@@ -8,271 +8,283 @@
 <body>
 
 	<div th:insert="top"></div>
-<div class="container">
+	<div class="container">
 
-	<h1>Registro de Coches</h1>
-
-
-
-	<table class="table table-hover">
-		<thead class="table-dark bg-info text-white">
-			<tr>
-				<td>ID</td>
-				<td>Marca</td>
-				<td>Matricula</td>
-				<td>Modelo</td>
-				<td>FechaITV</td>
-				<td colspan="2" >Acciones</td>
+		<h1>Registro de Coches</h1>
 
 
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:if="${listaCoches.Empty}">
-				<td colspan="2">No hay coches </td>
-			<tr th:each="coche:${listaCoches}">
-				<td>
-					<a th:href="@{/coches/{id}(id=${coche.id})}" class="btn btn-primary btn-sm">
-						<span th:text="${coche.id}"></span>
-					</a>
-				</td>
-				<td>
-					<span th:text="${coche.marca}"> </span>
-				</td>
-				<td>
-					<span th:text="${coche.matricula}"> </span>
-				</td>
-				<td>
-					<span th:text="${coche.modelo}"></span>
-				</td>
-				<td>
-					<span th:text="${coche.fechaITV}"></span>
-				</td>
-				<td >
-					<a th:attr="data-target='#modal-edit'+${coche.id}" data-toggle="modal" data-target="#modal-edit"
-						class="btn btn-primary btn-sm text-white pointer">
-						Modificar
-					</a>
-				</td>
-				<td >
-					<a th:attr="data-target='#modal-delete'+${coche.id}" data-toggle="modal" data-target="#modal-delete"
-						class="btn btn-primary btn-sm text-white pointer">
-						Eliminar
-					</a>
-				</td>
+
+		<table class="table table-hover">
+			<thead class="table-dark bg-info text-white">
+				<tr>
+					<td>ID</td>
+					<td>Marca</td>
+					<td>Matricula</td>
+					<td>Modelo</td>
+					<td>FechaITV</td>
+					<td colspan="2">Acciones</td>
 
 
-		</tbody>
-	</table>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:if="${listaCoches.Empty}">
+					<td colspan="2">No hay coches </td>
+				<tr th:each="coche:${listaCoches}">
+					<td>
+						<a th:href="@{/coches/{id}(id=${coche.id})}" class="btn btn-primary btn-sm">
+							<span th:text="${coche.id}"></span>
+						</a>
+					</td>
+					<td>
+						<span th:text="${coche.marca}"> </span>
+					</td>
+					<td>
+						<span th:text="${coche.matricula}"> </span>
+					</td>
+					<td>
+						<span th:text="${coche.modelo}"></span>
+					</td>
+					<td>
+						<span th:text="${coche.fechaITV}"></span>
+					</td>
+					<td>
+						<a th:attr="data-target='#modal-edit'+${coche.id}" data-toggle="modal" data-target="#modal-edit"
+							class="btn btn-primary btn-sm text-white pointer">
+							Modificar
+						</a>
+					</td>
+					<td>
+						<a th:attr="data-target='#modal-delete'+${coche.id}" data-toggle="modal"
+							data-target="#modal-delete" class="btn btn-primary btn-sm text-white pointer">
+							Eliminar
+						</a>
+					</td>
 
-	<div>
-	<div class="row">
-		<div class="col-md-auto">
-			<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#crearCoche" > Añadir Coche </button>
 
-		</div>
+			</tbody>
+		</table>
 
-		<div th:object="${coche}" class="col-md-auto">
-			<button th:attr="data-target='#modal-search'" class="btn btn-primary" type="button" data-toggle="modal"
-				data-target="#buscarCochePorMarca">Buscar por marca</button>
-		</div>
-		
-		<div th:object="${coche}" class="col-md-auto">
-			<button th:attr="data-target='#modal-search-matricula'" class="btn btn-primary" type="button" data-toggle="modal"
-				data-target="#buscarCochePorMatricula">Buscar por Matrícula</button>
-		</div>
-	</div>
-	</div>
+		<div>
+			<div class="row">
+				<div class="col-md-auto">
+					<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#crearCoche"> Añadir
+						Coche </button>
 
-	<!-- buscar por marca modal-->
-	<div th:each="coche:${listaCoches}">
-		<div class="modal fade" th:id="modal-search">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h4 class="modal-title" id="exampleModalLabel">Buscar Coche</h4>
-						<button class="close btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">x</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<p class="error-text">Introduce la marca para buscar</p>
+				</div>
 
+				<div th:object="${coche}" class="col-md-auto">
+					<button th:attr="data-target='#modal-search'" class="btn btn-primary" type="button"
+						data-toggle="modal" data-target="#buscarCochePorMarca">Buscar por marca</button>
+				</div>
 
-						<!--formulario marca-->
-						<form action="#" th:action="@{/coches/search/{marca}(marca=${coche.marca})}"
-							th:object="${cocheaBuscar}" method="post">
-							<div class"form-row">
-								<div class="form-group mt-1">
-									<label for="texto">Marca</label>
-									<input type="text" th:field="*{marca}" class="form-control" id="exampleInputName" />
-								</div>
-							</div>
-					
-					<div class="modal-footer">
-						<button class="btn btn-secondary btn-sm" data-dismiss="modal"
-							aria-hidden="true">Cancelar</button>
-						<input id="sent" type="submit" th:value="Buscar" class="btn btn-primary float-right" />
-					</div>
-					</form>
+				<div th:object="${coche}" class="col-md-auto">
+					<button th:attr="data-target='#modal-search-matricula'" class="btn btn-primary" type="button"
+						data-toggle="modal" data-target="#buscarCochePorMatricula">Buscar por Matrícula</button>
 				</div>
 			</div>
 		</div>
 
-	</div>
-	<!-- fin modal buscar por marca-->
-	
-		<!-- buscar por matricula modal-->
-	<div th:each="coche:${listaCoches}">
-		<div class="modal fade" th:id="modal-search-matricula">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h4 class="modal-title" id="exampleModalLabel">Buscar Coche</h4>
-						<button class="close btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">x</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<p class="error-text">Introduce la matrícula para buscar</p>
+		<!-- buscar por marca modal-->
+		<div th:each="coche:${listaCoches}">
+			<div class="modal fade" th:id="modal-search">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title" id="exampleModalLabel">Buscar Coche</h4>
+							<button class="close btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">x</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<p class="error-text">Introduce la marca para buscar</p>
 
 
-						<!--formulario marca-->
-						<form action="#" th:action="@{/coches/searchMatricula/{matricula}(matricula=${coche.matricula})}"
-							th:object="${cocheaBuscar}" method="post">
-							<div class"form-row">
-								<div class="form-group mt-1">
-									<label for="texto">Matrícula</label>
-									<input type="text" th:field="*{matricula}" class="form-control" id="exampleInputName" />
+							<!--formulario marca-->
+							<form action="#" th:action="@{/coches/search/{marca}(marca=${coche.marca})}"
+								th:object="${cocheaBuscar}" method="post">
+								<div class"form-row">
+									<div class="form-group mt-1">
+										<label for="texto">Marca</label>
+										<input type="text" th:field="*{marca}" class="form-control"
+											id="exampleInputName" />
+									</div>
 								</div>
-							</div>
-					
-					<div class="modal-footer">
-						<button class="btn btn-secondary btn-sm" data-dismiss="modal"
-							aria-hidden="true">Cancelar</button>
-						<input id="sent" type="submit" th:value="Buscar" class="btn btn-primary float-right" />
+
+								<div class="modal-footer">
+									<button class="btn btn-secondary btn-sm" data-dismiss="modal"
+										aria-hidden="true">Cancelar</button>
+									<input id="sent" type="submit" th:value="Buscar"
+										class="btn btn-primary float-right" />
+								</div>
+							</form>
+						</div>
 					</div>
-					</form>
 				</div>
+
 			</div>
-		</div>
+			<!-- fin modal buscar por marca-->
 
-	</div>
-	<!-- fin modal buscar por matricula-->
+			<!-- buscar por matricula modal-->
+			<div th:each="coche:${listaCoches}">
+				<div class="modal fade" th:id="modal-search-matricula">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4 class="modal-title" id="exampleModalLabel">Buscar Coche</h4>
+								<button class="close btn btn-danger" type="button" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">x</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<p class="error-text">Introduce la matrícula para buscar</p>
 
-	<div class="modal fade" id="crearCoche">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title" id="exampleModalLabel">Crear coche/a</h4>
-					<button class="close" type="button" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">x</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<p class="error-text">Introduce el nombre para el nuevo coche
-						<!--formulario nombre a editar-->
-					<form action="#" th:action="@{/coches/add/}" th:object="${cocheNuevo}" method="post">
-						<div class"form-row">
-							<div class="form-group mt-1">
-								<label for="Marca">Marca</label>
-								<input type="text" th:field="*{marca}" class="form-control" id="marca"
-									placeholder="marca" />
-								<label for="matricula">Matricula</label>
-								<input type="text" th:field="*{matricula}" class="form-control" id="matricula"
-									placeholder="matricula" />
-								<label for="modelo">Modelo</label>
-								<input type="text" th:field="*{modelo}" class="form-control" id="modelo"
-									placeholder="modelo" />
-								<label for="fecha">Fecha ITV</label>
-								<input type="date" th:field="*{fechaITV}" class="form-control" id="fecha"
-									placeholder="fechaITV" />
 
+								<!--formulario marca-->
+								<form action="#"
+									th:action="@{/coches/searchMatricula/{matricula}(matricula=${coche.matricula})}"
+									th:object="${cocheaBuscar}" method="post">
+									<div class"form-row">
+										<div class="form-group mt-1">
+											<label for="texto">Matrícula</label>
+											<input type="text" th:field="*{matricula}" class="form-control"
+												id="exampleInputName" />
+										</div>
+									</div>
+
+									<div class="modal-footer">
+										<button class="btn btn-secondary btn-sm" data-dismiss="modal"
+											aria-hidden="true">Cancelar</button>
+										<input id="sent" type="submit" th:value="Buscar"
+											class="btn btn-primary float-right" />
+									</div>
+								</form>
 							</div>
 						</div>
-				</div>
-				<div class="modal-footer">
-					<button class="btn btn-secondary btn-sm" data-dismiss="modal" aria-hidden="true">Cancelar</button>
-					<input type="submit" value="Crear" class="btn btn-primary float-right" />
-				</div>
-				</form>
-			</div>
-		</div>
-	</div>
-	<!-- fin create modal-->
+					</div>
 
-	<!--delete modal-->
-	<div th:each="coche:${listaCoches}">
-		<div class="modal fade" th:id="modal-delete+${coche.id}">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h4 class="modal-title" id="exampleModalLabel">Borrar</h4>
-						<button class="close btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">x</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<p class="error-text">Seguro que quieres borrar este coche?
-							<strong><span th:text="${coche.marca}+' '+${coche.matricula}"> </span></strong>
-						</p>
-					</div>
-					<div class="modal-footer">
-						<button class="btn btn-secondary btn-sm" data-dismiss="modal"
-							aria-hidden="true">Cancelar</button>
-						<a th:href="@{/coches/delete/{id}(id=${coche.id})}">
-							<span class="btn btn-danger btn-sm" value="delete">Borrar</span>
-						</a>
-					</div>
 				</div>
-			</div>
-		</div>
-	</div>
-	<!-- fin delete modal-->
+				<!-- fin modal buscar por matricula-->
 
-	<!-- edit modal-->
-	<div th:each="coche:${listaCoches}">
-		<div class="modal fade" th:id="modal-edit+${coche.id}">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h4 class="modal-title" id="exampleModalLabel">Modificar</h4>
-						<button class="close btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">x</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<p class="error-text">Introduce matricula nueva para el coche:
-							<strong><span th:text="${coche.matricula}"> </span></strong>
-						</p>
-						<!--formulario nombre a editar-->
-						<form action="#" th:action="@{/coches/edit/{id}(id=${coche.id})}" th:object="${cocheaEditar}"
-							method="post">
-							<div class"form-row">
-								<div class="form-group mt-1">
-									<label for="texto">Matricula</label>
-									<input type="text" th:field="*{matricula}" class="form-control"
-										id="exampleInputEmail" th:attr="placeholder=${coche.matricula}" />
-								</div>
+				<div class="modal fade" id="crearCoche">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4 class="modal-title" id="exampleModalLabel">Crear coche/a</h4>
+								<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">x</span>
+								</button>
 							</div>
+							<div class="modal-body">
+								<p class="error-text">Introduce el nombre para el nuevo coche
+									<!--formulario nombre a editar-->
+								<form action="#" th:action="@{/coches/add/}" th:object="${cocheNuevo}" method="post">
+									<div class"form-row">
+										<div class="form-group mt-1">
+											<label for="Marca">Marca</label>
+											<input type="text" th:field="*{marca}" class="form-control" id="marca"
+												placeholder="marca" />
+											<label for="matricula">Matricula</label>
+											<input type="text" th:field="*{matricula}" class="form-control"
+												id="matricula" placeholder="matricula" />
+											<label for="modelo">Modelo</label>
+											<input type="text" th:field="*{modelo}" class="form-control" id="modelo"
+												placeholder="modelo" />
+											<label for="fecha">Fecha ITV</label>
+											<input type="date" th:field="*{fechaITV}" class="form-control" id="fecha"
+												placeholder="fechaITV" />
 
+										</div>
+									</div>
+							</div>
 							<div class="modal-footer">
 								<button class="btn btn-secondary btn-sm" data-dismiss="modal"
 									aria-hidden="true">Cancelar</button>
-								<input type="submit" value="Modificar" class="btn btn-primary float-right" />
+								<input type="submit" value="Crear" class="btn btn-primary float-right" />
 							</div>
-						</form>
-
-
+							</form>
+						</div>
 					</div>
 				</div>
+				<!-- fin create modal-->
+
+				<!--delete modal-->
+				<div th:each="coche:${listaCoches}">
+					<div class="modal fade" th:id="modal-delete+${coche.id}">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h4 class="modal-title" id="exampleModalLabel">Borrar</h4>
+									<button class="close btn btn-danger" type="button" data-dismiss="modal"
+										aria-label="Close">
+										<span aria-hidden="true">x</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<p class="error-text">Seguro que quieres borrar este coche?
+										<strong><span th:text="${coche.marca}+' '+${coche.matricula}"> </span></strong>
+									</p>
+								</div>
+								<div class="modal-footer">
+									<button class="btn btn-secondary btn-sm" data-dismiss="modal"
+										aria-hidden="true">Cancelar</button>
+									<form th:action="@{/coches/delete/{id}(id=${coche.id})}" th:method="DELETE">
+										<button type="submit" name="submit" value="value" class="btn btn-danger btn.sm">Borrar</button>
+									</form>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- fin delete modal-->
+
+				<!-- edit modal-->
+				<div th:each="coche:${listaCoches}">
+					<div class="modal fade" th:id="modal-edit+${coche.id}">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h4 class="modal-title" id="exampleModalLabel">Modificar</h4>
+									<button class="close btn btn-danger" type="button" data-dismiss="modal"
+										aria-label="Close">
+										<span aria-hidden="true">x</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<p class="error-text">Introduce matricula nueva para el coche:
+										<strong><span th:text="${coche.matricula}"> </span></strong>
+									</p>
+									<!--formulario nombre a editar-->
+									<form action="#" th:action="@{/coches/edit/{id}(id=${coche.id})}"
+										th:object="${cocheaEditar}" method="post">
+										<div class"form-row">
+											<div class="form-group mt-1">
+												<label for="texto">Matricula</label>
+												<input type="text" th:field="*{matricula}" class="form-control"
+													id="exampleInputEmail" th:attr="placeholder=${coche.matricula}" />
+											</div>
+										</div>
+
+										<div class="modal-footer">
+											<button class="btn btn-secondary btn-sm" data-dismiss="modal"
+												aria-hidden="true">Cancelar</button>
+											<input type="submit" value="Modificar"
+												class="btn btn-primary float-right" />
+										</div>
+									</form>
+
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<!-- fin delete modal-->
+
 			</div>
-		</div>
-
-	</div>
-	<!-- fin delete modal-->
-
-	</div>
 </body>
 
 
