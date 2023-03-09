@@ -125,6 +125,9 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 			for(Profesor a:misProfes) {
 				
 					for(ProfesoresCoches c:a.getCoches()) {
+						if(c.getCoche()==cocheaEliminar)
+							c.setCoche(null);
+					c.setProfesor(null);
 						
 					}
 				}
