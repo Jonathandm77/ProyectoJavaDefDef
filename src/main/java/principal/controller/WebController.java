@@ -44,7 +44,7 @@ public class WebController {
 	@GetMapping("/")
 	String home() {
 		
-		 //crearTablas();
+		 crearTablas();
 		return "index";
 			
 	}

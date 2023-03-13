@@ -121,6 +121,7 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 					}
 					misCoches.get(coche).getAlumnos().add(a);
 					alumnoService.insertarAlumno(a);
+					cocheService.insertarCoche(misCoches.get(coche));
 				}
 				}
 			

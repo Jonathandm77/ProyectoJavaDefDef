@@ -1,6 +1,7 @@
 package principal.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,15 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import principal.modelo.Alumno;
 import principal.modelo.Coche;
+import principal.modelo.Llave;
 import principal.modelo.Profesor;
-import principal.persistencia.AlumnoDAO;
-import principal.persistencia.AlumnoRepo;
-import principal.persistencia.CocheDAO;
-import principal.persistencia.CocheRepo;
-import principal.persistencia.ProfesorDAO;
-import principal.persistencia.ProfesorRepo;
+import principal.modelo.ProfesoresCoches;
 import principal.servicio.implementacion.AlumnoServiceImpl;
 import principal.servicio.implementacion.CocheServiceImpl;
+import principal.servicio.implementacion.LlaveServiceImpl;
 import principal.servicio.implementacion.ProfesorServiceImpl;
 
 
@@ -41,6 +39,8 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 		private ProfesorServiceImpl profeService;
 		@Autowired
 		private CocheServiceImpl cocheService;
+		@Autowired
+		private LlaveServiceImpl llaveService;
 		
 		
 		@GetMapping(value={"","/"})
@@ -83,6 +83,58 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 		@GetMapping({"/delete/{id}"})
 		String deleteProfe(Model model, @PathVariable Integer id) {
 			Profesor profeaEliminar=profeService.obtenerProfesorPorId(id);
+			ArrayList<Alumno> misAlumnos= (ArrayList<Alumno>) alumnoService.listarAlumnos();
+			ArrayList<Profesor> misProfesores= (ArrayList<Profesor>) profeService.listarProfesores();
+			ArrayList<Coche> misCoches=(ArrayList<Coche>) cocheService.listarCoches();
+			List<Llave> misLlaves=llaveService.listarLlaves();
+			int profe=(int) (Math.random()*misProfesores.size());
+			for(Alumno a:misAlumnos) {
+				if(a.getProfesor()==profeaEliminar) {
+					do {
+						profe=(int) (Math.random()*misProfesores.size());
+					}while(profe==misProfesores.indexOf(a.getProfesor()));
+						a.setProfesor(misProfesores.get(profe));
+						alumnoService.insertarAlumno(a);
+				}
+				
+			}
+			
+			for(Coche c:misCoches) {
+				for(ProfesoresCoches pc:c.getProfesores()) {
+					if(pc.getProfesor()==profeaEliminar) {
+					do {
+							profe=(int) (Math.random()*misProfesores.size());
+							pc.setProfesor(misProfesores.get(profe));
+					}while(pc.getProfesor()==profeaEliminar);
+				}
+					
+					if(pc.getLlave().getProfesor().getProfesor()==profeaEliminar) {
+						pc.getLlave().setProfesor(null);
+						cocheService.insertarCoche(c);
+					}
+				}
+				
+				for(ProfesoresCoches pc:c.getLlaves()) {
+					if(pc.getProfesor()==profeaEliminar) {
+						do {
+							profe=(int) (Math.random()*misProfesores.size());
+							pc.setProfesor(misProfesores.get(profe));
+							pc.setLlave(null);
+					}while(pc.getProfesor()==profeaEliminar);
+						cocheService.insertarCoche(c);
+					}
+				}
+			}
+			
+			for(Llave l:misLlaves) {
+				if(l.getProfesor().getProfesor()==profeaEliminar) {
+					l.getProfesor().setProfesor(null);
+				if(l.getCoche().getProfesor()==profeaEliminar) {
+					l.getCoche().setProfesor(null);
+				}
+				llaveService.insertarLlave(l);
+				}
+			}
 			profeService.eliminarProfesor(profeaEliminar);
 			return "redirect:/profesores";
 		}
