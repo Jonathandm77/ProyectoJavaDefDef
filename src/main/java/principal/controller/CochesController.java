@@ -1,6 +1,7 @@
 package principal.controller;
 
 import java.time.LocalDate;
+import java.util.Random;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -104,30 +105,42 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 			List<Llave> misLlaves=llaveService.listarLlaves();
 			for(Alumno a:misAlumnos) {
 				if(a.getCoche().getId()==cocheaEliminar.getId()) {
-					if(misCoches==null) {
+					int coche=(int) Math.random()*misCoches.size();
+					if(misCoches.isEmpty()|misCoches.size()==0) {
 						misCoches.add(new Coche("5678 GHS","2021 XS","Nissan"));
 						LocalDate fecha=LocalDate.of(2025, 6, 16);
 						//misCoches.get(0).setFechaITV(fecha);
-					}
+						a.setCoche(misCoches.get(0));//si no queda ningun coche crear coche generico
+					}else {
 					
-					a.setCoche(misCoches.get(0));//si no queda ningun coche crear coche generico
-					misCoches.get(0).getAlumnos().add(a);
+					
+					do {
+						 coche=(int)Math.random()*misCoches.size();
+					}while(coche==misCoches.indexOf(a.getCoche()));
+					a.setCoche(misCoches.get(coche));
+					}
+					misCoches.get(coche).getAlumnos().add(a);
 					alumnoService.insertarAlumno(a);
 				}
 				}
 			
 			for(Llave a:misLlaves) {
+				if(a.getCoche()!=null) {
 				if(a.getCoche().getCoche()==cocheaEliminar) {
 					a.setCoche(null);
+					a.setProfesor(null);
+				}
 				}
 				}
 			
 			for(Profesor a:misProfes) {
 				
 					for(ProfesoresCoches c:a.getCoches()) {
-						if(c.getCoche()==cocheaEliminar)
+						if(c.getCoche()==cocheaEliminar) {
 							c.setCoche(null);
 					c.setProfesor(null);
+					c.setLlave(null);
+						}
 						
 					}
 				}
