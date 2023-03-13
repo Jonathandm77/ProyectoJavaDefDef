@@ -1,7 +1,9 @@
 package principal.controller;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -88,53 +90,49 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 			ArrayList<Coche> misCoches=(ArrayList<Coche>) cocheService.listarCoches();
 			List<Llave> misLlaves=llaveService.listarLlaves();
 			int profe=(int) (Math.random()*misProfesores.size());
+	
+			
 			for(Alumno a:misAlumnos) {
-				if(a.getProfesor()==profeaEliminar) {
-					do {
-						profe=(int) (Math.random()*misProfesores.size());
-					}while(profe==misProfesores.indexOf(a.getProfesor()));
-						a.setProfesor(misProfesores.get(profe));
-						alumnoService.insertarAlumno(a);
-				}
-				
-			}
-			
-			for(Coche c:misCoches) {
-				for(ProfesoresCoches pc:c.getProfesores()) {
-					if(pc.getProfesor()==profeaEliminar) {
-					do {
-							profe=(int) (Math.random()*misProfesores.size());
-							pc.setProfesor(misProfesores.get(profe));
-					}while(pc.getProfesor()==profeaEliminar);
-				}
+				if(a.getProfesor().getId()==profeaEliminar.getId()) {
 					
-					if(pc.getLlave().getProfesor().getProfesor()==profeaEliminar) {
-						pc.getLlave().setProfesor(null);
-						cocheService.insertarCoche(c);
-					}
+					
+					do {
+						int s=misProfesores.size();
+						 profe=(int)(Math.random()*(misProfesores.size()));
+					}while(profe==misProfesores.indexOf(a.getProfesor()));
+					a.setProfesor(misProfesores.get(profe));
+					
+					misProfesores.get(profe).getAlumnos().add(a);
+					alumnoService.insertarAlumno(a);
+					profeService.insertarProfesor(misProfesores.get(profe));
 				}
-				
-				for(ProfesoresCoches pc:c.getLlaves()) {
-					if(pc.getProfesor()==profeaEliminar) {
-						do {
-							profe=(int) (Math.random()*misProfesores.size());
-							pc.setProfesor(misProfesores.get(profe));
-							pc.setLlave(null);
-					}while(pc.getProfesor()==profeaEliminar);
-						cocheService.insertarCoche(c);
-					}
 				}
-			}
 			
-			for(Llave l:misLlaves) {
-				if(l.getProfesor().getProfesor()==profeaEliminar) {
-					l.getProfesor().setProfesor(null);
-				if(l.getCoche().getProfesor()==profeaEliminar) {
-					l.getCoche().setProfesor(null);
+			for(Llave a:misLlaves) {
+				if(a.getProfesor()!=null) {
+				if(a.getProfesor().getProfesor()==profeaEliminar) {
+					a.setCoche(null);
+					a.setProfesor(null);
 				}
-				llaveService.insertarLlave(l);
 				}
-			}
+				}
+			
+			for(Coche a:misCoches) {
+				
+					for(ProfesoresCoches c:a.getProfesores()) {
+						if(c.getProfesor()==profeaEliminar) {
+							c.setCoche(null);
+					c.setProfesor(null);
+					c.setLlave(null);
+						}
+						
+					}
+				}
+			
+			profeaEliminar.getAlumnos().clear();
+			profeaEliminar.getCoches().clear();
+			profeaEliminar.getLlaves().clear();
+			
 			profeService.eliminarProfesor(profeaEliminar);
 			return "redirect:/profesores";
 		}
