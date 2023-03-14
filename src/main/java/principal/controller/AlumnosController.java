@@ -2,7 +2,6 @@ package principal.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,10 +18,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import principal.modelo.AjaxResponseBody;
 import principal.modelo.Alumno;
 import principal.modelo.Coche;
+import principal.modelo.Llave;
 import principal.modelo.Profesor;
 import principal.modelo.dto.AlumnoAjaxDTO;
 import principal.servicio.implementacion.AlumnoServiceImpl;
 import principal.servicio.implementacion.CocheServiceImpl;
+import principal.servicio.implementacion.LlaveServiceImpl;
 import principal.servicio.implementacion.ProfesorServiceImpl;
 
 
@@ -41,6 +42,8 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 		private ProfesorServiceImpl profeService;
 		@Autowired
 		private CocheServiceImpl cocheService;
+		@Autowired
+		private LlaveServiceImpl llaveService;
 		
 		@GetMapping(value={"","/"})
 		String homealumnos(Model model) {
@@ -60,9 +63,18 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 		
 		@PostMapping("/add")
 		public String addAlumno(@ModelAttribute("alumnoNuevo") Alumno alumnoNew, BindingResult bidingresult) {
-			Profesor ProfeNuevo=alumnoNew.getProfesor();
-			alumnoNew.setProfesor(ProfeNuevo);
-			ProfeNuevo.getAlumnos().add(alumnoNew);
+			Profesor profeNuevo=alumnoNew.getProfesor();
+			alumnoNew.setProfesor(profeNuevo);
+			profeNuevo.getAlumnos().add(alumnoNew);
+			if(!profeNuevo.getCoches().contains(alumnoNew.getCoche())) {
+				
+				Llave l=new Llave();
+				cocheService.insertarCoche(alumnoNew.getCoche());
+				profeService.insertarProfesor(profeNuevo);
+				llaveService.insertarLlave(l);
+				profeNuevo.juegoLlaves(alumnoNew.getCoche(), l);
+				llaveService.insertarLlave(l);
+			}
 			alumnoService.insertarAlumno(alumnoNew);
 			return "redirect:/alumnos";
 		}

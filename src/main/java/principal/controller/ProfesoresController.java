@@ -91,7 +91,6 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 			List<Llave> misLlaves=llaveService.listarLlaves();
 			int profe=(int) (Math.random()*misProfesores.size());
 			Llave llaveTemp=null;
-			Coche cocheTemp=null;
 	
 			
 			for(Alumno a:misAlumnos) {
@@ -128,7 +127,6 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 							c.setCoche(null);
 					c.setProfesor(null);
 					c.setLlave(null);
-					cocheTemp=a;
 						}
 						
 					}
