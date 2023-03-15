@@ -1,7 +1,6 @@
 package principal.controller;
 
 import java.time.LocalDate;
-import java.util.Random;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +14,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import principal.modelo.Alumno;
 import principal.modelo.Coche;
@@ -96,7 +97,7 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 			return "coche";
 		}
 		
-		@DeleteMapping({"/delete/{id}"})
+		@GetMapping({"/delete/{id}"})
 		String deleteCoche(Model model, @PathVariable Integer id) {
 			Coche cocheaEliminar=cocheService.obtenerCochePorId(id);
 			ArrayList<Alumno> misAlumnos= (ArrayList<Alumno>) alumnoService.listarAlumnos();
@@ -115,7 +116,7 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 					
 					
 					do {
-						 coche=(int)Math.random()*misCoches.size();
+						 coche=(int)(Math.random()*misCoches.size());
 					}while(coche==misCoches.indexOf(a.getCoche()));
 					a.setCoche(misCoches.get(coche));
 					}

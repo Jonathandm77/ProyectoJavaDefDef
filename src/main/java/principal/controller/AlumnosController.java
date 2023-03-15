@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import principal.modelo.AjaxResponseBody;
 import principal.modelo.Alumno;
 import principal.modelo.Coche;
@@ -45,7 +44,7 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 		@Autowired
 		private LlaveServiceImpl llaveService;
 		
-		@GetMapping(value={"","/"})
+		@GetMapping({"","/"})
 		String homealumnos(Model model) {
 			ArrayList<Coche> misCoches=(ArrayList<Coche>) cocheService.listarCoches();
 	        ArrayList<Alumno> misAlumnos= (ArrayList<Alumno>) alumnoService.listarAlumnos();
