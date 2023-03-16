@@ -300,7 +300,7 @@ public class SecurityController {
 		return "redirect:/seguridad/password#operat";
 		}
 	
-	@PostMapping({"/searchCochesByMarca}"})
+	@PostMapping({"/searchCochesByMarca"})
 	String buscarCochePorMarca(Model model,@ModelAttribute("cocheaBuscar") Coche cocheBuscado,BindingResult bidingresult) {
 		ArrayList<Coche> cochesMarca= cocheService.obtenerCochesPorMarca(cocheBuscado.getMarca());
 		model.addAttribute("cochesMarca",cochesMarca);
