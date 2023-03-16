@@ -8,14 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import principal.modelo.Alumno;
 import principal.modelo.Coche;
@@ -23,6 +20,8 @@ import principal.modelo.Llave;
 import principal.modelo.Profesor;
 import principal.modelo.ProfesoresCoches;
 import principal.modelo.dto.CocheAEditarMatriculaDTO;
+import principal.modelo.dto.CocheBuscarMarcaDTO;
+import principal.modelo.dto.CocheBuscarMatriculaDTO;
 import principal.servicio.implementacion.AlumnoServiceImpl;
 import principal.servicio.implementacion.CocheServiceImpl;
 import principal.servicio.implementacion.LlaveServiceImpl;
@@ -155,8 +154,8 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 			}
 		
 		
-		@PostMapping({"/search/{marca}"})
-		String buscarCochePorMarca(Model model,@ModelAttribute("cocheaBuscar") Coche cocheBuscado,BindingResult bidingresult) {
+		@PostMapping({"/searchMarca"})
+		String buscarCochePorMarca(Model model,@ModelAttribute("cocheaBuscar") CocheBuscarMarcaDTO cocheBuscado,BindingResult bidingresult) {
 			ArrayList<Coche> cochesMarca= cocheService.obtenerCochesPorMarca(cocheBuscado.getMarca());
 			model.addAttribute("cochesMarca",cochesMarca);
 			
@@ -165,8 +164,8 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 			
 		}
 		
-		@PostMapping({"/searchMatricula/{matricula}"})
-		String buscarCochePorMatricula(@ModelAttribute("cocheaBuscar") Coche cocheBuscado,BindingResult bidingresult) {
+		@PostMapping({"/searchMatricula"})
+		String buscarCochePorMatricula(@ModelAttribute("cocheaBuscar") CocheBuscarMatriculaDTO cocheBuscado,BindingResult bidingresult) {
 			Coche cochematricula= cocheService.encontrarCochePorMatricula(cocheBuscado.getMatricula());
 			Integer id=cochematricula.getId();
 			

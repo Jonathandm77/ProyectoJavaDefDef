@@ -68,7 +68,7 @@
 		<div>
 			<div class="row">
 				<div class="col-md-auto">
-					<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#crearCoche"> Añadir
+					<button sec:authorize="hasAuthority('ROLE_ADMIN')" class="btn btn-primary" type="button" data-toggle="modal" data-target="#crearCoche"> Añadir
 						Coche </button>
 
 				</div>
@@ -86,7 +86,6 @@
 		</div>
 
 		<!-- buscar por marca modal-->
-		<div th:each="coche:${listaCoches}">
 			<div class="modal fade" th:id="modal-search">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
@@ -101,7 +100,7 @@
 
 
 							<!--formulario marca-->
-							<form action="#" th:action="@{/coches/search/{marca}(marca=${coche.marca})}"
+							<form action="#" th:action="@{/coches/searchMarca/}"
 								th:object="${cocheaBuscar}" method="post">
 								<div class"form-row">
 									<div class="form-group mt-1">
@@ -126,7 +125,6 @@
 			<!-- fin modal buscar por marca-->
 
 			<!-- buscar por matricula modal-->
-			<div th:each="coche:${listaCoches}">
 				<div class="modal fade" th:id="modal-search-matricula">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
@@ -143,7 +141,7 @@
 
 								<!--formulario marca-->
 								<form action="#"
-									th:action="@{/coches/searchMatricula/{matricula}(matricula=${coche.matricula})}"
+									th:action="@{/coches/searchMatricula}"
 									th:object="${cocheaBuscar}" method="post">
 									<div class"form-row">
 										<div class="form-group mt-1">
@@ -231,7 +229,7 @@
 								<div class="modal-footer">
 									<button class="btn btn-secondary btn-sm" data-dismiss="modal"
 										aria-hidden="true">Cancelar</button>
-									<form th:action="@{/coches/delete/{id}(id=${coche.id})}" th:method="DELETE">
+									<form th:action="@{/coches/delete/{id}(id=${coche.id})}" th:method="GET">
 										<button type="submit" name="submit" value="value" class="btn btn-danger btn.sm">Borrar</button>
 									</form>
 									

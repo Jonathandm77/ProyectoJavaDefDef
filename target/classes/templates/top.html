@@ -58,7 +58,7 @@
 
 					<div class="topbar-divider d-none d-sm-block"></div>
 
-					<li class="nav-item dropdown no-arrow">
+					<li sec:authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_TEACHER')" class="nav-item dropdown no-arrow">
 						<a class="nav-link dropdown-toggle text-gray-600" href="/alumnos" role="button">
 							<i class="fas fa-calendar-check fa-sm fa-fw mr-3 text-gray-600"></i>
 							Alumnos
@@ -67,7 +67,7 @@
 
 					<div class="topbar-divider d-none d-sm-block"></div>
 
-					<li class="nav-item dropdown no-arrow">
+					<li sec:authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_TEACHER')" class="nav-item dropdown no-arrow">
 						<a class="nav-link dropdown-toggle text-gray-600" href="/profesores" role="button">
 							<i class="fas fa-users fa-sm fa-fw mr-3 text-gray-600"></i>
 							Profesores
@@ -75,7 +75,7 @@
 					</li>
 					<div class="topbar-divider d-none d-sm-block"></div>
 
-					<li class="nav-item dropdown no-arrow">
+					<li sec:authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_TEACHER')" class="nav-item dropdown no-arrow">
 						<a class="nav-link dropdown-toggle text-gray-600" href="/coches" role="button">
 							<i class="fas fa-users fa-sm fa-fw mr-3 text-gray-600"></i>
 							Coches
@@ -85,13 +85,7 @@
 
 					<div class="topbar-divider d-none d-sm-block"></div>
 
-					<li class="nav-item dropdown no-arrow" sec:authorize="hasAuthority('ROLE_ADMIN')">
-						<a class="nav-link dropdown-toggle text-gray-600" href="/seguridad/panel">
-							<i class="fas fa-users fa-sm fa-fw mr-3 text-gray-600"></i>
-							Configuración Admin
-						</a>
-						<div class="dropdown-divider"></div>
-					</li>
+
 					<div class="topbar-divider d-none d-sm-block"></div>
 
 
@@ -119,13 +113,7 @@
 								Configurar datos
 							</a>
 							<div class="dropdown-divider"></div>
-							<div sec:authorize="hasAuthority('ROLE_USER')">
-								<a style="width:86.5%" class="dropdown-item" href="/seguridad/panel">
-									<i class="fas fa-cog fa-sm fa-fw mr-3 text-gray-600"></i>
-									Configuración User
-								</a>
-								<div class="dropdown-divider"></div>
-							</div>
+
 							<div style="width:86.5%" sec:authorize="hasAuthority('ROLE_ADMIN')">
 								<a class="dropdown-item" href="/seguridad/password#operat">
 									<i class="fas fa-cog fa-sm fa-fw mr-3 text-gray-600"></i>

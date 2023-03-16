@@ -14,36 +14,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import principal.modelo.Usuario;
 import principal.modelo.dto.UsuarioDTO;
+import principal.modelo.dto.UsuarioUsernamePasswordDTO;
 import principal.servicio.implementacion.UsuarioServiceImpl;
 
 @RequestMapping("/usuarios")
 @Controller
 public class UsuarioController {
 	@Autowired
-	UsuarioServiceImpl userDetailsService;
+	UsuarioServiceImpl userService;
 
 @GetMapping(value={"","/"})
 String homeusuarios(Model model) {
-ArrayList<Usuario> listaUsuarios=(ArrayList<Usuario>) userDetailsService.listarUsuarios();
+ArrayList<Usuario> listaUsuarios=(ArrayList<Usuario>) userService.listarUsuarios();
 model.addAttribute("listaUsuarios", listaUsuarios);
 model.addAttribute("usuarioaEditar", new Usuario());
 model.addAttribute("usuarioNuevo", new Usuario());
-return "usuarios";
+return "index";
 }
 
 	@PostMapping("/edit/{id}")
-	public String editarUsuario(@PathVariable Integer id, @ModelAttribute("usuarioaEditar") Usuario usuarioEditado,
+	public String editarUsuario(@PathVariable Integer id, @ModelAttribute("usuarioaEditar") UsuarioUsernamePasswordDTO usuarioEditado,
 			BindingResult bidingresult) {
-		Usuario usuarioaEditar =userDetailsService.obtenerUsuarioPorId(id);
+		Usuario usuarioaEditar =userService.obtenerUsuarioPorId(id);
 		usuarioaEditar.setUsername(usuarioEditado.getUsername());
 		usuarioaEditar.setPassword(usuarioEditado.getPassword());
-		userDetailsService.insertarUsuario(usuarioaEditar);
+		userService.insertarUsuario(usuarioaEditar);
 		return "redirect:/usuarios";
 	}
 
 	@GetMapping({ "/{id}" })
 	String idUsuario(Model model, @PathVariable Integer id) {
-		Usuario usuarioMostrar = userDetailsService.obtenerUsuarioPorId(id);
+		Usuario usuarioMostrar = userService.obtenerUsuarioPorId(id);
 		model.addAttribute("usuarioMostrar", usuarioMostrar);
 		return "usuario";
 	}
@@ -53,8 +54,8 @@ return "usuarios";
 		
 		if(esAdmin()) {
 		
-		Usuario usuarioaEliminar = userDetailsService.obtenerUsuarioPorId(id);
-		userDetailsService.eliminarUsuario(usuarioaEliminar);
+		Usuario usuarioaEliminar = userService.obtenerUsuarioPorId(id);
+		userService.eliminarUsuario(usuarioaEliminar);
 		}
 		return "redirect:/usuarios";
 	}
@@ -66,7 +67,7 @@ return "usuarios";
 
 	@PostMapping("/add")
 	public String addUsuario(@ModelAttribute("usuarioNuevo") Usuario usuarioNew, BindingResult bidingresult) {
-		userDetailsService.insertarUsuario(usuarioNew);
+		userService.insertarUsuario(usuarioNew);
 		return "redirect:/usuarios";
 	}
 	@GetMapping({"/registro" })
@@ -76,7 +77,7 @@ return "usuarios";
 	}
 	@PostMapping("/addRegistro")
 	public String addRegistro(@ModelAttribute("usuarioNuevo") UsuarioDTO usuarioNew, BindingResult bidingresult) {
-		userDetailsService.insertarUsuarioDTO(usuarioNew);
+		userService.insertarUsuarioDTO(usuarioNew);
 		return "login";
 	}
 }

@@ -25,8 +25,16 @@ import principal.modelo.Llave;
 import principal.modelo.Profesor;
 import principal.modelo.ProfesoresCoches;
 import principal.modelo.Usuario;
+import principal.modelo.dto.AlumnoBuscarDniDTO;
+import principal.modelo.dto.AlumnoBuscarNameDTO;
 import principal.modelo.dto.CambioContrasenaDTO;
+import principal.modelo.dto.CocheBuscarMarcaDTO;
+import principal.modelo.dto.CocheBuscarMatriculaDTO;
+import principal.modelo.dto.EntityIdDTO;
+import principal.modelo.dto.ProfesorBuscarDniDTO;
+import principal.modelo.dto.ProfesorBuscarNameDTO;
 import principal.modelo.dto.UsuarioDTO;
+import principal.modelo.dto.UsuarioNombreUsernameDTO;
 import principal.servicio.implementacion.AlumnoServiceImpl;
 import principal.servicio.implementacion.CocheServiceImpl;
 import principal.servicio.implementacion.LlaveServiceImpl;
@@ -50,6 +58,7 @@ public class SecurityController {
 	String homeSecurity(Model model,HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Usuario actualUser = (Usuario) auth.getPrincipal();
+	    ArrayList<Usuario>listaUsuarios=(ArrayList<Usuario>) userService.listarUsuarios();
 	model.addAttribute("usuarioPassword", new CambioContrasenaDTO());
 	model.addAttribute("usuarioActual", actualUser);
 	model.addAttribute("alumnoNuevo", new Alumno());
@@ -64,6 +73,8 @@ public class SecurityController {
 	model.addAttribute("cocheaBuscar", new Coche());
 	model.addAttribute("listaCoches",cocheService.listarCoches());
 	model.addAttribute("newUserDTO",new UsuarioDTO());
+	model.addAttribute("listaUsuarios",listaUsuarios);
+	model.addAttribute("userDelete", new UsuarioDTO());
 	
 	return "cambioPassword";
 	}
@@ -84,7 +95,7 @@ public class SecurityController {
 	}
 	
 	@PostMapping("/changeData")
-	public String cambioDatos(@ModelAttribute("usuarioActual") Usuario user, BindingResult bidingresult) {
+	public String cambioDatos(@ModelAttribute("usuarioActual") UsuarioNombreUsernameDTO user, BindingResult bidingresult) {
 		 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Usuario actualUser =(Usuario) auth.getPrincipal();
@@ -116,14 +127,14 @@ public class SecurityController {
 	
 	
 	@GetMapping("/deleteAlumno")
-	String deleteAlumno(@ModelAttribute("alumnoaEliminar")Alumno a) {
+	String deleteAlumno(@ModelAttribute("alumnoaEliminar")EntityIdDTO a) {
 		alumnoService.eliminarAlumnoPorId(a.getId());
 		
 		return "redirect:/seguridad/password#operat";
 	}
 	
 	@PostMapping("/searchAlumnoByName")
-	String buscarAlumnoPorNombre(Model model,@ModelAttribute("alumnoaBuscar") Alumno alumnoBuscado, BindingResult bidingresult) {
+	String buscarAlumnoPorNombre(Model model,@ModelAttribute("alumnoaBuscar") AlumnoBuscarNameDTO alumnoBuscado, BindingResult bidingresult) {
 		ArrayList<Alumno> misAlumnos= alumnoService.encontrarAlumnosPorNombre(alumnoBuscado.getNombre());
 		model.addAttribute("alumnosBuscados",misAlumnos);
 		
@@ -133,7 +144,7 @@ public class SecurityController {
 	}
 	
 	@PostMapping("/searchAlumnoByDni")
-	String buscarAlumnoPorDni(Model model,@ModelAttribute("alumnoaBuscar") Alumno alumnoBuscado, BindingResult bidingresult) {
+	String buscarAlumnoPorDni(Model model,@ModelAttribute("alumnoaBuscar") AlumnoBuscarDniDTO alumnoBuscado, BindingResult bidingresult) {
 		ArrayList<Alumno> misAlumnos= alumnoService.encontrarAlumnosPorDni(alumnoBuscado.getDni());
 		model.addAttribute("alumnosBuscados",misAlumnos);
 		
@@ -144,7 +155,7 @@ public class SecurityController {
 	}
 	
 	@PostMapping("/addProfesor")
-	public String addAlumnProfesor(@ModelAttribute("profeNuevo") Profesor profeNew, BindingResult bidingresult) {
+	public String addProfesor(@ModelAttribute("profeNuevo") Profesor profeNew, BindingResult bidingresult) {
 		profeService.insertarProfesor(profeNew);
 		return "redirect:/seguridad/password#operat";
 	}
@@ -209,7 +220,7 @@ public class SecurityController {
 	}
 	
 	@PostMapping("/searchProfesorByName")
-	String buscarProfesorPorNombre(Model model,@ModelAttribute("profeaBuscar") Profesor profeBuscado, BindingResult bidingresult) {
+	String buscarProfesorPorNombre(Model model,@ModelAttribute("profeaBuscar") ProfesorBuscarNameDTO profeBuscado, BindingResult bidingresult) {
 		ArrayList<Profesor> misProfes= profeService.encontrarProfesoresPorNombre(profeBuscado.getNombre());
 		model.addAttribute("profesBuscados",misProfes);
 		
@@ -219,7 +230,7 @@ public class SecurityController {
 	}
 	
 	@PostMapping({"/searchProfesorByDni"})
-	String buscarProfesorPorDni(Model model,@ModelAttribute("profeaBuscar") Profesor profeBuscado, BindingResult bidingresult) {
+	String buscarProfesorPorDni(Model model,@ModelAttribute("profeaBuscar") ProfesorBuscarDniDTO profeBuscado, BindingResult bidingresult) {
 		ArrayList<Profesor> profesor= profeService.encontrarProfesorPorDni(profeBuscado.getDni());
 		
 		model.addAttribute("profesBuscados",profesor);
@@ -302,7 +313,7 @@ public class SecurityController {
 		}
 	
 	@PostMapping({"/searchCochesByMarca"})
-	String buscarCochePorMarca(Model model,@ModelAttribute("cocheaBuscar") Coche cocheBuscado,BindingResult bidingresult) {
+	String buscarCochePorMarca(Model model,@ModelAttribute("cocheaBuscar") CocheBuscarMarcaDTO cocheBuscado,BindingResult bidingresult) {
 		ArrayList<Coche> cochesMarca= cocheService.obtenerCochesPorMarca(cocheBuscado.getMarca());
 		model.addAttribute("cochesMarca",cochesMarca);
 		
@@ -312,7 +323,7 @@ public class SecurityController {
 	}
 	
 	@PostMapping({"/searchCocheByMatricula"})
-	String buscarCochePorMatricula(Model model,@ModelAttribute("cocheaBuscar") Coche cocheBuscado,BindingResult bidingresult) {
+	String buscarCochePorMatricula(Model model,@ModelAttribute("cocheaBuscar") CocheBuscarMatriculaDTO cocheBuscado,BindingResult bidingresult) {
 		Coche c=cocheService.encontrarCochePorMatricula(cocheBuscado.getMatricula());
 		int id=c.getId();
 		
@@ -323,6 +334,13 @@ public class SecurityController {
 	@PostMapping("/addUsuario")
 	public String addUsuario(@ModelAttribute("newUserDTO") UsuarioDTO usuarioNew, BindingResult bidingresult) {
 		userService.insertarUsuarioDTO(usuarioNew);
+		return "redirect:/seguridad/password#operat";
+	}
+	
+	@GetMapping({"/deleteUsuario" })
+	String deleteUsuario(Model model, @ModelAttribute("userDelete") EntityIdDTO user) {
+		Usuario usuarioaEliminar = userService.obtenerUsuarioPorId(user.getId());
+		userService.eliminarUsuario(usuarioaEliminar);
 		return "redirect:/seguridad/password#operat";
 	}
 	

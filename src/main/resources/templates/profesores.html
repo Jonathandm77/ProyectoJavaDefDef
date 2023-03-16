@@ -63,7 +63,7 @@
 		<div>
 			<div class="row">
 				<div class="col-md-auto">
-					<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#crearProfe"
+					<button sec:authorize="hasAuthority('ROLE_ADMIN')" class="btn btn-primary" type="button" data-toggle="modal" data-target="#crearProfe"
 						> Añadir Profesor </button>
 
 				</div>

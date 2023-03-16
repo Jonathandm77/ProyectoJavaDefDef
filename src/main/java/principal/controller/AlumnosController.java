@@ -14,12 +14,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import principal.modelo.AjaxResponseBody;
 import principal.modelo.Alumno;
 import principal.modelo.Coche;
 import principal.modelo.Llave;
 import principal.modelo.Profesor;
 import principal.modelo.dto.AlumnoAjaxDTO;
+import principal.modelo.dto.AlumnoBuscarDniDTO;
+import principal.modelo.dto.AlumnoBuscarNameDTO;
+import principal.modelo.dto.AlumnoEditarNotasNombreDTO;
 import principal.servicio.implementacion.AlumnoServiceImpl;
 import principal.servicio.implementacion.CocheServiceImpl;
 import principal.servicio.implementacion.LlaveServiceImpl;
@@ -79,7 +83,7 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 		}
 		
 		@PostMapping("/edit/{id}")
-		public String editarAlumno(@PathVariable Integer id, @ModelAttribute("alumnoaEditar") Alumno alumnoEditado, BindingResult bidingresult) {
+		public String editarAlumno(@PathVariable Integer id, @ModelAttribute("alumnoaEditar") AlumnoEditarNotasNombreDTO alumnoEditado, BindingResult bidingresult) {
 			Alumno alumnoaEditar=alumnoService.obtenerAlumnoPorId(id);
 			alumnoaEditar.setNombre(alumnoEditado.getNombre());
 			alumnoaEditar.setNotas(alumnoEditado.getNotas());
@@ -102,7 +106,7 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 		}
 		
 		@PostMapping({"/searchName"})
-		String buscarAlumnoPorNombre(Model model,@ModelAttribute("alumnoaBuscar") Alumno alumnoBuscado, BindingResult bidingresult) {
+		String buscarAlumnoPorNombre(Model model,@ModelAttribute("alumnoaBuscar") AlumnoBuscarNameDTO alumnoBuscado, BindingResult bidingresult) {
 			ArrayList<Alumno> misAlumnos= alumnoService.encontrarAlumnosPorNombre(alumnoBuscado.getNombre());
 			model.addAttribute("alumnosBuscados",misAlumnos);
 			
@@ -112,7 +116,7 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 		}
 		
 		@PostMapping({"/searchDni"})
-		String buscarAlumnoPorDni(Model model,@ModelAttribute("alumnoaBuscar") Alumno alumnoBuscado, BindingResult bidingresult) {
+		String buscarAlumnoPorDni(Model model,@ModelAttribute("alumnoaBuscar") AlumnoBuscarDniDTO alumnoBuscado, BindingResult bidingresult) {
 			ArrayList<Alumno> misAlumnos= alumnoService.encontrarAlumnosPorDni(alumnoBuscado.getDni());
 			model.addAttribute("alumnosBuscados",misAlumnos);
 			

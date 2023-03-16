@@ -1,9 +1,7 @@
 package principal.controller;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +18,8 @@ import principal.modelo.Coche;
 import principal.modelo.Llave;
 import principal.modelo.Profesor;
 import principal.modelo.ProfesoresCoches;
+import principal.modelo.dto.ProfesorBuscarDniDTO;
+import principal.modelo.dto.ProfesorBuscarNameDTO;
 import principal.servicio.implementacion.AlumnoServiceImpl;
 import principal.servicio.implementacion.CocheServiceImpl;
 import principal.servicio.implementacion.LlaveServiceImpl;
@@ -98,9 +98,8 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 					
 					
 					do {
-						int s=misProfesores.size();
 						 profe=(int)(Math.random()*(misProfesores.size()));
-					}while(profe==misProfesores.indexOf(a.getProfesor()));
+					}while(profe==misProfesores.indexOf(a.getProfesor()));//si solo queda un profesor no elimina, solucionar
 					a.setProfesor(misProfesores.get(profe));
 					
 					misProfesores.get(profe).getAlumnos().add(a);
@@ -142,7 +141,7 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 		}
 		
 		@PostMapping({"/searchName"})
-		String buscarProfesorPorNombre(Model model,@ModelAttribute("profeaBuscar") Profesor profeBuscado, BindingResult bidingresult) {
+		String buscarProfesorPorNombre(Model model,@ModelAttribute("profeaBuscar") ProfesorBuscarNameDTO profeBuscado, BindingResult bidingresult) {
 			ArrayList<Profesor> misProfesores= (ArrayList<Profesor>) profeService.encontrarProfesoresPorNombre(profeBuscado.getNombre());
 			
 			model.addAttribute("profesBuscados",misProfesores);
@@ -153,7 +152,7 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 		}
 		
 		@PostMapping({"/searchDni"})
-		String buscarProfesorPorDni(Model model,@ModelAttribute("profeaBuscar") Profesor profeBuscado, BindingResult bidingresult) {
+		String buscarProfesorPorDni(Model model,@ModelAttribute("profeaBuscar") ProfesorBuscarDniDTO profeBuscado, BindingResult bidingresult) {
 			ArrayList<Profesor> profesor= profeService.encontrarProfesorPorDni(profeBuscado.getDni());
 			
 			model.addAttribute("profesBuscados",profesor);
