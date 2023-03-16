@@ -16,7 +16,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -27,6 +26,7 @@ import principal.modelo.Profesor;
 import principal.modelo.ProfesoresCoches;
 import principal.modelo.Usuario;
 import principal.modelo.dto.CambioContrasenaDTO;
+import principal.modelo.dto.UsuarioDTO;
 import principal.servicio.implementacion.AlumnoServiceImpl;
 import principal.servicio.implementacion.CocheServiceImpl;
 import principal.servicio.implementacion.LlaveServiceImpl;
@@ -63,6 +63,7 @@ public class SecurityController {
 	model.addAttribute("cocheaEliminar", new Coche());
 	model.addAttribute("cocheaBuscar", new Coche());
 	model.addAttribute("listaCoches",cocheService.listarCoches());
+	model.addAttribute("newUserDTO",new UsuarioDTO());
 	
 	return "cambioPassword";
 	}
@@ -310,5 +311,19 @@ public class SecurityController {
 		
 	}
 	
+	@PostMapping({"/searchCocheByMatricula"})
+	String buscarCochePorMatricula(Model model,@ModelAttribute("cocheaBuscar") Coche cocheBuscado,BindingResult bidingresult) {
+		Coche c=cocheService.encontrarCochePorMatricula(cocheBuscado.getMatricula());
+		int id=c.getId();
+		
+		return "redirect:/coches/"+id;
+		
+	}
+	
+	@PostMapping("/addUsuario")
+	public String addUsuario(@ModelAttribute("newUserDTO") UsuarioDTO usuarioNew, BindingResult bidingresult) {
+		userService.insertarUsuarioDTO(usuarioNew);
+		return "redirect:/seguridad/password#operat";
+	}
 	
 }
