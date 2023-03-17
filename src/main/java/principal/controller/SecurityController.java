@@ -161,7 +161,7 @@ public class SecurityController {
 	}
 	
 	@GetMapping("/deleteProfesor")
-	String deleteProfe(@ModelAttribute("profeaEliminar") Profesor profe) {
+	String deleteProfe(@ModelAttribute("profeaEliminar") EntityIdDTO profe) {
 		Profesor profeaEliminar=profeService.obtenerProfesorPorId(profe.getId());
 		ArrayList<Alumno> misAlumnos= (ArrayList<Alumno>) alumnoService.listarAlumnos();
 		ArrayList<Profesor> misProfesores= (ArrayList<Profesor>) profeService.listarProfesores();
@@ -215,6 +215,7 @@ public class SecurityController {
 		profeaEliminar.getLlaves().clear();
 		
 		profeService.eliminarProfesor(profeaEliminar);
+		if(llaveTemp!=null)
 		llaveService.eliminarLlave(llaveTemp);
 		return "redirect:/seguridad/password#operat";
 	}

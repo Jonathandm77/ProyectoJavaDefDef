@@ -41,10 +41,14 @@ public class WebController {
 	@Autowired
 	RolRepo rolRepo;
 	
+	boolean created=false;
+	
 	@GetMapping("/")
 	String home() {
-		
-		 //crearTablas();
+		if(!created) {
+		 crearTablas();
+		 created=true;
+		}
 		return "index";
 			
 	}
