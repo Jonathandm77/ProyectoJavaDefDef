@@ -115,6 +115,16 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 			
 		}
 		
+		@PostMapping({"/searchName2"})
+		ArrayList<Alumno> buscarAlumnoPorNombre2(Model model,@ModelAttribute("alumnoaBuscar") AlumnoBuscarNameDTO alumnoBuscado, BindingResult bidingresult) {
+			ArrayList<Alumno> misAlumnos= alumnoService.encontrarAlumnosPorNombre(alumnoBuscado.getNombre());
+			model.addAttribute("alumnosBuscados",misAlumnos);
+			
+			
+			return misAlumnos;
+			
+		}
+		
 		@PostMapping({"/searchDni"})
 		String buscarAlumnoPorDni(Model model,@ModelAttribute("alumnoaBuscar") AlumnoBuscarDniDTO alumnoBuscado, BindingResult bidingresult) {
 			ArrayList<Alumno> misAlumnos= alumnoService.encontrarAlumnosPorDni(alumnoBuscado.getDni());
