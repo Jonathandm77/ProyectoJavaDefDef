@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import principal.modelo.Profesor;
 import principal.modelo.Usuario;
 import principal.modelo.dto.UsuarioDTO;
 import principal.modelo.dto.UsuarioUsernamePasswordDTO;
+import principal.servicio.implementacion.ProfesorServiceImpl;
 import principal.servicio.implementacion.UsuarioServiceImpl;
 
 @RequestMapping("/usuarios")
@@ -22,6 +24,8 @@ import principal.servicio.implementacion.UsuarioServiceImpl;
 public class UsuarioController {
 	@Autowired
 	UsuarioServiceImpl userService;
+	@Autowired 
+	ProfesorServiceImpl profeService;
 
 @GetMapping(value={"","/"})
 String homeusuarios(Model model) {
@@ -72,12 +76,25 @@ return "index";
 	}
 	@GetMapping({"/registro" })
 	String mostrarRegistro(Model model, @ModelAttribute("usuarioNuevo") UsuarioDTO usuarioNew) {
+		ArrayList<Profesor> listaProfes=(ArrayList<Profesor>) profeService.listarProfesores();
+		model.addAttribute("listaProfesores",listaProfes);
 		model.addAttribute("newUserDTO", new UsuarioDTO());
 		return "registro";
 	}
 	@PostMapping("/addRegistro")
 	public String addRegistro(@ModelAttribute("usuarioNuevo") UsuarioDTO usuarioNew, BindingResult bidingresult) {
-		userService.insertarUsuarioDTO(usuarioNew);
+		if(usuarioNew.isEsProfesor()) {
+			Usuario userProfesor=new Usuario();
+			userProfesor.setNombre(usuarioNew.getNombre());
+			userProfesor.setPassword(usuarioNew.getPassword());
+			userProfesor.setUsername(usuarioNew.getUsername());
+			userProfesor.setIdProfesor(usuarioNew.getIdProfesor());
+			userService.insertarUsuarioProfesor(userProfesor);
+		}else {
+			
+			userService.insertarUsuarioDTO(usuarioNew);
+		}
+		
 		return "login";
 	}
 }

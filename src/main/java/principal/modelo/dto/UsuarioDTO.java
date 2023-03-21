@@ -8,15 +8,57 @@ public class UsuarioDTO{
 	private String username;
 	
 	private String password;
+	
+	private boolean esProfesor;
+	
+	private Integer idProfesor;
 
 	public UsuarioDTO() {
 	}
 	
-	public UsuarioDTO(String nombre, String usuario, String pass) {
-		this.nombre=nombre;
-		this.username=usuario;
-		this.password=pass;
+	
+	
+	
+
+	public UsuarioDTO(Integer id, String nombre, String username, String password, boolean esProfesor) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.username = username;
+		this.password = password;
+		this.esProfesor = esProfesor;
 	}
+
+
+
+
+
+	public UsuarioDTO(Integer id, String nombre, String username, String password, boolean esProfesor,
+			Integer idProfesor) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.username = username;
+		this.password = password;
+		this.esProfesor = esProfesor;
+		this.idProfesor = idProfesor;
+	}
+
+
+
+
+
+	public boolean isEsProfesor() {
+		return esProfesor;
+	}
+
+
+
+	public void setEsProfesor(boolean esProfesor) {
+		this.esProfesor = esProfesor;
+	}
+
+
 
 	public Integer getId() {
 		return id;
@@ -48,6 +90,22 @@ public class UsuarioDTO{
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+
+
+
+
+	public Integer getIdProfesor() {
+		return idProfesor;
+	}
+
+
+
+
+
+	public void setIdProfesor(Integer idProfesor) {
+		this.idProfesor = idProfesor;
 	}
 	
 

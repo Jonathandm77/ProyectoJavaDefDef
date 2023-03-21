@@ -334,7 +334,18 @@ public class SecurityController {
 	
 	@PostMapping("/addUsuario")
 	public String addUsuario(@ModelAttribute("newUserDTO") UsuarioDTO usuarioNew, BindingResult bidingresult) {
-		userService.insertarUsuarioDTO(usuarioNew);
+		if(usuarioNew.isEsProfesor()) {
+			Usuario userProfesor=new Usuario();
+			userProfesor.setNombre(usuarioNew.getNombre());
+			userProfesor.setPassword(usuarioNew.getPassword());
+			userProfesor.setUsername(usuarioNew.getUsername());
+			userProfesor.setIdProfesor(usuarioNew.getIdProfesor());
+			userService.insertarUsuarioProfesor(userProfesor);
+		}else {
+			
+			userService.insertarUsuarioDTO(usuarioNew);
+		}		
+		
 		return "redirect:/seguridad/password#operat";
 	}
 	
