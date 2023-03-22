@@ -1,99 +1,53 @@
 <div th:fragment="top">
-	<!-- Topbar -->
-	<!-- Topbar -->
-	<!-- Topbar -->
-	<!-- Topbar -->
-	<!-- Topbar -->
 
-
-	<div class="collapse bg-dark" id="navbarHeader">
+	<!-- Navbar -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="container">
-			<div class="row">
-				<div class="col-sm-8 col-md-7 py-4">
-					<h4 class="text-white">¿Qué es?</h4>
-					<p class="text-muted">Aplicación web de gestión de bocadillos sobre Spring, Thymeleaf, MySQL.
-						Proyecto DWES - 2ºDAW</p>
-				</div>
-				<div class="col-sm-4 offset-md-1 py-4">
-					<h4 class="text-white">Contacto</h4>
-					<ul class="list-unstyled">
-						<li><a href="#" class="text-white">Follow on Twitter</a></li>
-						<li><a href="#" class="text-white">Like on Facebook</a></li>
-						<li><a href="#" class="text-white">Email me</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="navbar navbar-dark bg-dark box-shadow">
-		<div class="container d-flex justify-content-between">
-			<a href="/" class="navbar-brand d-flex align-items-center">
-				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-					stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2">
-					<path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
-					<circle cx="12" cy="13" r="4"></circle>
-				</svg>
-				<strong>DriveStop</strong>
-			</a>
+			<!-- Logo -->
+			<a class="navbar-brand" href="#">DriveStop</a>
 
+			<!-- Botón para dispositivos móviles -->
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+				aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
 
-
-
-			<nav class="navbar navbar-expand  navbar-dark bg-dark box-shadow">
-
-				<!-- Sidebar Toggle (Topbar) -->
-				<button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-					<i class="fa fa-bars"></i>
-				</button>
-
-				<!-- Topbar Navbar -->
-				<ul class="navbar-nav ml-auto">
-
-					<li class="nav-item dropdown no-arrow">
-						<a class="nav-link dropdown-toggle text-gray-600" href="/" role="button">
+			<!-- Contenedor de elementos del Navbar -->
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link text-gray-600" href="/" role="button">
 							<i class="fas fa-home fa-sm fa-fw mr-3 text-gray-600"></i>
 							Inicio
 						</a>
 					</li>
-
-					<div class="topbar-divider d-none d-sm-block"></div>
-
-					<li sec:authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_TEACHER')" class="nav-item dropdown no-arrow">
-						<a class="nav-link dropdown-toggle text-gray-600" href="/alumnos" role="button">
+					<li sec:authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_TEACHER')"
+						class="nav-item dropdown no-arrow">
+						<a class="nav-link text-gray-600" href="/alumnos" role="button">
 							<i class="fas fa-calendar-check fa-sm fa-fw mr-3 text-gray-600"></i>
 							Alumnos
 						</a>
 					</li>
 
-					<div class="topbar-divider d-none d-sm-block"></div>
-
-					<li sec:authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_TEACHER')" class="nav-item dropdown no-arrow">
-						<a class="nav-link dropdown-toggle text-gray-600" href="/profesores" role="button">
+					<li sec:authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_TEACHER')"
+						class="nav-item dropdown no-arrow">
+						<a class="nav-link text-gray-600" href="/profesores" role="button">
 							<i class="fas fa-users fa-sm fa-fw mr-3 text-gray-600"></i>
 							Profesores
 						</a>
 					</li>
-					<div class="topbar-divider d-none d-sm-block"></div>
 
-					<li sec:authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_TEACHER')" class="nav-item dropdown no-arrow">
-						<a class="nav-link dropdown-toggle text-gray-600" href="/coches" role="button">
+					<li sec:authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_TEACHER')"
+						class="nav-item dropdown no-arrow">
+						<a class="nav-link text-gray-600" href="/coches" role="button">
 							<i class="fas fa-users fa-sm fa-fw mr-3 text-gray-600"></i>
 							Coches
 						</a>
 					</li>
 
-
-					<div class="topbar-divider d-none d-sm-block"></div>
-
-
-					<div class="topbar-divider d-none d-sm-block"></div>
-
-
-					<!-- Nav Item - User Information -->
-
 					<li sec:authorize="isAuthenticated()" class="nav-item dropdown text-gray-900">
 
-						<a class="nav-link dropdown-toggle text-gray-900" href="#" id="userDropdown" role="button"
+						<a class="nav-link  text-gray-900" href="#" id="userDropdown" role="button"
 							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
 							Hola: <span sec:authentication="principal.username" />
@@ -128,25 +82,18 @@
 						</div>
 					</li>
 
-					<div class="topbar-divider d-none d-sm-block">
+					<li sec:authorize="isAnonymous()" class="nav-link  text-gray-600">
+						<a class="btn btn-primary btn-sm  " href="/login">Iniciar Sesión</a>
+					</li>
+					<li sec:authorize="isAuthenticated()" class="nav-link  text-gray-600">
+						<form th:action="@{/logout}" method="post">
+							<input class="btn btn-primary btn-sm " type="submit" value="Sign Out" />
+						</form>
+					</li>
 
-						<li sec:authorize="isAnonymous()" class="nav-link  text-gray-600">
-							<a class="btn btn-primary btn-sm  " href="/login">Iniciar Sesión</a>
-						</li>
-						<li sec:authorize="isAuthenticated()" class="nav-link  text-gray-600">
-							<form th:action="@{/logout}" method="post">
-								<input class="btn btn-primary btn-sm " type="submit" value="Sign Out" />
-							</form>
-						</li>
-					</div>
+
 				</ul>
-
-			</nav>
-			<!-- End of Topbar -->
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader"
-				aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
+			</div>
 		</div>
-	</div>
+	</nav>
 </div>
