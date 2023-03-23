@@ -3,6 +3,8 @@ package principal.controller;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import principal.modelo.Profesor;
+import principal.modelo.Rol;
 import principal.modelo.Usuario;
 import principal.modelo.dto.UsuarioDTO;
 import principal.modelo.dto.UsuarioUsernamePasswordDTO;
@@ -21,7 +24,7 @@ import principal.servicio.implementacion.UsuarioServiceImpl;
 
 @RequestMapping("/usuarios")
 @Controller
-public class UsuarioController {
+public class UsuariosController {
 	@Autowired
 	UsuarioServiceImpl userService;
 	@Autowired 
@@ -29,11 +32,14 @@ public class UsuarioController {
 
 @GetMapping(value={"","/"})
 String homeusuarios(Model model) {
+	if(isAdmin()) {
 ArrayList<Usuario> listaUsuarios=(ArrayList<Usuario>) userService.listarUsuarios();
 model.addAttribute("listaUsuarios", listaUsuarios);
 model.addAttribute("usuarioaEditar", new Usuario());
 model.addAttribute("usuarioNuevo", new Usuario());
-return "index";
+return "usuarios";
+	}
+	return "redirect:/";
 }
 
 	@PostMapping("/edit/{id}")
@@ -56,7 +62,7 @@ return "index";
 	@GetMapping({"/delete/{id}" })
 	String deleteUsuario(Model model, @PathVariable Integer id) {
 		
-		if(esAdmin()) {
+		if(isAdmin()) {
 		
 		Usuario usuarioaEliminar = userService.obtenerUsuarioPorId(id);
 		userService.eliminarUsuario(usuarioaEliminar);
@@ -64,10 +70,6 @@ return "index";
 		return "redirect:/usuarios";
 	}
 
-	private boolean esAdmin() {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 	@PostMapping("/add")
 	public String addUsuario(@ModelAttribute("usuarioNuevo") Usuario usuarioNew, BindingResult bidingresult) {
@@ -96,5 +98,18 @@ return "index";
 		}
 		
 		return "login";
+	}
+	
+	private boolean isAdmin(){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    Usuario actualUser = (Usuario) auth.getPrincipal();
+	    
+	    for(Rol r:actualUser.getRoles()) {
+	    	if(r.getNombre().compareTo("ROLE_ADMIN")==0) {
+	    		return true;
+	    }
+	    }
+		return false;
+	    
 	}
 }

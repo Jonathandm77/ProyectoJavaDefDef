@@ -32,7 +32,7 @@
 					<li sec:authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_TEACHER')"
 						class="nav-item dropdown no-arrow">
 						<a class="nav-link text-gray-600" href="/profesores" role="button">
-							<i class="fas fa-users fa-sm fa-fw mr-3 text-gray-600"></i>
+							<i class="fas fa-chalkboard-user fa-sm fa-fw mr-3 text-gray-600"></i>
 							Profesores
 						</a>
 					</li>
@@ -40,8 +40,15 @@
 					<li sec:authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_TEACHER')"
 						class="nav-item dropdown no-arrow">
 						<a class="nav-link text-gray-600" href="/coches" role="button">
-							<i class="fas fa-users fa-sm fa-fw mr-3 text-gray-600"></i>
+							<i class="fas fa-car fa-sm fa-fw mr-3 text-gray-600"></i>
 							Coches
+						</a>
+					</li>
+
+					<li sec:authorize="hasAuthority('ROLE_ADMIN')" class="nav-item dropdown no-arrow">
+						<a class="nav-link text-gray-600" href="/usuarios" role="button">
+							<i class="fas fa-user fa-sm fa-fw mr-3 text-gray-600"></i>
+							Usuarios
 						</a>
 					</li>
 
@@ -57,9 +64,11 @@
 						<!-- Dropdown - User Information -->
 						<ul class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 							aria-labelledby="userDropdown">
-							<li style="cursor: pointer" class="dropdown-item" href="/seguridad/password#contras">
-								<i class="fas fa-lock fa-sm fa-fw mr-3 text-gray-600"></i>
-								Contraseña
+							<li style="cursor: pointer" class="dropdown-item nav-item" href="/seguridad/password#contras">
+								<a class="nav-link text-gray-600" href="/seguridad/password#contras" role="button">
+							<i class="fas fa-lock fa-sm fa-fw mr-3 text-gray-600"></i>
+							Contraseña
+						</a>
 							</li>
 
 							<li style="cursor: pointer" class="dropdown-item" href="/seguridad/password#data">

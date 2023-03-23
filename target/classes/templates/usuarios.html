@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<head th:insert="librerias::librerias">
+
+</head>
+
+<body>
+
+	<div th:insert="top"></div>
+	
+	<div class="container">
+		<header>
+			
+		</header>
+		
+		
+			<div class="col-8">
+				<h5>Usuarios de la aplicación</h5>
+				<div class="card border border primary col-4" th:each="user:${listaUsuarios}">
+					<div class="card-body row pt-4 pb-4">
+						<div class="col-12">
+							<div class="card">
+								<div class="card-header text-dark bg-light">Datos del usuario
+
+								</div>
+								<div class="card-body">
+									<div class="mb-2">
+										<h5 th:text="${user.nombre}+', '+${user.username}" class="mb-2 card-text">Usuario</h5>
+									</div>
+									<p><a  class="btn btn-primary mt-3">Ver más</a></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+	</div>
+</body>
+</html>
