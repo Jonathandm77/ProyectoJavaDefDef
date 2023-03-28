@@ -62,33 +62,31 @@
 						</a>
 
 						<!-- Dropdown - User Information -->
-						<ul class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+						<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 							aria-labelledby="userDropdown">
-							<li style="cursor: pointer" class="dropdown-item nav-item" href="/seguridad/password#contras">
-								<a class="nav-link text-gray-600" href="/seguridad/password#contras" role="button">
-							<i class="fas fa-lock fa-sm fa-fw mr-3 text-gray-600"></i>
-							Contraseña
-						</a>
-							</li>
+							<a class="dropdown-item" href="/seguridad/password#contras">
+								<i class="fas fa-lock fa-sm fa-fw mr-3 text-gray-600"></i>
+								Contraseña
+							</a>
 
-							<li style="cursor: pointer" class="dropdown-item" href="/seguridad/password#data">
+							<a class="dropdown-item" href="/seguridad/password#data">
 								<i class="fas fa-address-card fa-sm fa-fw mr-3 text-gray-600"></i>
 								Configurar datos
-							</li>
+							</a>
 							<div class="dropdown-divider"></div>
 
 							<div sec:authorize="hasAuthority('ROLE_ADMIN')">
-								<li style="cursor: pointer" class="dropdown-item" href="/seguridad/password#operat">
+								<a class="dropdown-item" href="/seguridad/password#operat">
 									<i class="fas fa-cog fa-sm fa-fw mr-3 text-gray-600"></i>
 									Operaciones Admin
-								</li>
+								</a>
 								<div class="dropdown-divider"></div>
 							</div>
-							<li  class="dropdown-item" th:href="@{/logout}">
+							<a class="dropdown-item" th:href="@{/logout}">
 								<i class="fas fa-sign-out-alt fa-sm fa-fw mr-3 text-gray-600"></i>
 								<span>Cerrar Sesión</span>
-							</li>
-						</ul>
+							</a>
+						</div>
 					</li>
 
 					<li sec:authorize="isAnonymous()" class="nav-link  text-gray-600">
