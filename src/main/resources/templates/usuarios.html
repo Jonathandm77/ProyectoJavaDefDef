@@ -13,10 +13,10 @@
 			
 		</header>
 		
-		
-			<div class="col-8">
 				<h5>Usuarios de la aplicación</h5>
-				<div class="card border border primary col-4" th:each="user:${listaUsuarios}">
+		
+			<div class="col-8 d-flex justify-content-around w-100 flex-wrap">
+				<div class="card border border primary col-3" th:each="user:${listaUsuarios}">
 					<div class="card-body row pt-4 pb-4">
 						<div class="col-12">
 							<div class="card">
@@ -37,3 +37,6 @@
 	</div>
 </body>
 </html>
+
+
+
