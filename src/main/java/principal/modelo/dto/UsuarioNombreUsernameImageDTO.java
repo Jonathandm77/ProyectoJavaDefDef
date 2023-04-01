@@ -1,8 +1,11 @@
 package principal.modelo.dto;
 
-public class UsuarioNombreUsernameDTO {
+import org.springframework.web.multipart.MultipartFile;
+
+public class UsuarioNombreUsernameImageDTO {
 private String nombre;
 private String username;
+private MultipartFile imagen;
 public String getNombre() {
 	return nombre;
 }
@@ -15,5 +18,13 @@ public String getUsername() {
 public void setUsername(String username) {
 	this.username = username;
 }
+public MultipartFile getImagen() {
+	return imagen;
+}
+public void setImagen(MultipartFile imagen) {
+	this.imagen = imagen;
+}
+
+
 
 }

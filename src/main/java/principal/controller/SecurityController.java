@@ -1,6 +1,8 @@
 package principal.controller;
 
 
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +20,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import principal.modelo.Alumno;
 import principal.modelo.Coche;
@@ -34,7 +38,7 @@ import principal.modelo.dto.EntityIdDTO;
 import principal.modelo.dto.ProfesorBuscarDniDTO;
 import principal.modelo.dto.ProfesorBuscarNameDTO;
 import principal.modelo.dto.UsuarioDTO;
-import principal.modelo.dto.UsuarioNombreUsernameDTO;
+import principal.modelo.dto.UsuarioNombreUsernameImageDTO;
 import principal.servicio.implementacion.AlumnoServiceImpl;
 import principal.servicio.implementacion.CocheServiceImpl;
 import principal.servicio.implementacion.LlaveServiceImpl;
@@ -95,17 +99,57 @@ public class SecurityController {
 	}
 	
 	@PostMapping("/changeData")
-	public String cambioDatos(@ModelAttribute("usuarioActual") UsuarioNombreUsernameDTO user, BindingResult bidingresult) {
-		 
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	public String cambioDatos(@ModelAttribute("usuarioActual") UsuarioNombreUsernameImageDTO user, BindingResult bidingresult, @RequestParam("imagen") MultipartFile imagen) throws IOException {
+	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Usuario actualUser =(Usuario) auth.getPrincipal();
-		    actualUser.setNombre(user.getNombre());
-		    actualUser.setUsername(user.getUsername());
-		    userService.insertarUsuario(actualUser);
-		    
-		    	
-		return "redirect:/seguridad/password#data";
+
+	    // Guardamos la imagen en el sistema de archivos
+	    String rutaImagen = "C:\\Users\\jonat\\Documents\\workspace-spring-tool-suite-4-4.17.2.RELEASE\\ProyectoDEF\\ProfileImages\\";
+	    if (!imagen.isEmpty()) {
+	        rutaImagen = "C:\\Users\\jonat\\Documents\\workspace-spring-tool-suite-4-4.17.2.RELEASE\\ProyectoDEF\\ProfileImages\\" + imagen.getOriginalFilename();
+	        imagen.transferTo(new File(rutaImagen));
+	        System.out.println("Ruta de destino: " + new File(rutaImagen).getAbsolutePath());
+	    }
+
+	    // Actualizamos los datos del usuario
+	    actualUser.setNombre(user.getNombre());
+	    actualUser.setUsername(user.getUsername());
+	    actualUser.setRutaImagenPerfil(rutaImagen);
+	    userService.insertarUsuario(actualUser);
+
+	    return "redirect:/seguridad/password#data";
+	    
+	    //obtener imagen
+	    
+	   /* @GetMapping("/usuario/{id}")
+	    public String verPerfil(@PathVariable Long id, Model model) {
+	        // Obtener instancia de Usuario de la base de datos
+	        Usuario usuario = usuarioService.obtenerUsuarioPorId(id);
+	        if (usuario == null) {
+	            return "error404";
+	        }
+	        
+	        // Obtener ruta de la imagen almacenada en el atributo imagenPerfil de Usuario
+	        String rutaImagen = usuario.getImagenPerfil();
+	        
+	        // Cargar imagen desde la ruta obtenida
+	        File imagen = new File(rutaImagen);
+	        if (imagen.exists()) {
+	            // Agregar la imagen al modelo para mostrarla en la página
+	            model.addAttribute("imagenPerfil", imagen);
+	        }
+	        
+	        // Agregar el Usuario al modelo para mostrar su información en la página
+	        model.addAttribute("usuario", usuario);
+	        
+	        return "perfil";
+	    }*/
+	    /*
+	    <img src="file:${imagenPerfil.absolutePath}" alt="Imagen de perfil">*/
+
+
 	}
+
 	
 	@PostMapping("/addAlumno")
 	public String addAlumno(@ModelAttribute("alumnoNuevo") Alumno alumnoNew, BindingResult bidingresult) {

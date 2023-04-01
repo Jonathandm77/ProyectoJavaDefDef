@@ -42,6 +42,9 @@ public class Usuario implements UserDetails {
 	
 	@Column(name="id_profesor")
 	private Integer idProfesor;
+	
+	@Column(name="imagenPerfil")
+	private String imagenPerfil;
 
 	@ManyToMany(cascade= {CascadeType.ALL}, fetch = FetchType.EAGER)
 	@JoinTable(
@@ -128,6 +131,19 @@ public class Usuario implements UserDetails {
 	public void setIdProfesor(Integer idProfesor) {
 		this.idProfesor = idProfesor;
 	}
+	
+
+	public String getRutaImagenPerfil() {
+		return imagenPerfil;
+	}
+
+
+
+	public void setRutaImagenPerfil(String rutaImagenPerfil) {
+		this.imagenPerfil = rutaImagenPerfil;
+	}
+
+
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
