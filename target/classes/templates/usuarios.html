@@ -16,7 +16,7 @@
 				<h5>Usuarios de la aplicación</h5>
 		
 			<div class="col-8 d-flex justify-content-around w-100 flex-wrap">
-				<div class="card border border primary col-3" th:each="user:${listaUsuarios}">
+				<div class="card border border primary col-3 user-card" th:each="user:${listaUsuarios}">
 					<div class="card-body row pt-4 pb-4">
 						<div class="col-12">
 							<div class="card">
@@ -34,8 +34,10 @@
 					</div>
 				</div>
 			</div>
+
 	</div>
 </body>
+<link rel="stylesheet" th:href="@{/css/usuarios.css}">
 </html>
 
 
