@@ -44,7 +44,7 @@ public class Usuario implements UserDetails {
 	private Integer idProfesor;
 	
 	@Column(name="imagenPerfil")
-	private String imagenPerfil;
+	public String imagenPerfil;
 
 	@ManyToMany(cascade= {CascadeType.ALL}, fetch = FetchType.EAGER)
 	@JoinTable(

@@ -104,9 +104,9 @@ public class SecurityController {
 	    Usuario actualUser =(Usuario) auth.getPrincipal();
 
 	    // Guardamos la imagen en el sistema de archivos
-	    String rutaImagen = "C:\\Users\\jonat\\Documents\\workspace-spring-tool-suite-4-4.17.2.RELEASE\\ProyectoDEF\\ProfileImages\\";
+	    String rutaImagen = "C:\\Users\\jonat\\Documents\\workspace-spring-tool-suite-4-4.17.2.RELEASE\\ProyectoDEF\\src\\main\\resources\\static\\img\\";
 	    if (!imagen.isEmpty()) {
-	        rutaImagen = "C:\\Users\\jonat\\Documents\\workspace-spring-tool-suite-4-4.17.2.RELEASE\\ProyectoDEF\\ProfileImages\\" + imagen.getOriginalFilename();
+	        rutaImagen = "C:\\Users\\jonat\\Documents\\workspace-spring-tool-suite-4-4.17.2.RELEASE\\ProyectoDEF\\src\\main\\resources\\static\\img\\" + imagen.getOriginalFilename();
 	        imagen.transferTo(new File(rutaImagen));
 	        System.out.println("Ruta de destino: " + new File(rutaImagen).getAbsolutePath());
 	    }
@@ -118,6 +118,7 @@ public class SecurityController {
 	    userService.insertarUsuario(actualUser);
 
 	    return "redirect:/seguridad/password#data";
+	
 	    
 	    //obtener imagen
 	    
