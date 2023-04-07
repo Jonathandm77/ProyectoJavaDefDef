@@ -103,7 +103,7 @@ public class SecurityController {
 	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Usuario actualUser =(Usuario) auth.getPrincipal();
 
-	    // Guardamos la imagen en el sistema de archivos
+	    // Guardar imagen
 	    String rutaImagen = "C:\\Users\\jonat\\Documents\\workspace-spring-tool-suite-4-4.17.2.RELEASE\\ProyectoDEF\\src\\main\\resources\\static\\img\\";
 	    if (!imagen.isEmpty()) {
 	        rutaImagen = "C:\\Users\\jonat\\Documents\\workspace-spring-tool-suite-4-4.17.2.RELEASE\\ProyectoDEF\\src\\main\\resources\\static\\img\\" + imagen.getOriginalFilename();
@@ -111,7 +111,7 @@ public class SecurityController {
 	        System.out.println("Ruta de destino: " + new File(rutaImagen).getAbsolutePath());
 	    }
 
-	    // Actualizamos los datos del usuario
+	    
 	    actualUser.setNombre(user.getNombre());
 	    actualUser.setUsername(user.getUsername());
 	    actualUser.setRutaImagenPerfil(rutaImagen);
