@@ -66,15 +66,7 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 		
 		@PostMapping("/add")
 		public String addCoche(@ModelAttribute("cocheNuevo") Coche cocheNew, BindingResult bidingresult) {
-			/*LocalDate f=cocheNew.getFechaITV();
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
-			String fechaFormateada=f.format(formatter);
-			String[] fechaString=fechaFormateada.split(" ");
-			Integer[] fecha= {Integer.parseInt(fechaString[0]),
-			Integer.parseInt(fechaString[1]),
-			Integer.parseInt(fechaString[2])};
-			LocalDate fechaAInsertar=LocalDate.of(fecha[0], fecha[1], fecha[3]);
-			cocheNew.setFechaITV(fechaAInsertar);*/
+			
 			cocheService.insertarCoche(cocheNew);
 			return "redirect:/coches";
 		}

@@ -1,6 +1,7 @@
 package principal.modelo;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,9 +13,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -37,7 +35,10 @@ public class Coche {
 	private String marca;
 	
 	@Column(name="FechaITV")
-	private Date fechaITV;
+	private LocalDate fechaITV;
+	
+	@Column(name="HoraITV")
+	private LocalTime horaITV;
 	
 	@OneToMany(mappedBy = "coche", fetch = FetchType.EAGER)
 	private Set<Alumno> alumnos;
@@ -65,10 +66,12 @@ public class Coche {
 	}
 
 
-	public Coche(String matricula, String modelo, String marca) {
+	public Coche(String matricula, String modelo, String marca, LocalDate fechaITV, LocalTime horaITV) {
 		this.matricula = matricula;
 		this.modelo = modelo;
 		this.marca = marca;
+		this.fechaITV=fechaITV;
+		this.horaITV=horaITV;
 		alumnos=new HashSet<Alumno>();
 		profesores=new HashSet<ProfesoresCoches>();
 		llaves=new HashSet<ProfesoresCoches>();
@@ -88,9 +91,23 @@ public class Coche {
 	//getters setters
 	
 	
+	
+
+
 	public String getMatricula() {
 		return matricula;
 	}
+	public Coche(String matricula, String modelo, String marca) {
+		super();
+		this.matricula = matricula;
+		this.modelo = modelo;
+		this.marca = marca;
+		alumnos=new HashSet<Alumno>();
+		profesores=new HashSet<ProfesoresCoches>();
+		llaves=new HashSet<ProfesoresCoches>();
+	}
+
+
 	public Integer getId() {
 		return id;
 	}
@@ -116,12 +133,27 @@ public class Coche {
 	public void setMatricula(String matricula) {
 		this.matricula = matricula;
 	}
-	public Date getFechaITV() {
+	
+	public LocalDate getFechaITV() {
 		return fechaITV;
 	}
-	public void setFechaITV(Date fechaITV) {
+
+
+	public void setFechaITV(LocalDate fechaITV) {
 		this.fechaITV = fechaITV;
 	}
+
+
+	public LocalTime getHoraITV() {
+		return horaITV;
+	}
+
+
+	public void setHoraITV(LocalTime horaITV) {
+		this.horaITV = horaITV;
+	}
+
+
 	public Set<Alumno> getAlumnos() {
 		return alumnos;
 	}
