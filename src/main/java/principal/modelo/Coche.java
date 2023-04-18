@@ -15,6 +15,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @Entity
 @Table(name="Coches")
@@ -34,8 +39,10 @@ public class Coche {
 	@Column(name="Marca")
 	private String marca;
 	
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(iso = ISO.DATE)
 	@Column(name="FechaITV")
-	private LocalDate fechaITV;
+	private Date fechaITV;
 	
 	@Column(name="HoraITV")
 	private LocalTime horaITV;
@@ -66,7 +73,7 @@ public class Coche {
 	}
 
 
-	public Coche(String matricula, String modelo, String marca, LocalDate fechaITV, LocalTime horaITV) {
+	public Coche(String matricula, String modelo, String marca, Date fechaITV, LocalTime horaITV) {
 		this.matricula = matricula;
 		this.modelo = modelo;
 		this.marca = marca;
@@ -134,12 +141,12 @@ public class Coche {
 		this.matricula = matricula;
 	}
 	
-	public LocalDate getFechaITV() {
+	public Date getFechaITV() {
 		return fechaITV;
 	}
 
 
-	public void setFechaITV(LocalDate fechaITV) {
+	public void setFechaITV(Date fechaITV) {
 		this.fechaITV = fechaITV;
 	}
 

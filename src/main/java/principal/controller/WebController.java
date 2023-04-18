@@ -1,8 +1,9 @@
 package principal.controller;
 
-import java.time.LocalDate;
+import java.util.Date;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -83,8 +84,13 @@ public class WebController {
 		/*
 		 * LocalDate fecha=LocalDate.of(2024, 5, 13); c1.setFechaITV(fecha);
 		 */
-		c1.setFechaITV(LocalDate.parse("12/04/2023", DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-		c1.setHoraITV(LocalTime.parse("10:30", DateTimeFormatter.ofPattern("HH:mm")));
+		
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(2024, Calendar.MAY, 23);
+		Date fed=calendar.getTime();
+
+		//c1.setFechaITV(LocalDate.parse("12/04/2023", DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+		//c1.setHoraITV(LocalTime.parse("10:30", DateTimeFormatter.ofPattern("HH:mm")));
 
 
 		a1.setProfesor(p1);
@@ -100,7 +106,7 @@ public class WebController {
 		a2.setCoche(c2);
 		c2.getAlumnos().add(a2);
 		
-		c2.setFechaITV(LocalDate.parse("12/04/2023", DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+		//c2.setFechaITV(LocalDate.parse("12/04/2023", DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 		c2.setHoraITV(LocalTime.parse("11:30", DateTimeFormatter.ofPattern("HH:mm")));
 
 		
