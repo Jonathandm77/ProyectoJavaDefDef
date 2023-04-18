@@ -87,11 +87,8 @@ public class WebController {
 		
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(2024, Calendar.MAY, 23);
-		Date fed=calendar.getTime();
-
-		//c1.setFechaITV(LocalDate.parse("12/04/2023", DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-		//c1.setHoraITV(LocalTime.parse("10:30", DateTimeFormatter.ofPattern("HH:mm")));
-
+		Date fecha1=calendar.getTime();
+		c1.setFechaITV(fecha1);
 
 		a1.setProfesor(p1);
 		p1.getAlumnos().add(a1);
@@ -106,11 +103,13 @@ public class WebController {
 		a2.setCoche(c2);
 		c2.getAlumnos().add(a2);
 		
-		//c2.setFechaITV(LocalDate.parse("12/04/2023", DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-		c2.setHoraITV(LocalTime.parse("11:30", DateTimeFormatter.ofPattern("HH:mm")));
 
-		
-		
+		Calendar calendar2=Calendar.getInstance();
+		calendar2.set(2024, Calendar.APRIL, 15);
+		Date fecha2=calendar2.getTime();
+
+		c2.setFechaITV(fecha2);
+		c2.setHoraITV(LocalTime.parse("11:30", DateTimeFormatter.ofPattern("HH:mm")));
 		/*c2.addLlave(p2,llave2);
 		llave1.addCocheProfesor(c2, p2);
 		p1.addCoche(c1, llave1);

@@ -19,7 +19,7 @@ import principal.modelo.Coche;
 import principal.modelo.Llave;
 import principal.modelo.Profesor;
 import principal.modelo.ProfesoresCoches;
-import principal.modelo.dto.CocheAEditarMatriculaDTO;
+import principal.modelo.dto.CocheAEditarMatriculaFechaDTO;
 import principal.modelo.dto.CocheBuscarMarcaDTO;
 import principal.modelo.dto.CocheBuscarMatriculaDTO;
 import principal.servicio.implementacion.AlumnoServiceImpl;
@@ -72,10 +72,10 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 		}
 		
 		@PostMapping("/edit/{id}")
-		public String editarCoche(@PathVariable Integer id, @ModelAttribute("cocheaEditar") CocheAEditarMatriculaDTO cocheEditado, BindingResult bidingresult) {
+		public String editarCoche(@PathVariable Integer id, @ModelAttribute("cocheaEditar") CocheAEditarMatriculaFechaDTO cocheEditado, BindingResult bidingresult) {
 			Coche cocheaEditar=cocheService.obtenerCochePorId(id);
 			cocheaEditar.setMatricula(cocheEditado.getMatricula());
-			//cocheaEditar.setFechaITV(cocheEditado.getFechaITV());
+			cocheaEditar.setFechaITV(cocheEditado.getFechaITV());
 			cocheService.insertarCoche(cocheaEditar);
 			return "redirect:/coches";
 		}
