@@ -12,18 +12,14 @@
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
        <!--  <class>com.idGrupo.MavenHibernateProject.Modelo.Alumno</class>-->
 
- 			 <class>principal.modelo.Alumno</class>
- 			 <class>principal.modelo.Coche</class>
- 			 <class>principal.modelo.Profesor</class>
- 			  <class>principal.modelo.Usuario</class>
-             <class>principal.modelo.Rol</class>
-             <class>principal.modelo.Llave</class>
+ 			 <class>principal.modelo.Estacion</class>
+ 			
 
                        
         <properties>
              
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/proyecto" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3307/fct" />
             <property name="javax.persistence.jdbc.user" value="root" />
             <property name="javax.persistence.jdbc.password" value="" />
 
