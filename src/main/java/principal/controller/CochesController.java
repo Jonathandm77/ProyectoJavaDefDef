@@ -158,7 +158,10 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 		
 		@PostMapping({"/searchMatricula"})
 		String buscarCochePorMatricula(@ModelAttribute("cocheaBuscar") CocheBuscarMatriculaDTO cocheBuscado,BindingResult bidingresult) {
-			Coche cochematricula= cocheService.encontrarCochePorMatricula(cocheBuscado.getMatricula());
+			String matricula=cocheBuscado.getMatricula();
+			String letras=matricula.substring(5, 8).toUpperCase();
+			String mat=matricula.substring(0,4)+" "+letras;
+			Coche cochematricula= cocheService.encontrarCochePorMatricula(mat);
 			Integer id=cochematricula.getId();
 			
 			

@@ -136,14 +136,17 @@
 						<p class="error-text">Introduce la matrícula para buscar</p>
 
 
-						<!--formulario marca-->
+						<!--formulario matricula-->
 						<form action="#" th:action="@{/coches/searchMatricula}" th:object="${cocheaBuscar}"
-							method="post">
+							method="post" class="needs-validation" novalidate>
 							<div class"form-row">
 								<div class="form-group mt-1">
 									<label for="texto">Matrícula</label>
-									<input type="text" th:field="*{matricula}" class="form-control"
+									<input type="text" th:field="*{matricula}" class="form-control" pattern="[0-9]{4}\s[a-zA-Z]{3}" required
 										id="exampleInputName" />
+										<div class="alert alert-danger invalid-feedback">
+											Por favor, ingresa 4 números y 3 letras separados por un espacio
+										</div>
 								</div>
 							</div>
 
@@ -282,6 +285,6 @@
 
 	</div>
 </body>
-
+<script th:src="@{/js/validaForm.js}"></script>
 
 </html>
