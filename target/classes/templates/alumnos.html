@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:insert="librerias::librerias">
+
+</head>
+
+<body>
+	<div th:insert="top"></div>
+	<div class="container">
+
+
+
+		<h1>Registro de Alumnos</h1>
+
+		<table class="table table-hover">
+			<thead class="table-dark bg-info text-white">
+				<tr>
+					<td>ID</td>
+					<td>Dni</td>
+					<td>Nombre alumno</td>
+					<td>Coche</td>
+					<td>Nombre Profesor</td>
+					<td colspan="2">Acciones</td>
+
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:if="${listaAlumnos.Empty}">
+					<td colspan="2">No hay alumnos </td>
+				<tr th:each="alumno:${listaAlumnos}">
+					<td>
+						<a th:href="@{/alumnos/{id}(id=${alumno.id})}" class="btn btn-primary btn-sm">
+							<span th:text="${alumno.id}"></span>
+						</a>
+					</td>
+					<td>
+						<span th:text="${alumno.dni}"> </span>
+					</td>
+					<td>
+						<span th:text="${alumno.nombre}"> </span>
+					</td>
+					<td>
+						<span th:text="${alumno.coche.matricula}"></span>
+					</td>
+					<td>
+						<span th:text="${alumno.profesor.nombre}"></span>
+					</td>
+
+					<td>
+						<a th:attr="data-target='#modal-edit'+${alumno.id}" data-toggle="modal"
+							data-target="#modal-edit" class="btn btn-primary btn-sm text-white pointer modifyButton">
+							Modificar
+						</a>
+					</td>
+					<td>
+						<a th:attr="data-target='#modal-delete'+${alumno.id}" data-toggle="modal"
+							data-target="#modal-delete" class="btn btn-primary btn-sm text-white pointer">
+							Eliminar
+						</a>
+					</td>
+
+
+			</tbody>
+		</table>
+
+		<div>
+			<div class="row">
+				<div class="col-md-auto">
+					<button sec:authorize="hasAuthority('ROLE_ADMIN')" class="btn btn-primary" type="button" data-toggle="modal" data-target="#crearAlumno"> Añadir
+						alumno </button>
+
+				</div>
+
+				<div th:object="${alumno}" class="col-md-auto">
+					<button th:attr="data-target='#modal-search'" class="btn btn-primary" type="button"
+						data-toggle="modal" data-target="#buscarAlumnoPorNombre">Buscar por nombre</button>
+				</div>
+
+				<div th:object="${alumnoDni}" class="col-md-auto">
+					<button th:attr="data-target='#modal-search-Dni'" class="btn btn-primary" type="button"
+						data-toggle="modal" data-target="#buscarAlumnoPorDni">Buscar por DNI</button>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- buscar por dni modal-->
+		<div th:each="alumno:${listaAlumnos}">
+			<div class="modal fade" th:id="modal-search-Dni">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title" id="exampleModalLabel">Buscar Alumno</h4>
+							<button class="close btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">x</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<p class="error-text">Introduce el DNI para buscar</p>
+
+
+							<!--formulario dni-->
+							<form th:action="@{/alumnos/searchDni}" th:object="${alumnoaBuscar}" method="post">
+								<div class"form-row">
+									<div class="form-group mt-1">
+										<label for="texto">DNI</label>
+										<input type="text" th:field="*{dni}" class="form-control"
+											id="exampleInputDni" />
+									</div>
+								</div>
+						</div>
+						<div class="modal-footer">
+							<button class="btn btn-secondary btn-sm" data-dismiss="modal"
+								aria-hidden="true">Cancelar</button>
+							<input id="sentDni" type="submit" th:value="Buscar" class="btn btn-primary float-right" />
+						</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<!-- fin modal buscar por dni-->
+
+
+
+		<!-- buscar por nombre modal-->
+		<div th:each="alumno:${listaAlumnos}">
+			<div class="modal fade" th:id="modal-search">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title" id="exampleModalLabel">Buscar Alumno</h4>
+							<button class="close btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">x</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<p class="error-text">Introduce el nombre para buscar</p>
+
+
+							<!--formulario nombre-->
+							<form action="#" th:action="@{/alumnos/searchName}" th:object="${alumnoaBuscar}"
+								method="post">
+								<div class"form-row">
+									<div class="form-group mt-1">
+										<label for="texto">Nombre</label>
+										<input type="text" th:field="*{nombre}" class="form-control"
+											id="exampleInputName" />
+									</div>
+								</div>
+						</div>
+						<div class="modal-footer">
+							<button class="btn btn-secondary btn-sm" data-dismiss="modal"
+								aria-hidden="true">Cancelar</button>
+							<input id="sent" type="submit" th:value="Buscar" class="btn btn-primary float-right" />
+						</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<!-- fin modal buscar por nombre-->
+
+		<!-- create modal-->
+		<div class="modal fade" id="crearAlumno">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="exampleModalLabel">Crear alumno/a</h4>
+						<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">x</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<p class="error-text">Introduce el nombre para nuevo/a alumno/a:
+							<!--formulario nombre a editar-->
+						<form action="#" th:action="@{/alumnos/add/}" th:object="${alumnoNuevo}" method="post">
+							<div class"form-row">
+								<div class="form-group mt-1">
+									<label for="dni">Dni</label>
+									<input type="text" th:field="*{dni}" class="form-control" id="dni"
+										placeholder="DNI" />
+									<label for="nombre">Nombre</label>
+									<input type="text" th:field="*{nombre}" class="form-control" id="nombre"
+										placeholder="Nombre" />
+									<label for="apellidos">Apellidos</label>
+									<input type="text" th:field="*{apellidos}" class="form-control" id="apellidos"
+										placeholder="Apellidos" />
+									<div>
+										<label for="profe">Profesor</label>
+										<select th:field="*{profesor.id}" name="profesor" id="profe">
+											<option th:each="profe:${listaProfesores}" th:value="${profe.id}"
+												th:text="${profe.nombre}" value="">Seleccionar profesor</option>
+										</select>
+									</div>
+									<div>
+										<label for="coche">Coche</label>
+										<select th:field="*{coche.id}" name="profesor" id="coche">
+											<option th:each="coche:${listaCoches}" th:value="${coche.id}"
+												th:text="${coche.marca}+'-'+${coche.matricula}" value="">Seleccionar
+												coche
+											</option>
+										</select>
+									</div>
+								</div>
+							</div>
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-secondary btn-sm" data-dismiss="modal"
+							aria-hidden="true">Cancelar</button>
+						<input type="submit" value="Crear" class="btn btn-primary float-right" />
+					</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- fin create modal-->
+
+		<!--delete modal-->
+		<div th:each="alumno:${listaAlumnos}">
+			<div class="modal fade" th:id="modal-delete+${alumno.id}">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title" id="exampleModalLabel">Borrar</h4>
+							<button class="close btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">x</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<p class="error-text">Seguro que quieres borrar a este alumno?
+								<strong><span th:text="${alumno.nombre}"> </span></strong>
+							</p>
+						</div>
+						<div class="modal-footer">
+							<button class="btn btn-secondary btn-sm" data-dismiss="modal"
+								aria-hidden="true">Cancelar</button>
+							<form th:action="@{/alumnos/delete/{id}(id=${alumno.id})}" th:method="GET">
+								<button type="submit" name="submit" value="value"
+									class="btn btn-danger btn.sm">Borrar</button>
+							</form>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- fin delete modal-->
+
+		<!-- edit modal-->
+		<div th:each="alumno:${listaAlumnos}">
+			<div class="modal fade" th:id="modal-edit+${alumno.id}">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title" id="exampleModalLabel">Modificar</h4>
+							<button class="close btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">x</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<p class="error-text">Introduce la informacion nueva para el alumno/a:
+								<strong><span th:text="${alumno.nombre}"> </span></strong>
+							</p>
+							<!--formulario nombre a editar-->
+							<form action="#" th:action="@{/alumnos/edit/{id}(id=${alumno.id})}"
+								th:object="${alumnoaEditar}" method="post" class="editModal">
+								<div class"form-row">
+									<div class="form-group mt-1">
+										<label for="texto">Nombre</label>
+										<input type="text" th:field="*{nombre}" class="form-control exampleInputName"
+											th:attr="placeholder=${alumno.nombre}" />
+
+										<label for="texto">Notas</label>
+										<input type="text" th:field="*{notas}" class="form-control notes"
+											th:attr="placeholder=${alumno.notas}" />
+									</div>
+								</div>
+						</div>
+						<div class="modal-footer">
+							<button class="btn btn-secondary btn-sm" data-dismiss="modal"
+								aria-hidden="true">Cancelar</button>
+							<input type="submit" value="Modificar" class="btn btn-primary float-right sent" />
+						</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+		<!-- fin edit modal-->
+
+	</div>
+</body>
+<script th:src="@{/js/editFormAlumnos.js}"></script>
+
+</html>

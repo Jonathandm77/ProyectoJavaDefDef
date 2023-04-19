@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:insert="librerias::librerias">
+
+</head>
+
+<body>
+
+	<div th:insert="top"></div>
+	<div class="container">
+
+
+		<h1>Registro de Profesores</h1>
+
+		<table class="table table-hover">
+			<thead class="table-dark bg-info text-white">
+				<tr>
+					<td>ID</td>
+					<td>Dni</td>
+					<td>Nombre</td>
+					<td>Apellidos</td>
+					<td colspan="2" >Acciones</td>
+
+
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:if="${listaProfesores.Empty}">
+					<td colspan="2">No hay profesores </td>
+				<tr th:each="profe:${listaProfesores}">
+					<td>
+						<a th:href="@{/profesores/{id}(id=${profe.id})}" class="btn btn-primary btn-sm">
+							<span th:text="${profe.id}"></span>
+						</a>
+					</td>
+					<td>
+						<span th:text="${profe.dni}"> </span>
+					</td>
+					<td>
+						<span th:text="${profe.nombre}"> </span>
+					</td>
+					<td>
+						<span th:text="${profe.apellidos}"></span>
+					</td>
+					<td >
+						<a th:attr="data-target='#modal-edit'+${profe.id}" data-toggle="modal" data-target="#modal-edit"
+							class="btn btn-primary btn-sm text-white pointer">
+							Modificar
+						</a>
+					</td>
+					<td >
+						<a th:attr="data-target='#modal-delete'+${profe.id}" data-toggle="modal"
+							data-target="#modal-delete" class="btn btn-primary btn-sm text-white pointer">
+							Eliminar
+						</a>
+					</td>
+
+
+			</tbody>
+		</table>
+
+		<div>
+			<div class="row">
+				<div class="col-md-auto">
+					<button sec:authorize="hasAuthority('ROLE_ADMIN')" class="btn btn-primary" type="button" data-toggle="modal" data-target="#crearProfe"
+						> Añadir Profesor </button>
+
+				</div>
+
+				<div th:object="${profe}" class="col-md-auto">
+					<button th:attr="data-target='#modal-search'" class="btn btn-primary" type="button"
+						data-toggle="modal" data-target="#buscarProfePorNombre">Buscar profesor por nombre</button>
+				</div>
+				
+				<div th:object="${profe}" class="col-md-auto">
+					<button th:attr="data-target='#modal-search-DNI'" class="btn btn-primary" type="button"
+						data-toggle="modal" data-target="#buscarProfePorDni">Buscar profesor por DNI</button>
+				</div>
+			</div>
+		</div>
+		
+		
+		<!-- buscar por dni modal-->
+		<div th:each="profe:${listaProfesores}">
+			<div class="modal fade" th:id="modal-search-DNI">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title" id="exampleModalLabel">Buscar Profesor</h4>
+							<button class="close btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">x</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<p class="error-text">Introduce el DNI para buscar</p>
+
+
+							<!--formulario dni-->
+							<form action="#" th:action="@{/profesores/searchDni}"
+								th:object="${profeaBuscar}" method="post">
+								<div class"form-row">
+									<div class="form-group mt-1">
+										<label for="texto">DNI</label>
+										<input type="text" th:field="*{dni}" class="form-control"
+											id="exampleInputDni" />
+									</div>
+								</div>
+						</div>
+						<div class="modal-footer">
+							<button class="btn btn-secondary btn-sm" data-dismiss="modal"
+								aria-hidden="true">Cancelar</button>
+							<input id="sent" type="submit" th:value="Buscar" class="btn btn-primary float-right" />
+						</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<!-- fin modal buscar por dni-->
+
+		<!-- buscar por nombre modal-->
+		<div th:each="profe:${listaProfesores}">
+			<div class="modal fade" th:id="modal-search">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title" id="exampleModalLabel">Buscar Profesor</h4>
+							<button class="close btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">x</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<p class="error-text">Introduce el nombre para buscar</p>
+
+
+							<!--formulario nombre-->
+							<form action="#" th:action="@{/profesores/searchName}"
+								th:object="${profeaBuscar}" method="post">
+								<div class"form-row">
+									<div class="form-group mt-1">
+										<label for="texto">Nombre</label>
+										<input type="text" th:field="*{nombre}" class="form-control"
+											id="exampleInputName" />
+									</div>
+								</div>
+						</div>
+						<div class="modal-footer">
+							<button class="btn btn-secondary btn-sm" data-dismiss="modal"
+								aria-hidden="true">Cancelar</button>
+							<input id="sent" type="submit" th:value="Buscar" class="btn btn-primary float-right" />
+						</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<!-- fin modal buscar por nombre-->
+
+
+
+
+
+
+
+		<!--create modal-->
+		<div class="modal fade" id="crearProfe">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="exampleModalLabel">Crear profesor/a</h4>
+						<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">x</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<p class="error-text">Introduce el nombre para el nuevo profesor
+							<!--formulario nombre a editar-->
+						<form action="#" th:action="@{/profesores/add/}" th:object="${profeNuevo}" method="post">
+							<div class"form-row">
+								<div class="form-group mt-1">
+									<label for="dni">Dni</label>
+									<input type="text" th:field="*{dni}" class="form-control" id="dni"
+										placeholder="DNI" />
+									<label for="nombre">Nombre</label>
+									<input type="text" th:field="*{nombre}" class="form-control" id="nombre"
+										placeholder="Nombre" />
+									<label for="apellidos">Apellidos</label>
+									<input type="text" th:field="*{apellidos}" class="form-control" id="apellidos"
+										placeholder="Apellidos" />
+
+								</div>
+							</div>
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-secondary btn-sm" data-dismiss="modal"
+							aria-hidden="true">Cancelar</button>
+						<input type="submit" value="Crear" class="btn btn-primary float-right" />
+					</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- fin create modal-->
+
+		<!--delete modal-->
+		<div th:each="profe:${listaProfesores}">
+			<div class="modal fade" th:id="modal-delete+${profe.id}">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title" id="exampleModalLabel">Borrar</h4>
+							<button class="close btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">x</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<p class="error-text">Seguro que quieres borrar a este alumno?
+								<strong><span th:text="${profe.nombre}"> </span></strong>
+							</p>
+						</div>
+						<div class="modal-footer">
+							<button class="btn btn-secondary btn-sm" data-dismiss="modal"
+								aria-hidden="true">Cancelar</button>
+							<a th:href="@{/profesores/delete/{id}(id=${profe.id})}">
+								<span class="btn btn-danger btn-sm" value="delete">Borrar</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- fin delete modal-->
+
+		<!-- edit modal-->
+		<div th:each="profe:${listaProfesores}">
+			<div class="modal fade" th:id="modal-edit+${profe.id}">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title" id="exampleModalLabel">Modificar</h4>
+							<button class="close btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">x</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<p class="error-text">Introduce el nombre nuevo para el profesor:
+								<strong><span th:text="${profe.nombre}"> </span></strong>
+							</p>
+							<!--formulario nombre a editar-->
+							<form action="#" th:action="@{/profesores/edit/{id}(id=${profe.id})}"
+								th:object="${profeaEditar}" method="post">
+								<div class"form-row">
+									<div class="form-group mt-1">
+										<label for="texto">Nombre</label>
+										<input type="text" th:field="*{nombre}" class="form-control"
+											id="exampleInputEmail" th:attr="placeholder=${profe.nombre}" />
+									</div>
+								</div>
+						</div>
+						<div class="modal-footer">
+							<button class="btn btn-secondary btn-sm" data-dismiss="modal"
+								aria-hidden="true">Cancelar</button>
+							<input type="submit" value="Modificar" class="btn btn-primary float-right" />
+						</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<!-- fin delete modal-->
+
+	</div>
+</body>
+
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<head th:insert="librerias::librerias">
+
+</head>
+
+<body>
+
+	<div th:insert="top"></div>
+	
+	<div class="container">
+		<header>
+			
+		</header>
+		<div class="row col-5">
+			<div class="col-9">
+				<h5> Datos de los alumnos</h5>
+				<div class="card border border primary" th:each="alumno:${alumnosNombre}">
+					<div class="card-body row pt-4 pb-4">
+						<div class="col-12">
+							<div class="card">
+								<div class="card-header text-dark bg-light">Datos del alumno
+
+								</div>
+								<div class="card-body">
+									<div class="mb-2">
+										<h5 th:text="${alumno.nombre}+' '+${alumno.apellidos}" class="mb-2 card-text">Nombre del alumno</h5>
+									</div>
+									<p><a th:href="@{/alumnos/{id}(id=${alumno.id})}" class="btn btn-primary mt-3">Ver más</a></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

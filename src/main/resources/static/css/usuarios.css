@@ -1,0 +1,8 @@
+
+
+.user-card {
+    flex-basis: calc(33.33% - 10px);
+    min-width: calc(33.33% - 10px);
+    margin-bottom: 10px;
+    flex: none;
+}
