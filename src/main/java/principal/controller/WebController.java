@@ -65,11 +65,11 @@ public class WebController {
 	}
 	private void crearTablas() {
 		
-		Alumno a1 = new Alumno("Alba", "541245F");
-		Profesor p1 = new Profesor("4529L", "Pedro");
+		Alumno a1 = new Alumno("Alba", "52364897K");
+		Profesor p1 = new Profesor("56239874M", "Pedro");
 		Coche c1 = new Coche("5894 GHL", "2023", "Peugeot");
-		Alumno a2 = new Alumno("David", "45446G");
-		Profesor p2 = new Profesor("4515K", "Alejandro");
+		Alumno a2 = new Alumno("David", "85612478L");
+		Profesor p2 = new Profesor("53624477N", "Alejandro");
 		Coche c2 = new Coche("5894 DSF", "2021", "Seat");
 		Rol rolBasico = new Rol("ROLE_USER");
 		Rol rolAdmin = new Rol("ROLE_ADMIN");

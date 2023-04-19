@@ -74,7 +74,9 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 		@PostMapping("/edit/{id}")
 		public String editarCoche(@PathVariable Integer id, @ModelAttribute("cocheaEditar") CocheAEditarMatriculaFechaDTO cocheEditado, BindingResult bidingresult) {
 			Coche cocheaEditar=cocheService.obtenerCochePorId(id);
+			if(cocheEditado.getMatricula()!=null && cocheEditado.getMatricula()!="")
 			cocheaEditar.setMatricula(cocheEditado.getMatricula());
+			if(cocheEditado.getFechaITV()!=null)
 			cocheaEditar.setFechaITV(cocheEditado.getFechaITV());
 			cocheService.insertarCoche(cocheaEditar);
 			return "redirect:/coches";
