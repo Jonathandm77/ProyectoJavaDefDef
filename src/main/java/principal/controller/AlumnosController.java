@@ -2,10 +2,12 @@ package principal.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -60,23 +62,25 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 			return "alumnos";
 		}
 		
-	/*	@PostMapping("/add")
+		@PostMapping("/add")
 		public String addAlumno(@ModelAttribute("alumnoNuevo") Alumno alumnoNew, BindingResult bidingresult) {
-			Profesor profeNuevo=alumnoNew.getProfesor();
+			Profesor profeNuevo=profeService.obtenerProfesorPorId(alumnoNew.getProfesor().getId());
+			Coche cocheNuevo=cocheService.obtenerCochePorId(alumnoNew.getCoche().getId());
 			alumnoNew.setProfesor(profeNuevo);
 			profeNuevo.getAlumnos().add(alumnoNew);
-			if(!profeNuevo.getCoches().contains(alumnoNew.getCoche())) {
+			alumnoNew.setCoche(cocheNuevo);
+			cocheNuevo.getAlumnos().add(alumnoNew);
+			if(!profeNuevo.getCoches().contains(cocheNuevo)) {
 				
-				Llave l=new Llave();
-				cocheService.insertarCoche(alumnoNew.getCoche());
+				 Random random = new Random();
+				    String l = String.format("%c%c-%d",'A' + random.nextInt(26),'A' + random.nextInt(26),random.nextInt(100));
+				cocheService.insertarCoche(cocheNuevo);
 				profeService.insertarProfesor(profeNuevo);
-				llaveService.insertarLlave(l);
-				profeNuevo.juegoLlaves(alumnoNew.getCoche(), l);
-				llaveService.insertarLlave(l);
+				profeNuevo.juegoLlaves(cocheNuevo, l);
 			}
 			alumnoService.insertarAlumno(alumnoNew);
 			return "redirect:/alumnos";
-		}*/
+		}
 		
 		@PostMapping("/edit/{id}")
 		public String editarAlumno(@PathVariable Integer id, @ModelAttribute("alumnoaEditar") AlumnoEditarNotasNombreDTO alumnoEditado, BindingResult bidingresult) {

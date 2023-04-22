@@ -64,7 +64,7 @@ public class Profesor {
 		ProfesoresCoches pc=new ProfesoresCoches(this,c,l);
 		boolean presente=false;
 		for (ProfesoresCoches set : coches) {
-			if (set.getProfesor().getDni().equals(this.getDni()) && set.getCoche().getMatricula().equals(c.getMatricula())) {
+			if (set.getCoche().getMatricula().equals(c.getMatricula())) {
 			presente = true;
 			}
 			}
