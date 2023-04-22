@@ -50,7 +50,7 @@ public class Coche {
 	@OneToMany(mappedBy = "coche", fetch = FetchType.EAGER)
 	private Set<Alumno> alumnos;
 	
-	@OneToMany(mappedBy = "profesor", cascade=CascadeType.MERGE,orphanRemoval=true)
+	@OneToMany(mappedBy = "profesor", cascade=CascadeType.ALL,orphanRemoval=true)
 	private Set<ProfesoresCoches> profesores;
 	
 	

@@ -20,37 +20,28 @@ import javax.persistence.Table;
 public class Profesor {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	//@Column(name="id")
+	// @Column(name="id")
 	private Integer id;
-	
 
-	@Column(name="DNI")
+	@Column(name = "DNI")
 	private String dni;
-	
 
-	@Column(name="Nombre")
+	@Column(name = "Nombre")
 	private String nombre;
-	
-	@Column(name="Apellidos")
+
+	@Column(name = "Apellidos")
 	private String apellidos;
 
-
-	
-	
 	@OneToMany(mappedBy = "profesor", fetch = FetchType.EAGER)
 	private Set<Alumno> alumnos;
-	
-	@OneToMany(mappedBy = "coche", cascade=CascadeType.MERGE,orphanRemoval=true)
+
+	@OneToMany(mappedBy = "coche", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<ProfesoresCoches> coches;
 
 	public Profesor() {
 		alumnos = new HashSet<Alumno>();
 		coches = new HashSet<ProfesoresCoches>();
 	}
-
-	
-	
-	
 
 	public Profesor(String dni, String nombre) {
 		this.dni = dni;
@@ -59,11 +50,8 @@ public class Profesor {
 		coches = new HashSet<ProfesoresCoches>();
 	}
 
-
-
-
-
-	public Profesor(Integer id, String dni, String nombre, String apellidos, Set<Alumno> alumnos, Set<ProfesoresCoches> coches) {
+	public Profesor(Integer id, String dni, String nombre, String apellidos, Set<Alumno> alumnos,
+			Set<ProfesoresCoches> coches) {
 		this.id = id;
 		this.dni = dni;
 		this.nombre = nombre;
@@ -72,34 +60,35 @@ public class Profesor {
 		coches = new HashSet<ProfesoresCoches>();
 	}
 
-	
-	/*public void juegoLlaves(Coche c, String l) {
+	public void juegoLlaves(Coche c, String l) {
 		ProfesoresCoches pc=new ProfesoresCoches(this,c,l);
-		if(coches.contains(pc)) {
-			coches.remove(pc);
-		}
-		coches.add(pc);
-		c.getProfesores().add(pc);
-		c.getLlaves().add(pc);
-		l.setCoche(pc);
-		l.setProfesor(pc);
-			
-	}*/
+		boolean presente=false;
+		for (ProfesoresCoches set : coches) {
+			if (set.getProfesor().getDni().equals(this.getDni()) && set.getCoche().getMatricula().equals(c.getMatricula())) {
+			presente = true;
+			}
+			}
+			if (!presente) {
+			coches.add(pc);
+			c.getProfesores().add(pc);
+			}
+			}
+
 	
-	
+
 	// getters y setters
 
 	public Integer getId() {
 		return id;
 	}
-	
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public String getNombre() {
 		return nombre;
 	}
-	
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
@@ -136,17 +125,11 @@ public class Profesor {
 	public void setCoches(Set<ProfesoresCoches> coches) {
 		this.coches = coches;
 	}
-	
 
 	@Override
 	public String toString() {
 		return "Profesor [id=" + id + ", dni=" + dni + ", nombre=" + nombre + ", apellidos=" + apellidos + ", alumnos="
 				+ alumnos + ", coches=" + coches + "]";
 	}
-
-	
-	
-	
-	
 
 }

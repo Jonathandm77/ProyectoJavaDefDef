@@ -33,7 +33,6 @@ public class WebController {
 	@Autowired
 	CocheServiceImpl cocheService;
 	
-	
 	@Autowired
 	UsuarioServiceImpl usuarioService;
 	
@@ -73,7 +72,8 @@ public class WebController {
 		Usuario usuarioAdmin = new Usuario("admin", "admin", "admin");
 		Usuario usuarioBasico = new Usuario("basic", "basic", "basic");
 		Usuario usuarioProfesor=new Usuario("profesor","profesor","profesor");
-		
+		String codigoLlave1="A";
+		String codigoLlave2="B";
 
 		/*
 		 * LocalDate fecha=LocalDate.of(2024, 5, 13); c1.setFechaITV(fecha);
@@ -129,6 +129,14 @@ public class WebController {
 		profeService.insertarProfesor(p1);
 		profeService.insertarProfesor(p2);
 		
+		p1.juegoLlaves(c1, codigoLlave1);
+		p2.juegoLlaves(c2, codigoLlave2);
+		
+
+		
+		
+		
+		
 		rolRepo.save(rolAdmin);
 		usuarioService.insertarUsuarioAdmin(usuarioAdmin);
 		rolRepo.save(rolBasico);
@@ -140,8 +148,7 @@ public class WebController {
 		alumnoService.insertarAlumno(a1);
 		alumnoService.insertarAlumno(a2);
 		
-		/*p1.juegoLlaves(c1, llave1);
-		p2.juegoLlaves(c2, llave2);*/
+		
 		
 	
 
