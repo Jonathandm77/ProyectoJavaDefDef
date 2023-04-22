@@ -40,16 +40,12 @@ public class Profesor {
 	@OneToMany(mappedBy = "profesor", fetch = FetchType.EAGER)
 	private Set<Alumno> alumnos;
 	
-	@OneToMany(mappedBy = "llave", cascade = CascadeType.MERGE, orphanRemoval = true)
-	private Set<ProfesoresCoches> llaves;
-
 	@OneToMany(mappedBy = "coche", cascade=CascadeType.MERGE,orphanRemoval=true)
 	private Set<ProfesoresCoches> coches;
 
 	public Profesor() {
 		alumnos = new HashSet<Alumno>();
 		coches = new HashSet<ProfesoresCoches>();
-		llaves=new HashSet<ProfesoresCoches>();
 	}
 
 	
@@ -61,7 +57,6 @@ public class Profesor {
 		this.nombre = nombre;
 		alumnos = new HashSet<Alumno>();
 		coches = new HashSet<ProfesoresCoches>();
-		llaves=new HashSet<ProfesoresCoches>();
 	}
 
 
@@ -75,11 +70,10 @@ public class Profesor {
 		this.apellidos = apellidos;
 		alumnos = new HashSet<Alumno>();
 		coches = new HashSet<ProfesoresCoches>();
-		llaves=new HashSet<ProfesoresCoches>();
 	}
 
 	
-	public void juegoLlaves(Coche c, Llave l) {
+	/*public void juegoLlaves(Coche c, String l) {
 		ProfesoresCoches pc=new ProfesoresCoches(this,c,l);
 		if(coches.contains(pc)) {
 			coches.remove(pc);
@@ -90,7 +84,7 @@ public class Profesor {
 		l.setCoche(pc);
 		l.setProfesor(pc);
 			
-	}
+	}*/
 	
 	
 	// getters y setters
@@ -143,22 +137,6 @@ public class Profesor {
 		this.coches = coches;
 	}
 	
-
-	public Set<ProfesoresCoches> getLlaves() {
-		return llaves;
-	}
-
-
-
-
-
-	public void setLlaves(Set<ProfesoresCoches> llaves) {
-		this.llaves = llaves;
-	}
-
-
-
-
 
 	@Override
 	public String toString() {

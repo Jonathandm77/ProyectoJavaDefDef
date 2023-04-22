@@ -28,19 +28,18 @@ public class ProfesoresCoches {
 	@MapsId("coche_id")
 	private Coche coche;
 	
-	@OneToOne
-	@JoinColumn(name="id_llave")
-	private Llave llave;
+	@JoinColumn(name="codigoLlave")
+	private String codigoLlave;
 	
 
 	public ProfesoresCoches() {
 		
 	}
 
-	public ProfesoresCoches(Profesor p, Coche c, Llave l) {
+	public ProfesoresCoches(Profesor p, Coche c, String l) {
 		this.coche=c;
 		this.profesor=p;
-		this.llave=l;
+		this.codigoLlave=l;
 		this.id=new ProfesoresCochesId(p.getId(), c.getId());
 }
 
@@ -50,12 +49,12 @@ public class ProfesoresCoches {
 			return false;
 		}
 		ProfesoresCoches that=(ProfesoresCoches) o;
-		return Objects.equals(coche, that.coche) && Objects.equals(profesor, that.profesor) && Objects.equals(llave, that.llave);
+		return Objects.equals(coche, that.coche) && Objects.equals(profesor, that.profesor);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(profesor, coche, llave);
+		return Objects.hash(profesor, coche, codigoLlave);
 	}
 	public ProfesoresCochesId getId() {
 		return id;
@@ -81,13 +80,15 @@ public class ProfesoresCoches {
 		this.coche = coche;
 	}
 
-	public Llave getLlave() {
-		return llave;
+	public String getCodigoLlave() {
+		return codigoLlave;
 	}
 
-	public void setLlave(Llave llave) {
-		this.llave = llave;
+	public void setCodigoLlave(String codigoLlave) {
+		this.codigoLlave = codigoLlave;
 	}
+
+
 	
 
 

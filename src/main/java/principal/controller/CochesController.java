@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import principal.modelo.Alumno;
 import principal.modelo.Coche;
-import principal.modelo.Llave;
 import principal.modelo.Profesor;
 import principal.modelo.ProfesoresCoches;
 import principal.modelo.dto.CocheAEditarMatriculaFechaDTO;
@@ -24,7 +23,6 @@ import principal.modelo.dto.CocheBuscarMarcaDTO;
 import principal.modelo.dto.CocheBuscarMatriculaDTO;
 import principal.servicio.implementacion.AlumnoServiceImpl;
 import principal.servicio.implementacion.CocheServiceImpl;
-import principal.servicio.implementacion.LlaveServiceImpl;
 import principal.servicio.implementacion.ProfesorServiceImpl;
 
 
@@ -42,12 +40,10 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 		private ProfesorServiceImpl profeService;
 		@Autowired
 		private CocheServiceImpl cocheService;
-		@Autowired
-		private LlaveServiceImpl llaveService;
 		
 		
 		@GetMapping(value={"","/"})
-		String homealumnos(Model model) {
+		String homecoches(Model model) {
 			ArrayList<Coche> misCoches=(ArrayList<Coche>) cocheService.listarCoches();
 	        ArrayList<Alumno> misAlumnos= (ArrayList<Alumno>) alumnoService.listarAlumnos();
 	        ArrayList<Profesor> misProfesores= (ArrayList<Profesor>) profeService.listarProfesores();
@@ -90,7 +86,7 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 			return "coche";
 		}
 		
-		@GetMapping({"/delete/{id}"})
+		/*@GetMapping({"/delete/{id}"})
 		String deleteCoche(Model model, @PathVariable Integer id) {
 			Coche cocheaEliminar=cocheService.obtenerCochePorId(id);
 			ArrayList<Alumno> misAlumnos= (ArrayList<Alumno>) alumnoService.listarAlumnos();
@@ -145,7 +141,7 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 			cocheaEliminar.getProfesores().clear();
 			cocheService.eliminarCoche(cocheaEliminar);
 			return "redirect:/coches";
-			}
+			}*/
 		
 		
 		@PostMapping({"/searchMarca"})

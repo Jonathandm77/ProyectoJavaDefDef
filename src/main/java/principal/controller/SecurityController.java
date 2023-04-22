@@ -25,7 +25,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import principal.modelo.Alumno;
 import principal.modelo.Coche;
-import principal.modelo.Llave;
 import principal.modelo.Profesor;
 import principal.modelo.ProfesoresCoches;
 import principal.modelo.Usuario;
@@ -41,7 +40,6 @@ import principal.modelo.dto.UsuarioDTO;
 import principal.modelo.dto.UsuarioNombreUsernameImageDTO;
 import principal.servicio.implementacion.AlumnoServiceImpl;
 import principal.servicio.implementacion.CocheServiceImpl;
-import principal.servicio.implementacion.LlaveServiceImpl;
 import principal.servicio.implementacion.ProfesorServiceImpl;
 import principal.servicio.implementacion.UsuarioServiceImpl;
 
@@ -53,7 +51,6 @@ public class SecurityController {
 	@Autowired ProfesorServiceImpl profeService;
 	@Autowired CocheServiceImpl cocheService;
 	@Autowired AlumnoServiceImpl alumnoService;
-	@Autowired LlaveServiceImpl llaveService;
 
 	
 	private BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
@@ -152,7 +149,7 @@ public class SecurityController {
 	}
 
 	
-	@PostMapping("/addAlumno")
+	/*@PostMapping("/addAlumno")
 	public String addAlumno(@ModelAttribute("alumnoNuevo") Alumno alumnoNew, BindingResult bidingresult) {
 		Profesor profeNuevo=alumnoNew.getProfesor();
 		alumnoNew.setProfesor(profeNuevo);
@@ -168,7 +165,7 @@ public class SecurityController {
 		}
 		alumnoService.insertarAlumno(alumnoNew);
 		return "redirect:/seguridad/password#operat";
-	}
+	}*/
 	
 	
 	@GetMapping("/deleteAlumno")
@@ -205,7 +202,7 @@ public class SecurityController {
 		return "redirect:/seguridad/password#operat";
 	}
 	
-	@GetMapping("/deleteProfesor")
+	/*@GetMapping("/deleteProfesor")
 	String deleteProfe(@ModelAttribute("profeaEliminar") EntityIdDTO profe) {
 		Profesor profeaEliminar=profeService.obtenerProfesorPorId(profe.getId());
 		ArrayList<Alumno> misAlumnos= (ArrayList<Alumno>) alumnoService.listarAlumnos();
@@ -263,7 +260,7 @@ public class SecurityController {
 		if(llaveTemp!=null)
 		llaveService.eliminarLlave(llaveTemp);
 		return "redirect:/seguridad/password#operat";
-	}
+	}*/
 	
 	@PostMapping("/searchProfesorByName")
 	String buscarProfesorPorNombre(Model model,@ModelAttribute("profeaBuscar") ProfesorBuscarNameDTO profeBuscado, BindingResult bidingresult) {
@@ -301,7 +298,7 @@ public class SecurityController {
 		return "redirect:/seguridad/password#operat";
 	}
 	
-	@GetMapping({"/deleteCoche"})
+	/*@GetMapping({"/deleteCoche"})
 	String deleteCoche(@ModelAttribute("cocheaEliminar")Coche cocheEliminar) {
 		Coche cocheaEliminar=cocheService.obtenerCochePorId(cocheEliminar.getId());
 		ArrayList<Alumno> misAlumnos= (ArrayList<Alumno>) alumnoService.listarAlumnos();
@@ -356,7 +353,7 @@ public class SecurityController {
 		cocheaEliminar.getProfesores().clear();
 		cocheService.eliminarCoche(cocheaEliminar);
 		return "redirect:/seguridad/password#operat";
-		}
+		}*/
 	
 	@PostMapping({"/searchCochesByMarca"})
 	String buscarCochePorMarca(Model model,@ModelAttribute("cocheaBuscar") CocheBuscarMarcaDTO cocheBuscado,BindingResult bidingresult) {

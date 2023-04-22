@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import principal.modelo.AjaxResponseBody;
 import principal.modelo.Alumno;
 import principal.modelo.Coche;
-import principal.modelo.Llave;
 import principal.modelo.Profesor;
 import principal.modelo.dto.AlumnoAjaxDTO;
 import principal.modelo.dto.AlumnoBuscarDniDTO;
@@ -27,7 +25,6 @@ import principal.modelo.dto.AlumnoBuscarNameDTO;
 import principal.modelo.dto.AlumnoEditarNotasNombreDTO;
 import principal.servicio.implementacion.AlumnoServiceImpl;
 import principal.servicio.implementacion.CocheServiceImpl;
-import principal.servicio.implementacion.LlaveServiceImpl;
 import principal.servicio.implementacion.ProfesorServiceImpl;
 
 
@@ -46,8 +43,6 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 		private ProfesorServiceImpl profeService;
 		@Autowired
 		private CocheServiceImpl cocheService;
-		@Autowired
-		private LlaveServiceImpl llaveService;
 		
 		@GetMapping({"","/"})
 		String homealumnos(Model model) {
@@ -65,7 +60,7 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 			return "alumnos";
 		}
 		
-		@PostMapping("/add")
+	/*	@PostMapping("/add")
 		public String addAlumno(@ModelAttribute("alumnoNuevo") Alumno alumnoNew, BindingResult bidingresult) {
 			Profesor profeNuevo=alumnoNew.getProfesor();
 			alumnoNew.setProfesor(profeNuevo);
@@ -81,7 +76,7 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 			}
 			alumnoService.insertarAlumno(alumnoNew);
 			return "redirect:/alumnos";
-		}
+		}*/
 		
 		@PostMapping("/edit/{id}")
 		public String editarAlumno(@PathVariable Integer id, @ModelAttribute("alumnoaEditar") AlumnoEditarNotasNombreDTO alumnoEditado, BindingResult bidingresult) {

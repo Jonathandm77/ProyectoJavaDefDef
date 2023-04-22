@@ -1,9 +1,9 @@
 package principal.controller;
 
-import java.util.Date;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,14 +11,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import principal.modelo.Alumno;
 import principal.modelo.Coche;
-import principal.modelo.Llave;
 import principal.modelo.Profesor;
 import principal.modelo.Rol;
 import principal.modelo.Usuario;
 import principal.persistencia.RolRepo;
 import principal.servicio.implementacion.AlumnoServiceImpl;
 import principal.servicio.implementacion.CocheServiceImpl;
-import principal.servicio.implementacion.LlaveServiceImpl;
 import principal.servicio.implementacion.ProfesorServiceImpl;
 import principal.servicio.implementacion.UsuarioServiceImpl;
 
@@ -35,8 +33,6 @@ public class WebController {
 	@Autowired
 	CocheServiceImpl cocheService;
 	
-	@Autowired
-	LlaveServiceImpl llaveService;
 	
 	@Autowired
 	UsuarioServiceImpl usuarioService;
@@ -74,8 +70,6 @@ public class WebController {
 		Rol rolBasico = new Rol("ROLE_USER");
 		Rol rolAdmin = new Rol("ROLE_ADMIN");
 		Rol rolProfesor = new Rol("ROLE_TEACHER");
-		Llave llave1=new Llave();
-		Llave llave2=new Llave();
 		Usuario usuarioAdmin = new Usuario("admin", "admin", "admin");
 		Usuario usuarioBasico = new Usuario("basic", "basic", "basic");
 		Usuario usuarioProfesor=new Usuario("profesor","profesor","profesor");
@@ -146,10 +140,8 @@ public class WebController {
 		alumnoService.insertarAlumno(a1);
 		alumnoService.insertarAlumno(a2);
 		
-		p1.juegoLlaves(c1, llave1);
-		p2.juegoLlaves(c2, llave2);
-		llaveService.insertarLlave(llave1);
-		llaveService.insertarLlave(llave2);
+		/*p1.juegoLlaves(c1, llave1);
+		p2.juegoLlaves(c2, llave2);*/
 		
 	
 

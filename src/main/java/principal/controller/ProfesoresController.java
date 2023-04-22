@@ -15,14 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import principal.modelo.Alumno;
 import principal.modelo.Coche;
-import principal.modelo.Llave;
 import principal.modelo.Profesor;
 import principal.modelo.ProfesoresCoches;
 import principal.modelo.dto.ProfesorBuscarDniDTO;
 import principal.modelo.dto.ProfesorBuscarNameDTO;
 import principal.servicio.implementacion.AlumnoServiceImpl;
 import principal.servicio.implementacion.CocheServiceImpl;
-import principal.servicio.implementacion.LlaveServiceImpl;
 import principal.servicio.implementacion.ProfesorServiceImpl;
 
 
@@ -41,8 +39,6 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 		private ProfesorServiceImpl profeService;
 		@Autowired
 		private CocheServiceImpl cocheService;
-		@Autowired
-		private LlaveServiceImpl llaveService;
 		
 		
 		@GetMapping(value={"","/"})
@@ -82,7 +78,7 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 			return "redirect:/profesores";
 		}
 		
-		@GetMapping({"/delete/{id}"})
+		/*@GetMapping({"/delete/{id}"})
 		String deleteProfe(Model model, @PathVariable Integer id) {
 			Profesor profeaEliminar=profeService.obtenerProfesorPorId(id);
 			ArrayList<Alumno> misAlumnos= (ArrayList<Alumno>) alumnoService.listarAlumnos();
@@ -138,7 +134,7 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 			profeService.eliminarProfesor(profeaEliminar);
 			llaveService.eliminarLlave(llaveTemp);
 			return "redirect:/profesores";
-		}
+		}*/
 		
 		@PostMapping({"/searchName"})
 		String buscarProfesorPorNombre(Model model,@ModelAttribute("profeaBuscar") ProfesorBuscarNameDTO profeBuscado, BindingResult bidingresult) {
