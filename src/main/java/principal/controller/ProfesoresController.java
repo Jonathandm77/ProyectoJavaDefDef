@@ -78,18 +78,16 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 			return "redirect:/profesores";
 		}
 		
-		/*@GetMapping({"/delete/{id}"})
+		@GetMapping({"/delete/{id}"})
 		String deleteProfe(Model model, @PathVariable Integer id) {
 			Profesor profeaEliminar=profeService.obtenerProfesorPorId(id);
 			ArrayList<Alumno> misAlumnos= (ArrayList<Alumno>) alumnoService.listarAlumnos();
 			ArrayList<Profesor> misProfesores= (ArrayList<Profesor>) profeService.listarProfesores();
 			ArrayList<Coche> misCoches=(ArrayList<Coche>) cocheService.listarCoches();
-			List<Llave> misLlaves=llaveService.listarLlaves();
 			int profe=(int) (Math.random()*misProfesores.size());
-			Llave llaveTemp=null;
 	
 			
-			for(Alumno a:misAlumnos) {
+			for(Alumno a:misAlumnos) {//para que los alumnos no se queden sin profesor
 				if(a.getProfesor().getId()==profeaEliminar.getId()) {
 					
 					
@@ -100,28 +98,18 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 					
 					misProfesores.get(profe).getAlumnos().add(a);
 					alumnoService.insertarAlumno(a);
-					profeService.insertarProfesor(misProfesores.get(profe));
 				}
 				}
 			
-			for(Llave a:misLlaves) {
-				if(a.getProfesor()!=null) {
-				if(a.getProfesor().getProfesor()==profeaEliminar) {
-					a.setCoche(null);
-					a.setProfesor(null);
-					llaveTemp=a;
-				}
-				}
-				}
 			
 			for(Coche a:misCoches) {
 				
 					for(ProfesoresCoches c:a.getProfesores()) {
 						
-						if(c.getProfesor()==profeaEliminar) {
+						if(c.getProfesor().getId()==profeaEliminar.getId()) {
 							c.setCoche(null);
 					c.setProfesor(null);
-					c.setLlave(null);
+					a.getProfesores().removeIf( t ->t.getProfesor()==null );
 						}
 						
 					}
@@ -129,12 +117,10 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 			
 			profeaEliminar.getAlumnos().clear();
 			profeaEliminar.getCoches().clear();
-			profeaEliminar.getLlaves().clear();
 			
 			profeService.eliminarProfesor(profeaEliminar);
-			llaveService.eliminarLlave(llaveTemp);
 			return "redirect:/profesores";
-		}*/
+		}
 		
 		@PostMapping({"/searchName"})
 		String buscarProfesorPorNombre(Model model,@ModelAttribute("profeaBuscar") ProfesorBuscarNameDTO profeBuscado, BindingResult bidingresult) {

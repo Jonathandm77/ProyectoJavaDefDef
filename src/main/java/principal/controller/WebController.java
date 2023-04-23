@@ -61,10 +61,10 @@ public class WebController {
 	private void crearTablas() {
 		
 		Alumno a1 = new Alumno("Alba", "52364897K");
-		Profesor p1 = new Profesor("56239874M", "Pedro");
+		Profesor p1 = new Profesor("56239874M", "Pedro", "Gonzalez Fernandez");
 		Coche c1 = new Coche("5894 GHL", "2023", "Peugeot");
 		Alumno a2 = new Alumno("David", "85612478L");
-		Profesor p2 = new Profesor("53624477N", "Alejandro");
+		Profesor p2 = new Profesor("53624477N", "Alejandro","Rodriguez Palacios");
 		Coche c2 = new Coche("5894 DSF", "2021", "Seat");
 		Rol rolBasico = new Rol("ROLE_USER");
 		Rol rolAdmin = new Rol("ROLE_ADMIN");
@@ -72,8 +72,6 @@ public class WebController {
 		Usuario usuarioAdmin = new Usuario("admin", "admin", "admin");
 		Usuario usuarioBasico = new Usuario("basic", "basic", "basic");
 		Usuario usuarioProfesor=new Usuario("profesor","profesor","profesor");
-		String codigoLlave1="A";
-		String codigoLlave2="B";
 
 		/*
 		 * LocalDate fecha=LocalDate.of(2024, 5, 13); c1.setFechaITV(fecha);
@@ -129,8 +127,8 @@ public class WebController {
 		profeService.insertarProfesor(p1);
 		profeService.insertarProfesor(p2);
 		
-		p1.juegoLlaves(c1, codigoLlave1);
-		p2.juegoLlaves(c2, codigoLlave2);
+		p1.juegoLlaves(c1);
+		p2.juegoLlaves(c2);
 		
 
 		

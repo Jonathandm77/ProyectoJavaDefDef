@@ -1,6 +1,7 @@
 package principal.modelo;
 
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -42,6 +43,18 @@ public class Profesor {
 		alumnos = new HashSet<Alumno>();
 		coches = new HashSet<ProfesoresCoches>();
 	}
+	
+	
+
+	public Profesor(String dni, String nombre, String apellidos) {
+		this.dni = dni;
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+		alumnos = new HashSet<Alumno>();
+		coches = new HashSet<ProfesoresCoches>();
+	}
+
+
 
 	public Profesor(String dni, String nombre) {
 		this.dni = dni;
@@ -60,7 +73,9 @@ public class Profesor {
 		coches = new HashSet<ProfesoresCoches>();
 	}
 
-	public void juegoLlaves(Coche c, String l) {
+	public void juegoLlaves(Coche c) {
+		Random random = new Random();
+	    String l = String.format("%c%c-%d",'A' + random.nextInt(26),'A' + random.nextInt(26),random.nextInt(100));
 		ProfesoresCoches pc=new ProfesoresCoches(this,c,l);
 		boolean presente=false;
 		for (ProfesoresCoches set : coches) {

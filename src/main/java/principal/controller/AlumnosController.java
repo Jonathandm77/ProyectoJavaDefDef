@@ -71,12 +71,9 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 			alumnoNew.setCoche(cocheNuevo);
 			cocheNuevo.getAlumnos().add(alumnoNew);
 			if(!profeNuevo.getCoches().contains(cocheNuevo)) {
-				
-				 Random random = new Random();
-				    String l = String.format("%c%c-%d",'A' + random.nextInt(26),'A' + random.nextInt(26),random.nextInt(100));
 				cocheService.insertarCoche(cocheNuevo);
 				profeService.insertarProfesor(profeNuevo);
-				profeNuevo.juegoLlaves(cocheNuevo, l);
+				profeNuevo.juegoLlaves(cocheNuevo);
 			}
 			alumnoService.insertarAlumno(alumnoNew);
 			return "redirect:/alumnos";
