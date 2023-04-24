@@ -86,13 +86,12 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 			return "coche";
 		}
 		
-		/*@GetMapping({"/delete/{id}"})
+		@GetMapping({"/delete/{id}"})
 		String deleteCoche(Model model, @PathVariable Integer id) {
 			Coche cocheaEliminar=cocheService.obtenerCochePorId(id);
 			ArrayList<Alumno> misAlumnos= (ArrayList<Alumno>) alumnoService.listarAlumnos();
 			ArrayList<Coche> misCoches=(ArrayList<Coche>) cocheService.listarCoches();
 			ArrayList<Profesor> misProfes=(ArrayList<Profesor>) profeService.listarProfesores();
-			List<Llave> misLlaves=llaveService.listarLlaves();
 			for(Alumno a:misAlumnos) {
 				if(a.getCoche().getId()==cocheaEliminar.getId()) {
 					int coche=(int) (Math.random()*misCoches.size());
@@ -115,33 +114,23 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 				}
 				}
 			
-			for(Llave a:misLlaves) {
-				if(a.getCoche()!=null) {
-				if(a.getCoche().getCoche()==cocheaEliminar) {
-					a.setCoche(null);
-					a.setProfesor(null);
-				}
-				}
-				}
-			
 			for(Profesor a:misProfes) {
 				
 					for(ProfesoresCoches c:a.getCoches()) {
 						if(c.getCoche()==cocheaEliminar) {
 							c.setCoche(null);
 					c.setProfesor(null);
-					c.setLlave(null);
+					a.getCoches().removeIf(t-> t.getCoche()==null);
 						}
 						
 					}
 				}
 				
 			cocheaEliminar.getAlumnos().clear();
-			cocheaEliminar.getLlaves().clear();
 			cocheaEliminar.getProfesores().clear();
 			cocheService.eliminarCoche(cocheaEliminar);
 			return "redirect:/coches";
-			}*/
+			}
 		
 		
 		@PostMapping({"/searchMarca"})
