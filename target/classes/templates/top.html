@@ -44,6 +44,14 @@
 							Coches
 						</a>
 					</li>
+					
+					<li sec:authorize="hasAuthority('ROLE_TEACHER')"
+						class="nav-item dropdown no-arrow">
+						<a class="nav-link text-gray-600" href="/misAlumnos" role="button">
+							<i class="fas fa-car fa-sm fa-fw mr-3 text-gray-600"></i>
+							Mis alumnos
+						</a>
+					</li>
 
 					<li sec:authorize="hasAuthority('ROLE_ADMIN')" class="nav-item dropdown no-arrow">
 						<a class="nav-link text-gray-600" href="/usuarios" role="button">

@@ -3,9 +3,12 @@ package principal.controller;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -21,6 +24,7 @@ import principal.modelo.AjaxResponseBody;
 import principal.modelo.Alumno;
 import principal.modelo.Coche;
 import principal.modelo.Profesor;
+import principal.modelo.Usuario;
 import principal.modelo.dto.AlumnoAjaxDTO;
 import principal.modelo.dto.AlumnoBuscarDniDTO;
 import principal.modelo.dto.AlumnoBuscarNameDTO;
@@ -159,5 +163,10 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 			//meollo
 			return ResponseEntity.ok(alumnoJSON);
 		}
+		
+
+		
+
+		
 
 }
