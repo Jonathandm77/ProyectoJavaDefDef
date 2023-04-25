@@ -1,5 +1,10 @@
 package principal.modelo;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
@@ -73,16 +78,32 @@ public class Profesor {
 		coches = new HashSet<ProfesoresCoches>();
 	}
 
-	public void juegoLlaves(Coche c) {
+	public void juegoLlaves(Coche c) throws SQLException {
 		Random random = new Random();
 	    String l = String.format("%c%c-%d",'A' + random.nextInt(26),'A' + random.nextInt(26),random.nextInt(100));
 		ProfesoresCoches pc=new ProfesoresCoches(this,c,l);
 		boolean presente=false;
-		for (ProfesoresCoches set : coches) {
-			if (set.getCoche().getMatricula().equals(c.getMatricula())) {
-			presente = true;
-			}
-			}
+			
+			 // Crear una conexión a la base de datos
+            Connection connection = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3307/proyecto", "root", "");
+            
+            // Preparar la consulta SQL
+            String sql = "SELECT * FROM profesores_coches WHERE coche_id = "+c.getId()+" AND profesor_id = "+this.getId();
+            PreparedStatement statement = connection.prepareStatement(sql);
+            
+            // Ejecutar la consulta y obtener el resultado
+            ResultSet resultSet = statement.executeQuery();
+            
+            // Comprobar si hay resultados y mostrarlos
+            if (resultSet.next()) {
+            	presente = true;
+            } else {
+                System.out.println("La combinación de coche_id = "  +
+                                   " y profesor_id = "  + " no existe en la tabla.");
+            }
+			
+			
 			if (!presente) {
 			coches.add(pc);
 			c.getProfesores().add(pc);

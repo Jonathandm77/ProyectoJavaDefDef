@@ -283,6 +283,10 @@
 									<label for="texto">Nombre</label>
 									<input type="text" th:field="*{nombre}" class="form-control exampleInputName"
 										th:attr="placeholder=${alumno.nombre}" />
+										
+										<label for="texto">Apellidos</label>
+										<input type="text" th:field="*{apellidos}" class="form-control"
+											id="exampleInputSurname" th:attr="placeholder=${alumno.apellidos}" />
 
 									<label for="texto">Notas</label>
 									<input type="text" th:field="*{notas}" class="form-control notes"

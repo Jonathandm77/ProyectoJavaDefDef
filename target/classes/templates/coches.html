@@ -105,7 +105,7 @@
 							<div class"form-row">
 								<div class="form-group mt-1">
 									<label for="texto">Marca</label>
-									<input type="text" th:field="*{marca}" class="form-control" id="exampleInputName" />
+									<input type="text" th:field="*{marca}" class="form-control" id="exampleInputName" placeholder="Marca" />
 								</div>
 							</div>
 
@@ -143,7 +143,7 @@
 								<div class="form-group mt-1">
 									<label for="texto">Matrícula</label>
 									<input type="text" th:field="*{matricula}" class="form-control"
-										pattern="[0-9]{4}\s[a-zA-Z]{3}" required id="exampleInputName" />
+										pattern="[0-9]{4}\s[a-zA-Z]{3}" required id="exampleInputName" placeholder="Matrícula"/>
 									<div class="alert alert-danger invalid-feedback">
 										Por favor, ingresa 4 números y 3 letras separados por un espacio
 									</div>

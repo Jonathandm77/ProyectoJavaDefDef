@@ -1,5 +1,6 @@
 package principal.controller;
 
+import java.sql.SQLException;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
@@ -42,7 +43,7 @@ public class WebController {
 	boolean created=false;
 	
 	@GetMapping("/")
-	String home() {
+	String home() throws SQLException {
 		if(!created) {
 		 crearTablas();
 		 created=true;
@@ -58,7 +59,7 @@ public class WebController {
 		return "alumnos";
 			
 	}
-	private void crearTablas() {
+	private void crearTablas() throws SQLException {
 		
 		Alumno a1 = new Alumno("Alba", "52364897K");
 		Profesor p1 = new Profesor("56239874M", "Pedro", "Gonzalez Fernandez");

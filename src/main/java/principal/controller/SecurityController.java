@@ -154,7 +154,7 @@ public class SecurityController {
 
 	
 	@PostMapping("/addAlumno")
-	public String addAlumno(@ModelAttribute("alumnoNuevo") Alumno alumnoNew, BindingResult bidingresult) {
+	public String addAlumno(@ModelAttribute("alumnoNuevo") Alumno alumnoNew, BindingResult bidingresult) throws SQLException {
 		Profesor profeNuevo=profeService.obtenerProfesorPorId(alumnoNew.getProfesor().getId());
 		Coche cocheNuevo=cocheService.obtenerCochePorId(alumnoNew.getCoche().getId());
 		alumnoNew.setProfesor(profeNuevo);

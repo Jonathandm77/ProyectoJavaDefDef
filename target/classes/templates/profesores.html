@@ -256,7 +256,12 @@
 									<div class="form-group mt-1">
 										<label for="texto">Nombre</label>
 										<input type="text" th:field="*{nombre}" class="form-control"
-											id="exampleInputEmail" th:attr="placeholder=${profe.nombre}" />
+											id="exampleInputNom" th:attr="placeholder=${profe.nombre}" />
+									</div>
+									<div class="form-group mt-1">
+										<label for="texto">Apellidos</label>
+										<input type="text" th:field="*{apellidos}" class="form-control"
+											id="exampleInputSurname" th:attr="placeholder=${profe.apellidos}" />
 									</div>
 								</div>
 						</div>

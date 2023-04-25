@@ -21,6 +21,7 @@ import principal.modelo.Alumno;
 import principal.modelo.Coche;
 import principal.modelo.Profesor;
 import principal.modelo.ProfesoresCoches;
+import principal.modelo.dto.EntidadNombreApellidoDTO;
 import principal.modelo.dto.ProfesorBuscarDniDTO;
 import principal.modelo.dto.ProfesorBuscarNameDTO;
 import principal.servicio.implementacion.AlumnoServiceImpl;
@@ -75,9 +76,12 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 		}
 		
 		@PostMapping("/edit/{id}")
-		public String editarProfe(@PathVariable Integer id, @ModelAttribute("profeaEditar") Profesor profeEditado, BindingResult bidingresult) {
+		public String editarProfe(@PathVariable Integer id, @ModelAttribute("profeaEditar") EntidadNombreApellidoDTO profeEditado, BindingResult bidingresult) {
 			Profesor profeaEditar=profeService.obtenerProfesorPorId(id);
+			if(!profeEditado.getNombre().equals(""))
 			profeaEditar.setNombre(profeEditado.getNombre());
+			if(!profeEditado.getApellidos().equals(""))
+				profeaEditar.setApellidos(profeEditado.getApellidos());
 			profeService.insertarProfesor(profeaEditar);
 			return "redirect:/profesores";
 		}

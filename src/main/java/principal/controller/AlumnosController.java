@@ -1,5 +1,6 @@
 package principal.controller;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -28,7 +29,7 @@ import principal.modelo.Usuario;
 import principal.modelo.dto.AlumnoAjaxDTO;
 import principal.modelo.dto.AlumnoBuscarDniDTO;
 import principal.modelo.dto.AlumnoBuscarNameDTO;
-import principal.modelo.dto.AlumnoEditarNotasNombreDTO;
+import principal.modelo.dto.AlumnoEditarNotasNombreApellidoDTO;
 import principal.servicio.implementacion.AlumnoServiceImpl;
 import principal.servicio.implementacion.CocheServiceImpl;
 import principal.servicio.implementacion.ProfesorServiceImpl;
@@ -67,7 +68,7 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 		}
 		
 		@PostMapping("/add")
-		public String addAlumno(@ModelAttribute("alumnoNuevo") Alumno alumnoNew, BindingResult bidingresult) {
+		public String addAlumno(@ModelAttribute("alumnoNuevo") Alumno alumnoNew, BindingResult bidingresult) throws SQLException {
 			Profesor profeNuevo=profeService.obtenerProfesorPorId(alumnoNew.getProfesor().getId());
 			Coche cocheNuevo=cocheService.obtenerCochePorId(alumnoNew.getCoche().getId());
 			alumnoNew.setProfesor(profeNuevo);
@@ -84,9 +85,12 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 		}
 		
 		@PostMapping("/edit/{id}")
-		public String editarAlumno(@PathVariable Integer id, @ModelAttribute("alumnoaEditar") AlumnoEditarNotasNombreDTO alumnoEditado, BindingResult bidingresult) {
+		public String editarAlumno(@PathVariable Integer id, @ModelAttribute("alumnoaEditar") AlumnoEditarNotasNombreApellidoDTO alumnoEditado, BindingResult bidingresult) {
 			Alumno alumnoaEditar=alumnoService.obtenerAlumnoPorId(id);
+			if(!alumnoEditado.getNombre().equals(""))
 			alumnoaEditar.setNombre(alumnoEditado.getNombre());
+			if(!alumnoEditado.getApellidos().equals(""))
+				alumnoaEditar.setApellidos(alumnoEditado.getApellidos());
 			alumnoaEditar.setNotas(alumnoEditado.getNotas());
 			alumnoService.insertarAlumno(alumnoaEditar);
 			return "redirect:/alumnos";

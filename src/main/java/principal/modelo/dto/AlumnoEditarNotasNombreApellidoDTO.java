@@ -1,8 +1,16 @@
 package principal.modelo.dto;
 
-public class AlumnoEditarNotasNombreDTO {
+public class AlumnoEditarNotasNombreApellidoDTO {
 private String notas;
 private String nombre;
+private String apellidos;
+
+public String getApellidos() {
+	return apellidos;
+}
+public void setApellidos(String apellidos) {
+	this.apellidos = apellidos;
+}
 public String getNotas() {
 	return notas;
 }
