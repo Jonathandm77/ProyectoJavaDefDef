@@ -85,6 +85,8 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 			ArrayList<Profesor> misProfesores= (ArrayList<Profesor>) profeService.listarProfesores();
 			ArrayList<Coche> misCoches=(ArrayList<Coche>) cocheService.listarCoches();
 			int profe=(int) (Math.random()*misProfesores.size());
+			Profesor profeTemp=null;
+			Coche cocheTemp=null;
 	
 			
 			for(Alumno a:misAlumnos) {//para que los alumnos no se queden sin profesor
@@ -95,6 +97,8 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 						 profe=(int)(Math.random()*(misProfesores.size()));
 					}while(profe==misProfesores.indexOf(a.getProfesor()));//si solo queda un profesor no elimina, solucionar
 					a.setProfesor(misProfesores.get(profe));
+					profeTemp=a.getProfesor();
+					cocheTemp=a.getCoche();
 					
 					misProfesores.get(profe).getAlumnos().add(a);
 					alumnoService.insertarAlumno(a);
@@ -110,6 +114,8 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 							c.setCoche(null);
 					c.setProfesor(null);
 					a.getProfesores().removeIf( t ->t.getProfesor()==null );
+				
+					cocheService.insertarCoche(a);
 						}
 						
 					}
@@ -117,7 +123,7 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 			
 			profeaEliminar.getAlumnos().clear();
 			profeaEliminar.getCoches().clear();
-			
+			profeTemp.juegoLlaves(cocheTemp);
 			profeService.eliminarProfesor(profeaEliminar);
 			return "redirect:/profesores";
 		}
