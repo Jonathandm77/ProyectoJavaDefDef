@@ -206,7 +206,7 @@ public class SecurityController {
 	}
 	
 	@GetMapping("/deleteProfesor")
-	String deleteProfe(@ModelAttribute("profeaEliminar") EntityIdDTO profesor) {
+	String deleteProfe(@ModelAttribute("profeaEliminar") EntityIdDTO profesor) throws SQLException {
 		Profesor profeaEliminar=profeService.obtenerProfesorPorId(profesor.getId());
 		ArrayList<Alumno> misAlumnos= (ArrayList<Alumno>) alumnoService.listarAlumnos();
 		ArrayList<Profesor> misProfesores= (ArrayList<Profesor>) profeService.listarProfesores();
@@ -257,6 +257,15 @@ public class SecurityController {
 			profeTemp.get(i).juegoLlaves(cocheTemp.get(i));
 		}
 		}
+		
+		Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/proyecto", "root","");
+
+	      String sql = "DELETE FROM profesores_coches WHERE profesor_id = "+profeaEliminar.getId();
+
+	      Statement statement = connection.createStatement();
+	      statement.executeUpdate(sql);
+
+	      connection.close();
 		profeService.eliminarProfesor(profeaEliminar);
 		return "redirect:/seguridad/password#operat";
 	}

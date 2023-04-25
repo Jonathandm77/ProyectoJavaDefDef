@@ -1,5 +1,9 @@
 package principal.controller;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,7 +83,7 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 		}
 		
 		@GetMapping({"/delete/{id}"})
-		String deleteProfe(Model model, @PathVariable Integer id) {
+		String deleteProfe(Model model, @PathVariable Integer id) throws SQLException {
 			Profesor profeaEliminar=profeService.obtenerProfesorPorId(id);
 			ArrayList<Alumno> misAlumnos= (ArrayList<Alumno>) alumnoService.listarAlumnos();
 			ArrayList<Profesor> misProfesores= (ArrayList<Profesor>) profeService.listarProfesores();
@@ -130,6 +134,15 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 				profeTemp.get(i).juegoLlaves(cocheTemp.get(i));
 			}
 			}
+			
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/proyecto", "root","");
+
+		      String sql = "DELETE FROM profesores_coches WHERE profesor_id = "+profeaEliminar.getId();
+
+		      Statement statement = connection.createStatement();
+		      statement.executeUpdate(sql);
+
+		      connection.close();
 			profeService.eliminarProfesor(profeaEliminar);
 			return "redirect:/profesores";
 		}

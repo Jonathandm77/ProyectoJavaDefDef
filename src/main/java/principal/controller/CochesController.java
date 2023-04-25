@@ -1,5 +1,9 @@
 package principal.controller;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -87,12 +91,12 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 		}
 		
 		@GetMapping({"/delete/{id}"})
-		String deleteCoche(Model model, @PathVariable Integer id) {
+		String deleteCoche(Model model, @PathVariable Integer id) throws SQLException {
 			Coche cocheaEliminar=cocheService.obtenerCochePorId(id);
 			ArrayList<Alumno> misAlumnos= (ArrayList<Alumno>) alumnoService.listarAlumnos();
 			ArrayList<Coche> misCoches=(ArrayList<Coche>) cocheService.listarCoches();
 			ArrayList<Profesor> misProfes=(ArrayList<Profesor>) profeService.listarProfesores();
-			ArrayList<Profesor> profeTemp=new ArrayList<Profesor>();
+			ArrayList<Profesor> profeTemp=new ArrayList<Profesor>();//almacenamos las nuevas combinaciones de profesores y coches
 			ArrayList<Coche> cocheTemp=new ArrayList<Coche>();
 			for(Alumno a:misAlumnos) {
 				if(a.getCoche().getId()==cocheaEliminar.getId()) {
@@ -112,10 +116,9 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 					profeTemp.add(a.getProfesor());
 					cocheTemp.add(a.getCoche());
 					}
-					Coche cocheaModificar=cocheService.obtenerCochePorId(misCoches.get(coche).getId());
-					cocheaModificar.getAlumnos().add(a);
+					misCoches.get(coche).getAlumnos().add(a);
 					alumnoService.insertarAlumno(a);
-					cocheService.insertarCoche(cocheaModificar);
+					cocheService.insertarCoche(cocheService.obtenerCochePorId(misCoches.get(coche).getId()));//
 				}
 				}
 			
@@ -141,9 +144,18 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 			cocheaEliminar.getProfesores().clear();
 			if(profeTemp!=null) {
 				for(int i=0;i<profeTemp.size();i++) {
+					
 					profeTemp.get(i).juegoLlaves(cocheTemp.get(i));
 				}
 				}
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/proyecto", "root","");
+
+		      String sql = "DELETE FROM profesores_coches WHERE coche_id = "+cocheaEliminar.getId();
+
+		      Statement statement = connection.createStatement();
+		      statement.executeUpdate(sql);
+
+		      connection.close();
 			cocheService.eliminarCoche(cocheaEliminar);
 			return "redirect:/coches";
 			}
