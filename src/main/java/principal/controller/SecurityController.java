@@ -149,23 +149,22 @@ public class SecurityController {
 	}
 
 	
-	/*@PostMapping("/addAlumno")
+	@PostMapping("/addAlumno")
 	public String addAlumno(@ModelAttribute("alumnoNuevo") Alumno alumnoNew, BindingResult bidingresult) {
-		Profesor profeNuevo=alumnoNew.getProfesor();
+		Profesor profeNuevo=profeService.obtenerProfesorPorId(alumnoNew.getProfesor().getId());
+		Coche cocheNuevo=cocheService.obtenerCochePorId(alumnoNew.getCoche().getId());
 		alumnoNew.setProfesor(profeNuevo);
 		profeNuevo.getAlumnos().add(alumnoNew);
-		if(!profeNuevo.getCoches().contains(alumnoNew.getCoche())) {
-			
-			Llave l=new Llave();
-			cocheService.insertarCoche(alumnoNew.getCoche());
+		alumnoNew.setCoche(cocheNuevo);
+		cocheNuevo.getAlumnos().add(alumnoNew);
+		if(!profeNuevo.getCoches().contains(cocheNuevo)) {
+			cocheService.insertarCoche(cocheNuevo);
 			profeService.insertarProfesor(profeNuevo);
-			llaveService.insertarLlave(l);
-			profeNuevo.juegoLlaves(alumnoNew.getCoche(), l);
-			llaveService.insertarLlave(l);
+			profeNuevo.juegoLlaves(cocheNuevo);
 		}
 		alumnoService.insertarAlumno(alumnoNew);
 		return "redirect:/seguridad/password#operat";
-	}*/
+	}
 	
 	
 	@GetMapping("/deleteAlumno")
@@ -202,51 +201,38 @@ public class SecurityController {
 		return "redirect:/seguridad/password#operat";
 	}
 	
-	/*@GetMapping("/deleteProfesor")
-	String deleteProfe(@ModelAttribute("profeaEliminar") EntityIdDTO profe) {
-		Profesor profeaEliminar=profeService.obtenerProfesorPorId(profe.getId());
+	@GetMapping("/deleteProfesor")
+	String deleteProfe(@ModelAttribute("profeaEliminar") EntityIdDTO profesor) {
+		Profesor profeaEliminar=profeService.obtenerProfesorPorId(profesor.getId());
 		ArrayList<Alumno> misAlumnos= (ArrayList<Alumno>) alumnoService.listarAlumnos();
 		ArrayList<Profesor> misProfesores= (ArrayList<Profesor>) profeService.listarProfesores();
 		ArrayList<Coche> misCoches=(ArrayList<Coche>) cocheService.listarCoches();
-		List<Llave> misLlaves=llaveService.listarLlaves();
-		int profesor=(int) (Math.random()*misProfesores.size());
-		Llave llaveTemp=null;
+		int profe=(int) (Math.random()*misProfesores.size());
 
 		
-		for(Alumno a:misAlumnos) {
+		for(Alumno a:misAlumnos) {//para que los alumnos no se queden sin profesor
 			if(a.getProfesor().getId()==profeaEliminar.getId()) {
 				
 				
 				do {
-					int s=misProfesores.size();
-					 profesor=(int)(Math.random()*(misProfesores.size()));
-				}while(profesor==misProfesores.indexOf(a.getProfesor()));
-				a.setProfesor(misProfesores.get(profesor));
+					 profe=(int)(Math.random()*(misProfesores.size()));
+				}while(profe==misProfesores.indexOf(a.getProfesor()));//si solo queda un profesor no elimina, solucionar
+				a.setProfesor(misProfesores.get(profe));
 				
-				misProfesores.get(profesor).getAlumnos().add(a);
+				misProfesores.get(profe).getAlumnos().add(a);
 				alumnoService.insertarAlumno(a);
-				profeService.insertarProfesor(misProfesores.get(profesor));
 			}
 			}
 		
-		for(Llave a:misLlaves) {
-			if(a.getProfesor()!=null) {
-			if(a.getProfesor().getProfesor()==profeaEliminar) {
-				a.setCoche(null);
-				a.setProfesor(null);
-				llaveTemp=a;
-			}
-			}
-			}
 		
 		for(Coche a:misCoches) {
 			
 				for(ProfesoresCoches c:a.getProfesores()) {
 					
-					if(c.getProfesor()==profeaEliminar) {
+					if(c.getProfesor().getId()==profeaEliminar.getId()) {
 						c.setCoche(null);
 				c.setProfesor(null);
-				c.setLlave(null);
+				a.getProfesores().removeIf( t ->t.getProfesor()==null );
 					}
 					
 				}
@@ -254,13 +240,10 @@ public class SecurityController {
 		
 		profeaEliminar.getAlumnos().clear();
 		profeaEliminar.getCoches().clear();
-		profeaEliminar.getLlaves().clear();
 		
 		profeService.eliminarProfesor(profeaEliminar);
-		if(llaveTemp!=null)
-		llaveService.eliminarLlave(llaveTemp);
 		return "redirect:/seguridad/password#operat";
-	}*/
+	}
 	
 	@PostMapping("/searchProfesorByName")
 	String buscarProfesorPorNombre(Model model,@ModelAttribute("profeaBuscar") ProfesorBuscarNameDTO profeBuscado, BindingResult bidingresult) {
@@ -285,31 +268,21 @@ public class SecurityController {
 	
 	@PostMapping("/addCoche")
 	public String addCoche(@ModelAttribute("cocheNuevo") Coche cocheNew, BindingResult bidingresult) {
-		/*LocalDate f=cocheNew.getFechaITV();
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
-		String fechaFormateada=f.format(formatter);
-		String[] fechaString=fechaFormateada.split(" ");
-		Integer[] fecha= {Integer.parseInt(fechaString[0]),
-		Integer.parseInt(fechaString[1]),
-		Integer.parseInt(fechaString[2])};
-		LocalDate fechaAInsertar=LocalDate.of(fecha[0], fecha[1], fecha[3]);
-		cocheNew.setFechaITV(fechaAInsertar);*/
 		cocheService.insertarCoche(cocheNew);
 		return "redirect:/seguridad/password#operat";
 	}
 	
-	/*@GetMapping({"/deleteCoche"})
+	@GetMapping({"/deleteCoche"})
 	String deleteCoche(@ModelAttribute("cocheaEliminar")Coche cocheEliminar) {
 		Coche cocheaEliminar=cocheService.obtenerCochePorId(cocheEliminar.getId());
 		ArrayList<Alumno> misAlumnos= (ArrayList<Alumno>) alumnoService.listarAlumnos();
 		ArrayList<Coche> misCoches=(ArrayList<Coche>) cocheService.listarCoches();
 		ArrayList<Profesor> misProfes=(ArrayList<Profesor>) profeService.listarProfesores();
-		List<Llave> misLlaves=llaveService.listarLlaves();
 		for(Alumno a:misAlumnos) {
 			if(a.getCoche().getId()==cocheaEliminar.getId()) {
 				int coche=(int) (Math.random()*misCoches.size());
 				if(misCoches.isEmpty()|misCoches.size()==0) {
-					misCoches.add(new Coche("5678 GHS","2021 XS","Nissan"));//conceptual,aun no sirve
+					misCoches.add(new Coche("5678 GHS","2021 XS","Nissan"));
 					LocalDate fecha=LocalDate.of(2025, 6, 16);
 					//misCoches.get(0).setFechaITV(fecha);
 					a.setCoche(misCoches.get(0));//si no queda ningun coche crear coche generico
@@ -327,33 +300,23 @@ public class SecurityController {
 			}
 			}
 		
-		for(Llave a:misLlaves) {
-			if(a.getCoche()!=null) {
-			if(a.getCoche().getCoche()==cocheaEliminar) {
-				a.setCoche(null);
-				a.setProfesor(null);
-			}
-			}
-			}
-		
 		for(Profesor a:misProfes) {
 			
 				for(ProfesoresCoches c:a.getCoches()) {
 					if(c.getCoche()==cocheaEliminar) {
 						c.setCoche(null);
 				c.setProfesor(null);
-				c.setLlave(null);
+				a.getCoches().removeIf(t-> t.getCoche()==null);
 					}
 					
 				}
 			}
 			
 		cocheaEliminar.getAlumnos().clear();
-		cocheaEliminar.getLlaves().clear();
 		cocheaEliminar.getProfesores().clear();
 		cocheService.eliminarCoche(cocheaEliminar);
 		return "redirect:/seguridad/password#operat";
-		}*/
+		}
 	
 	@PostMapping({"/searchCochesByMarca"})
 	String buscarCochePorMarca(Model model,@ModelAttribute("cocheaBuscar") CocheBuscarMarcaDTO cocheBuscado,BindingResult bidingresult) {

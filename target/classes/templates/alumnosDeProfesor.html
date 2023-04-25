@@ -13,11 +13,11 @@
 			
 		</header>
 		
-		<div th:if="${misAlumnos==null}">
+		<div th:if="${alumnosProfe.empty}">
 		<h1>No hay alumnos que coincidan con tu búsqueda</h1>
 		</div>
 		
-		<div th:unless="${alumnosProfe==null}" class="row col-5">
+		<div th:unless="${alumnosProfe.empty}" class="row col-5">
 			<div class="col-9">
 				<h5> Datos de los alumnos</h5>
 				<div class="card border border primary" th:each="alumno:${alumnosProfe}">
@@ -38,6 +38,7 @@
 					</div>
 				</div>
 			</div>
+			
 		</div>
 	</div>
 </body>
