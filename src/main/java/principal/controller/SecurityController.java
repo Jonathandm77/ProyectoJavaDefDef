@@ -3,6 +3,10 @@ package principal.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -285,11 +289,13 @@ public class SecurityController {
 	}
 	
 	@GetMapping({"/deleteCoche"})
-	String deleteCoche(@ModelAttribute("cocheaEliminar")Coche cocheEliminar) {
+	String deleteCoche(@ModelAttribute("cocheaEliminar")Coche cocheEliminar) throws SQLException {
 		Coche cocheaEliminar=cocheService.obtenerCochePorId(cocheEliminar.getId());
 		ArrayList<Alumno> misAlumnos= (ArrayList<Alumno>) alumnoService.listarAlumnos();
 		ArrayList<Coche> misCoches=(ArrayList<Coche>) cocheService.listarCoches();
 		ArrayList<Profesor> misProfes=(ArrayList<Profesor>) profeService.listarProfesores();
+		ArrayList<Profesor> profeTemp=new ArrayList<Profesor>();//almacenamos las nuevas combinaciones de profesores y coches
+		ArrayList<Coche> cocheTemp=new ArrayList<Coche>();
 		for(Alumno a:misAlumnos) {
 			if(a.getCoche().getId()==cocheaEliminar.getId()) {
 				int coche=(int) (Math.random()*misCoches.size());
@@ -305,28 +311,52 @@ public class SecurityController {
 					 coche=(int)(Math.random()*misCoches.size());
 				}while(coche==misCoches.indexOf(a.getCoche()));
 				a.setCoche(misCoches.get(coche));
+				profeTemp.add(a.getProfesor());
+				cocheTemp.add(a.getCoche());
 				}
 				misCoches.get(coche).getAlumnos().add(a);
 				alumnoService.insertarAlumno(a);
-				cocheService.insertarCoche(misCoches.get(coche));
+				cocheService.insertarCoche(cocheService.obtenerCochePorId(misCoches.get(coche).getId()));//
 			}
 			}
 		
+		List<ProfesoresCoches> elementosAEliminar = new ArrayList<>();
+		
 		for(Profesor a:misProfes) {
-			
+			if(!a.getCoches().isEmpty()) {
 				for(ProfesoresCoches c:a.getCoches()) {
-					if(c.getCoche()==cocheaEliminar) {
+					if(c.getCoche().getId()==cocheaEliminar.getId()) {
 						c.setCoche(null);
 				c.setProfesor(null);
-				a.getCoches().removeIf(t-> t.getCoche()==null);
+				elementosAEliminar.add(c);
 					}
 					
 				}
+				a.getCoches().removeAll(elementosAEliminar);
+		        elementosAEliminar.clear();
 			}
+			profeService.insertarProfesor(a);
+		}
 			
 		cocheaEliminar.getAlumnos().clear();
 		cocheaEliminar.getProfesores().clear();
+		if(profeTemp!=null) {
+			for(int i=0;i<profeTemp.size();i++) {
+				
+				profeTemp.get(i).juegoLlaves(cocheTemp.get(i));
+			}
+			}
+		Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/proyecto", "root","");
+
+	      String sql = "DELETE FROM profesores_coches WHERE coche_id = "+cocheaEliminar.getId();
+
+	      Statement statement = connection.createStatement();
+	      statement.executeUpdate(sql);
+
+	      connection.close();
 		cocheService.eliminarCoche(cocheaEliminar);
+		
+		
 		return "redirect:/seguridad/password#operat";
 		}
 	

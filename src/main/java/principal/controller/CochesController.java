@@ -92,6 +92,8 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 			ArrayList<Alumno> misAlumnos= (ArrayList<Alumno>) alumnoService.listarAlumnos();
 			ArrayList<Coche> misCoches=(ArrayList<Coche>) cocheService.listarCoches();
 			ArrayList<Profesor> misProfes=(ArrayList<Profesor>) profeService.listarProfesores();
+			ArrayList<Profesor> profeTemp=new ArrayList<Profesor>();
+			ArrayList<Coche> cocheTemp=new ArrayList<Coche>();
 			for(Alumno a:misAlumnos) {
 				if(a.getCoche().getId()==cocheaEliminar.getId()) {
 					int coche=(int) (Math.random()*misCoches.size());
@@ -107,27 +109,41 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 						 coche=(int)(Math.random()*misCoches.size());
 					}while(coche==misCoches.indexOf(a.getCoche()));
 					a.setCoche(misCoches.get(coche));
+					profeTemp.add(a.getProfesor());
+					cocheTemp.add(a.getCoche());
 					}
-					misCoches.get(coche).getAlumnos().add(a);
+					Coche cocheaModificar=cocheService.obtenerCochePorId(misCoches.get(coche).getId());
+					cocheaModificar.getAlumnos().add(a);
 					alumnoService.insertarAlumno(a);
-					cocheService.insertarCoche(misCoches.get(coche));
+					cocheService.insertarCoche(cocheaModificar);
 				}
 				}
 			
+			List<ProfesoresCoches> elementosAEliminar = new ArrayList<>();
+			
 			for(Profesor a:misProfes) {
-				
+				if(!a.getCoches().isEmpty()) {
 					for(ProfesoresCoches c:a.getCoches()) {
-						if(c.getCoche()==cocheaEliminar) {
+						if(c.getCoche().getId()==cocheaEliminar.getId()) {
 							c.setCoche(null);
 					c.setProfesor(null);
-					a.getCoches().removeIf(t-> t.getCoche()==null);
+					elementosAEliminar.add(c);
 						}
 						
 					}
+					a.getCoches().removeAll(elementosAEliminar);
+			        elementosAEliminar.clear();
 				}
+				profeService.insertarProfesor(a);
+			}
 				
 			cocheaEliminar.getAlumnos().clear();
 			cocheaEliminar.getProfesores().clear();
+			if(profeTemp!=null) {
+				for(int i=0;i<profeTemp.size();i++) {
+					profeTemp.get(i).juegoLlaves(cocheTemp.get(i));
+				}
+				}
 			cocheService.eliminarCoche(cocheaEliminar);
 			return "redirect:/coches";
 			}
