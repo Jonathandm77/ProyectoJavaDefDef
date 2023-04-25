@@ -208,6 +208,8 @@ public class SecurityController {
 		ArrayList<Profesor> misProfesores= (ArrayList<Profesor>) profeService.listarProfesores();
 		ArrayList<Coche> misCoches=(ArrayList<Coche>) cocheService.listarCoches();
 		int profe=(int) (Math.random()*misProfesores.size());
+		ArrayList<Profesor> profeTemp=new ArrayList<Profesor>();
+		ArrayList<Coche> cocheTemp=new ArrayList<Coche>();
 
 		
 		for(Alumno a:misAlumnos) {//para que los alumnos no se queden sin profesor
@@ -218,29 +220,39 @@ public class SecurityController {
 					 profe=(int)(Math.random()*(misProfesores.size()));
 				}while(profe==misProfesores.indexOf(a.getProfesor()));//si solo queda un profesor no elimina, solucionar
 				a.setProfesor(misProfesores.get(profe));
+				profeTemp.add(a.getProfesor());
+				cocheTemp.add(a.getCoche());
 				
 				misProfesores.get(profe).getAlumnos().add(a);
 				alumnoService.insertarAlumno(a);
 			}
 			}
 		
-		
-		for(Coche a:misCoches) {
-			
-				for(ProfesoresCoches c:a.getProfesores()) {
-					
-					if(c.getProfesor().getId()==profeaEliminar.getId()) {
-						c.setCoche(null);
-				c.setProfesor(null);
-				a.getProfesores().removeIf( t ->t.getProfesor()==null );
-					}
-					
-				}
-			}
+		List<ProfesoresCoches> elementosAEliminar = new ArrayList<>();
+
+		for(Coche a: misCoches) {
+		    if(!a.getProfesores().isEmpty()) {
+		        for(ProfesoresCoches c: a.getProfesores()) {
+		            if(c.getProfesor().getId() == profeaEliminar.getId()) {
+		                c.setCoche(null);
+		                c.setProfesor(null);
+		                elementosAEliminar.add(c);
+		            }
+		        }
+		        a.getProfesores().removeAll(elementosAEliminar);
+		        elementosAEliminar.clear();
+		    }
+		    cocheService.insertarCoche(a);
+		}
+
 		
 		profeaEliminar.getAlumnos().clear();
 		profeaEliminar.getCoches().clear();
-		
+		if(profeTemp!=null) {
+		for(int i=0;i<profeTemp.size();i++) {
+			profeTemp.get(i).juegoLlaves(cocheTemp.get(i));
+		}
+		}
 		profeService.eliminarProfesor(profeaEliminar);
 		return "redirect:/seguridad/password#operat";
 	}
