@@ -121,6 +121,7 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 					}
 					misCoches.get(coche).getAlumnos().add(a);
 					alumnoService.insertarAlumno(a);
+					profeService.insertarProfesor(profeService.obtenerProfesorPorId(a.getProfesor().getId()));
 					cocheService.insertarCoche(cocheService.obtenerCochePorId(misCoches.get(coche).getId()));//
 				}
 				}

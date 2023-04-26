@@ -308,11 +308,14 @@ public class SecurityController {
 		for(Alumno a:misAlumnos) {
 			if(a.getCoche().getId()==cocheaEliminar.getId()) {
 				int coche=(int) (Math.random()*misCoches.size());
-				if(misCoches.isEmpty()|misCoches.size()==0) {
-					misCoches.add(new Coche("5678 GHS","2021 XS","Nissan"));
-					LocalDate fecha=LocalDate.of(2025, 6, 16);
+				if(misCoches.isEmpty() || misCoches.size()==1) {
+					Coche cGenerico=new Coche("5678 GHS","2021 XS","Nissan");
+					misCoches.add(cGenerico);
 					//misCoches.get(0).setFechaITV(fecha);
-					a.setCoche(misCoches.get(0));//si no queda ningun coche crear coche generico
+					a.setCoche(cGenerico);//si no queda ningun coche crear coche generico
+					profeTemp.add(a.getProfesor());
+					cocheTemp.add(a.getCoche());
+					cocheService.insertarCoche(cGenerico);
 				}else {
 				
 				
@@ -325,6 +328,7 @@ public class SecurityController {
 				}
 				misCoches.get(coche).getAlumnos().add(a);
 				alumnoService.insertarAlumno(a);
+				profeService.insertarProfesor(profeService.obtenerProfesorPorId(a.getProfesor().getId()));
 				cocheService.insertarCoche(cocheService.obtenerCochePorId(misCoches.get(coche).getId()));//
 			}
 			}
@@ -364,7 +368,6 @@ public class SecurityController {
 
 	      connection.close();
 		cocheService.eliminarCoche(cocheaEliminar);
-		
 		
 		return "redirect:/seguridad/password#operat";
 		}
