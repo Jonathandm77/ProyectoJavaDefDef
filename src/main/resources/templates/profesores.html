@@ -20,7 +20,7 @@
 					<td>Dni</td>
 					<td>Nombre</td>
 					<td>Apellidos</td>
-					<td colspan="2" >Acciones</td>
+					<td colspan="2">Acciones</td>
 
 
 				</tr>
@@ -43,13 +43,13 @@
 					<td>
 						<span th:text="${profe.apellidos}"></span>
 					</td>
-					<td >
+					<td>
 						<a th:attr="data-target='#modal-edit'+${profe.id}" data-toggle="modal" data-target="#modal-edit"
 							class="btn btn-primary btn-sm text-white pointer">
 							Modificar
 						</a>
 					</td>
-					<td >
+					<td>
 						<a th:attr="data-target='#modal-delete'+${profe.id}" data-toggle="modal"
 							data-target="#modal-delete" class="btn btn-primary btn-sm text-white pointer">
 							Eliminar
@@ -63,8 +63,8 @@
 		<div>
 			<div class="row">
 				<div class="col-md-auto">
-					<button sec:authorize="hasAuthority('ROLE_ADMIN')" class="btn btn-primary" type="button" data-toggle="modal" data-target="#crearProfe"
-						> Añadir Profesor </button>
+					<button sec:authorize="hasAuthority('ROLE_ADMIN')" class="btn btn-primary" type="button"
+						data-toggle="modal" data-target="#crearProfe"> Añadir Profesor </button>
 
 				</div>
 
@@ -72,15 +72,14 @@
 					<button th:attr="data-target='#modal-search'" class="btn btn-primary" type="button"
 						data-toggle="modal" data-target="#buscarProfePorNombre">Buscar profesor por nombre</button>
 				</div>
-				
+
 				<div th:object="${profe}" class="col-md-auto">
 					<button th:attr="data-target='#modal-search-DNI'" class="btn btn-primary" type="button"
 						data-toggle="modal" data-target="#buscarProfePorDni">Buscar profesor por DNI</button>
 				</div>
 			</div>
 		</div>
-		
-		
+
 		<!-- buscar por dni modal-->
 		<div th:each="profe:${listaProfesores}">
 			<div class="modal fade" th:id="modal-search-DNI">
@@ -97,8 +96,8 @@
 
 
 							<!--formulario dni-->
-							<form action="#" th:action="@{/profesores/searchDni}"
-								th:object="${profeaBuscar}" method="post">
+							<form action="#" th:action="@{/profesores/searchDni}" th:object="${profeaBuscar}"
+								method="post">
 								<div class"form-row">
 									<div class="form-group mt-1">
 										<label for="texto">DNI</label>
@@ -136,13 +135,13 @@
 
 
 							<!--formulario nombre-->
-							<form action="#" th:action="@{/profesores/searchName}"
-								th:object="${profeaBuscar}" method="post">
+							<form action="#" th:action="@{/profesores/searchName}" th:object="${profeaBuscar}"
+								method="post">
 								<div class"form-row">
 									<div class="form-group mt-1">
 										<label for="texto">Nombre</label>
-										<input type="text" placeholder="Nombre" th:field="*{nombre}" class="form-control"
-											id="exampleInputName" />
+										<input type="text" placeholder="Nombre" th:field="*{nombre}"
+											class="form-control" id="exampleInputName" />
 									</div>
 								</div>
 						</div>
@@ -277,6 +276,22 @@
 
 		</div>
 		<!-- fin delete modal-->
+
+
+		<div class="toast-container position-fixed bottom-0 end-0 p-3">
+			<div th:if="${vacio}" id="liveToast" class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+				<div class="toast-header">
+					<img src="..." class="rounded me-2" alt="...">
+					<strong class="me-auto">Bootstrap</strong>
+					<small>11 mins ago</small>
+					<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+				</div>
+				<div class="toast-body">
+					Hello, world! This is a toast message.
+				</div>
+			</div>
+		</div>
+
 
 	</div>
 </body>

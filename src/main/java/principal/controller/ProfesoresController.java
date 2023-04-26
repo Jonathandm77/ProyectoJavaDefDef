@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import principal.modelo.Alumno;
 import principal.modelo.Coche;
@@ -59,6 +60,8 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 			model.addAttribute("profeNuevo", new Profesor());
 			model.addAttribute("profeaEditar", new Profesor());
 			model.addAttribute("profeaBuscar", new Profesor());
+			boolean vacio = (Boolean) model.asMap().getOrDefault("vacio", false);
+		    model.addAttribute("vacio", vacio);
 			return "profesores";
 		}
 		
@@ -87,7 +90,7 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 		}
 		
 		@GetMapping({"/delete/{id}"})
-		String deleteProfe(Model model, @PathVariable Integer id) throws SQLException {
+		String deleteProfe(Model model, @PathVariable Integer id, RedirectAttributes redirectAttributes) throws SQLException {
 			Profesor profeaEliminar=profeService.obtenerProfesorPorId(id);
 			ArrayList<Alumno> misAlumnos= (ArrayList<Alumno>) alumnoService.listarAlumnos();
 			ArrayList<Profesor> misProfesores= (ArrayList<Profesor>) profeService.listarProfesores();
@@ -95,8 +98,9 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 			int profe=(int) (Math.random()*misProfesores.size());
 			ArrayList<Profesor> profeTemp=new ArrayList<Profesor>();
 			ArrayList<Coche> cocheTemp=new ArrayList<Coche>();
+			boolean vacio=false;
 	
-			
+			if(misProfesores.size()!=1) {
 			for(Alumno a:misAlumnos) {//para que los alumnos no se queden sin profesor
 				if(a.getProfesor().getId()==profeaEliminar.getId()) {
 					
@@ -148,6 +152,10 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 
 		      connection.close();
 			profeService.eliminarProfesor(profeaEliminar);
+			}else {
+				vacio=true;
+			}
+			redirectAttributes.addFlashAttribute("vacio", vacio);
 			return "redirect:/profesores";
 		}
 		
