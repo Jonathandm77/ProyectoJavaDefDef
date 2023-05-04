@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import principal.modelo.Alumno;
 import principal.modelo.Coche;
@@ -80,7 +81,8 @@ public class SecurityController {
 	model.addAttribute("newUserDTO",new UsuarioDTO());
 	model.addAttribute("listaUsuarios",listaUsuarios);
 	model.addAttribute("userDelete", new UsuarioDTO());
-	
+	boolean vacio = (Boolean) model.asMap().getOrDefault("vacio", false);
+    model.addAttribute("vacio", vacio);
 	return "cambioPassword";
 	}
 	
@@ -206,7 +208,7 @@ public class SecurityController {
 	}
 	
 	@GetMapping("/deleteProfesor")
-	String deleteProfe(@ModelAttribute("profeaEliminar") EntityIdDTO profesor) throws SQLException {
+	String deleteProfe(@ModelAttribute("profeaEliminar") EntityIdDTO profesor,RedirectAttributes redirectAttributes) throws SQLException {
 		Profesor profeaEliminar=profeService.obtenerProfesorPorId(profesor.getId());
 		ArrayList<Alumno> misAlumnos= (ArrayList<Alumno>) alumnoService.listarAlumnos();
 		ArrayList<Profesor> misProfesores= (ArrayList<Profesor>) profeService.listarProfesores();
@@ -214,8 +216,9 @@ public class SecurityController {
 		int profe=(int) (Math.random()*misProfesores.size());
 		ArrayList<Profesor> profeTemp=new ArrayList<Profesor>();
 		ArrayList<Coche> cocheTemp=new ArrayList<Coche>();
+		boolean vacio=false;
 
-		
+		if(misProfesores.size()!=1) {
 		for(Alumno a:misAlumnos) {//para que los alumnos no se queden sin profesor
 			if(a.getProfesor().getId()==profeaEliminar.getId()) {
 				
@@ -267,6 +270,10 @@ public class SecurityController {
 
 	      connection.close();
 		profeService.eliminarProfesor(profeaEliminar);
+		}else {
+			vacio=true;
+		}
+		redirectAttributes.addFlashAttribute("vacio", vacio);
 		return "redirect:/seguridad/password#operat";
 	}
 	

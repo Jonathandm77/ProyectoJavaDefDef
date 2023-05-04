@@ -170,19 +170,24 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<h4 class="modal-title" id="exampleModalLabel">Crear profesor/a</h4>
-						<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+						<button class="close btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">x</span>
 						</button>
 					</div>
 					<div class="modal-body">
 						<p class="error-text">Introduce el nombre para el nuevo profesor
 							<!--formulario nombre a editar-->
-						<form action="#" th:action="@{/profesores/add/}" th:object="${profeNuevo}" method="post">
+						<form action="#" th:action="@{/profesores/add/}" th:object="${profeNuevo}" method="post" class="needs-validation" novalidate>
 							<div class"form-row">
 								<div class="form-group mt-1">
-									<label for="dni">Dni</label>
-									<input type="text" th:field="*{dni}" class="form-control" id="dni"
-										placeholder="DNI" />
+									<div class="form-group mt-1">
+										<label for="texto">DNI</label>
+										<input type="text" th:field="*{dni}" class="form-control" id="exampleInputDni"
+											required pattern="[0-9]{8}[a-zA-Z]" placeholder="DNI" />
+										<div class="alert alert-danger invalid-feedback">
+											Un DNI está formado por 8 números seguidos de una letra
+										</div>
+									</div>
 									<label for="nombre">Nombre</label>
 									<input type="text" th:field="*{nombre}" class="form-control" id="nombre"
 										placeholder="Nombre" />
@@ -313,5 +318,5 @@
 </body>
 
 
-
+<script th:src="@{/js/validaForm.js}"></script>
 </html>
