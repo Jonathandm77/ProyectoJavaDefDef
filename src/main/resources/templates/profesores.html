@@ -279,22 +279,39 @@
 
 
 		<div class="toast-container position-fixed bottom-0 end-0 p-3">
-			<div th:if="${vacio}" id="liveToast" class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+			<div th:if="${vacio}" id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true"
+				data-delay="5000">
 				<div class="toast-header">
-					<img src="..." class="rounded me-2" alt="...">
-					<strong class="me-auto">Bootstrap</strong>
-					<small>11 mins ago</small>
+					<i class="fas fa-exclamation-triangle me-2" style="color: #e00606;"></i>
+					<strong class="me-auto">¡Alerta!</strong>
+					<small>Justo ahora</small>
 					<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
 				</div>
 				<div class="toast-body">
-					Hello, world! This is a toast message.
+					¡No deberías dejar a la escuela sin profesores!
 				</div>
 			</div>
 		</div>
 
 
 	</div>
+	<script th:inline="javascript">
+		var vacio = /*[[${vacio}]]*/ false;
+
+		if (vacio) {
+			const toastLiveExample = document.getElementById('liveToast');
+			const toastBootstrap = new bootstrap.Toast(toastLiveExample);
+			const toastCloseButton = toastLiveExample.querySelector('.btn-close');
+
+			toastCloseButton.addEventListener('click', function () {
+				toastBootstrap.hide();
+			});
+
+			toastBootstrap.show();
+		}
+	</script>
 </body>
+
 
 
 </html>
