@@ -17,10 +17,11 @@
 		<h1>No hay alumnos que coincidan con tu búsqueda</h1>
 		</div>
 		
-		<div th:unless="${alumnosProfe.empty}" class="row col-5">
-			<div class="col-9">
+		<div th:unless="${alumnosProfe.empty}" class="row w-100">
+			<div class="w-100">
 				<h5> Datos de los alumnos</h5>
-				<div class="card border border primary" th:each="alumno:${alumnosProfe}">
+				<div class="col-8 d-flex justify-content-around w-100 flex-wrap">
+				<div class="card border border primary col-3 user-card" th:each="alumno:${alumnosProfe}">
 					<div class="card-body row pt-4 pb-4">
 						<div class="col-12">
 							<div class="card">
@@ -38,8 +39,10 @@
 					</div>
 				</div>
 			</div>
+			</div>
 			
 		</div>
 	</div>
 </body>
+<link rel="stylesheet" th:href="@{/css/usuarios.css}">
 </html>
