@@ -83,21 +83,25 @@ public class SecurityController {
 	model.addAttribute("userDelete", new UsuarioDTO());
 	boolean vacio = (Boolean) model.asMap().getOrDefault("vacio", false);
     model.addAttribute("vacio", vacio);
+    boolean status=(boolean) model.asMap().getOrDefault("status", false);
+    model.addAttribute("status",status);
 	return "cambioPassword";
 	}
 	
 	
 	
 	@PostMapping("/changePassword")
-	public String cambioPassword(@ModelAttribute("usuarioPassword") CambioContrasenaDTO userDTO, BindingResult bidingresult) {
+	public String cambioPassword(@ModelAttribute("usuarioPassword") CambioContrasenaDTO userDTO, BindingResult bidingresult,Model model,RedirectAttributes redirec) {
 		 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		    Usuario actualUser =(Usuario) auth.getPrincipal();
+		    boolean status=false;
 		    if(encoder.matches(userDTO.getActual(), actualUser.getPassword()) && userDTO.getNueva().equals(userDTO.getConfirm())) {
 		    	
 		    	actualUser.setPassword(encoder.encode(userDTO.getNueva()));
 		    	userService.insertarUsuario((Usuario) actualUser);
+		    	status=true;
 		    }
-		    	
+		    redirec.addFlashAttribute("status",status);
 		return "redirect:/seguridad/password#contras";
 	}
 	

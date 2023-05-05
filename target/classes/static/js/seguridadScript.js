@@ -14,13 +14,13 @@ buttonDatos.addEventListener('focus',function(){
 })
 
 buttonContras.addEventListener('focus',function(){
-    elemPasswd.style.display="block"
+    elemPasswd.style.display="flex"
     elemDatos.style.display="none"
     elemOp.style.display="none"
 })
 
 buttonOp.addEventListener('focus',function(){
-    elemOp.style.display="block"
+    elemOp.style.display="flex"
     elemPasswd.style.display="none"
     elemDatos.style.display="none"
 })
