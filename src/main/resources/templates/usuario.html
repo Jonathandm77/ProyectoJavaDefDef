@@ -9,19 +9,72 @@
 	<div th:insert="top"></div>
 
 	<div class="container">
-		<div class="card" th:object="${usuarioMostrar}">
-			<div class="card-body">
-				<h5 class="card-title">Datos del usuario</h5>
-				<ul class="list-group list-group-flush">
-					<li class="list-group-item"></li>
-					<li class="list-group-item">></li>
-					<li class="list-group-item"></li>
-					<li class="list-group-item"></li>
-				</ul>
+		<header>
+
+		</header>
+		<div class="row pl-5 pr-5">
+			<div class="col-9">
+				<h5> Información del usuario </h5>
+				<div class="card border border primary" th:object="${usuarioMostrar}">
+					<div class="card-body row pt-4 pb-4">
+						<div class="col-7">
+							<div class="card">
+								<div class="card-header text-dark bg-light">Información del usuario
+
+								</div>
+								<div class="card-body">
+									<div class="mb-2">
+										<h5 th:text="*{nombre}" class="mb-2 card-text"></h5>
+									</div>
+									<p><a th:href="@{/usuarios}" class="btn btn-primary mt-3">Cerrar</a></p>
+								</div>
+							</div>
+						</div>
+						<div class="col-5">
+							<div class="card">
+								<div class="card-header text-dark bg-light">Datos del usuario
+								</div>
+								<div class="card-body">
+									<span>
+										<span>Nombre:<p th:text="${usuarioMostrar.nombre}"
+												class="card-text mb-2 card-text"></p></span>
+									</span>
+									<span>
+										<span>Username:<p th:text="${usuarioMostrar.username}"
+												class="card-text mb-2 card-text"></p></span>
+									</span>
+									<span th:if="${usuarioMostrar.idProfesor != null}">
+										<span>Profesor:<p th:text="'Sí'" class="card-text mb-2 card-text"></p></span>
+									</span>
+									<span th:if="${usuarioMostrar.idProfesor == null}">
+										<span>Profesor:<p th:text="'No'" class="card-text mb-2 card-text"></p></span>
+									</span>
+									<span id="idProfesor" th:if="${usuarioMostrar.idProfesor != null}">
+										<span>ID del profesor:<p th:text="${usuarioMostrar.idProfesor}"
+												class="card-text mb-2 card-text"></p></span>
+										<div class="d-flex justify-content-end">
+											<a class="btn btn-primary"
+												th:href="@{/profesores/{id}(id=${usuarioMostrar.idProfesor})}">Ver
+												Profesor</a>
+										</div>
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-
 	</div>
+	<script>
+		var idProfesor = document.getElementById("idProfesor");
+		if (idProfesor.style.display === "none" && "${usuarioMostrar.idProfesor}" != null) {
+			idProfesor.style.display = "block";
+		} else if (idProfesor.style.display === "block" && "${usuarioMostrar.idProfesor}" == null) {
+			idProfesor.style.display = "none";
+		}
+	</script>
 </body>
+
 
 </html>

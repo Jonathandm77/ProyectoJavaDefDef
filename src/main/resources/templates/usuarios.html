@@ -27,7 +27,7 @@
 									<div class="mb-2">
 										<h5 th:text="${user.nombre}+', '+${user.username}" class="mb-2 card-text">Usuario</h5>
 									</div>
-									<p><a  class="btn btn-primary mt-3">Ver más</a></p>
+									<p><a th:href="@{/usuarios/{id}(id=${user.id})}" class="btn btn-primary mt-3">Ver más</a></p>
 								</div>
 							</div>
 						</div>

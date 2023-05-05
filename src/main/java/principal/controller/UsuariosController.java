@@ -52,7 +52,7 @@ return "usuarios";
 		return "redirect:/usuarios";
 	}
 
-	@GetMapping({ "/{id}" })
+	@GetMapping({"/{id}" })
 	String idUsuario(Model model, @PathVariable Integer id) {
 		Usuario usuarioMostrar = userService.obtenerUsuarioPorId(id);
 		model.addAttribute("usuarioMostrar", usuarioMostrar);
