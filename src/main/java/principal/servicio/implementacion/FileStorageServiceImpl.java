@@ -57,6 +57,17 @@ public class FileStorageServiceImpl implements FileStorageService {
       throw new RuntimeException("Error: " + e.getMessage());
     }
   }
+  
+  @Override
+  public void delete(String filename) {
+      Path file = root.resolve(filename);
+      try {
+          Files.deleteIfExists(file);
+      } catch (IOException e) {
+          throw new RuntimeException("Could not delete the file!");
+      }
+  }
+
 
   @Override
   public void deleteAll() {

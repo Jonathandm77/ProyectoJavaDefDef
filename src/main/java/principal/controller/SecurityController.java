@@ -148,6 +148,9 @@ public class SecurityController {
 			message = "Could not upload the image: " + file.getOriginalFilename() + ". Error: " + e.getMessage();
 			model.addAttribute("message", message);
 		}
+		if(actualUser.getImagenPerfil()!=null) {
+			storageService.delete(actualUser.getImagenPerfil());
+		}
 
 		actualUser.setNombre(user.getNombre());
 		actualUser.setUsername(user.getUsername());
