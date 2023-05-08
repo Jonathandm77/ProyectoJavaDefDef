@@ -133,14 +133,18 @@ public class Usuario implements UserDetails {
 	}
 	
 
-	public String getRutaImagenPerfil() {
+
+
+
+
+	public String getImagenPerfil() {
 		return imagenPerfil;
 	}
 
 
 
-	public void setRutaImagenPerfil(String rutaImagenPerfil) {
-		this.imagenPerfil = rutaImagenPerfil;
+	public void setImagenPerfil(String imagenPerfil) {
+		this.imagenPerfil = imagenPerfil;
 	}
 
 

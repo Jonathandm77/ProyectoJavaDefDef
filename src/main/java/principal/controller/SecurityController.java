@@ -1,19 +1,19 @@
 package principal.controller;
 
-
-import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -22,14 +22,16 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
+import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import principal.modelo.Alumno;
 import principal.modelo.Coche;
+import principal.modelo.ImageInfo;
 import principal.modelo.Profesor;
 import principal.modelo.ProfesoresCoches;
 import principal.modelo.Usuario;
@@ -47,21 +49,27 @@ import principal.servicio.implementacion.AlumnoServiceImpl;
 import principal.servicio.implementacion.CocheServiceImpl;
 import principal.servicio.implementacion.ProfesorServiceImpl;
 import principal.servicio.implementacion.UsuarioServiceImpl;
+import principal.servicio.interfaces.FileStorageService;
 
 @RequestMapping("/seguridad/password")
 @Controller
 public class SecurityController {
-	
-	@Autowired UsuarioServiceImpl userService;
-	@Autowired ProfesorServiceImpl profeService;
-	@Autowired CocheServiceImpl cocheService;
-	@Autowired AlumnoServiceImpl alumnoService;
 
-	
-	private BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
-	
-	@GetMapping(value={"","/"})
-	String homeSecurity(Model model,HttpServletRequest request) {
+	@Autowired
+	UsuarioServiceImpl userService;
+	@Autowired
+	ProfesorServiceImpl profeService;
+	@Autowired
+	CocheServiceImpl cocheService;
+	@Autowired
+	AlumnoServiceImpl alumnoService;
+	@Autowired
+	FileStorageService storageService;
+
+	private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+	@GetMapping(value = { "", "/" })
+	String homeSecurity(Model model, HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Usuario actualUser = (Usuario) auth.getPrincipal();
 	    ArrayList<Usuario>listaUsuarios=(ArrayList<Usuario>) userService.listarUsuarios();
@@ -85,11 +93,26 @@ public class SecurityController {
     model.addAttribute("vacio", vacio);
     int status= (int) model.asMap().getOrDefault("status", 0);
     model.addAttribute("status",status);
+    
+    if(actualUser.getImagenPerfil()!=null) {
+		Resource resource = storageService.load(actualUser.getImagenPerfil());
+		String url = MvcUriComponentsBuilder.fromMethodName(SecurityController.class, "serveFile", resource.getFilename())
+		    .build().toString();
+		ImageInfo img = new ImageInfo(resource.getFilename(), url);
+
+	model.addAttribute("img",img);
+	}
 	return "cambioPassword";
 	}
 	
-	
-	
+	  @GetMapping("/images/{filename:.+}")
+	  public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
+		    Resource file = storageService.load(filename);
+
+		    return ResponseEntity.ok()
+		        .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"").body(file);
+		  }
+
 	@PostMapping("/changePassword")
 	public String cambioPassword(@ModelAttribute("usuarioPassword") CambioContrasenaDTO userDTO, BindingResult bidingresult,Model model,RedirectAttributes redirec) {
 		 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -106,70 +129,69 @@ public class SecurityController {
 		    redirec.addFlashAttribute("status",status);
 		return "redirect:/seguridad/password#contras";
 	}
-	
+
 	@PostMapping("/changeData")
-	public String cambioDatos(@ModelAttribute("usuarioActual") UsuarioNombreUsernameImageDTO user, BindingResult bidingresult, @RequestParam("imagen") MultipartFile imagen) throws IOException {
-	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	    Usuario actualUser =(Usuario) auth.getPrincipal();
+	public String cambioDatos(@ModelAttribute("usuarioActual") UsuarioNombreUsernameImageDTO user,
+			BindingResult bidingresult, @RequestParam("file") MultipartFile file,Model model) throws IOException {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Usuario actualUser = (Usuario) auth.getPrincipal();
 
-	    // Guardar imagen
-	    String rutaImagen = "C:\\Users\\jonat\\Documents\\workspace-spring-tool-suite-4-4.17.2.RELEASE\\ProyectoDEF\\src\\main\\resources\\static\\img\\";
-	    if (!imagen.isEmpty()) {
-	        rutaImagen = "C:\\Users\\jonat\\Documents\\workspace-spring-tool-suite-4-4.17.2.RELEASE\\ProyectoDEF\\src\\main\\resources\\static\\img\\" + imagen.getOriginalFilename();
-	        imagen.transferTo(new File(rutaImagen));
-	        System.out.println("Ruta de destino: " + new File(rutaImagen).getAbsolutePath());
-	    }
+		// Guardar imagen
+		String message = "";
 
-	    
-	    actualUser.setNombre(user.getNombre());
-	    actualUser.setUsername(user.getUsername());
-	    actualUser.setRutaImagenPerfil(rutaImagen);
-	    userService.insertarUsuario(actualUser);
+		try {
+			storageService.save(file);
 
-	    return "redirect:/seguridad/password#data";
-	
-	    
-	    //obtener imagen
-	    
-	   /* @GetMapping("/usuario/{id}")
-	    public String verPerfil(@PathVariable Long id, Model model) {
-	        // Obtener instancia de Usuario de la base de datos
-	        Usuario usuario = usuarioService.obtenerUsuarioPorId(id);
-	        if (usuario == null) {
-	            return "error404";
-	        }
-	        
-	        // Obtener ruta de la imagen almacenada en el atributo imagenPerfil de Usuario
-	        String rutaImagen = usuario.getImagenPerfil();
-	        
-	        // Cargar imagen desde la ruta obtenida
-	        File imagen = new File(rutaImagen);
-	        if (imagen.exists()) {
-	            // Agregar la imagen al modelo para mostrarla en la página
-	            model.addAttribute("imagenPerfil", imagen);
-	        }
-	        
-	        // Agregar el Usuario al modelo para mostrar su información en la página
-	        model.addAttribute("usuario", usuario);
-	        
-	        return "perfil";
-	    }*/
-	    /*
-	    <img src="file:${imagenPerfil.absolutePath}" alt="Imagen de perfil">*/
+			message = "Uploaded the image successfully: " + file.getOriginalFilename();
+			model.addAttribute("message", message);
+		} catch (Exception e) {
+			message = "Could not upload the image: " + file.getOriginalFilename() + ". Error: " + e.getMessage();
+			model.addAttribute("message", message);
+		}
 
+		actualUser.setNombre(user.getNombre());
+		actualUser.setUsername(user.getUsername());
+		actualUser.setImagenPerfil(file.getOriginalFilename());
+		userService.insertarUsuario(actualUser);
+
+		return "redirect:/seguridad/password#data";
+
+		// obtener imagen
+
+		/*
+		 * @GetMapping("/usuario/{id}") public String verPerfil(@PathVariable Long id,
+		 * Model model) { // Obtener instancia de Usuario de la base de datos Usuario
+		 * usuario = usuarioService.obtenerUsuarioPorId(id); if (usuario == null) {
+		 * return "error404"; }
+		 * 
+		 * // Obtener ruta de la imagen almacenada en el atributo imagenPerfil de
+		 * Usuario String rutaImagen = usuario.getImagenPerfil();
+		 * 
+		 * // Cargar imagen desde la ruta obtenida File imagen = new File(rutaImagen);
+		 * if (imagen.exists()) { // Agregar la imagen al modelo para mostrarla en la
+		 * página model.addAttribute("imagenPerfil", imagen); }
+		 * 
+		 * // Agregar el Usuario al modelo para mostrar su información en la página
+		 * model.addAttribute("usuario", usuario);
+		 * 
+		 * return "perfil"; }
+		 */
+		/*
+		 * <img src="file:${imagenPerfil.absolutePath}" alt="Imagen de perfil">
+		 */
 
 	}
 
-	
 	@PostMapping("/addAlumno")
-	public String addAlumno(@ModelAttribute("alumnoNuevo") Alumno alumnoNew, BindingResult bidingresult) throws SQLException {
-		Profesor profeNuevo=profeService.obtenerProfesorPorId(alumnoNew.getProfesor().getId());
-		Coche cocheNuevo=cocheService.obtenerCochePorId(alumnoNew.getCoche().getId());
+	public String addAlumno(@ModelAttribute("alumnoNuevo") Alumno alumnoNew, BindingResult bidingresult)
+			throws SQLException {
+		Profesor profeNuevo = profeService.obtenerProfesorPorId(alumnoNew.getProfesor().getId());
+		Coche cocheNuevo = cocheService.obtenerCochePorId(alumnoNew.getCoche().getId());
 		alumnoNew.setProfesor(profeNuevo);
 		profeNuevo.getAlumnos().add(alumnoNew);
 		alumnoNew.setCoche(cocheNuevo);
 		cocheNuevo.getAlumnos().add(alumnoNew);
-		if(!profeNuevo.getCoches().contains(cocheNuevo)) {
+		if (!profeNuevo.getCoches().contains(cocheNuevo)) {
 			cocheService.insertarCoche(cocheNuevo);
 			profeService.insertarProfesor(profeNuevo);
 			profeNuevo.juegoLlaves(cocheNuevo);
@@ -177,42 +199,40 @@ public class SecurityController {
 		alumnoService.insertarAlumno(alumnoNew);
 		return "redirect:/seguridad/password#operat";
 	}
-	
-	
+
 	@GetMapping("/deleteAlumno")
-	String deleteAlumno(@ModelAttribute("alumnoaEliminar")EntityIdDTO a) {
+	String deleteAlumno(@ModelAttribute("alumnoaEliminar") EntityIdDTO a) {
 		alumnoService.eliminarAlumnoPorId(a.getId());
-		
+
 		return "redirect:/seguridad/password#operat";
 	}
-	
+
 	@PostMapping("/searchAlumnoByName")
-	String buscarAlumnoPorNombre(Model model,@ModelAttribute("alumnoaBuscar") AlumnoBuscarNameDTO alumnoBuscado, BindingResult bidingresult) {
-		ArrayList<Alumno> misAlumnos= alumnoService.encontrarAlumnosPorNombre(alumnoBuscado.getNombre());
-		model.addAttribute("alumnosBuscados",misAlumnos);
-		
-		
+	String buscarAlumnoPorNombre(Model model, @ModelAttribute("alumnoaBuscar") AlumnoBuscarNameDTO alumnoBuscado,
+			BindingResult bidingresult) {
+		ArrayList<Alumno> misAlumnos = alumnoService.encontrarAlumnosPorNombre(alumnoBuscado.getNombre());
+		model.addAttribute("alumnosBuscados", misAlumnos);
+
 		return "AlumnosBuscados";
-		
+
 	}
-	
+
 	@PostMapping("/searchAlumnoByDni")
-	String buscarAlumnoPorDni(Model model,@ModelAttribute("alumnoaBuscar") AlumnoBuscarDniDTO alumnoBuscado, BindingResult bidingresult) {
-		ArrayList<Alumno> misAlumnos= alumnoService.encontrarAlumnosPorDni(alumnoBuscado.getDni());
-		model.addAttribute("alumnosBuscados",misAlumnos);
-		
-		
-		
+	String buscarAlumnoPorDni(Model model, @ModelAttribute("alumnoaBuscar") AlumnoBuscarDniDTO alumnoBuscado,
+			BindingResult bidingresult) {
+		ArrayList<Alumno> misAlumnos = alumnoService.encontrarAlumnosPorDni(alumnoBuscado.getDni());
+		model.addAttribute("alumnosBuscados", misAlumnos);
+
 		return "AlumnosBuscados";
-		
+
 	}
-	
+
 	@PostMapping("/addProfesor")
 	public String addProfesor(@ModelAttribute("profeNuevo") Profesor profeNew, BindingResult bidingresult) {
 		profeService.insertarProfesor(profeNew);
 		return "redirect:/seguridad/password#operat";
 	}
-	
+
 	@GetMapping("/deleteProfesor")
 	String deleteProfe(@ModelAttribute("profeaEliminar") EntityIdDTO profesor,RedirectAttributes redirectAttributes) throws SQLException {
 		Profesor profeaEliminar=profeService.obtenerProfesorPorId(profesor.getId());
@@ -282,150 +302,151 @@ public class SecurityController {
 		redirectAttributes.addFlashAttribute("vacio", vacio);
 		return "redirect:/seguridad/password#operat";
 	}
-	
+
 	@PostMapping("/searchProfesorByName")
-	String buscarProfesorPorNombre(Model model,@ModelAttribute("profeaBuscar") ProfesorBuscarNameDTO profeBuscado, BindingResult bidingresult) {
-		ArrayList<Profesor> misProfes= profeService.encontrarProfesoresPorNombre(profeBuscado.getNombre());
-		model.addAttribute("profesBuscados",misProfes);
-		
-		
+	String buscarProfesorPorNombre(Model model, @ModelAttribute("profeaBuscar") ProfesorBuscarNameDTO profeBuscado,
+			BindingResult bidingresult) {
+		ArrayList<Profesor> misProfes = profeService.encontrarProfesoresPorNombre(profeBuscado.getNombre());
+		model.addAttribute("profesBuscados", misProfes);
+
 		return "profesoresBuscados";
-		
+
 	}
-	
-	@PostMapping({"/searchProfesorByDni"})
-	String buscarProfesorPorDni(Model model,@ModelAttribute("profeaBuscar") ProfesorBuscarDniDTO profeBuscado, BindingResult bidingresult) {
-		ArrayList<Profesor> profesor= profeService.encontrarProfesorPorDni(profeBuscado.getDni());
-		
-		model.addAttribute("profesBuscados",profesor);
-		
-		
+
+	@PostMapping({ "/searchProfesorByDni" })
+	String buscarProfesorPorDni(Model model, @ModelAttribute("profeaBuscar") ProfesorBuscarDniDTO profeBuscado,
+			BindingResult bidingresult) {
+		ArrayList<Profesor> profesor = profeService.encontrarProfesorPorDni(profeBuscado.getDni());
+
+		model.addAttribute("profesBuscados", profesor);
+
 		return "profesoresBuscados";
-		
+
 	}
-	
+
 	@PostMapping("/addCoche")
 	public String addCoche(@ModelAttribute("cocheNuevo") Coche cocheNew, BindingResult bidingresult) {
 		cocheService.insertarCoche(cocheNew);
 		return "redirect:/seguridad/password#operat";
 	}
-	
-	@GetMapping({"/deleteCoche"})
-	String deleteCoche(@ModelAttribute("cocheaEliminar")Coche cocheEliminar) throws SQLException {
-		Coche cocheaEliminar=cocheService.obtenerCochePorId(cocheEliminar.getId());
-		ArrayList<Alumno> misAlumnos= (ArrayList<Alumno>) alumnoService.listarAlumnos();
-		ArrayList<Coche> misCoches=(ArrayList<Coche>) cocheService.listarCoches();
-		ArrayList<Profesor> misProfes=(ArrayList<Profesor>) profeService.listarProfesores();
-		ArrayList<Profesor> profeTemp=new ArrayList<Profesor>();//almacenamos las nuevas combinaciones de profesores y coches
-		ArrayList<Coche> cocheTemp=new ArrayList<Coche>();
-		for(Alumno a:misAlumnos) {
-			if(a.getCoche().getId()==cocheaEliminar.getId()) {
-				int coche=(int) (Math.random()*misCoches.size());
-				if(misCoches.isEmpty() || misCoches.size()==1) {
-					Coche cGenerico=new Coche("5678 GHS","2021 XS","Nissan");
+
+	@GetMapping({ "/deleteCoche" })
+	String deleteCoche(@ModelAttribute("cocheaEliminar") Coche cocheEliminar) throws SQLException {
+		Coche cocheaEliminar = cocheService.obtenerCochePorId(cocheEliminar.getId());
+		ArrayList<Alumno> misAlumnos = (ArrayList<Alumno>) alumnoService.listarAlumnos();
+		ArrayList<Coche> misCoches = (ArrayList<Coche>) cocheService.listarCoches();
+		ArrayList<Profesor> misProfes = (ArrayList<Profesor>) profeService.listarProfesores();
+		ArrayList<Profesor> profeTemp = new ArrayList<Profesor>();// almacenamos las nuevas combinaciones de profesores
+																	// y coches
+		ArrayList<Coche> cocheTemp = new ArrayList<Coche>();
+		for (Alumno a : misAlumnos) {
+			if (a.getCoche().getId() == cocheaEliminar.getId()) {
+				int coche = (int) (Math.random() * misCoches.size());
+				if (misCoches.isEmpty() || misCoches.size() == 1) {
+					Coche cGenerico = new Coche("5678 GHS", "2021 XS", "Nissan");
 					misCoches.add(cGenerico);
-					//misCoches.get(0).setFechaITV(fecha);
-					a.setCoche(cGenerico);//si no queda ningun coche crear coche generico
+					// misCoches.get(0).setFechaITV(fecha);
+					a.setCoche(cGenerico);// si no queda ningun coche crear coche generico
 					profeTemp.add(a.getProfesor());
 					cocheTemp.add(a.getCoche());
 					cocheService.insertarCoche(cGenerico);
-				}else {
-				
-				
-				do {
-					 coche=(int)(Math.random()*misCoches.size());
-				}while(coche==misCoches.indexOf(a.getCoche()));
-				a.setCoche(misCoches.get(coche));
-				profeTemp.add(a.getProfesor());
-				cocheTemp.add(a.getCoche());
+				} else {
+
+					do {
+						coche = (int) (Math.random() * misCoches.size());
+					} while (coche == misCoches.indexOf(a.getCoche()));
+					a.setCoche(misCoches.get(coche));
+					profeTemp.add(a.getProfesor());
+					cocheTemp.add(a.getCoche());
 				}
 				misCoches.get(coche).getAlumnos().add(a);
 				alumnoService.insertarAlumno(a);
 				profeService.insertarProfesor(profeService.obtenerProfesorPorId(a.getProfesor().getId()));
 				cocheService.insertarCoche(cocheService.obtenerCochePorId(misCoches.get(coche).getId()));//
 			}
-			}
-		
+		}
+
 		List<ProfesoresCoches> elementosAEliminar = new ArrayList<>();
-		
-		for(Profesor a:misProfes) {
-			if(!a.getCoches().isEmpty()) {
-				for(ProfesoresCoches c:a.getCoches()) {
-					if(c.getCoche().getId()==cocheaEliminar.getId()) {
+
+		for (Profesor a : misProfes) {
+			if (!a.getCoches().isEmpty()) {
+				for (ProfesoresCoches c : a.getCoches()) {
+					if (c.getCoche().getId() == cocheaEliminar.getId()) {
 						c.setCoche(null);
-				c.setProfesor(null);
-				elementosAEliminar.add(c);
+						c.setProfesor(null);
+						elementosAEliminar.add(c);
 					}
-					
+
 				}
 				a.getCoches().removeAll(elementosAEliminar);
-		        elementosAEliminar.clear();
+				elementosAEliminar.clear();
 			}
 			profeService.insertarProfesor(a);
 		}
-			
+
 		cocheaEliminar.getAlumnos().clear();
 		cocheaEliminar.getProfesores().clear();
-		if(profeTemp!=null) {
-			for(int i=0;i<profeTemp.size();i++) {
-				
+		if (profeTemp != null) {
+			for (int i = 0; i < profeTemp.size(); i++) {
+
 				profeTemp.get(i).juegoLlaves(cocheTemp.get(i));
 			}
-			}
-		Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/proyecto", "root","");
-
-	      String sql = "DELETE FROM profesores_coches WHERE coche_id = "+cocheaEliminar.getId();
-
-	      Statement statement = connection.createStatement();
-	      statement.executeUpdate(sql);
-
-	      connection.close();
-		cocheService.eliminarCoche(cocheaEliminar);
-		
-		return "redirect:/seguridad/password#operat";
 		}
-	
-	@PostMapping({"/searchCochesByMarca"})
-	String buscarCochePorMarca(Model model,@ModelAttribute("cocheaBuscar") CocheBuscarMarcaDTO cocheBuscado,BindingResult bidingresult) {
-		ArrayList<Coche> cochesMarca= cocheService.obtenerCochesPorMarca(cocheBuscado.getMarca());
-		model.addAttribute("cochesMarca",cochesMarca);
-		
-		
+		Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/proyecto", "root", "");
+
+		String sql = "DELETE FROM profesores_coches WHERE coche_id = " + cocheaEliminar.getId();
+
+		Statement statement = connection.createStatement();
+		statement.executeUpdate(sql);
+
+		connection.close();
+		cocheService.eliminarCoche(cocheaEliminar);
+
+		return "redirect:/seguridad/password#operat";
+	}
+
+	@PostMapping({ "/searchCochesByMarca" })
+	String buscarCochePorMarca(Model model, @ModelAttribute("cocheaBuscar") CocheBuscarMarcaDTO cocheBuscado,
+			BindingResult bidingresult) {
+		ArrayList<Coche> cochesMarca = cocheService.obtenerCochesPorMarca(cocheBuscado.getMarca());
+		model.addAttribute("cochesMarca", cochesMarca);
+
 		return "cochesBuscadosPorMarca";
-		
+
 	}
-	
-	@PostMapping({"/searchCocheByMatricula"})
-	String buscarCochePorMatricula(Model model,@ModelAttribute("cocheaBuscar") CocheBuscarMatriculaDTO cocheBuscado,BindingResult bidingresult) {
-		Coche c=cocheService.encontrarCochePorMatricula(cocheBuscado.getMatricula());
-		int id=c.getId();
-		
-		return "redirect:/coches/"+id;
-		
+
+	@PostMapping({ "/searchCocheByMatricula" })
+	String buscarCochePorMatricula(Model model, @ModelAttribute("cocheaBuscar") CocheBuscarMatriculaDTO cocheBuscado,
+			BindingResult bidingresult) {
+		Coche c = cocheService.encontrarCochePorMatricula(cocheBuscado.getMatricula());
+		int id = c.getId();
+
+		return "redirect:/coches/" + id;
+
 	}
-	
+
 	@PostMapping("/addUsuario")
 	public String addUsuario(@ModelAttribute("newUserDTO") UsuarioDTO usuarioNew, BindingResult bidingresult) {
-		if(usuarioNew.isEsProfesor()) {
-			Usuario userProfesor=new Usuario();
+		if (usuarioNew.isEsProfesor()) {
+			Usuario userProfesor = new Usuario();
 			userProfesor.setNombre(usuarioNew.getNombre());
 			userProfesor.setPassword(usuarioNew.getPassword());
 			userProfesor.setUsername(usuarioNew.getUsername());
 			userProfesor.setIdProfesor(usuarioNew.getIdProfesor());
 			userService.insertarUsuarioProfesor(userProfesor);
-		}else {
-			
+		} else {
+
 			userService.insertarUsuarioDTO(usuarioNew);
-		}		
-		
+		}
+
 		return "redirect:/seguridad/password#operat";
 	}
-	
-	@GetMapping({"/deleteUsuario" })
+
+	@GetMapping({ "/deleteUsuario" })
 	String deleteUsuario(Model model, @ModelAttribute("userDelete") EntityIdDTO user) {
 		Usuario usuarioaEliminar = userService.obtenerUsuarioPorId(user.getId());
 		userService.eliminarUsuario(usuarioaEliminar);
 		return "redirect:/seguridad/password#operat";
 	}
-	
+
 }
