@@ -53,6 +53,8 @@ public class Coche {
 	@OneToMany(mappedBy = "profesor", cascade=CascadeType.ALL,orphanRemoval=true)
 	private Set<ProfesoresCoches> profesores;
 	
+	@Column(name="foto")
+	public String foto;
 	
 	
 	
@@ -163,6 +165,16 @@ public class Coche {
 	}
 	public void setProfesores(Set<ProfesoresCoches> profesores) {
 		this.profesores = profesores;
+	}
+	
+
+	public String getFoto() {
+		return foto;
+	}
+
+
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
 
 

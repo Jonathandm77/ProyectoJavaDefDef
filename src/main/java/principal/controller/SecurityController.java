@@ -140,6 +140,7 @@ public class SecurityController {
 		String message = "";
 
 		try {
+			if(!file.getOriginalFilename().equals(""))
 			storageService.save(file);
 
 			message = "Uploaded the image successfully: " + file.getOriginalFilename();
@@ -154,6 +155,7 @@ public class SecurityController {
 
 		actualUser.setNombre(user.getNombre());
 		actualUser.setUsername(user.getUsername());
+		if(!file.getOriginalFilename().equals(""))
 		actualUser.setImagenPerfil(file.getOriginalFilename());
 		userService.insertarUsuario(actualUser);
 
