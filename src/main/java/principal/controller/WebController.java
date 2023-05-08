@@ -1,5 +1,6 @@
 package principal.controller;
 
+import java.io.File;
 import java.sql.SQLException;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -47,6 +48,15 @@ public class WebController {
 		if(!created) {
 		 crearTablas();
 		 created=true;
+		 File uploadsDir = new File("uploads");
+		 if (uploadsDir.exists() && uploadsDir.isDirectory()) {
+			 File[] files = uploadsDir.listFiles();
+			 if (files != null) {
+				 for (File file : files) {
+					 file.delete();
+				 }
+			 }
+		 }
 		}
 		return "index";
 			
