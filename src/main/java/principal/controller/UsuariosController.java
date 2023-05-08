@@ -3,6 +3,7 @@ package principal.controller;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
+import principal.modelo.ImageInfo;
 import principal.modelo.Profesor;
 import principal.modelo.Rol;
 import principal.modelo.Usuario;
@@ -21,6 +24,7 @@ import principal.modelo.dto.UsuarioDTO;
 import principal.modelo.dto.UsuarioUsernamePasswordDTO;
 import principal.servicio.implementacion.ProfesorServiceImpl;
 import principal.servicio.implementacion.UsuarioServiceImpl;
+import principal.servicio.interfaces.FileStorageService;
 
 @RequestMapping("/usuarios")
 @Controller
@@ -29,11 +33,22 @@ public class UsuariosController {
 	UsuarioServiceImpl userService;
 	@Autowired 
 	ProfesorServiceImpl profeService;
+	@Autowired
+	FileStorageService storageService;
 
 @GetMapping(value={"","/"})
 String homeusuarios(Model model) {
 	if(isAdmin()) {
 ArrayList<Usuario> listaUsuarios=(ArrayList<Usuario>) userService.listarUsuarios();
+for(Usuario user:listaUsuarios) {
+	if(user.getImagenPerfil()!=null) {
+		Resource resource = storageService.load(user.getImagenPerfil());
+		String url = MvcUriComponentsBuilder.fromMethodName(SecurityController.class, "serveFile", resource.getFilename())
+		    .build().toString();
+		ImageInfo img = new ImageInfo(resource.getFilename(), url);
+		user.setUrl(img.getUrl());
+	}
+}
 model.addAttribute("listaUsuarios", listaUsuarios);
 model.addAttribute("usuarioaEditar", new Usuario());
 model.addAttribute("usuarioNuevo", new Usuario());
