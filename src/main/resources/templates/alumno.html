@@ -119,23 +119,32 @@
 							</div>
 						</div>
 
-						<div class="col-5 mt-3 ms-auto">
-							<div th:each="clase, iter : ${listaClases}" class="accordion accordion-flush" th:id="'accordionFlushExample-' + ${iter.index}">
+						<div class="col-5 mt-3 ms-auto d-flex flex-column ">
+							<div th:each="clase, iter : ${listaClases}" class="accordion accordion-flush"
+								th:id="'accordionFlushExample-' + ${iter.index}">
 								<div class="accordion-item border">
 									<h2 class="accordion-header">
 										<button class="accordion-button collapsed" type="button"
 											data-bs-toggle="collapse"
 											th:data-bs-target="'#flush-collapse-' + ${iter.index}" aria-expanded="false"
-											th:aria-controls="'flush-collapse-' + ${iter.index}" th:text="'Clase del '+${clase.fecha}">
-											
+											th:aria-controls="'flush-collapse-' + ${iter.index}"
+											th:text="'Clase del '+${clase.fecha}">
+
 										</button>
 									</h2>
 									<div th:id="'flush-collapse-' + ${iter.index}" class="accordion-collapse collapse"
 										th:data-bs-parent="'#accordionFlushExample-' + ${iter.index}">
-										<div class="accordion-body" th:text="'Clase a las '+${#dates.format(clase.hora, 'HH:mm')}+' con '+${clase.profesor.nombre}+' '+${clase.profesor.apellidos}+' y el coche '+${clase.coche.marca}+' '+${clase.coche.modelo}"></div>
+										<div class="accordion-body"
+											th:text="'Clase a las '+${#dates.format(clase.hora, 'HH:mm')}+' con '+${clase.profesor.nombre}+' '+${clase.profesor.apellidos}+' y el coche '+${clase.coche.marca}+' '+${clase.coche.modelo}">
+										</div>
 									</div>
 								</div>
 							</div>
+							<a th:attr="data-target='#modal-create-class'" data-toggle="modal"
+								data-target="#modal-create-class"
+								class="btn btn-primary float-end mt-3">
+								Añadir clase
+							</a>
 						</div>
 
 
