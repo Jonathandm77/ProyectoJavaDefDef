@@ -160,31 +160,6 @@ public class SecurityController {
 		userService.insertarUsuario(actualUser);
 
 		return "redirect:/seguridad/password#data";
-
-		// obtener imagen
-
-		/*
-		 * @GetMapping("/usuario/{id}") public String verPerfil(@PathVariable Long id,
-		 * Model model) { // Obtener instancia de Usuario de la base de datos Usuario
-		 * usuario = usuarioService.obtenerUsuarioPorId(id); if (usuario == null) {
-		 * return "error404"; }
-		 * 
-		 * // Obtener ruta de la imagen almacenada en el atributo imagenPerfil de
-		 * Usuario String rutaImagen = usuario.getImagenPerfil();
-		 * 
-		 * // Cargar imagen desde la ruta obtenida File imagen = new File(rutaImagen);
-		 * if (imagen.exists()) { // Agregar la imagen al modelo para mostrarla en la
-		 * página model.addAttribute("imagenPerfil", imagen); }
-		 * 
-		 * // Agregar el Usuario al modelo para mostrar su información en la página
-		 * model.addAttribute("usuario", usuario);
-		 * 
-		 * return "perfil"; }
-		 */
-		/*
-		 * <img src="file:${imagenPerfil.absolutePath}" alt="Imagen de perfil">
-		 */
-
 	}
 
 	@PostMapping("/addAlumno")
@@ -192,6 +167,11 @@ public class SecurityController {
 			throws SQLException {
 		Profesor profeNuevo = profeService.obtenerProfesorPorId(alumnoNew.getProfesor().getId());
 		Coche cocheNuevo = cocheService.obtenerCochePorId(alumnoNew.getCoche().getId());
+		String dni=alumnoNew.getDni();
+		char letra=dni.charAt(8);
+		letra=Character.toUpperCase(letra);
+		dni=dni.substring(0,8)+letra;
+		alumnoNew.setDni(dni);
 		alumnoNew.setProfesor(profeNuevo);
 		profeNuevo.getAlumnos().add(alumnoNew);
 		alumnoNew.setCoche(cocheNuevo);

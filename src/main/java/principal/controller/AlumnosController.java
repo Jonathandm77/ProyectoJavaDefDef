@@ -71,6 +71,11 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 		public String addAlumno(@ModelAttribute("alumnoNuevo") Alumno alumnoNew, BindingResult bidingresult) throws SQLException {
 			Profesor profeNuevo=profeService.obtenerProfesorPorId(alumnoNew.getProfesor().getId());
 			Coche cocheNuevo=cocheService.obtenerCochePorId(alumnoNew.getCoche().getId());
+			String dni=alumnoNew.getDni();
+			char letra=dni.charAt(8);
+			letra=Character.toUpperCase(letra);
+			dni=dni.substring(0,8)+letra;
+			alumnoNew.setDni(dni);
 			alumnoNew.setProfesor(profeNuevo);
 			profeNuevo.getAlumnos().add(alumnoNew);
 			alumnoNew.setCoche(cocheNuevo);
