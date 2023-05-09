@@ -3288,3 +3288,6 @@ java.lang.NullPointerException: Cannot invoke "String.equals(Object)" because th
 2023-05-09 08:39:49.325 TRACE 19928 --- [http-nio-8095-exec-6] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
 2023-05-09 08:49:38.986 TRACE 19928 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
 2023-05-09 08:49:38.988 TRACE 19928 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-05-09 08:49:38.988 TRACE 19928 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-05-09 09:37:42.433  INFO 11504 --- [main] principal.App                            : Starting App using Java 17.0.6 on IOT-PC08 with PID 11504 (C:\Users\practicasiot05\Documents\workspace-spring-tool-suite-4-4.18.0.RELEASE\ProyectoDEF\target\classes started by practicasiot05 in C:\Users\practicasiot05\Documents\workspace-spring-tool-suite-4-4.18.0.RELEASE\ProyectoDEF)
+2023-05-09 09:37:42.439  INFO 11504 --- [main] principal.App                            : No active profile set, falling back to 1 default profile: "default"
