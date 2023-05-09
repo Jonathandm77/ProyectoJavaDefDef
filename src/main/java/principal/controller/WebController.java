@@ -12,12 +12,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import principal.modelo.Alumno;
+import principal.modelo.Clase;
 import principal.modelo.Coche;
 import principal.modelo.Profesor;
 import principal.modelo.Rol;
 import principal.modelo.Usuario;
 import principal.persistencia.RolRepo;
 import principal.servicio.implementacion.AlumnoServiceImpl;
+import principal.servicio.implementacion.ClaseServiceImpl;
 import principal.servicio.implementacion.CocheServiceImpl;
 import principal.servicio.implementacion.ProfesorServiceImpl;
 import principal.servicio.implementacion.UsuarioServiceImpl;
@@ -40,6 +42,9 @@ public class WebController {
 	
 	@Autowired
 	RolRepo rolRepo;
+	
+	@Autowired
+	ClaseServiceImpl claseService;
 	
 	boolean created=false;
 	
@@ -156,6 +161,34 @@ public class WebController {
 		
 		alumnoService.insertarAlumno(a1);
 		alumnoService.insertarAlumno(a2);
+		
+		Clase clase1=new Clase(a1);
+		Calendar calendar3 = Calendar.getInstance();
+		calendar3.set(2023, Calendar.JULY, 23);
+		Date fecha3=calendar3.getTime();
+		clase1.setFecha(fecha3);
+		
+		Calendar calendar5 = Calendar.getInstance();
+		calendar5.set(Calendar.HOUR_OF_DAY, 13);
+		calendar5.set(Calendar.MINUTE, 20);
+		Date hora = calendar5.getTime();
+		clase1.setHora(hora);
+
+		
+		claseService.insertarClase(clase1);
+		
+		Clase clase2=new Clase(a2);
+		Calendar calendar4 = Calendar.getInstance();
+		calendar4.set(2023, Calendar.JUNE, 12);
+		Date fecha4=calendar3.getTime();
+		clase2.setFecha(fecha4);
+		
+		Calendar calendar6 = Calendar.getInstance();
+		calendar6.set(Calendar.HOUR_OF_DAY, 11);
+		calendar6.set(Calendar.MINUTE, 30);
+		Date hora2 = calendar6.getTime();
+		clase2.setHora(hora2);
+		claseService.insertarClase(clase2);
 		
 		
 		
