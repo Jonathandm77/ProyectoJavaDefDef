@@ -1,5 +1,9 @@
 package principal.modelo;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -42,6 +47,9 @@ public class Alumno {
 	@JoinColumn(name = "id_Coche", nullable = false)
 	private Coche coche;
 	
+	@OneToMany(mappedBy = "alumno", cascade=CascadeType.REMOVE)
+	private Set<Clase> clases;
+	
 	
 	
 	
@@ -55,6 +63,7 @@ public class Alumno {
 public Alumno() {
 		profesor=new Profesor();
 		coche=new Coche();
+		clases=new HashSet<Clase>();
 	}
 
 public Alumno(String nombre, String dni) {
@@ -63,6 +72,7 @@ public Alumno(String nombre, String dni) {
 		this.dni = dni;
 		profesor=new Profesor();
 		coche=new Coche();
+		clases=new HashSet<Clase>();
 	}
 
 
@@ -83,6 +93,7 @@ public Alumno(String nombre, String dni) {
 	this.notas = notas;
 	this.profesor = new Profesor();
 	this.coche = new Coche();
+	clases=new HashSet<Clase>();
 }
 
 	public String getNombre() {
@@ -142,11 +153,23 @@ public Alumno(String nombre, String dni) {
 	public void setCoche(Coche coche) {
 		this.coche = coche;
 	}
+	
+	public Set<Clase> getClases() {
+		return clases;
+	}
+
+	public void setClases(Set<Clase> clases) {
+		this.clases = clases;
+	}
 
 	@Override
 	public String toString() {
 		return "Alumno [id=" + id + ", dni=" + dni + ", nombre=" + nombre + ", apellidos=" + apellidos + ", profesor="
 				+ profesor + ", coche=" + coche + "]";
+	}
+	
+	public void añadirClase (Clase c) {
+		this.clases.add(c);
 	}
 	
 	

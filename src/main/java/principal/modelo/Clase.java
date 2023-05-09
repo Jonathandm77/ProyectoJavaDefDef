@@ -46,7 +46,11 @@ public class Clase {
 	@Column(name="Hora")
 	private Date hora;
 	
+	
 
+
+	public Clase() {
+	}
 
 	public Clase(Alumno alumno) {
 		this.alumno = alumno;

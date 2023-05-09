@@ -173,6 +173,7 @@ public class WebController {
 		calendar5.set(Calendar.MINUTE, 20);
 		Date hora = calendar5.getTime();
 		clase1.setHora(hora);
+		a1.añadirClase(clase1);
 
 		
 		claseService.insertarClase(clase1);
@@ -188,6 +189,7 @@ public class WebController {
 		calendar6.set(Calendar.MINUTE, 30);
 		Date hora2 = calendar6.getTime();
 		clase2.setHora(hora2);
+		a2.añadirClase(clase2);
 		claseService.insertarClase(clase2);
 		
 		
