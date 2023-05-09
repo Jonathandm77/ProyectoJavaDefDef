@@ -83,7 +83,7 @@
 							</div>
 						</div>
 
-						<div sec:authorize="!hasAnyAuthority('ROLE_TEACHER','ROLE_ADMIN')" class="col-5">
+						<div sec:authorize="!hasAnyAuthority('ROLE_TEACHER','ROLE_ADMIN')" class="col-5 mt-3">
 							<div class="card">
 								<div class="card-header text-dark bg-light">Notas
 								</div>
@@ -98,7 +98,7 @@
 							</div>
 						</div>
 
-						<div sec:authorize="hasAnyAuthority('ROLE_TEACHER','ROLE_ADMIN')" class="col-5">
+						<div sec:authorize="hasAnyAuthority('ROLE_TEACHER','ROLE_ADMIN')" class="col-5 mt-3">
 							<div class="card">
 								<div class="card-header text-dark bg-light">Notas
 								</div>
@@ -107,9 +107,9 @@
 										<form th:action="@{/alumnos/edit/{id}(id=${alumnoMostrar.id})}" method="POST"
 											class="d-flex justify-content-end">
 											<div class="input-group">
-											<input type="text" th:field="*{notas}" class="form-control"
-												th:attr="placeholder=${alumnoMostrar.notas}">
-											<button type="submit" class="btn btn-primary">Enviar</button>
+												<input type="text" th:field="*{notas}" class="form-control"
+													th:attr="placeholder=${alumnoMostrar.notas}">
+												<button type="submit" class="btn btn-primary">Enviar</button>
 											</div>
 										</form>
 
@@ -118,6 +118,27 @@
 								</div>
 							</div>
 						</div>
+
+						<div class="col-5 mt-3 ms-auto">
+							<div th:each="clase, iter : ${listaClases}" class="accordion accordion-flush" th:id="'accordionFlushExample-' + ${iter.index}">
+								<div class="accordion-item border">
+									<h2 class="accordion-header">
+										<button class="accordion-button collapsed" type="button"
+											data-bs-toggle="collapse"
+											th:data-bs-target="'#flush-collapse-' + ${iter.index}" aria-expanded="false"
+											th:aria-controls="'flush-collapse-' + ${iter.index}" th:text="'Clase del '+${clase.fecha}">
+											
+										</button>
+									</h2>
+									<div th:id="'flush-collapse-' + ${iter.index}" class="accordion-collapse collapse"
+										th:data-bs-parent="'#accordionFlushExample-' + ${iter.index}">
+										<div class="accordion-body" th:text="'Clase a las '+${#dates.format(clase.hora, 'HH:mm')}+' con '+${clase.profesor.nombre}+' '+${clase.profesor.apellidos}+' y el coche '+${clase.coche.marca}+' '+${clase.coche.modelo}"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
 					</div>
 				</div>
 			</div>

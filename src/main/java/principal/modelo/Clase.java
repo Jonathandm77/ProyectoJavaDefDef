@@ -38,12 +38,12 @@ public class Clase {
 	
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(iso = ISO.DATE)
-	@Column(name="Fecha")
+	@Column(name="Fecha", nullable=false)
 	private Date fecha;
 
 	@Temporal(TemporalType.TIME)
 	@DateTimeFormat(iso = ISO.TIME)
-	@Column(name="Hora")
+	@Column(name="Hora", nullable=false)
 	private Date hora;
 	
 	

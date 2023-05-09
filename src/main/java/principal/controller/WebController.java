@@ -163,6 +163,7 @@ public class WebController {
 		alumnoService.insertarAlumno(a2);
 		
 		Clase clase1=new Clase(a1);
+		Clase clase2=new Clase(a2);
 		Calendar calendar3 = Calendar.getInstance();
 		calendar3.set(2023, Calendar.JULY, 23);
 		Date fecha3=calendar3.getTime();
@@ -178,7 +179,6 @@ public class WebController {
 		
 		claseService.insertarClase(clase1);
 		
-		Clase clase2=new Clase(a2);
 		Calendar calendar4 = Calendar.getInstance();
 		calendar4.set(2023, Calendar.JUNE, 12);
 		Date fecha4=calendar3.getTime();
@@ -191,7 +191,6 @@ public class WebController {
 		clase2.setHora(hora2);
 		a2.añadirClase(clase2);
 		claseService.insertarClase(clase2);
-		
 		
 		
 	
