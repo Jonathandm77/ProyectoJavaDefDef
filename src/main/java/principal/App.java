@@ -21,5 +21,6 @@ public class App {
 	/*protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
 		return builder.sources(App.class);
 		
+		
 	}*/
 }
