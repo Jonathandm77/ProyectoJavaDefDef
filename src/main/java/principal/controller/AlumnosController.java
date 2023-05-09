@@ -92,13 +92,19 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 		@PostMapping("/edit/{id}")
 		public String editarAlumno(@PathVariable Integer id, @ModelAttribute("alumnoaEditar") AlumnoEditarNotasNombreApellidoDTO alumnoEditado, BindingResult bidingresult) {
 			Alumno alumnoaEditar=alumnoService.obtenerAlumnoPorId(id);
+			if(alumnoEditado.getNombre()!=null)
 			if(!alumnoEditado.getNombre().equals(""))
 			alumnoaEditar.setNombre(alumnoEditado.getNombre());
+			
+			if(alumnoEditado.getApellidos()!=null)
 			if(!alumnoEditado.getApellidos().equals(""))
 				alumnoaEditar.setApellidos(alumnoEditado.getApellidos());
+			
+			if(alumnoEditado.getNotas()!=null)
+			if(!alumnoEditado.getNotas().equals(""))
 			alumnoaEditar.setNotas(alumnoEditado.getNotas());
 			alumnoService.insertarAlumno(alumnoaEditar);
-			return "redirect:/alumnos";
+			return "redirect:/alumnos/"+id;
 		}
 		
 		@GetMapping({"/delete/{id}"})
