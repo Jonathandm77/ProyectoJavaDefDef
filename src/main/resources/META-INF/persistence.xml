@@ -17,7 +17,7 @@
  			 <class>principal.modelo.Profesor</class>
  			  <class>principal.modelo.Usuario</class>
              <class>principal.modelo.Rol</class>
-             <class>principal.modelo.Llave</class>
+             <class>principal.modelo.Clase</class>
 
                        
         <properties>

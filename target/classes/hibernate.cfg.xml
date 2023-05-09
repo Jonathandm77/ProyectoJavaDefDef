@@ -18,7 +18,7 @@
 		<mapping class="principal.modelo.Coche"/>
 		<mapping class="principal.modelo.Usuario"/>
 		<mapping class="principal.modelo.Rol"/>
-		<mapping class="principal.modelo.Llave"/>
+		<mapping class="principal.modelo.Clase"/>
 		
 
     </session-factory>
