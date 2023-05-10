@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -110,11 +112,13 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 		}
 		
 		@GetMapping({"/{id}"})
-		String idAlumno(Model model, @PathVariable Integer id) {
+		String idAlumno(Model model, @PathVariable Integer id, HttpSession session) {
 			Alumno alumnoMostrar=alumnoService.obtenerAlumnoPorId(id);
 			Object[]clases= alumnoMostrar.getClases().toArray();
 			model.addAttribute("alumnoMostrar", alumnoMostrar);
 			model.addAttribute("listaClases",clases);
+			model.addAttribute("claseNueva",new Clase());
+			session.setAttribute("alumnoaImpartir", alumnoMostrar);
 			return "alumno";
 		}
 		

@@ -119,7 +119,7 @@
 							</div>
 						</div>
 
-						<div class="col-5 mt-3 ms-auto d-flex flex-column ">
+						<div class="col-5 mt-3 ms-auto">
 							<div th:each="clase, iter : ${listaClases}" class="accordion accordion-flush"
 								th:id="'accordionFlushExample-' + ${iter.index}">
 								<div class="accordion-item border">
@@ -140,15 +140,50 @@
 									</div>
 								</div>
 							</div>
-							<a th:attr="data-target='#modal-create-class'" data-toggle="modal"
+							<button th:attr="data-target='#modal-create-class'" data-toggle="modal"
 								data-target="#modal-create-class"
 								class="btn btn-primary float-end mt-3">
 								Añadir clase
-							</a>
+							</button>
 						</div>
 
 
 					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" th:id="modal-create-class">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="exampleModalLabel">Crear</h4>
+						<button class="close btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">x</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<p class="error-text">Introduce la informacion para la clase
+						</p>
+						<!--formulario nombre a editar-->
+						<form action="#" th:action="@{/clases/add}" th:object="${claseNueva}"
+							method="post" class="editModal">
+							<div class"form-row">
+								<div class="form-group mt-1">
+									<label for="texto">Fecha</label>
+									<input type="date" th:field="*{fecha}" class="form-control exampleInputName" />
+										
+										<label for="texto">Hora</label>
+										<input type="date" th:field="*{hora}" class="form-control"
+											id="exampleInputSurname" />
+								</div>
+							</div>
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-secondary btn-sm" data-dismiss="modal"
+							aria-hidden="true">Cancelar</button>
+						<input type="submit" value="Modificar" class="btn btn-primary float-right sent" />
+					</div>
+					</form>
 				</div>
 			</div>
 		</div>

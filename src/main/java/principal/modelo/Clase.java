@@ -72,6 +72,8 @@ public class Clase {
 
 	public void setAlumno(Alumno alumno) {
 		this.alumno = alumno;
+		this.coche=alumno.getCoche();
+		this.profesor=alumno.getProfesor();
 	}
 
 	public Profesor getProfesor() {
@@ -105,6 +107,9 @@ public class Clase {
 	public void setHora(Date hora) {
 		this.hora = hora;
 	}
+	
+
+
 	 
 	
 	
