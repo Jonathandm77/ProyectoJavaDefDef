@@ -169,28 +169,24 @@ public class WebController {
 		Date fecha3=calendar3.getTime();
 		clase1.setFecha(fecha3);
 		
-		Calendar calendar5 = Calendar.getInstance();
-		calendar5.set(Calendar.HOUR_OF_DAY, 13);
-		calendar5.set(Calendar.MINUTE, 20);
-		Date hora = calendar5.getTime();
-		//clase1.setHora(hora);
-		//a1.añadirClase(clase1);
+		LocalTime hora = LocalTime.of(15, 30);
+
+		clase1.setHora(hora);
+		a1.añadirClase(clase1);
 
 		
-		//claseService.insertarClase(clase1);
+		claseService.insertarClase(clase1);
 		
 		Calendar calendar4 = Calendar.getInstance();
 		calendar4.set(2023, Calendar.JUNE, 12);
 		Date fecha4=calendar3.getTime();
 		clase2.setFecha(fecha4);
 		
-		Calendar calendar6 = Calendar.getInstance();
-		calendar6.set(Calendar.HOUR_OF_DAY, 11);
-		calendar6.set(Calendar.MINUTE, 30);
-		Date hora2 = calendar6.getTime();
-		//clase2.setHora(hora2);
-		//a2.añadirClase(clase2);
-	//	claseService.insertarClase(clase2);
+		LocalTime hora2 = LocalTime.of(17, 30);
+
+		clase2.setHora(hora2);
+		a2.añadirClase(clase2);
+		claseService.insertarClase(clase2);
 		
 		
 	
