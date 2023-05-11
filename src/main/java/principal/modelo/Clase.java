@@ -1,5 +1,6 @@
 package principal.modelo;
 
+import java.time.LocalTime;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -41,10 +42,8 @@ public class Clase {
 	@Column(name="Fecha", nullable=false)
 	private Date fecha;
 
-	@Temporal(TemporalType.TIME)
-	@DateTimeFormat(iso = ISO.TIME)
 	@Column(name="Hora", nullable=false)
-	private Date hora;
+	private LocalTime hora;
 	
 	
 
@@ -100,13 +99,15 @@ public class Clase {
 		this.fecha = fecha;
 	}
 
-	public Date getHora() {
+	public LocalTime getHora() {
 		return hora;
 	}
 
-	public void setHora(Date hora) {
+	public void setHora(LocalTime hora) {
 		this.hora = hora;
 	}
+
+
 	
 
 

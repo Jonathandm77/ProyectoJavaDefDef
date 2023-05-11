@@ -173,11 +173,11 @@ public class WebController {
 		calendar5.set(Calendar.HOUR_OF_DAY, 13);
 		calendar5.set(Calendar.MINUTE, 20);
 		Date hora = calendar5.getTime();
-		clase1.setHora(hora);
-		a1.añadirClase(clase1);
+		//clase1.setHora(hora);
+		//a1.añadirClase(clase1);
 
 		
-		claseService.insertarClase(clase1);
+		//claseService.insertarClase(clase1);
 		
 		Calendar calendar4 = Calendar.getInstance();
 		calendar4.set(2023, Calendar.JUNE, 12);
@@ -188,9 +188,9 @@ public class WebController {
 		calendar6.set(Calendar.HOUR_OF_DAY, 11);
 		calendar6.set(Calendar.MINUTE, 30);
 		Date hora2 = calendar6.getTime();
-		clase2.setHora(hora2);
-		a2.añadirClase(clase2);
-		claseService.insertarClase(clase2);
+		//clase2.setHora(hora2);
+		//a2.añadirClase(clase2);
+	//	claseService.insertarClase(clase2);
 		
 		
 	

@@ -135,14 +135,14 @@
 									<div th:id="'flush-collapse-' + ${iter.index}" class="accordion-collapse collapse"
 										th:data-bs-parent="'#accordionFlushExample-' + ${iter.index}">
 										<div class="accordion-body"
-											th:text="'Clase a las '+${#dates.format(clase.hora, 'HH:mm')}+' con '+${clase.profesor.nombre}+' '+${clase.profesor.apellidos}+' y el coche '+${clase.coche.marca}+' '+${clase.coche.modelo}">
+											th:text="'Clase a las ' + ${#temporals.format(clase.hora, 'HH:mm')} + ' con ' + ${clase.profesor.nombre} + ' ' + ${clase.profesor.apellidos} + ' y el coche ' + ${clase.coche.marca} + ' ' + ${clase.coche.modelo}">
 										</div>
+
 									</div>
 								</div>
 							</div>
 							<button th:attr="data-target='#modal-create-class'" data-toggle="modal"
-								data-target="#modal-create-class"
-								class="btn btn-primary float-end mt-3">
+								data-target="#modal-create-class" class="btn btn-primary float-end mt-3">
 								Añadir clase
 							</button>
 						</div>
@@ -165,16 +165,16 @@
 						<p class="error-text">Introduce la informacion para la clase
 						</p>
 						<!--formulario nombre a editar-->
-						<form action="#" th:action="@{/clases/add}" th:object="${claseNueva}"
-							method="post" class="editModal">
+						<form action="#" th:action="@{/clases/add}" th:object="${claseNueva}" method="post"
+							class="editModal">
 							<div class"form-row">
 								<div class="form-group mt-1">
 									<label for="texto">Fecha</label>
 									<input type="date" th:field="*{fecha}" class="form-control exampleInputName" />
-										
-										<label for="texto">Hora</label>
-										<input type="date" th:field="*{hora}" class="form-control"
-											id="exampleInputSurname" />
+
+									<label for="texto">Hora</label>
+									<input type="time" th:field="*{hora}" class="form-control"
+										id="exampleInputSurname" />
 								</div>
 							</div>
 					</div>

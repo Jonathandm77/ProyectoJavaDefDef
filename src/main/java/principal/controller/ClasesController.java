@@ -29,6 +29,6 @@ public class ClasesController {
 		claseNew.setAlumno(alumno);
 		alumno.añadirClase(claseNew);
 		claseService.insertarClase(claseNew);
-		return "redirect:/alumno/"+alumno.getId();
+		return "redirect:/alumnos/"+alumno.getId();
 	}
 }
