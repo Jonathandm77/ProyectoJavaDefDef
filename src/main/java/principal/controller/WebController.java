@@ -164,6 +164,8 @@ public class WebController {
 		
 		Clase clase1=new Clase(a1);
 		Clase clase2=new Clase(a2);
+		Clase clase3=new Clase(a1);
+		Clase clase4=new Clase(a2);
 		Calendar calendar3 = Calendar.getInstance();
 		calendar3.set(2023, Calendar.JULY, 23);
 		Date fecha3=calendar3.getTime();
@@ -188,7 +190,30 @@ public class WebController {
 		a2.añadirClase(clase2);
 		claseService.insertarClase(clase2);
 		
+		Calendar calendar5 = Calendar.getInstance();
+		calendar5.set(2023, Calendar.JULY, 27);
+		Date fecha5=calendar5.getTime();
+		clase3.setFecha(fecha5);
 		
+		LocalTime hora3 = LocalTime.of(16, 30);
+
+		clase3.setHora(hora3);
+		a1.añadirClase(clase3);
+		
+		claseService.insertarClase(clase3);
+		
+		
+		Calendar calendar6 = Calendar.getInstance();
+		calendar6.set(2023, Calendar.JULY, 28);
+		Date fecha6=calendar6.getTime();
+		clase4.setFecha(fecha6);
+		
+		LocalTime hora4 = LocalTime.of(16, 30);
+
+		clase4.setHora(hora4);
+		a1.añadirClase(clase4);
+		
+		claseService.insertarClase(clase4);
 	
 
 	}
