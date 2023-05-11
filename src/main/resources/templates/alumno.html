@@ -146,7 +146,7 @@
 									data-target="#modal-create-class" class="btn btn-primary float-end mt-3">
 									Añadir clase
 								</button>
-								<button id="btn-borrar" class="btn btn-danger float-end mt-3">
+								<button id="btn-borrar" class="btn btn-danger mt-3">
 									Borrar Clases
 								</button>
 							</div>
@@ -246,6 +246,7 @@
 
 		const btnBorrar = document.getElementById('btn-borrar');
 		const accordionItems = document.querySelectorAll('.accordion-item');
+		const body=document.querySelectorAll("body")[0]
 
 		let modoEliminacion = false;
 
@@ -253,8 +254,19 @@
 			modoEliminacion = !modoEliminacion;
 			if (modoEliminacion) {
 				btnBorrar.textContent = 'Cancelar modo';
+				btnBorrar.setAttribute('class','btn btn-secondary mt-3')
+				accordionItems.forEach(item=>{
+					item.style.border="1px solid red"
+					item.setAttribute('class','accordion-item')
+				})
 			} else {
 				btnBorrar.textContent = 'Borrar modo';
+				btnBorrar.setAttribute('class','btn btn-danger mt-3')
+				accordionItems.forEach(item=>{
+				item.style.border=""
+				item.setAttribute('class','accordion-item border')
+				})
+				
 			}
 		});
 
