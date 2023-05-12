@@ -239,6 +239,9 @@ public class SecurityController {
 					 profe=(int)(Math.random()*(misProfesores.size()));
 				}while(profe==misProfesores.indexOf(a.getProfesor()));//si solo queda un profesor no elimina, solucionar
 				a.setProfesor(misProfesores.get(profe));
+				for(Clase c:a.getClases()) {
+					c.setProfesor(a.getProfesor());
+				}
 				profeTemp.add(a.getProfesor());
 				cocheTemp.add(a.getCoche());
 				

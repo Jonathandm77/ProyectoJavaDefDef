@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import principal.modelo.Alumno;
+import principal.modelo.Clase;
 import principal.modelo.Coche;
 import principal.modelo.Profesor;
 import principal.modelo.ProfesoresCoches;
@@ -109,6 +110,9 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 						 profe=(int)(Math.random()*(misProfesores.size()));
 					}while(profe==misProfesores.indexOf(a.getProfesor()));//si solo queda un profesor no elimina, solucionar
 					a.setProfesor(misProfesores.get(profe));
+					for(Clase c:a.getClases()) {
+						c.setProfesor(a.getProfesor());
+					}
 					profeTemp.add(a.getProfesor());
 					cocheTemp.add(a.getCoche());
 					
