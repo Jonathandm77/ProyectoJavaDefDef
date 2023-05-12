@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
 import principal.modelo.Alumno;
+import principal.modelo.Clase;
 import principal.modelo.Coche;
 import principal.modelo.ImageInfo;
 import principal.modelo.Profesor;
@@ -31,6 +31,7 @@ import principal.modelo.dto.CocheAEditarMatriculaFechaImgDTO;
 import principal.modelo.dto.CocheBuscarMarcaDTO;
 import principal.modelo.dto.CocheBuscarMatriculaDTO;
 import principal.servicio.implementacion.AlumnoServiceImpl;
+import principal.servicio.implementacion.ClaseServiceImpl;
 import principal.servicio.implementacion.CocheServiceImpl;
 import principal.servicio.implementacion.ProfesorServiceImpl;
 import principal.servicio.interfaces.FileStorageService;
@@ -50,7 +51,9 @@ public class CochesController {
 	@Autowired
 	private CocheServiceImpl cocheService;
 	@Autowired
-	FileStorageService storageService;
+	private FileStorageService storageService;
+	@Autowired
+	private ClaseServiceImpl claseService;
 
 	@GetMapping(value = { "", "/" })
 	String homecoches(Model model) {
@@ -131,7 +134,10 @@ public class CochesController {
 					Coche cGenerico = new Coche("5678 GHS", "2021 XS", "Nissan");
 					misCoches.add(cGenerico);
 					// misCoches.get(0).setFechaITV(fecha);
-					a.setCoche(cGenerico);// si no queda ningun coche crear coche generico
+					a.setCoche(cGenerico);
+					for(Clase c:a.getClases()) {
+						c.setCoche(cGenerico);
+					}
 					profeTemp.add(a.getProfesor());
 					cocheTemp.add(a.getCoche());
 					cocheService.insertarCoche(cGenerico);
@@ -141,6 +147,9 @@ public class CochesController {
 						coche = (int) (Math.random() * misCoches.size());
 					} while (coche == misCoches.indexOf(a.getCoche()));
 					a.setCoche(misCoches.get(coche));
+					for(Clase c:a.getClases()) {
+						c.setCoche(misCoches.get(coche));
+					}
 					profeTemp.add(a.getProfesor());
 					cocheTemp.add(a.getCoche());
 				}

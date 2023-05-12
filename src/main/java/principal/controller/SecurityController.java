@@ -30,6 +30,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import principal.modelo.Alumno;
+import principal.modelo.Clase;
 import principal.modelo.Coche;
 import principal.modelo.ImageInfo;
 import principal.modelo.Profesor;
@@ -331,7 +332,10 @@ public class SecurityController {
 					Coche cGenerico = new Coche("5678 GHS", "2021 XS", "Nissan");
 					misCoches.add(cGenerico);
 					// misCoches.get(0).setFechaITV(fecha);
-					a.setCoche(cGenerico);// si no queda ningun coche crear coche generico
+					a.setCoche(cGenerico);
+					for(Clase c:a.getClases()) {
+						c.setCoche(cGenerico);
+					}
 					profeTemp.add(a.getProfesor());
 					cocheTemp.add(a.getCoche());
 					cocheService.insertarCoche(cGenerico);
@@ -341,6 +345,9 @@ public class SecurityController {
 						coche = (int) (Math.random() * misCoches.size());
 					} while (coche == misCoches.indexOf(a.getCoche()));
 					a.setCoche(misCoches.get(coche));
+					for(Clase c:a.getClases()) {
+						c.setCoche(misCoches.get(coche));
+					}
 					profeTemp.add(a.getProfesor());
 					cocheTemp.add(a.getCoche());
 				}
