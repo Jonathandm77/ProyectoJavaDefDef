@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
 				for (var i = 0; i < response.length; i++) {
 					var clase = response[i];
 					var evento = {
-						title: clase.alumno.nombre, // Título de la clase
+						title: clase.hora+': '+clase.alumno.nombre+' '+clase.alumno.apellidos, // Título de la clase
 						start: new Date(clase.fecha), // Fecha de inicio de la clase
 						// Otras propiedades del evento si las tienes
 					};

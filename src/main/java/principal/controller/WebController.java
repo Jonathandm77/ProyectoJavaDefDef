@@ -77,9 +77,11 @@ public class WebController {
 	private void crearTablas() throws SQLException {
 		
 		Alumno a1 = new Alumno("Alba", "52364897K");
+		a1.setApellidos("Menendez Palacios");
 		Profesor p1 = new Profesor("56239874M", "Pedro", "Gonzalez Fernandez");
 		Coche c1 = new Coche("5894 GHL", "2023", "Peugeot");
 		Alumno a2 = new Alumno("David", "85612478L");
+		a2.setApellidos("Gonzalez Rodriguez");
 		Profesor p2 = new Profesor("53624477N", "Alejandro","Rodriguez Palacios");
 		Coche c2 = new Coche("5894 DSF", "2021", "Seat");
 		Rol rolBasico = new Rol("ROLE_USER");
