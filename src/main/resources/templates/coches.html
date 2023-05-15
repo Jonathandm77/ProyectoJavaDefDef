@@ -12,58 +12,36 @@
 
 		<h1>Registro de Coches</h1>
 
+		<div th:if="${listaCoches.Empty}">
+			<h1>No hay Coches</h1>
+		</div>
 
+		<div class="d-flex justify-content-around flex-wrap">
 
-		<table class="table table-hover">
-			<thead class="table-dark bg-info text-white">
-				<tr>
-					<td>ID</td>
-					<td>Marca</td>
-					<td>Matricula</td>
-					<td>Modelo</td>
-					<td>FechaITV</td>
-					<td colspan="2">Acciones</td>
-
-
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:if="${listaCoches.Empty}">
-					<td colspan="2">No hay coches </td>
-				<tr th:each="coche:${listaCoches}">
-					<td>
-						<a th:href="@{/coches/{id}(id=${coche.id})}" class="btn btn-primary btn-sm">
-							<span th:text="${coche.id}"></span>
-						</a>
-					</td>
-					<td>
-						<span th:text="${coche.marca}"> </span>
-					</td>
-					<td>
-						<span th:text="${coche.matricula}"> </span>
-					</td>
-					<td>
-						<span th:text="${coche.modelo}"></span>
-					</td>
-					<td>
-						<span th:text="${coche.fechaITV}"></span>
-					</td>
-					<td>
+			<div th:each="coche:${listaCoches}" class="card user-card" style="width: 18rem;">
+				<div class="image" th:if="${coche.url!=null}">
+					<img th:src="@{${coche.url}}" alt="${image.name}" width="300px" height="300px"
+						class="card-img-top img-fluid" />
+				</div>
+				<div class="card-body">
+					<div>
+						<h5 class="card-title" th:text="${coche.marca}+' '+${coche.modelo}"></h5>
+					</div>
+					<div class="">
+						<a th:href="@{/coches/{id}(id=${coche.id})}" class="btn btn-primary">Ver Coche</a>
 						<a th:attr="data-target='#modal-edit'+${coche.id}" data-toggle="modal" data-target="#modal-edit"
 							class="btn btn-primary btn-sm text-white pointer">
 							Modificar
 						</a>
-					</td>
-					<td>
 						<a th:attr="data-target='#modal-delete'+${coche.id}" data-toggle="modal"
-							data-target="#modal-delete" class="btn btn-primary btn-sm text-white pointer">
+							data-target="#modal-delete" class="btn btn-danger btn-sm text-white pointer">
 							Eliminar
 						</a>
-					</td>
+					</div>
+				</div>
+			</div>
 
-
-			</tbody>
-		</table>
+		</div>
 
 		<div>
 			<div class="row">
@@ -105,7 +83,8 @@
 							<div class"form-row">
 								<div class="form-group mt-1">
 									<label for="texto">Marca</label>
-									<input type="text" th:field="*{marca}" class="form-control" id="exampleInputName" placeholder="Marca" />
+									<input type="text" th:field="*{marca}" class="form-control" id="exampleInputName"
+										placeholder="Marca" />
 								</div>
 							</div>
 
@@ -143,7 +122,8 @@
 								<div class="form-group mt-1">
 									<label for="texto">Matrícula</label>
 									<input type="text" th:field="*{matricula}" class="form-control"
-										pattern="[0-9]{4}\s[a-zA-Z]{3}" required id="exampleInputName" placeholder="Matrícula"/>
+										pattern="[0-9]{4}\s[a-zA-Z]{3}" required id="exampleInputName"
+										placeholder="Matrícula" />
 									<div class="alert alert-danger invalid-feedback">
 										Por favor, ingresa 4 números y 3 letras separados por un espacio
 									</div>
@@ -267,8 +247,7 @@
 									<div class="form-group mt-1">
 										<label for="matricula">Matrícula</label>
 										<input type="text" th:field="*{matricula}" class="form-control"
-											pattern="[0-9]{4}\s[a-zA-Z]{3}" id="matricula"
-											placeholder="Matrícula" />
+											pattern="[0-9]{4}\s[a-zA-Z]{3}" id="matricula" placeholder="Matrícula" />
 										<div class="invalid-feedback">
 											Por favor, ingresa 4 números y 3 letras separados por un espacio
 										</div>
@@ -299,5 +278,6 @@
 	</div>
 </body>
 <script th:src="@{/js/validaForm.js}"></script>
-
+<link rel="stylesheet" th:href="@{/css/usuarios.css}">
+<script th:src="@{/js/cardCoche.js}"></script>
 </html>

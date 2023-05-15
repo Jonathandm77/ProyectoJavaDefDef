@@ -56,6 +56,8 @@ public class Coche {
 	@Column(name="foto")
 	public String foto;
 	
+	public String url;
+	
 	
 	
 	
@@ -175,6 +177,18 @@ public class Coche {
 
 	public void setFoto(String foto) {
 		this.foto = foto;
+	}
+	
+	
+
+
+	public String getUrl() {
+		return url;
+	}
+
+
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 

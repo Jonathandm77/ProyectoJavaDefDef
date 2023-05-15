@@ -27,6 +27,7 @@ import principal.modelo.Coche;
 import principal.modelo.ImageInfo;
 import principal.modelo.Profesor;
 import principal.modelo.ProfesoresCoches;
+import principal.modelo.Usuario;
 import principal.modelo.dto.CocheAEditarMatriculaFechaImgDTO;
 import principal.modelo.dto.CocheBuscarMarcaDTO;
 import principal.modelo.dto.CocheBuscarMatriculaDTO;
@@ -52,14 +53,22 @@ public class CochesController {
 	private CocheServiceImpl cocheService;
 	@Autowired
 	private FileStorageService storageService;
-	@Autowired
-	private ClaseServiceImpl claseService;
 
 	@GetMapping(value = { "", "/" })
 	String homecoches(Model model) {
 		ArrayList<Coche> misCoches = (ArrayList<Coche>) cocheService.listarCoches();
 		ArrayList<Alumno> misAlumnos = (ArrayList<Alumno>) alumnoService.listarAlumnos();
 		ArrayList<Profesor> misProfesores = (ArrayList<Profesor>) profeService.listarProfesores();
+		
+		for(Coche Coche:misCoches) {
+			if(Coche.getFoto()!=null) {
+				Resource resource = storageService.load(Coche.getFoto());
+				String url = MvcUriComponentsBuilder.fromMethodName(SecurityController.class, "serveFile", resource.getFilename())
+				    .build().toString();
+				ImageInfo img = new ImageInfo(resource.getFilename(), url);
+				Coche.setUrl(img.getUrl());
+			}
+		}
 
 		model.addAttribute("listaCoches", misCoches);
 		model.addAttribute("listaAlumnos", misAlumnos);
