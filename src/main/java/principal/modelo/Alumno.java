@@ -47,6 +47,7 @@ public class Alumno {
 	@JoinColumn(name = "id_Coche", nullable = false)
 	private Coche coche;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "alumno", cascade=CascadeType.REMOVE)
 	private Set<Clase> clases;
 	

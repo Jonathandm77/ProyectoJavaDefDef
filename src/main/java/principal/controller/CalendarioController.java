@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import principal.modelo.Alumno;
 import principal.modelo.Clase;
@@ -44,5 +45,12 @@ public class CalendarioController {
 		
 		return "redirect:/calendario";
 		
+	}
+	
+	@GetMapping({"/clases"})
+	@ResponseBody
+	ArrayList<Clase> obtenerClases() {
+		ArrayList<Clase> clases =(ArrayList<Clase>) claseService.listarClases();
+		return clases;
 	}
 }
