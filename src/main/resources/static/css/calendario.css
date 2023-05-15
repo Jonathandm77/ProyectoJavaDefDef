@@ -1,0 +1,11 @@
+.fc{
+	height: 950px;
+}
+
+.fc-day{
+	background-color: #F8F8F8;
+}
+
+.fc-daygrid-day:hover{
+	background-color: #e0e0e0;
+}
