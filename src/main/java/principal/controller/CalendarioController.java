@@ -34,6 +34,7 @@ public class CalendarioController {
 		
 		model.addAttribute("listaAlumnos",listaAlumnos);
        model.addAttribute("claseNueva",new Clase());
+       model.addAttribute("claseBorrar",new Clase());
        if(fecha!=null) {
        model.addAttribute("fechaActual",fecha);
        }

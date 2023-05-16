@@ -22,10 +22,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		buttonText: {
 			today: 'Hoy' // Cambiar el texto del botón Today
 		},
-		monthNames: [
-			'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-			'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
-		],
 		dateClick: function(info) {
 			var modal = document.getElementById('crearClase');
 			var modalInstance = new bootstrap.Modal(modal);
@@ -38,11 +34,12 @@ document.addEventListener('DOMContentLoaded', function() {
 			var dateParam = 'fecha=' + info.dateStr;
 
 			form.setAttribute('action', actionUrl + '?' + dateParam);
-			
-			var botonCancel=document.getElementById("cancelCreateModal")
-			botonCancel.addEventListener('click', function(){
+
+			var botonCancelCreate = document.getElementById("cancelCreateModal")
+			botonCancelCreate.addEventListener('click', function() {
 				modalInstance.hide()
 			})
+
 
 			modalInstance.show();
 
@@ -79,10 +76,15 @@ document.addEventListener('DOMContentLoaded', function() {
 			var modalInstance = new bootstrap.Modal(modal);
 
 			var form = modal.querySelector('form');
-			var actionUrl = form.getAttribute('action');
+			var actionUrl = '/calendario/delete/';
 			var idParam = 'id=' + info.event.id;
 
 			form.setAttribute('action', actionUrl + '?' + idParam);
+
+			var botonCancelDelete = document.getElementById("cancelDeleteModal")
+			botonCancelDelete.addEventListener('click', function() {
+				modalInstance.hide()
+			})
 
 			modalInstance.show();
 		}

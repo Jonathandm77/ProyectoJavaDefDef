@@ -21,7 +21,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<h1 class="modal-title fs-5" id="exampleModalLabel">Crear Clase</h1>
-					<button type="button" class="btn-danger" data-bs-dismiss="modal" aria-label="Close">
+					<button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">x</span>
 					</button>
 				</div>
@@ -56,25 +56,25 @@
 
 
 	<!--delete modal-->
-	<div class="modal fade" id="delete-modal">
-		<div class="modal-dialog" role="document">
+
+	<div class="modal fade" id="delete-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title" id="exampleModalLabel">Borrar clase</h4>
-					<button class="close btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">
+					<h1 class="modal-title fs-5" id="exampleModalLabel">Borrar Clase</h1>
+					<button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">x</span>
 					</button>
 				</div>
 				<div class="modal-body">
 					<p class="error-text">¿Seguro que quieres borrar la clase?</p>
-					<form id="delete-form" action="#" th:action="@{/calendario/delete}" th:object="${claseNueva}"
-						method="post">
+					<form action="#" th:action="@{/calendario/delete/}" th:object="${claseBorrar}" method="post">
 						<input type="hidden" id="delete-mes" name="mes" value="">
 						<input type="hidden" id="delete-anio" name="anio" value="">
 						<div class="modal-footer">
-							<button class="btn btn-secondary btn-sm" data-dismiss="modal"
-								aria-hidden="true">Cancelar</button>
-							<input type="submit" id="btn-borrar" value="Borrar" class="btn btn-danger float-right" />
+							<button class="btn btn-secondary btn-sm" type="button" id="cancelDeleteModal"
+								data-dismiss="modal" aria-hidden="true">Cancelar</button>
+							<input type="submit" value="Borrar" class="btn btn-danger float-right" />
 						</div>
 					</form>
 				</div>
@@ -83,6 +83,9 @@
 	</div>
 
 	<!--fin delete modal-->
+	
+	
+
 
 </body>
 <link rel="stylesheet" th:href="@{/css/calendario.css}">
