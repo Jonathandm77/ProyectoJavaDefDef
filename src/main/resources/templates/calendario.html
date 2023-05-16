@@ -8,12 +8,14 @@
 	<link href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css' rel='stylesheet'>
 	<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js'></script>
 	<script src="https://kit.fontawesome.com/6fcc8fb59a.js" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core/locales/es.js"></script>
 </head>
 
 <body>
 	<div th:insert="top"></div>
-	<div id='calendar'></div>
+	<div id='calendar' class="m-3"></div>
 
+	<!--create modal-->
 	<div class="modal fade" id="crearClase">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -47,6 +49,38 @@
 				</div>
 			</div>
 		</div>
+	</div>
+	<!--fin create modal-->
+
+	<!--delete modal-->
+	<div class="modal fade" id="delete-modal">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="exampleModalLabel">Borrar clase</h4>
+					<button class="close btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">x</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p class="error-text">¿Seguro que quieres borrar la clase?</p>
+					<form id="delete-form" action="#" th:action="@{/calendario/delete}" th:object="${claseNueva}"
+						method="post">
+						<input type="hidden" id="delete-mes" name="mes" value="">
+						<input type="hidden" id="delete-anio" name="anio" value="">
+						<div class="modal-footer">
+							<button class="btn btn-secondary btn-sm" data-dismiss="modal"
+								aria-hidden="true">Cancelar</button>
+							<input type="submit" id="btn-borrar" value="Borrar" class="btn btn-danger float-right" />
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--fin delete modal-->
+
 </body>
 <link rel="stylesheet" th:href="@{/css/calendario.css}">
 <script th:src="@{/js/calendario.js}"></script>

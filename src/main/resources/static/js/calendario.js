@@ -1,12 +1,24 @@
 
 document.addEventListener('DOMContentLoaded', function() {
 	var calendarEl = document.getElementById('calendar');
+	var url = new URL(window.location.href);
+
+	// Obtener los parámetros de la URL
+	var searchParams = new URLSearchParams(url.search);
+
+	// Obtener el valor del parámetro "fechaActual"
+	var fechaActual = searchParams.get('fechaActual');
+	if(fechaActual!=null)
+	var fechaActualInt=parseInt(fechaActual);
+	else
+	var fechaActualInt=null
 	var calendar = new FullCalendar.Calendar(calendarEl, {
 		initialView: 'dayGridMonth',
-		themeSystem: 'bootstrap5',
 		displayEventTime: false,
+		initialDate: fechaActualInt,
+		locale: 'es',
 		buttonText: {
-			today: 'Hoy' // Cambia el texto del botón "Today" a "Hoy"
+			today: 'Hoy' // Cambiar el texto del botón Today
 		},
 		dateClick: function(info) {
 			var modal = document.getElementById('crearClase');
@@ -25,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		},
 		eventSources: [{
-			url: '/calendario/clases', // URL para obtener las clases desde el servidor
+			url: '/calendario/clases',
 			method: 'GET',
 			failure: function() {
 				console.log('Error al cargar las clases.');
@@ -37,9 +49,9 @@ document.addEventListener('DOMContentLoaded', function() {
 				for (var i = 0; i < response.length; i++) {
 					var clase = response[i];
 					var evento = {
-						title: clase.hora+': '+clase.alumno.nombre+' '+clase.alumno.apellidos, // Título de la clase
-						start: new Date(clase.fecha), // Fecha de inicio de la clase
-						// Otras propiedades del evento si las tienes
+						title: clase.hora + ': ' + clase.alumno.nombre + ' ' + clase.alumno.apellidos, // Título 
+						start: new Date(clase.fecha), // Fecha de inicio 
+						id: clase.id
 					};
 					events.push(evento);
 				}
@@ -50,18 +62,28 @@ document.addEventListener('DOMContentLoaded', function() {
 				calendar.addEventSource(events);
 
 			}
-		}]
+		}],
+		eventClick: function(info) {
+			var modal = document.getElementById('delete-modal');
+			var modalInstance = new bootstrap.Modal(modal);
+
+			var form = modal.querySelector('form');
+			var actionUrl = form.getAttribute('action');
+			var idParam = 'id=' + info.event.id;
+
+			form.setAttribute('action', actionUrl + '?' + idParam);
+
+			modalInstance.show();
+		}
 	});
 	calendar.render();
 
 	var nextMonthBtn = document.querySelector('.fc-next-button');
 	var prevMonthBtn = document.querySelector('.fc-prev-button');
 
-	// Agrega eventos de clic a los botones
 	nextMonthBtn.addEventListener('click', vaciarEventSource);
 	prevMonthBtn.addEventListener('click', vaciarEventSource);
 
-	// Función para vaciar el EventSource y recargar los eventos
 	function vaciarEventSource() {
 		calendar.refetchEvents();
 	}
