@@ -437,7 +437,7 @@ public class SecurityController {
 				userAlumno.setPassword(usuarioNew.getPassword());
 				userAlumno.setUsername(usuarioNew.getUsername());
 				userAlumno.setIdAlumno(usuarioNew.getIdAlumno());
-				userService.insertarUsuarioProfesor(userAlumno);
+				userService.insertarUsuarioAlumno(userAlumno);
 			}else {
 
 			userService.insertarUsuarioDTO(usuarioNew);

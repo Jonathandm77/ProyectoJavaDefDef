@@ -65,6 +65,13 @@ public class UsuarioServiceImpl implements UsuarioService{
 		return usuarioRepo.save(user);
 	}
 	
+	public Usuario insertarUsuarioAlumno(Usuario user) {
+		user.getRoles().add(rolService.obtenerRolPorId(2)); //role user
+		String rawPassword=user.getPassword();
+		user.setPassword(encoder.encode(rawPassword));
+		return usuarioRepo.save(user);
+	}
+	
 	@Override
 	public Usuario insertarUsuarioDTO(UsuarioDTO user) {
 		Usuario nuevoUsuario = new Usuario(user.getNombre(), user.getUsername(), encoder.encode(user.getPassword()));

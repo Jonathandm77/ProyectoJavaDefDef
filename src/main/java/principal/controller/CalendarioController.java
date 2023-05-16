@@ -78,12 +78,14 @@ public class CalendarioController {
 	
 	@GetMapping({"/clases"})
 	@ResponseBody
-	ArrayList<Clase> obtenerClases() {
+	Object[] obtenerClases() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Usuario actualUser = (Usuario) auth.getPrincipal();
-	   // if(actualUser.getRoles().contains(rolService.obtenerRolPorId(3))
-	    	//	return ArrayList<Clase> misClases=profeService.obtenerProfesorPorId(actualUser.getIdProfesor()).g
-		ArrayList<Clase> clases =(ArrayList<Clase>) claseService.listarClases();
+	    if(actualUser.getIdAlumno()!=null) {
+	    	Object[] misClases= alumnoService.obtenerAlumnoPorId(actualUser.getIdAlumno()).getClases().toArray();
+	    		return misClases;
+	    }
+		Object[] clases =claseService.listarClases().toArray();
 		return clases;
 	}
 }

@@ -45,7 +45,7 @@
 						</a>
 					</li>
 					
-					<li sec:authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_TEACHER')"
+					<li sec:authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_TEACHER', 'ROLE_USER')"
 						class="nav-item dropdown no-arrow">
 						<a class="nav-link text-gray-600" href="/calendario" role="button">
 							<i class="fas fa-calendar-days fa-sm fa-fw mr-3 text-gray-600"></i>
