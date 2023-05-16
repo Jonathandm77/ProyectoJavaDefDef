@@ -9,3 +9,13 @@
 .fc-daygrid-day:hover{
 	background-color: #e0e0e0;
 }
+
+.event-custom{
+	background-color: rgba(30, 143, 255, 0.589);
+	color: black;
+}
+
+.event-custom:hover{
+	background-color: rgba(30, 143, 255, 0.811);
+	color: black;
+}

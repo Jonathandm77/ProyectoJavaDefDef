@@ -8,18 +8,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	// Obtener el valor del parámetro "fechaActual"
 	var fechaActual = searchParams.get('fechaActual');
-	if(fechaActual!=null)
-	var fechaActualInt=parseInt(fechaActual);
+	if (fechaActual != null)
+		var fechaActualInt = parseInt(fechaActual);
 	else
-	var fechaActualInt=null
+		var fechaActualInt = null
 	var calendar = new FullCalendar.Calendar(calendarEl, {
 		initialView: 'dayGridMonth',
 		displayEventTime: false,
 		initialDate: fechaActualInt,
 		locale: 'es',
+		eventClassNames: 'event-custom',
+		eventColor: 'transparent',
 		buttonText: {
 			today: 'Hoy' // Cambiar el texto del botón Today
 		},
+		monthNames: [
+			'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+			'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+		],
 		dateClick: function(info) {
 			var modal = document.getElementById('crearClase');
 			var modalInstance = new bootstrap.Modal(modal);
@@ -32,6 +38,11 @@ document.addEventListener('DOMContentLoaded', function() {
 			var dateParam = 'fecha=' + info.dateStr;
 
 			form.setAttribute('action', actionUrl + '?' + dateParam);
+			
+			var botonCancel=document.getElementById("cancelCreateModal")
+			botonCancel.addEventListener('click', function(){
+				modalInstance.hide()
+			})
 
 			modalInstance.show();
 
@@ -51,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
 					var evento = {
 						title: clase.hora + ': ' + clase.alumno.nombre + ' ' + clase.alumno.apellidos, // Título 
 						start: new Date(clase.fecha), // Fecha de inicio 
-						id: clase.id
+						id: clase.id,
 					};
 					events.push(evento);
 				}
@@ -87,6 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	function vaciarEventSource() {
 		calendar.refetchEvents();
 	}
+
 
 });
 
