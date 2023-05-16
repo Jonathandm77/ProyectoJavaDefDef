@@ -31,14 +31,18 @@
 					<form action="#" th:action="@{/calendario/add/}" th:object="${claseNueva}" method="post"
 						class="needs-validation" novalidate>
 						<div class="modal-body">
-							<label for="alumno">Alumno</label>
-							<select th:field="*{alumno}" name="alumno" id="alumno">
-								<option th:each="alumno:${listaAlumnos}" th:value="${alumno.id}"
-									th:text="${alumno.nombre}" value="">Seleccionar alumno</option>
-							</select>
+							<div class="form-group">
+								<label for="alumno">Alumno</label>
+								<select th:field="*{alumno}" name="alumno" id="alumno" class="form-select">
+									<option th:each="alumno:${listaAlumnos}" th:value="${alumno.id}"
+										th:text="${alumno.nombre}" value="">Seleccionar alumno</option>
+								</select>
+							</div>
 
-							<label for="hora">Hora</label>
-							<input type="time" th:field="*{hora}" class="form-control" />
+							<div class="form-group">
+								<label for="hora">Hora</label>
+								<input type="time" th:field="*{hora}" class="form-control" />
+							</div>
 						</div>
 						<div class="modal-footer">
 							<button class="btn btn-secondary btn-sm" data-dismiss="modal"
