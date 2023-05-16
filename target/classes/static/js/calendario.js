@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			modalMessage.textContent = 'Crear una clase para el día ' + info.dateStr;
 
 			var form = modal.querySelector('form');
-			var actionUrl = form.getAttribute('action');
+			var actionUrl = '/calendario/add';
 			var dateParam = 'fecha=' + info.dateStr;
 
 			form.setAttribute('action', actionUrl + '?' + dateParam);
