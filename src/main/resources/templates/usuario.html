@@ -58,6 +58,22 @@
 												Profesor</a>
 										</div>
 									</span>
+									<span th:if="${usuarioMostrar.idAlumno != null}">
+										<span>Alumno:<p th:text="'Sí'" class="card-text mb-2 card-text"></p></span>
+									</span>
+									<span th:if="${usuarioMostrar.idAlumno == null}">
+										<span>Alumno:<p th:text="'No'" class="card-text mb-2 card-text"></p></span>
+									</span>
+									
+									<span id="idAlumno" th:if="${usuarioMostrar.idAlumno!= null}">
+										<span>ID del alumno:<p th:text="${usuarioMostrar.idAlumno}"
+												class="card-text mb-2 card-text"></p></span>
+										<div class="d-flex justify-content-end">
+											<a class="btn btn-primary"
+												th:href="@{/alumnos/{id}(id=${usuarioMostrar.idAlumno})}">Ver
+												Alumno</a>
+										</div>
+									</span>
 								</div>
 							</div>
 						</div>

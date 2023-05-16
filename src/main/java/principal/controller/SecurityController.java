@@ -90,6 +90,7 @@ public class SecurityController {
 	model.addAttribute("newUserDTO",new UsuarioDTO());
 	model.addAttribute("listaUsuarios",listaUsuarios);
 	model.addAttribute("userDelete", new UsuarioDTO());
+	model.addAttribute("listaAlumnos",alumnoService.listarAlumnos());
 	boolean vacio = (Boolean) model.asMap().getOrDefault("vacio", false);
     model.addAttribute("vacio", vacio);
     int status= (int) model.asMap().getOrDefault("status", 0);
@@ -430,8 +431,17 @@ public class SecurityController {
 			userProfesor.setIdProfesor(usuarioNew.getIdProfesor());
 			userService.insertarUsuarioProfesor(userProfesor);
 		} else {
+			if(usuarioNew.isEsAlumno()) {
+				Usuario userAlumno = new Usuario();
+				userAlumno.setNombre(usuarioNew.getNombre());
+				userAlumno.setPassword(usuarioNew.getPassword());
+				userAlumno.setUsername(usuarioNew.getUsername());
+				userAlumno.setIdAlumno(usuarioNew.getIdAlumno());
+				userService.insertarUsuarioProfesor(userAlumno);
+			}else {
 
 			userService.insertarUsuarioDTO(usuarioNew);
+			}
 		}
 
 		return "redirect:/seguridad/password#operat";

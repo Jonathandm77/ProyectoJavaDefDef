@@ -5,6 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,8 +19,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import principal.modelo.Alumno;
 import principal.modelo.Clase;
+import principal.modelo.Usuario;
 import principal.servicio.implementacion.AlumnoServiceImpl;
 import principal.servicio.implementacion.ClaseServiceImpl;
+import principal.servicio.implementacion.ProfesorServiceImpl;
+import principal.servicio.implementacion.RolServiceImpl;
 
 @Controller
 @RequestMapping("/calendario")
@@ -27,6 +32,11 @@ public class CalendarioController {
 	AlumnoServiceImpl alumnoService;
 	@Autowired
 	ClaseServiceImpl claseService;
+	@Autowired
+	RolServiceImpl rolService;
+	
+	@Autowired
+	ProfesorServiceImpl profeService;
 	
 	@GetMapping({"","/"})
 	String homeCalendar(Model model,@RequestParam(value = "fechaActual", required = false) Long fecha) {
@@ -69,6 +79,10 @@ public class CalendarioController {
 	@GetMapping({"/clases"})
 	@ResponseBody
 	ArrayList<Clase> obtenerClases() {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    Usuario actualUser = (Usuario) auth.getPrincipal();
+	   // if(actualUser.getRoles().contains(rolService.obtenerRolPorId(3))
+	    	//	return ArrayList<Clase> misClases=profeService.obtenerProfesorPorId(actualUser.getIdProfesor()).g
 		ArrayList<Clase> clases =(ArrayList<Clase>) claseService.listarClases();
 		return clases;
 	}

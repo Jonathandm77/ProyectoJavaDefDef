@@ -43,6 +43,9 @@ public class Usuario implements UserDetails {
 	@Column(name="id_profesor")
 	private Integer idProfesor;
 	
+	@Column(name="id_alumno")
+	private Integer idAlumno;
+	
 	@Column(name="imagenPerfil")
 	public String imagenPerfil;
 	
@@ -82,7 +85,6 @@ public class Usuario implements UserDetails {
 		this.idProfesor = idProfesor;
 		roles=new HashSet<Rol>();
 	}
-
 
 
 	public Integer getId() {
@@ -148,6 +150,18 @@ public class Usuario implements UserDetails {
 	
 
 
+
+
+
+	public Integer getIdAlumno() {
+		return idAlumno;
+	}
+
+
+
+	public void setIdAlumno(Integer idAlumno) {
+		this.idAlumno = idAlumno;
+	}
 
 
 

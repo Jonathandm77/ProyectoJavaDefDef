@@ -12,6 +12,10 @@ public class UsuarioDTO{
 	private boolean esProfesor;
 	
 	private Integer idProfesor;
+	
+	private boolean esAlumno;
+	
+	private Integer idAlumno;
 
 	public UsuarioDTO() {
 	}
@@ -20,13 +24,14 @@ public class UsuarioDTO{
 	
 	
 
-	public UsuarioDTO(Integer id, String nombre, String username, String password, boolean esProfesor) {
+	public UsuarioDTO(Integer id, String nombre, String username, String password, boolean esProfesor,boolean esAlumno) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.username = username;
 		this.password = password;
 		this.esProfesor = esProfesor;
+		this.esAlumno=esAlumno;
 	}
 
 
@@ -34,7 +39,7 @@ public class UsuarioDTO{
 
 
 	public UsuarioDTO(Integer id, String nombre, String username, String password, boolean esProfesor,
-			Integer idProfesor) {
+			Integer idProfesor,boolean esAlumno, Integer idAlumno) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -42,6 +47,8 @@ public class UsuarioDTO{
 		this.password = password;
 		this.esProfesor = esProfesor;
 		this.idProfesor = idProfesor;
+		this.esAlumno= esAlumno;
+		this.idAlumno= idAlumno;
 	}
 
 
@@ -106,6 +113,38 @@ public class UsuarioDTO{
 
 	public void setIdProfesor(Integer idProfesor) {
 		this.idProfesor = idProfesor;
+	}
+
+
+
+
+
+	public boolean isEsAlumno() {
+		return esAlumno;
+	}
+
+
+
+
+
+	public void setEsAlumno(boolean esAlumno) {
+		this.esAlumno = esAlumno;
+	}
+
+
+
+
+
+	public Integer getIdAlumno() {
+		return idAlumno;
+	}
+
+
+
+
+
+	public void setIdAlumno(Integer idAlumno) {
+		this.idAlumno = idAlumno;
 	}
 	
 
