@@ -24,13 +24,13 @@ public class Alumno {
 	//@Column(name="id")
 	private Integer id;
 	
-	@Column(name="DNI")
+	@Column(name="DNI", unique=true)
 	private String dni;
 	
-	@Column(name="Nombre")
+	@Column(name="Nombre", nullable = false)
 	private String nombre;
 	
-	@Column(name="Apellidos")
+	@Column(name="Apellidos", nullable = false)
 	private String apellidos;
 	
 	@Column (name="Notas")

@@ -114,8 +114,6 @@ return "usuarios";
 	        }
 	        return "login";
 	    } catch (DataIntegrityViolationException e) {
-	        // Manejo de la excepción de clave duplicada
-	        // Agrega un mensaje de error al modelo para mostrarlo en la página de registro
 	        model.addAttribute("error", "El nombre de usuario ya está en uso");
 	        model.addAttribute("newUserDTO", new UsuarioDTO());
 	        return "registro";

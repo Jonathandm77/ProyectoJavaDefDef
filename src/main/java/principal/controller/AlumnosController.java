@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import principal.modelo.AjaxResponseBody;
 import principal.modelo.Alumno;
@@ -61,11 +63,15 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 			model.addAttribute("alumnoNuevo", new Alumno());
 			model.addAttribute("alumnoaEditar", new Alumno());
 			model.addAttribute("alumnoaBuscar", new Alumno());
+			String error =  (String) model.asMap().getOrDefault("error", null);
+		    model.addAttribute("error", error);
 			return "alumnos";
 		}
 		
+		@SuppressWarnings("unlikely-arg-type")
 		@PostMapping("/add")
-		public String addAlumno(@ModelAttribute("alumnoNuevo") Alumno alumnoNew, BindingResult bidingresult) throws SQLException {
+		public String addAlumno(@ModelAttribute("alumnoNuevo") Alumno alumnoNew,RedirectAttributes redirectAttributes,Model model, BindingResult bidingresult) throws SQLException {
+			try {
 			Profesor profeNuevo=profeService.obtenerProfesorPorId(alumnoNew.getProfesor().getId());
 			Coche cocheNuevo=cocheService.obtenerCochePorId(alumnoNew.getCoche().getId());
 			String dni=alumnoNew.getDni();
@@ -83,6 +89,10 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 				profeNuevo.juegoLlaves(cocheNuevo);
 			}
 			alumnoService.insertarAlumno(alumnoNew);
+			}catch (DataIntegrityViolationException e) {
+				redirectAttributes.addFlashAttribute("error", "El DNI ya existe");
+		        return "redirect:/alumnos";
+		    }
 			return "redirect:/alumnos";
 		}
 		
