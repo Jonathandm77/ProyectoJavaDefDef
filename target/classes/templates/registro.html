@@ -30,6 +30,9 @@
 	<div class="row">
 		<div class="col-4 mt-5 m-auto">
 			<h1 class="h3 text-grey-900">Nuevo Registro</h1>
+			<div id="error-message" class="alert alert-danger" th:if="${error}">
+				[[${error}]]
+			</div>
 			<form method="post" th:action="@{/usuarios/addRegistro}" th:object="${newUserDTO}">
 				<div class="form-row">
 					<div class="form-group col-8">

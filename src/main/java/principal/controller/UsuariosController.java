@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -99,21 +100,28 @@ return "usuarios";
 		return "registro";
 	}
 	@PostMapping("/addRegistro")
-	public String addRegistro(@ModelAttribute("usuarioNuevo") UsuarioDTO usuarioNew, BindingResult bidingresult) {
-		if(usuarioNew.isEsProfesor()) {
-			Usuario userProfesor=new Usuario();
-			userProfesor.setNombre(usuarioNew.getNombre());
-			userProfesor.setPassword(usuarioNew.getPassword());
-			userProfesor.setUsername(usuarioNew.getUsername());
-			userProfesor.setIdProfesor(usuarioNew.getIdProfesor());
-			userService.insertarUsuarioProfesor(userProfesor);
-		}else {
-			
-			userService.insertarUsuarioDTO(usuarioNew);
-		}
-		
-		return "login";
+	public String addRegistro(@ModelAttribute("usuarioNuevo") UsuarioDTO usuarioNew, BindingResult bindingResult, Model model) {
+	    try {
+	        if (usuarioNew.isEsProfesor()) {
+	            Usuario userProfesor = new Usuario();
+	            userProfesor.setNombre(usuarioNew.getNombre());
+	            userProfesor.setPassword(usuarioNew.getPassword());
+	            userProfesor.setUsername(usuarioNew.getUsername());
+	            userProfesor.setIdProfesor(usuarioNew.getIdProfesor());
+	            userService.insertarUsuarioProfesor(userProfesor);
+	        } else {
+	            userService.insertarUsuarioDTO(usuarioNew);
+	        }
+	        return "login";
+	    } catch (DataIntegrityViolationException e) {
+	        // Manejo de la excepción de clave duplicada
+	        // Agrega un mensaje de error al modelo para mostrarlo en la página de registro
+	        model.addAttribute("error", "El nombre de usuario ya está en uso");
+	        model.addAttribute("newUserDTO", new UsuarioDTO());
+	        return "registro";
+	    }
 	}
+
 	
 	private boolean isAdmin(){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
