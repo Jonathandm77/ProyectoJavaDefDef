@@ -12,5 +12,5 @@ import principal.modelo.Coche;
 public interface CocheRepo extends JpaRepository<Coche, Integer> {
 
 	public ArrayList<Coche> findAllByMarca(String marca);
-	public Coche findByMatricula(String matricula);
+	public Optional<Coche> findByMatricula(String matricula);
 }

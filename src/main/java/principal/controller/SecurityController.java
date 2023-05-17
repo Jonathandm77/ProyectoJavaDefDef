@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -414,10 +415,18 @@ public class SecurityController {
 	@PostMapping({ "/searchCocheByMatricula" })
 	String buscarCochePorMatricula(Model model, @ModelAttribute("cocheaBuscar") CocheBuscarMatriculaDTO cocheBuscado,
 			BindingResult bidingresult) {
-		Coche c = cocheService.encontrarCochePorMatricula(cocheBuscado.getMatricula());
-		int id = c.getId();
-
-		return "redirect:/coches/" + id;
+		String matricula = cocheBuscado.getMatricula();
+		String letras = matricula.substring(5, 8).toUpperCase();
+		String mat = matricula.substring(0, 4) + " " + letras;
+		Optional<Coche> cochematricula = cocheService.encontrarCochePorMatricula(mat);
+		if (!cochematricula.isEmpty()) {
+			Integer id = cochematricula.get().getId();
+			return "redirect:/coches/" + id;
+		} else {
+			ArrayList<Coche> cocheVacio = new ArrayList<Coche>();
+			model.addAttribute("cochesMarca", cocheVacio);
+			return "cochesBuscadosPorMarca";
+		}
 
 	}
 

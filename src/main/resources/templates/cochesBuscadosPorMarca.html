@@ -12,7 +12,10 @@
 			
 		</header>
 		<div class="row col-5">
-			<div class="col-9">
+			<div th:if="${cochesMarca.Empty}">
+				<h1>No hay coches que coincidan con tu búsqueda</h1>
+			</div>
+			<div th:if="${!cochesMarca.Empty}" class="col-9">
 				<h5> Datos de coche </h5>
 				<div class="card border border primary" th:each="coche:${cochesMarca}">
 					<div class="card-body row pt-4 pb-4">

@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -59,12 +60,13 @@ public class CochesController {
 		ArrayList<Coche> misCoches = (ArrayList<Coche>) cocheService.listarCoches();
 		ArrayList<Alumno> misAlumnos = (ArrayList<Alumno>) alumnoService.listarAlumnos();
 		ArrayList<Profesor> misProfesores = (ArrayList<Profesor>) profeService.listarProfesores();
-		
-		for(Coche Coche:misCoches) {
-			if(Coche.getFoto()!=null) {
+
+		for (Coche Coche : misCoches) {
+			if (Coche.getFoto() != null) {
 				Resource resource = storageService.load(Coche.getFoto());
-				String url = MvcUriComponentsBuilder.fromMethodName(SecurityController.class, "serveFile", resource.getFilename())
-				    .build().toString();
+				String url = MvcUriComponentsBuilder
+						.fromMethodName(SecurityController.class, "serveFile", resource.getFilename()).build()
+						.toString();
 				ImageInfo img = new ImageInfo(resource.getFilename(), url);
 				Coche.setUrl(img.getUrl());
 			}
@@ -89,7 +91,8 @@ public class CochesController {
 
 	@PostMapping("/edit/{id}")
 	public String editarCoche(@PathVariable Integer id,
-			@ModelAttribute("cocheaEditar") CocheAEditarMatriculaFechaImgDTO cocheEditado, BindingResult bidingresult,Model model) {
+			@ModelAttribute("cocheaEditar") CocheAEditarMatriculaFechaImgDTO cocheEditado, BindingResult bidingresult,
+			Model model) {
 		Coche cocheaEditar = cocheService.obtenerCochePorId(id);
 		if (cocheEditado.getMatricula() != null && cocheEditado.getMatricula() != "")
 			cocheaEditar.setMatricula(cocheEditado.getMatricula());
@@ -98,12 +101,12 @@ public class CochesController {
 		cocheService.insertarCoche(cocheaEditar);
 		return "redirect:/coches/" + cocheaEditar.getId();
 	}
-	
+
 	@PostMapping("/edit/photo/{id}")
-	public String editarFotoCoche(@PathVariable Integer id,@RequestParam("file") MultipartFile file) {
+	public String editarFotoCoche(@PathVariable Integer id, @RequestParam("file") MultipartFile file) {
 		Coche cocheaEditar = cocheService.obtenerCochePorId(id);
 		if (!file.getOriginalFilename().equals("")) {
-			if(cocheaEditar.getFoto()!=null)
+			if (cocheaEditar.getFoto() != null)
 				storageService.delete(cocheaEditar.getFoto());
 			cocheaEditar.setFoto(file.getOriginalFilename());
 			storageService.save(file);
@@ -144,7 +147,7 @@ public class CochesController {
 					misCoches.add(cGenerico);
 					// misCoches.get(0).setFechaITV(fecha);
 					a.setCoche(cGenerico);
-					for(Clase c:a.getClases()) {
+					for (Clase c : a.getClases()) {
 						c.setCoche(cGenerico);
 					}
 					profeTemp.add(a.getProfesor());
@@ -156,7 +159,7 @@ public class CochesController {
 						coche = (int) (Math.random() * misCoches.size());
 					} while (coche == misCoches.indexOf(a.getCoche()));
 					a.setCoche(misCoches.get(coche));
-					for(Clase c:a.getClases()) {
+					for (Clase c : a.getClases()) {
 						c.setCoche(misCoches.get(coche));
 					}
 					profeTemp.add(a.getProfesor());
@@ -219,14 +222,18 @@ public class CochesController {
 
 	@PostMapping({ "/searchMatricula" })
 	String buscarCochePorMatricula(@ModelAttribute("cocheaBuscar") CocheBuscarMatriculaDTO cocheBuscado,
-			BindingResult bidingresult) {
+			BindingResult bidingresult, Model model) {
 		String matricula = cocheBuscado.getMatricula();
 		String letras = matricula.substring(5, 8).toUpperCase();
 		String mat = matricula.substring(0, 4) + " " + letras;
-		Coche cochematricula = cocheService.encontrarCochePorMatricula(mat);
-		Integer id = cochematricula.getId();
-
-		return "redirect:/coches/" + id;
-
+		Optional<Coche> cochematricula = cocheService.encontrarCochePorMatricula(mat);
+		if (!cochematricula.isEmpty()) {
+			Integer id = cochematricula.get().getId();
+			return "redirect:/coches/" + id;
+		} else {
+			ArrayList<Coche> cocheVacio = new ArrayList<Coche>();
+			model.addAttribute("cochesMarca", cocheVacio);
+			return "cochesBuscadosPorMarca";
+		}
 	}
 }

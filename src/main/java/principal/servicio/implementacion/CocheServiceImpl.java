@@ -61,8 +61,8 @@ public class CocheServiceImpl implements CocheService {
 		
 	}
 	
-	public Coche encontrarCochePorMatricula(String matricula) {
-		Coche coche =cocheRepo.findByMatricula(matricula);
+	public Optional<Coche> encontrarCochePorMatricula(String matricula) {
+		Optional<Coche> coche =cocheRepo.findByMatricula(matricula);
 		return coche;
 	}
 
