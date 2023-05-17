@@ -82,9 +82,24 @@ public class CalendarioController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Usuario actualUser = (Usuario) auth.getPrincipal();
 	    if(actualUser.getIdAlumno()!=null) {
-	    	Object[] misClases= alumnoService.obtenerAlumnoPorId(actualUser.getIdAlumno()).getClases().toArray();
-	    		return misClases;
+	    	Object[] misClasesAlumno= alumnoService.obtenerAlumnoPorId(actualUser.getIdAlumno()).getClases().toArray();
+	    		return misClasesAlumno;
 	    }
+	    
+	    if (actualUser.getIdProfesor() != null) {
+	        ArrayList<Alumno> listaAlumnos = (ArrayList<Alumno>) alumnoService.listarAlumnos();
+	        ArrayList<Object> misClasesProfesor = new ArrayList<>();
+
+	        for (Alumno a : listaAlumnos) {
+	            if (a.getProfesor().getId() == actualUser.getIdProfesor()) {
+	                misClasesProfesor.addAll(a.getClases());
+	            }
+	        }
+
+	        Object[] misClasesProfesorArray = misClasesProfesor.toArray();
+	        return misClasesProfesorArray;
+	    }
+
 		Object[] clases =claseService.listarClases().toArray();
 		return clases;
 	}
