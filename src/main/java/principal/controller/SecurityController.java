@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -166,8 +167,9 @@ public class SecurityController {
 	}
 
 	@PostMapping("/addAlumno")
-	public String addAlumno(@ModelAttribute("alumnoNuevo") Alumno alumnoNew, BindingResult bidingresult)
-			throws SQLException {
+	public String addAlumno(@ModelAttribute("alumnoNuevo") Alumno alumnoNew, BindingResult bidingresult, RedirectAttributes redirectAttributes) throws SQLException
+			 {
+		try {
 		Profesor profeNuevo = profeService.obtenerProfesorPorId(alumnoNew.getProfesor().getId());
 		Coche cocheNuevo = cocheService.obtenerCochePorId(alumnoNew.getCoche().getId());
 		String dni=alumnoNew.getDni();
@@ -183,8 +185,11 @@ public class SecurityController {
 			cocheService.insertarCoche(cocheNuevo);
 			profeService.insertarProfesor(profeNuevo);
 			profeNuevo.juegoLlaves(cocheNuevo);
+			alumnoService.insertarAlumno(alumnoNew);
 		}
-		alumnoService.insertarAlumno(alumnoNew);
+		}catch (DataIntegrityViolationException e) {
+			redirectAttributes.addFlashAttribute("error", "El DNI ya existe.");
+	    }
 		return "redirect:/seguridad/password#operat";
 	}
 
@@ -216,8 +221,17 @@ public class SecurityController {
 	}
 
 	@PostMapping("/addProfesor")
-	public String addProfesor(@ModelAttribute("profeNuevo") Profesor profeNew, BindingResult bidingresult) {
-		profeService.insertarProfesor(profeNew);
+	public String addProfesor(@ModelAttribute("profeNuevo") Profesor profeNew, BindingResult bidingresult,RedirectAttributes redirectAttributes) {
+		try {
+			String dni=profeNew.getDni();
+			char letra=dni.charAt(8);
+			letra=Character.toUpperCase(letra);
+			dni=dni.substring(0,8)+letra;
+			profeNew.setDni(dni);
+			profeService.insertarProfesor(profeNew);
+			}catch (DataIntegrityViolationException e) {
+				redirectAttributes.addFlashAttribute("error", "El DNI ya existe.");
+		    }
 		return "redirect:/seguridad/password#operat";
 	}
 

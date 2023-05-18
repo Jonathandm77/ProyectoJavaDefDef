@@ -63,8 +63,6 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 			model.addAttribute("alumnoNuevo", new Alumno());
 			model.addAttribute("alumnoaEditar", new Alumno());
 			model.addAttribute("alumnoaBuscar", new Alumno());
-			String error =  (String) model.asMap().getOrDefault("error", null);
-		    model.addAttribute("error", error);
 			return "alumnos";
 		}
 		
