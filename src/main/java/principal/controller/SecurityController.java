@@ -232,6 +232,7 @@ public class SecurityController {
 			}catch (DataIntegrityViolationException e) {
 				redirectAttributes.addFlashAttribute("error", "El DNI ya existe.");
 		    }
+		
 		return "redirect:/seguridad/password#operat";
 	}
 
