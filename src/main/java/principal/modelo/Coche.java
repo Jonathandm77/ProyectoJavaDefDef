@@ -27,10 +27,9 @@ public class Coche {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	//@Column(name="id")
 	private Integer id;
 	
-	@Column(name="Matricula")
+	@Column(name="Matricula", unique=true)
 	private String matricula;
 	
 	@Column(name="Modelo")

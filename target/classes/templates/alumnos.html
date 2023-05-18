@@ -83,10 +83,9 @@
 						data-toggle="modal" data-target="#buscarAlumnoPorDni">Buscar por DNI</button>
 				</div>
 			</div>
-			<div th:if="${error}">
-				<div id="error-message" class="alert alert-danger" th:if="${error}">
-					[[${error}]]
-				</div>
+			
+			<div id="error-message" class="alert alert-danger w-50 m-auto text-center p-5 mt-3" th:if="${error}">
+				[[${error}]]
 			</div>
 		</div>
 

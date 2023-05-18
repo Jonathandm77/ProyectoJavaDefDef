@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -67,8 +68,17 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 		}
 		
 		@PostMapping("/add")
-		public String addProfesor(@ModelAttribute("profeNuevo") Profesor profeNew, BindingResult bidingresult) {
+		public String addProfesor(@ModelAttribute("profeNuevo") Profesor profeNew, BindingResult bidingresult, RedirectAttributes redirectAttributes) {
+			try {
+			String dni=profeNew.getDni();
+			char letra=dni.charAt(8);
+			letra=Character.toUpperCase(letra);
+			dni=dni.substring(0,8)+letra;
+			profeNew.setDni(dni);
 			profeService.insertarProfesor(profeNew);
+			}catch (DataIntegrityViolationException e) {
+				redirectAttributes.addFlashAttribute("error", "El DNI ya existe.");
+		    }
 			return "redirect:/profesores";
 		}
 		

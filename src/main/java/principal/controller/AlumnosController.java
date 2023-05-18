@@ -90,8 +90,7 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 			}
 			alumnoService.insertarAlumno(alumnoNew);
 			}catch (DataIntegrityViolationException e) {
-				redirectAttributes.addFlashAttribute("error", "El DNI ya existe");
-		        return "redirect:/alumnos";
+				redirectAttributes.addFlashAttribute("error", "El DNI ya existe.");
 		    }
 			return "redirect:/alumnos";
 		}

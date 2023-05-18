@@ -78,6 +78,9 @@
 						data-toggle="modal" data-target="#buscarProfePorDni">Buscar profesor por DNI</button>
 				</div>
 			</div>
+			<div id="error-message" class="alert alert-danger w-50 m-auto text-center p-5 mt-3" th:if="${error}">
+				[[${error}]]
+			</div>
 		</div>
 
 		<!-- buscar por dni modal-->
@@ -177,7 +180,8 @@
 					<div class="modal-body">
 						<p class="error-text">Introduce el nombre para el nuevo profesor
 							<!--formulario nombre a editar-->
-						<form action="#" th:action="@{/profesores/add/}" th:object="${profeNuevo}" method="post" class="needs-validation" novalidate>
+						<form action="#" th:action="@{/profesores/add/}" th:object="${profeNuevo}" method="post"
+							class="needs-validation" novalidate>
 							<div class"form-row">
 								<div class="form-group mt-1">
 									<div class="form-group mt-1">
@@ -319,4 +323,5 @@
 
 
 <script th:src="@{/js/validaForm.js}"></script>
+
 </html>
