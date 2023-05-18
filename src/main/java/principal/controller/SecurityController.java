@@ -331,8 +331,17 @@ public class SecurityController {
 	}
 
 	@PostMapping("/addCoche")
-	public String addCoche(@ModelAttribute("cocheNuevo") Coche cocheNew, BindingResult bidingresult) {
+	public String addCoche(@ModelAttribute("cocheNuevo") Coche cocheNew, BindingResult bidingresult, RedirectAttributes redirectAttributes) {
+		try {
+		String matricula = cocheNew.getMatricula();
+		String numeros = matricula.substring(0, 4);
+		String letras = matricula.substring(5, 8).toUpperCase();
+		String matriculaFinal = numeros + " " + letras;
+		cocheNew.setMatricula(matriculaFinal);
 		cocheService.insertarCoche(cocheNew);
+		}catch (DataIntegrityViolationException e) {
+			redirectAttributes.addFlashAttribute("error", "La matrícula ya existe.");
+	    }
 		return "redirect:/seguridad/password#operat";
 	}
 

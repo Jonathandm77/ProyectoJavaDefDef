@@ -10,6 +10,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import principal.modelo.Alumno;
 import principal.modelo.Clase;
@@ -28,12 +30,10 @@ import principal.modelo.Coche;
 import principal.modelo.ImageInfo;
 import principal.modelo.Profesor;
 import principal.modelo.ProfesoresCoches;
-import principal.modelo.Usuario;
 import principal.modelo.dto.CocheAEditarMatriculaFechaImgDTO;
 import principal.modelo.dto.CocheBuscarMarcaDTO;
 import principal.modelo.dto.CocheBuscarMatriculaDTO;
 import principal.servicio.implementacion.AlumnoServiceImpl;
-import principal.servicio.implementacion.ClaseServiceImpl;
 import principal.servicio.implementacion.CocheServiceImpl;
 import principal.servicio.implementacion.ProfesorServiceImpl;
 import principal.servicio.interfaces.FileStorageService;
@@ -83,9 +83,17 @@ public class CochesController {
 	}
 
 	@PostMapping("/add")
-	public String addCoche(@ModelAttribute("cocheNuevo") Coche cocheNew, BindingResult bidingresult) {
-
-		cocheService.insertarCoche(cocheNew);
+	public String addCoche(@ModelAttribute("cocheNuevo") Coche cocheNew, BindingResult bidingresult, RedirectAttributes redirectAttributes) {
+		try {
+			String matricula = cocheNew.getMatricula();
+			String numeros = matricula.substring(0, 4);
+			String letras = matricula.substring(5, 8).toUpperCase();
+			String matriculaFinal = numeros + " " + letras;
+			cocheNew.setMatricula(matriculaFinal);
+			cocheService.insertarCoche(cocheNew);
+		} catch (DataIntegrityViolationException e) {
+			redirectAttributes.addFlashAttribute("error", "La matrícula ya existe.");
+		}
 		return "redirect:/coches";
 	}
 
