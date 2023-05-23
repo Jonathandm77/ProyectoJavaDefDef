@@ -36,7 +36,11 @@ document.addEventListener('DOMContentLoaded', function() {
 			form.setAttribute('action', actionUrl + '?' + dateParam);
 
 			var botonCancelCreate = document.getElementById("cancelCreateModal")
+			var botonSuperiorCancelCreate = document.getElementById("aboveCancelCreate")
 			botonCancelCreate.addEventListener('click', function() {
+				modalInstance.hide()
+			})
+			botonSuperiorCancelCreate.addEventListener('click', function() {
 				modalInstance.hide()
 			})
 
@@ -82,9 +86,14 @@ document.addEventListener('DOMContentLoaded', function() {
 			form.setAttribute('action', actionUrl + '?' + idParam);
 
 			var botonCancelDelete = document.getElementById("cancelDeleteModal")
+			var botonSuperiorCancelDelete = document.getElementById("aboveCancelDelete")
 			botonCancelDelete.addEventListener('click', function() {
 				modalInstance.hide()
 			})
+			botonSuperiorCancelDelete.addEventListener('click', function() {
+				modalInstance.hide()
+			})
+			
 
 			modalInstance.show();
 		}
