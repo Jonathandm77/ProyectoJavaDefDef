@@ -111,7 +111,7 @@ public class CochesController {
 	}
 
 	@PostMapping("/edit/photo/{id}")
-	public String editarFotoCoche(@PathVariable Integer id, @RequestParam("file") MultipartFile file) {
+	public String editarFotoCoche(@PathVariable Integer id,  @RequestParam("file") MultipartFile file) {
 		Coche cocheaEditar = cocheService.obtenerCochePorId(id);
 		if (!file.getOriginalFilename().equals("")) {
 			if (cocheaEditar.getFoto() != null)

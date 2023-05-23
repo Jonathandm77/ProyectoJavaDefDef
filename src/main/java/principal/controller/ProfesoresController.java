@@ -30,6 +30,7 @@ import principal.modelo.dto.ProfesorBuscarNameDTO;
 import principal.servicio.implementacion.AlumnoServiceImpl;
 import principal.servicio.implementacion.CocheServiceImpl;
 import principal.servicio.implementacion.ProfesorServiceImpl;
+import springfox.documentation.annotations.ApiIgnore;
 
 
 
@@ -68,7 +69,7 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 		}
 		
 		@PostMapping("/add")
-		public String addProfesor(@ModelAttribute("profeNuevo") Profesor profeNew, BindingResult bidingresult, RedirectAttributes redirectAttributes) {
+		public String addProfesor(@ModelAttribute("profeNuevo") Profesor profeNew, BindingResult bidingresult, @ApiIgnore RedirectAttributes redirectAttributes) {
 			try {
 			String dni=profeNew.getDni();
 			char letra=dni.charAt(8);
@@ -101,7 +102,7 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 		}
 		
 		@GetMapping({"/delete/{id}"})
-		String deleteProfe(Model model, @PathVariable Integer id, RedirectAttributes redirectAttributes) throws SQLException {
+		String deleteProfe(Model model, @PathVariable Integer id, @ApiIgnore RedirectAttributes redirectAttributes) throws SQLException {
 			Profesor profeaEliminar=profeService.obtenerProfesorPorId(id);
 			ArrayList<Alumno> misAlumnos= (ArrayList<Alumno>) alumnoService.listarAlumnos();
 			ArrayList<Profesor> misProfesores= (ArrayList<Profesor>) profeService.listarProfesores();

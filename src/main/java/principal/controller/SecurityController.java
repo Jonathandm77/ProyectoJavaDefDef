@@ -29,8 +29,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import principal.modelo.Alumno;
 import principal.modelo.Clase;
 import principal.modelo.Coche;
@@ -53,6 +54,7 @@ import principal.servicio.implementacion.CocheServiceImpl;
 import principal.servicio.implementacion.ProfesorServiceImpl;
 import principal.servicio.implementacion.UsuarioServiceImpl;
 import principal.servicio.interfaces.FileStorageService;
+import springfox.documentation.annotations.ApiIgnore;
 
 @RequestMapping("/seguridad/password")
 @Controller
@@ -221,7 +223,7 @@ public class SecurityController {
 	}
 
 	@PostMapping("/addProfesor")
-	public String addProfesor(@ModelAttribute("profeNuevo") Profesor profeNew, BindingResult bidingresult,RedirectAttributes redirectAttributes) {
+	public String addProfesor(@ModelAttribute("profeNuevo") Profesor profeNew, BindingResult bidingresult, @ApiIgnore RedirectAttributes redirectAttributes) {
 		try {
 			String dni=profeNew.getDni();
 			char letra=dni.charAt(8);
@@ -237,7 +239,7 @@ public class SecurityController {
 	}
 
 	@GetMapping("/deleteProfesor")
-	String deleteProfe(@ModelAttribute("profeaEliminar") EntityIdDTO profesor,RedirectAttributes redirectAttributes) throws SQLException {
+	String deleteProfe(@ModelAttribute("profeaEliminar") EntityIdDTO profesor, @ApiIgnore RedirectAttributes redirectAttributes) throws SQLException {
 		Profesor profeaEliminar=profeService.obtenerProfesorPorId(profesor.getId());
 		ArrayList<Alumno> misAlumnos= (ArrayList<Alumno>) alumnoService.listarAlumnos();
 		ArrayList<Profesor> misProfesores= (ArrayList<Profesor>) profeService.listarProfesores();
@@ -331,7 +333,7 @@ public class SecurityController {
 	}
 
 	@PostMapping("/addCoche")
-	public String addCoche(@ModelAttribute("cocheNuevo") Coche cocheNew, BindingResult bidingresult, RedirectAttributes redirectAttributes) {
+	public String addCoche(@ModelAttribute("cocheNuevo") Coche cocheNew, BindingResult bidingresult, @ApiIgnore RedirectAttributes redirectAttributes) {
 		try {
 		String matricula = cocheNew.getMatricula();
 		String numeros = matricula.substring(0, 4);
@@ -346,7 +348,7 @@ public class SecurityController {
 	}
 
 	@GetMapping({ "/deleteCoche" })
-	String deleteCoche(@ModelAttribute("cocheaEliminar") Coche cocheEliminar) throws SQLException {
+	String deleteCoche(@ModelAttribute("cocheaEliminar") EntityIdDTO cocheEliminar) throws SQLException {
 		Coche cocheaEliminar = cocheService.obtenerCochePorId(cocheEliminar.getId());
 		ArrayList<Alumno> misAlumnos = (ArrayList<Alumno>) alumnoService.listarAlumnos();
 		ArrayList<Coche> misCoches = (ArrayList<Coche>) cocheService.listarCoches();

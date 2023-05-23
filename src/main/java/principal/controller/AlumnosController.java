@@ -32,6 +32,7 @@ import principal.modelo.dto.AlumnoEditarNotasNombreApellidoDTO;
 import principal.servicio.implementacion.AlumnoServiceImpl;
 import principal.servicio.implementacion.CocheServiceImpl;
 import principal.servicio.implementacion.ProfesorServiceImpl;
+import springfox.documentation.annotations.ApiIgnore;
 
 
 
@@ -119,7 +120,7 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 		}
 		
 		@GetMapping({"/{id}"})
-		String idAlumno(Model model, @PathVariable Integer id, HttpSession session) {
+		String idAlumno(@ApiIgnore Model model, @PathVariable Integer id, @ApiIgnore HttpSession session) {
 			Alumno alumnoMostrar=alumnoService.obtenerAlumnoPorId(id);
 			Object[]clases= alumnoMostrar.getClases().toArray();
 			model.addAttribute("alumnoMostrar", alumnoMostrar);

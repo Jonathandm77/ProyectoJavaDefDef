@@ -88,8 +88,13 @@ return "usuarios";
 
 
 	@PostMapping("/add")
-	public String addUsuario(@ModelAttribute("usuarioNuevo") Usuario usuarioNew, BindingResult bidingresult) {
-		userService.insertarUsuario(usuarioNew);
+	public String addUsuario(@ModelAttribute("usuarioNuevo") UsuarioAddDTO usuarioNew, BindingResult bidingresult) {
+		Usuario usuarioaInsertar=new Usuario();
+		usuarioaInsertar.setNombre(usuarioNew.getNombre());
+		usuarioaInsertar.setUsername(usuarioNew.getUsername());
+		usuarioaInsertar.setIdAlumno(usuarioNew.getIdAlumno());
+		
+		userService.insertarUsuarioBasico(usuarioaInsertar);
 		return "redirect:/usuarios";
 	}
 	@GetMapping({"/registro" })
