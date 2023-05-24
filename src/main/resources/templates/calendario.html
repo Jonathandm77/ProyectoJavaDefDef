@@ -33,7 +33,7 @@
 						class="needs-validation" novalidate>
 						<div class="form-group">
 							<label for="alumno">Alumno</label>
-							<select th:field="*{alumno}" name="alumno" id="alumno" class="form-select">
+							<select th:field="*{alumno.id}" name="alumno" id="alumno" class="form-select">
 								<option th:each="alumno:${listaAlumnos}" th:value="${alumno.id}"
 									th:text="${alumno.nombre}" value="">Seleccionar alumno</option>
 							</select>

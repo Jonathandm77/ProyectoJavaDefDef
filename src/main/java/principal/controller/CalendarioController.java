@@ -20,10 +20,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import principal.modelo.Alumno;
 import principal.modelo.Clase;
 import principal.modelo.Usuario;
+import principal.modelo.dto.ClaseDTO;
 import principal.servicio.implementacion.AlumnoServiceImpl;
 import principal.servicio.implementacion.ClaseServiceImpl;
 import principal.servicio.implementacion.ProfesorServiceImpl;
 import principal.servicio.implementacion.RolServiceImpl;
+import springfox.documentation.annotations.ApiIgnore;
 
 @Controller
 @RequestMapping("/calendario")
@@ -43,7 +45,7 @@ public class CalendarioController {
 		ArrayList<Alumno> listaAlumnos=(ArrayList<Alumno>) alumnoService.listarAlumnos();
 		
 		model.addAttribute("listaAlumnos",listaAlumnos);
-       model.addAttribute("claseNueva",new Clase());
+       model.addAttribute("claseNueva",new ClaseDTO());
        model.addAttribute("claseBorrar",new Clase());
        if(fecha!=null) {
        model.addAttribute("fechaActual",fecha);
@@ -52,8 +54,9 @@ public class CalendarioController {
 	}
 	
 	@PostMapping({"/add"})
-	String añadirClase(@ModelAttribute("claseNueva") Clase clase,@RequestParam("fecha") String fecha,RedirectAttributes redirectAttributes) throws ParseException {
-		Clase claseAñadir=new Clase(clase.getAlumno());
+	String añadirClase(@ModelAttribute("claseNueva") ClaseDTO clase,@RequestParam("fecha") String fecha,@ApiIgnore RedirectAttributes redirectAttributes) throws ParseException {
+		Alumno alumnoClase=alumnoService.obtenerAlumnoPorId(clase.getAlumno().getId());
+		Clase claseAñadir=new Clase(alumnoClase);
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		claseAñadir.setFecha(dateFormat.parse(fecha));
 		claseAñadir.setHora(clase.getHora());
