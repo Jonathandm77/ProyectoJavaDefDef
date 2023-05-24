@@ -138,7 +138,7 @@ public class SecurityController {
 
 	@PostMapping("/changeData")
 	public String cambioDatos(@ModelAttribute("usuarioActual") UsuarioNombreUsernameImageDTO user,
-			BindingResult bidingresult, @RequestParam("file") MultipartFile file,Model model) throws IOException {
+			BindingResult bidingresult, @RequestParam(value="file", required=false) MultipartFile file,Model model) throws IOException {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Usuario actualUser = (Usuario) auth.getPrincipal();
 
