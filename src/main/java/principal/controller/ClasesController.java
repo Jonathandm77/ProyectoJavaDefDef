@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import principal.modelo.Alumno;
 import principal.modelo.Clase;
+import principal.modelo.dto.ClaseDTO;
 import principal.servicio.implementacion.ClaseServiceImpl;
+import springfox.documentation.annotations.ApiIgnore;
 
 
 @Controller
@@ -27,11 +29,14 @@ public class ClasesController {
 	ClaseServiceImpl claseService;
 	
 	@PostMapping("/add")
-	public String addClase(@ModelAttribute("claseNueva") Clase claseNew, BindingResult bidingresult,HttpSession session) throws SQLException {
+	public String addClase(@ModelAttribute("claseNueva") ClaseDTO claseNew, @ApiIgnore BindingResult bidingresult, @ApiIgnore HttpSession session) throws SQLException {
 		Alumno alumno=(Alumno) session.getAttribute("alumnoaImpartir");
-		claseNew.setAlumno(alumno);
-		alumno.añadirClase(claseNew);
-		claseService.insertarClase(claseNew);
+		Clase claseaAñadir=new Clase();
+		claseaAñadir.setAlumno(alumno);
+		alumno.añadirClase(claseaAñadir);
+		claseaAñadir.setFecha(claseNew.getFecha());
+		claseaAñadir.setHora(claseNew.getHora());
+		claseService.insertarClase(claseaAñadir);
 		return "redirect:/alumnos/"+alumno.getId();
 	}
 	
