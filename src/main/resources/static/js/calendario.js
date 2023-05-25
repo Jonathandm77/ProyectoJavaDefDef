@@ -1,4 +1,4 @@
-
+//Codigo calendario
 document.addEventListener('DOMContentLoaded', function() {
 	var calendarEl = document.getElementById('calendar');
 	var url = new URL(window.location.href);
@@ -113,3 +113,4 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 
+//Fin codigo calendario

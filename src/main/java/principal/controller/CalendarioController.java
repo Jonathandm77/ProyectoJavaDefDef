@@ -3,6 +3,7 @@ package principal.controller;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -50,18 +51,29 @@ public class CalendarioController {
        if(fecha!=null) {
        model.addAttribute("fechaActual",fecha);
        }
+       
 		return "calendario";
 	}
 	
 	@PostMapping({"/add"})
 	String añadirClase(@ModelAttribute("claseNueva") ClaseDTO clase,@RequestParam("fecha") String fecha,@ApiIgnore RedirectAttributes redirectAttributes) throws ParseException {
 		Alumno alumnoClase=alumnoService.obtenerAlumnoPorId(clase.getAlumno().getId());
-		Clase claseAñadir=new Clase(alumnoClase);
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		claseAñadir.setFecha(dateFormat.parse(fecha));
+		Date fechaDate=dateFormat.parse(fecha);
+		boolean error = false;
+		for (Clase c:alumnoClase.getClases()) {
+			if(c.getHora().equals(clase.getHora()) && c.getFecha().equals(fechaDate)) {
+				error=true;
+			}
+		}
+		if(!error) {
+		Clase claseAñadir=new Clase(alumnoClase);
+		claseAñadir.setFecha(fechaDate);
 		claseAñadir.setHora(clase.getHora());
-		redirectAttributes.addAttribute("fechaActual", claseAñadir.getFecha().getTime());
 		claseService.insertarClase(claseAñadir);
+		}
+		redirectAttributes.addAttribute("fechaActual", fechaDate.getTime());
+		redirectAttributes.addFlashAttribute("error",error);
 		
 		return "redirect:/calendario";
 		

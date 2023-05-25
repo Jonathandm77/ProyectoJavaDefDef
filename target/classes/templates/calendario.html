@@ -86,8 +86,35 @@
 
 	<!--fin delete modal-->
 	
-	
+	<div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1000;">
+			<div th:if="${error}" id="toastDuplicateClass" class="toast" role="alert" aria-live="assertive" aria-atomic="true"
+				data-delay="5000">
+				<div class="toast-header">
+					<i class="fas fa-exclamation-triangle me-2 fa-beat" style="color: #e00606;"></i>
+					<strong class="me-auto">¡Alerta!</strong>
+					<small>Justo ahora</small>
+					<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+				</div>
+				<div class="toast-body">
+					¡Ya existe una clase en ese momento para el alumno seleccionado!
+				</div>
+			</div>
+		</div>
+<script th:inline="javascript">
+		var error = /*[[${error}]]*/ false;
 
+		if (error) {
+			const toastLiveExample = document.getElementById('toastDuplicateClass');
+			const toastBootstrap = new bootstrap.Toast(toastLiveExample);
+			const toastCloseButton = toastLiveExample.querySelector('.btn-close');
+
+			toastCloseButton.addEventListener('click', function () {
+				toastBootstrap.hide();
+			});
+
+			toastBootstrap.show();
+		}
+</script>
 
 </body>
 <link rel="stylesheet" th:href="@{/css/calendario.css}">
