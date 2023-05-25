@@ -6,3 +6,7 @@
     margin-bottom: 10px;
     flex: none;
 }
+
+.card-coche{
+	height: 7rem!important;
+}

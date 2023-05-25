@@ -23,10 +23,10 @@
 					<img th:src="@{${coche.url}}" alt="${image.name}" width="300px" height="300px"
 						class="card-img-top img-fluid" />
 				</div>
+				<div class="card-header">
+					<h5 class="card-title" th:text="${coche.marca}+' '+${coche.modelo}"></h5>
+				</div>
 				<div class="card-body">
-					<div>
-						<h5 class="card-title" th:text="${coche.marca}+' '+${coche.modelo}"></h5>
-					</div>
 					<div class="">
 						<a th:href="@{/coches/{id}(id=${coche.id})}" class="btn btn-primary">Ver Coche</a>
 						<a th:attr="data-target='#modal-edit'+${coche.id}" data-toggle="modal" data-target="#modal-edit"
@@ -283,4 +283,5 @@
 <script th:src="@{/js/validaForm.js}"></script>
 <link rel="stylesheet" th:href="@{/css/usuarios.css}">
 <script th:src="@{/js/cardCoche.js}"></script>
+
 </html>
