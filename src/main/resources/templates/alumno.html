@@ -107,8 +107,8 @@
 										<form th:action="@{/alumnos/edit/{id}(id=${alumnoMostrar.id})}" method="POST"
 											class="d-flex justify-content-end">
 											<div class="input-group">
-												<input type="text" th:field="*{notas}" class="form-control"
-													th:attr="placeholder=${alumnoMostrar.notas}">
+												<textarea th:field="*{notas}" class="form-control"
+													th:attr="placeholder=${alumnoMostrar.notas}"></textarea>
 												<button type="submit" class="btn btn-primary">Enviar</button>
 											</div>
 										</form>
