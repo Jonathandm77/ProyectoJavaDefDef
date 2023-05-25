@@ -18,7 +18,7 @@
 
 		<div class="d-flex justify-content-around flex-wrap">
 
-			<div th:each="coche:${listaCoches}" class="card user-card" style="width: 18rem;">
+			<div th:each="coche:${listaCoches}" class="card user-card h-100" style="width: 18rem;">
 				<div class="image" th:if="${coche.url!=null}">
 					<img th:src="@{${coche.url}}" alt="${image.name}" width="300px" height="300px"
 						class="card-img-top img-fluid" />
@@ -27,14 +27,14 @@
 					<h5 class="card-title" th:text="${coche.marca}+' '+${coche.modelo}"></h5>
 				</div>
 				<div class="card-body">
-					<div class="">
+					<div class="d-flex justify-content-around">
 						<a th:href="@{/coches/{id}(id=${coche.id})}" class="btn btn-primary">Ver Coche</a>
 						<a th:attr="data-target='#modal-edit'+${coche.id}" data-toggle="modal" data-target="#modal-edit"
-							class="btn btn-primary btn-sm text-white pointer">
+							class="btn btn-primary text-white pointer">
 							Modificar
 						</a>
 						<a th:attr="data-target='#modal-delete'+${coche.id}" data-toggle="modal"
-							data-target="#modal-delete" class="btn btn-danger btn-sm text-white pointer">
+							data-target="#modal-delete" class="btn btn-danger text-white pointer">
 							Eliminar
 						</a>
 					</div>
