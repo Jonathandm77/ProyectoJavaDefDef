@@ -18,4 +18,6 @@ public interface FileStorageService {
   public Stream<Path> loadAll();
 
 void delete(String filename);
+
+public Resource loadError(String foto);
 }

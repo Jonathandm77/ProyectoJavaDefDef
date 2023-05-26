@@ -19,6 +19,7 @@ import principal.servicio.interfaces.FileStorageService;
 @Service
 public class FileStorageServiceImpl implements FileStorageService {
   private final Path root = Paths.get("./uploads");
+  private final Path errorRoot = Paths.get("./Errores");
 
   @Override
   public void init() {
@@ -46,6 +47,21 @@ public class FileStorageServiceImpl implements FileStorageService {
   public Resource load(String filename) {
     try {
       Path file = root.resolve(filename);
+      Resource resource = new UrlResource(file.toUri());
+
+      if (resource.exists() || resource.isReadable()) {
+        return resource;
+      } else {
+        throw new RuntimeException("Could not read the file!");
+      }
+    } catch (MalformedURLException e) {
+      throw new RuntimeException("Error: " + e.getMessage());
+    }
+  }
+  @Override
+  public Resource loadError(String filename) {
+    try {
+      Path file = errorRoot.resolve(filename);
       Resource resource = new UrlResource(file.toUri());
 
       if (resource.exists() || resource.isReadable()) {
