@@ -47,6 +47,36 @@ public class CustomErrorController implements ErrorController {
 
             return "error";
         }
+        
+        if(is404(request)) {
+        	Resource resource = storageService.loadError("404.png");
+    		String url = MvcUriComponentsBuilder
+    				.fromMethodName(CustomErrorController.class, "serveFile", resource.getFilename()).build()
+    				.toString();
+    		model.addAttribute("url",url);
+
+            return "error";
+        }
+        
+        if(is403(request)) {
+        	Resource resource = storageService.loadError("403.png");
+    		String url = MvcUriComponentsBuilder
+    				.fromMethodName(CustomErrorController.class, "serveFile", resource.getFilename()).build()
+    				.toString();
+    		model.addAttribute("url",url);
+
+            return "error";
+        }
+        
+        if(is500(request)) {
+        	Resource resource = storageService.loadError("500.png");
+    		String url = MvcUriComponentsBuilder
+    				.fromMethodName(CustomErrorController.class, "serveFile", resource.getFilename()).build()
+    				.toString();
+    		model.addAttribute("url",url);
+
+            return "error";
+        }
         return "redirect:/";
     }
 
@@ -57,6 +87,14 @@ public class CustomErrorController implements ErrorController {
     
     private boolean is403(HttpServletRequest request) {
     	return HttpStatus.FORBIDDEN.value()== (int) request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
+    }
+    
+    private boolean is404(HttpServletRequest request) {
+    	return HttpStatus.NOT_FOUND.value()== (int) request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
+    }
+    
+    private boolean is500(HttpServletRequest request) {
+    	return HttpStatus.INTERNAL_SERVER_ERROR.value()== (int) request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
     }
 
 	  @GetMapping("/images/{filename:.+}")
