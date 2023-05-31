@@ -20,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import principal.modelo.Alumno;
 import principal.modelo.Clase;
+import principal.modelo.Rol;
 import principal.modelo.Usuario;
 import principal.modelo.dto.ClaseDTO;
 import principal.servicio.implementacion.AlumnoServiceImpl;
@@ -57,7 +58,7 @@ public class CalendarioController {
 	
 	@PostMapping({"/add"})
 	String añadirClase(@ModelAttribute("claseNueva") ClaseDTO clase,@RequestParam("fecha") String fecha,@ApiIgnore RedirectAttributes redirectAttributes) throws ParseException {
-		Alumno alumnoClase=alumnoService.obtenerAlumnoPorId(clase.getAlumno().getId());
+		Alumno alumnoClase=alumnoService.obtenerAlumnoPorId(clase.getAlumno().getId()).get();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date fechaDate=dateFormat.parse(fecha);
 		boolean error = false;
@@ -94,10 +95,11 @@ public class CalendarioController {
 	@GetMapping({"/clases"})
 	@ResponseBody
 	Object[] obtenerClases() {
+		boolean esAdmin=false;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Usuario actualUser = (Usuario) auth.getPrincipal();
 	    if(actualUser.getIdAlumno()!=null) {
-	    	Object[] misClasesAlumno= alumnoService.obtenerAlumnoPorId(actualUser.getIdAlumno()).getClases().toArray();
+	    	Object[] misClasesAlumno= alumnoService.obtenerAlumnoPorId(actualUser.getIdAlumno()).get().getClases().toArray();
 	    		return misClasesAlumno;
 	    }
 	    
@@ -114,8 +116,17 @@ public class CalendarioController {
 	        Object[] misClasesProfesorArray = misClasesProfesor.toArray();
 	        return misClasesProfesorArray;
 	    }
-
+	    
+	    for(Rol r:actualUser.getRoles()) {
+	    	if (r.getNombre().equals("ROLE_ADMIN"))
+	    		esAdmin=true;
+	    }
+	    
+	    if(esAdmin) {
 		Object[] clases =claseService.listarClases().toArray();
 		return clases;
+	    }else {
+		return new ArrayList<Object>().toArray();
+	    }
 	}
 }

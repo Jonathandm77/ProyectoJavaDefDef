@@ -8,7 +8,7 @@
 	<div th:insert="top"></div>
 
 	<div class="container">
-		 <div class="row pl-5 pr-5">
+		 <div th:if="${alumnoMostrar}" class="row pl-5 pr-5">
             <div class="col-9">
                 <h5 class="mt-4">Mi Perfil</h5>
                 <div class="card">
@@ -66,6 +66,9 @@
                 </div>
             </div>
         </div>
+        <div th:if="${alumnoMostrar==null}" class="row pl-5 pr-5">
+			<h1>No eres ningún alumno</h1>
+		</div>
 	</div>
 </body>
 

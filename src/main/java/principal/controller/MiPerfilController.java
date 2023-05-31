@@ -1,5 +1,7 @@
 package principal.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -23,10 +25,11 @@ public class MiPerfilController {
 	String miPerfil(Model model) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Usuario actualUser = (Usuario) auth.getPrincipal();
-		Alumno alumnoMostrar=alumnoService.obtenerAlumnoPorId(actualUser.getIdAlumno());
+	    if(actualUser.getIdAlumno()!=null) {
+		Optional<Alumno> alumnoMostrar=alumnoService.obtenerAlumnoPorId(actualUser.getIdAlumno());
 		model.addAttribute("username",actualUser.getUsername());
 		model.addAttribute("alumnoMostrar",alumnoMostrar);
-		
+	    }
 		return "miPerfil";
 		
 	}

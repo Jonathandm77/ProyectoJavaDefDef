@@ -217,6 +217,36 @@ public class WebController {
 		a1.añadirClase(clase4);
 		
 		claseService.insertarClase(clase4);
+		
+		/*
+		Bucle carga extrema
+		 
+		for(int i=0; i<100; i++) {
+			Alumno a = new Alumno("Alba", "523648"+i);
+			a.setApellidos("aa");
+			Coche c = new Coche("589"+i+" GHL", "202");
+			Profesor p = new Profesor("562398"+i, "Pepe");
+			a.setProfesor(p);
+			p.getAlumnos().add(a);
+			a.setCoche(c);
+            c.getAlumnos().add(a);
+            cocheService.insertarCoche(c);
+            profeService.insertarProfesor(p);
+            alumnoService.insertarAlumno(a);
+            Clase clase = new Clase(a);
+            Calendar calendar7 = Calendar.getInstance();
+            calendar7.set(2023, Calendar.JULY, (int) (Math.random()*29));
+            Date fecha7=calendar7.getTime();
+            clase.setFecha(fecha7);
+            a.añadirClase(clase);
+            LocalTime hora5 = LocalTime.of(16, 30);
+            clase.setHora(hora5);
+            claseService.insertarClase(clase);
+            
+            
+		}
+		
+		*/
 	
 
 	}

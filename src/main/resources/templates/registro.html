@@ -7,16 +7,6 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
-
-	<title>Bocadillos app</title>
-
-	<!-- <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">-->
-
-	<!-- Bootstrap core CSS -->
-	<!-- <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">-->
-
-	<!-- Custom styles for this template -->
-	<!-- <link href="album.css" rel="stylesheet">-->
 </head>
 
 <body>
@@ -33,7 +23,7 @@
 			<div id="error-message" class="alert alert-danger" th:if="${error}">
 				[[${error}]]
 			</div>
-			<form method="post" th:action="@{/usuarios/addRegistro}" th:object="${newUserDTO}">
+			<form method="post" th:action="@{/login/add}" th:object="${newUserDTO}">
 				<div class="form-row">
 					<div class="form-group col-8">
 						<label for="inputnombre">Nickname</label>
@@ -52,7 +42,7 @@
 					<div class="form-group col-8">
 						<label for="inputPass">Contraseña</label>
 						<div class="input-group" id="show_hide_password">
-							<input placeholder="Password" type="password" name="password" id="password" required="true"
+							<input placeholder="Password" type="password" th:field="*{password}" name="password" id="password" required="true"
 								class="form-control text-grape-900" />
 							<div class="input-group-text">
 								<a href=""><i class="fa fa-eye-slash" aria-hidden="true"> </i></a>

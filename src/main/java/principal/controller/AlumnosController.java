@@ -99,7 +99,7 @@ import springfox.documentation.annotations.ApiIgnore;
 		
 		@PostMapping("/edit/{id}")
 		public String editarAlumno(@PathVariable Integer id, @ModelAttribute("alumnoaEditar") AlumnoEditarNotasNombreApellidoDTO alumnoEditado, BindingResult bidingresult) {
-			Alumno alumnoaEditar=alumnoService.obtenerAlumnoPorId(id);
+			Alumno alumnoaEditar=alumnoService.obtenerAlumnoPorId(id).get();
 			if(alumnoEditado.getNombre()!=null)
 			if(!alumnoEditado.getNombre().equals(""))
 			alumnoaEditar.setNombre(alumnoEditado.getNombre());
@@ -117,14 +117,14 @@ import springfox.documentation.annotations.ApiIgnore;
 		
 		@GetMapping({"/delete/{id}"})
 		String deleteAlumno(Model model, @PathVariable Integer id) {
-			Alumno alumnoaEliminar=alumnoService.obtenerAlumnoPorId(id);
+			Alumno alumnoaEliminar=alumnoService.obtenerAlumnoPorId(id).get();
 			alumnoService.eliminarAlumno(alumnoaEliminar);
 			return "redirect:/alumnos";
 		}
 		
 		@GetMapping({"/{id}"})
 		String idAlumno(@ApiIgnore Model model, @PathVariable Integer id, @ApiIgnore HttpSession session) {
-			Alumno alumnoMostrar=alumnoService.obtenerAlumnoPorId(id);
+			Alumno alumnoMostrar=alumnoService.obtenerAlumnoPorId(id).get();
 			Object[]clases= alumnoMostrar.getClases().toArray();
 			model.addAttribute("alumnoMostrar", alumnoMostrar);
 			model.addAttribute("listaClases",clases);
@@ -179,7 +179,7 @@ import springfox.documentation.annotations.ApiIgnore;
 			
 			AjaxResponseBody alumnoJSON=new AjaxResponseBody();
 			
-			Alumno alumnoEditado=alumnoService.obtenerAlumnoPorId(alumno.getId());
+			Alumno alumnoEditado=alumnoService.obtenerAlumnoPorId(alumno.getId()).get();
 			alumnoEditado.setNombre(alumno.getNombre());
 			alumnoService.insertarAlumno(alumnoEditado);
 			

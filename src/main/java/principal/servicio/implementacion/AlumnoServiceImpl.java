@@ -44,8 +44,8 @@ public class AlumnoServiceImpl implements AlumnoService{
 		return alumnoRepo.findAll();
 	}
 	@Override
-	public Alumno obtenerAlumnoPorId(Integer id) {
-		return alumnoRepo.findById(id).get();
+	public Optional<Alumno> obtenerAlumnoPorId(Integer id) {
+		return alumnoRepo.findById(id);
 	}
 	@Override
 	public Alumno obtenerAlumnoPorNombre(String nombre) {
