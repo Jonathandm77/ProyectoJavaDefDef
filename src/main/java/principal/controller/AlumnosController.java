@@ -9,6 +9,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,6 +27,7 @@ import principal.modelo.Alumno;
 import principal.modelo.Clase;
 import principal.modelo.Coche;
 import principal.modelo.Profesor;
+import principal.modelo.Usuario;
 import principal.modelo.dto.AlumnoAjaxDTO;
 import principal.modelo.dto.AlumnoBuscarDniDTO;
 import principal.modelo.dto.AlumnoBuscarNameDTO;
@@ -187,6 +190,7 @@ import springfox.documentation.annotations.ApiIgnore;
 			//meollo
 			return ResponseEntity.ok(alumnoJSON);
 		}
+
 		
 
 		

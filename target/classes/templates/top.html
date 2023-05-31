@@ -60,6 +60,14 @@
 							Mis alumnos
 						</a>
 					</li>
+					
+					<li sec:authorize="hasAuthority('ROLE_USER')"
+						class="nav-item dropdown no-arrow">
+						<a class="nav-link text-gray-600" href="/miPerfil" role="button">
+							<i class="fas fa-users fa-sm fa-fw mr-3 text-gray-600"></i>
+							Mi Perfil
+						</a>
+					</li>
 
 					<li sec:authorize="hasAuthority('ROLE_ADMIN')" class="nav-item dropdown no-arrow">
 						<a class="nav-link text-gray-600" href="/usuarios" role="button">

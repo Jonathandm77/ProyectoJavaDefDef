@@ -36,38 +36,52 @@
 								</div>
 								<div class="card-body">
 									<span>
-										<span>Nombre:<p th:text="${usuarioMostrar.nombre}"
-												class="card-text mb-2 card-text"></p></span>
+										<strong>Nombre:</strong>
+										<p th:text="${usuarioMostrar.nombre}"
+												class="card-text mb-2 card-text"></p>		
 									</span>
+									<hr>
 									<span>
-										<span>Username:<p th:text="${usuarioMostrar.username}"
-												class="card-text mb-2 card-text"></p></span>
+										<strong>Username:</strong>
+										<p th:text="${usuarioMostrar.username}"
+												class="card-text mb-2 card-text"></p>		
 									</span>
+									<hr>
 									<span th:if="${usuarioMostrar.idProfesor != null}">
-										<span>Profesor:<p th:text="'Sí'" class="card-text mb-2 card-text"></p></span>
+										<strong>Profesor:</strong>
+										<p th:text="'Sí'" class="card-text mb-2 card-text"></p>
+									<hr>
 									</span>
 									<span th:if="${usuarioMostrar.idProfesor == null}">
-										<span>Profesor:<p th:text="'No'" class="card-text mb-2 card-text"></p></span>
+										<strong>Profesor:</strong>
+										<p th:text="'No'" class="card-text mb-2 card-text"></p>
+									<hr>
 									</span>
 									<span id="idProfesor" th:if="${usuarioMostrar.idProfesor != null}">
-										<span>ID del profesor:<p th:text="${usuarioMostrar.idProfesor}"
-												class="card-text mb-2 card-text"></p></span>
+										<strong>ID del profesor:</strong>
+										<p th:text="${usuarioMostrar.idProfesor}"
+												class="card-text mb-2 card-text"></p>		
 										<div class="d-flex justify-content-end">
 											<a class="btn btn-primary"
 												th:href="@{/profesores/{id}(id=${usuarioMostrar.idProfesor})}">Ver
 												Profesor</a>
 										</div>
+									<hr>
 									</span>
 									<span th:if="${usuarioMostrar.idAlumno != null}">
-										<span>Alumno:<p th:text="'Sí'" class="card-text mb-2 card-text"></p></span>
+										<strong>Alumno:</strong>
+										<p th:text="'Sí'" class="card-text mb-2 card-text"></p>
+									<hr>
 									</span>
 									<span th:if="${usuarioMostrar.idAlumno == null}">
-										<span>Alumno:<p th:text="'No'" class="card-text mb-2 card-text"></p></span>
+										<strong>Alumno:</strong>
+										<p th:text="'No'" class="card-text mb-2 card-text"></p>
+									<hr>
 									</span>
-									
 									<span id="idAlumno" th:if="${usuarioMostrar.idAlumno!= null}">
-										<span>ID del alumno:<p th:text="${usuarioMostrar.idAlumno}"
-												class="card-text mb-2 card-text"></p></span>
+										<strong>ID del alumno:</strong>
+										<p th:text="${usuarioMostrar.idAlumno}"
+												class="card-text mb-2 card-text"></p>		
 										<div class="d-flex justify-content-end">
 											<a class="btn btn-primary"
 												th:href="@{/alumnos/{id}(id=${usuarioMostrar.idAlumno})}">Ver

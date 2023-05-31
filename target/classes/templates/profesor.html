@@ -34,15 +34,20 @@
 								<div class="card-header text-dark bg-light">Datos del profesor
 								</div>
 								<div class="card-body">
-									<span>
-										<span>Nombre:<p th:text="${profeMostrar.nombre}" class="card-text mb-2 card-text"></p></span>
-									</span>
-									<span>
-										<span>Apellidos:<p th:text="${profeMostrar.Apellidos}" class="card-text mb-2 card-text"></p></span>
-									</span>
-									<span>
-										<span>DNI:<p th:text="${profeMostrar.dni}" class="card-text mb-2 card-text"></p></span>
-									</span>
+									<p>
+										<strong>Nombre:</strong>
+										<span th:text="${profeMostrar.nombre}" class="card-text mb-2"></span>
+									</p>
+									<hr>
+									<p>
+										<strong>Apellidos:</strong>
+										<span th:text="${profeMostrar.apellidos}" class="card-text mb-2"></span>
+									</p>
+									<hr>
+									<p>
+										<strong>DNI:</strong>
+										<span th:text="${profeMostrar.dni}" class="card-text mb-2"></span>
+									</p>
 								</div>
 							</div>
 						</div>

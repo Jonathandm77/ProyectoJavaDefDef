@@ -40,29 +40,34 @@
 								<div class="card-header text-dark bg-light">Datos del coche
 								</div>
 								<div class="card-body">
-									<span>
-										<span>Marca:<p th:text="${cocheMostrar.marca}" class="card-text mb-2 card-text">
-											</p></span>
-									</span>
-									<span>
-										<span>Modelo:<p th:text="${cocheMostrar.modelo}"
-												class="card-text mb-2 card-text"></p></span>
-									</span>
-									<span>
-										<span>Matricula:<p th:text="${cocheMostrar.matricula}"
-												class="card-text mb-2 card-text"></p></span>
-									</span>
-									<span>
-										<span>Fecha ITV:<p th:text="${cocheMostrar.fechaITV}"
-												class="card-text mb-2 card-text"></p></span>
-									</span>
-									<span th:if="${miLlave}">
-										<span>Tu llave: <p th:text="${miLlave}"
-												class="card-text mb-2 card-text"></p></span>
-									</span>
-									
+									<p>
+										<strong>Marca:</strong>
+									<p th:text="${cocheMostrar.marca}" class="card-text mb-2 card-text">
+									</p>
+									</p>
+									<hr>
+									<p>
+										<strong>Modelo:</strong>
+									<p th:text="${cocheMostrar.modelo}" class="card-text mb-2 card-text"></p>
+									</p>
+									<hr>
+									<p>
+										<strong>Matricula:</strong>
+									<p th:text="${cocheMostrar.matricula}" class="card-text mb-2 card-text"></p>
+									</p>
+									<hr>
+									<p>
+										<strong>Fecha ITV:</strong>
+									<p th:text="${cocheMostrar.fechaITV}" class="card-text mb-2 card-text"></p>
+									</p>
+									<hr>
+									<p th:if="${miLlave}">
+										<strong>Tu llave: </strong>
+									<p th:text="${miLlave}" class="card-text mb-2 card-text"></p>
+									</p>
+
 									<form action="#" th:action="@{/coches/edit/photo/{id}(id=${cocheMostrar.id})}"
-										th:object="${cocheaEditar}" class="w-50 p-3" method="post"
+										th:object="${cocheaEditar}" class="w-100 p-3" method="post"
 										enctype="multipart/form-data">
 										<div class="form-group">
 											<div class="d-flex align-items-center">

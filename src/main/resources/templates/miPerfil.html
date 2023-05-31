@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<head th:insert="librerias::librerias">
+</head>
+
+<body>
+
+	<div th:insert="top"></div>
+
+	<div class="container">
+		 <div class="row pl-5 pr-5">
+            <div class="col-9">
+                <h5 class="mt-4">Mi Perfil</h5>
+                <div class="card">
+                    <div class="card-body row pt-4 pb-4">
+                        <div class="col-7">
+                            <div class="card">
+                                <div class="card-header bg-light">
+                                    Mi Perfil
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-2">
+                                        <h5 th:text="${alumnoMostrar.nombre}" class="mb-2 card-text">Nombre:</h5>
+                                    </div>
+                                    <div class="d-flex">
+                                        <a th:href="@{/}" class="btn btn-primary mt-3 me-3">Cerrar</a>
+                                        <a th:href="@{/seguridad/password#data}" class="btn btn-primary mt-3">Cambiar Datos</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-5">
+                            <div class="card">
+                                <div class="card-header bg-light">Datos</div>
+                                <div class="card-body">
+                                    <p>
+                                        <strong>Nombre:</strong>
+                                        <span th:text="${alumnoMostrar.nombre}" class="card-text mb-2"></span>
+                                    </p>
+                                    <hr>
+                                    <p>
+                                        <strong>Apellidos:</strong>
+                                        <span th:text="${alumnoMostrar.Apellidos}" class="card-text mb-2"></span>
+                                    </p>
+                                    <hr>
+                                    <p>
+                                        <strong>DNI:</strong>
+                                        <span th:text="${alumnoMostrar.dni}" class="card-text mb-2"></span>
+                                    </p>
+                                    <hr>
+                                     <p>
+                                        <strong>Notas:</strong>
+                                        <textarea readonly th:text="${alumnoMostrar.notas}" class="form-control"></textarea>
+                                    </p>
+                                    <hr>
+                                    <p>
+                                        <strong>Nombre de usuario:</strong>
+                                        <span th:text="${username}" class="card-text mb-2"></span>
+                                    </p>
+                                    
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+</body>
+
+</html>

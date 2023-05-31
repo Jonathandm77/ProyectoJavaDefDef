@@ -52,33 +52,43 @@
 								<div class="card-header text-dark bg-light">Datos del alumno
 								</div>
 								<div class="card-body">
-									<span>
-										<span>ID: <p id="idAjax" th:text="${alumnoMostrar.id}"
-												class="card-text mb-2 card-text"></p></span>
-									</span>
+									<p>
+										<strong>ID:</strong>
+										<span id="idAjax" th:text="${alumnoMostrar.id}" class="card-text mb-2"></span>
+									</p>
 
-									<span>
-										<span>Nombre:<p th:text="${alumnoMostrar.nombre}"
-												class="card-text mb-2 card-text"></p></span>
-									</span>
-									<span>
-										<span>Apellidos:<p th:text="${alumnoMostrar.Apellidos}"
-												class="card-text mb-2 card-text"></p></span>
-									</span>
-									<span>
-										<span>DNI:<p th:text="${alumnoMostrar.dni}" class="card-text mb-2 card-text">
-											</p></span>
-									</span>
-									<span>
-										<span>Profesor:<p
-												th:text="${alumnoMostrar.profesor.nombre}+' '+${alumnoMostrar.profesor.apellidos}"
-												class="card-text mb-2 card-text"></p></span>
-									</span>
-									<span>
-										<span>Coche:<p
-												th:text="${alumnoMostrar.coche.marca}+' '+${alumnoMostrar.coche.modelo}"
-												class="card-text mb-2 card-text"></p></span>
-									</span>
+									<hr>
+
+									<p>
+										<strong>Nombre:</strong>
+										<span th:text="${alumnoMostrar.nombre}" class="card-text mb-2"></span>
+									</p>
+									<hr>
+									<p>
+										<strong>Apellidos:</strong>
+										<span th:text="${alumnoMostrar.apellidos}" class="card-text mb-2"></span>
+									</p>
+									<hr>
+									<p>
+										<strong>DNI:</strong>
+										<span th:text="${alumnoMostrar.dni}" class="card-text mb-2"></span>
+									</p>
+									<hr>
+
+									<p>
+										<strong>Profesor:</strong>
+										<span
+											th:text="${alumnoMostrar.profesor.nombre}+' '+${alumnoMostrar.profesor.apellidos}"
+											class="card-text mb-2"></span>
+									</p>
+									
+									<hr>
+
+									<p>
+										<strong>Coche:</strong>
+										<span th:text="${alumnoMostrar.coche.marca}+' '+${alumnoMostrar.coche.modelo}"
+											class="card-text mb-2"></span>
+									</p>
 								</div>
 							</div>
 						</div>
@@ -196,4 +206,5 @@
 
 </body>
 <script th:src="@{/js/alumnoScript.js}"></script>
+
 </html>
