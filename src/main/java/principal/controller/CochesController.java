@@ -11,6 +11,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -30,6 +32,8 @@ import principal.modelo.Coche;
 import principal.modelo.ImageInfo;
 import principal.modelo.Profesor;
 import principal.modelo.ProfesoresCoches;
+import principal.modelo.Rol;
+import principal.modelo.Usuario;
 import principal.modelo.dto.CocheAEditarMatriculaFechaImgDTO;
 import principal.modelo.dto.CocheBuscarMarcaDTO;
 import principal.modelo.dto.CocheBuscarMatriculaDTO;
@@ -83,7 +87,8 @@ public class CochesController {
 	}
 
 	@PostMapping("/add")
-	public String addCoche(@ModelAttribute("cocheNuevo") Coche cocheNew, BindingResult bidingresult, RedirectAttributes redirectAttributes) {
+	public String addCoche(@ModelAttribute("cocheNuevo") Coche cocheNew, BindingResult bidingresult,
+			RedirectAttributes redirectAttributes) {
 		try {
 			String matricula = cocheNew.getMatricula();
 			String numeros = matricula.substring(0, 4);
@@ -111,7 +116,7 @@ public class CochesController {
 	}
 
 	@PostMapping("/edit/photo/{id}")
-	public String editarFotoCoche(@PathVariable Integer id,  @RequestParam("file") MultipartFile file) {
+	public String editarFotoCoche(@PathVariable Integer id, @RequestParam("file") MultipartFile file) {
 		Coche cocheaEditar = cocheService.obtenerCochePorId(id);
 		if (!file.getOriginalFilename().equals("")) {
 			if (cocheaEditar.getFoto() != null)
@@ -125,8 +130,25 @@ public class CochesController {
 
 	@GetMapping({ "/{id}" })
 	String idCoche(Model model, @PathVariable Integer id) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Usuario actualUser = (Usuario) auth.getPrincipal();
 		Coche cocheMostrar = cocheService.obtenerCochePorId(id);
 		model.addAttribute("cocheMostrar", cocheMostrar);
+		boolean tieneRolProfesor = false;
+		
+		for(Rol r: actualUser.getRoles()) {
+			if(r.getNombre().equals("ROLE_TEACHER"))
+				tieneRolProfesor=true;
+		}
+
+		if (tieneRolProfesor) {
+			Profesor profeUsuario=profeService.obtenerProfesorPorId(actualUser.getIdProfesor());
+			for(ProfesoresCoches pc:profeUsuario.getCoches()) {
+				if(pc.getCoche()==cocheMostrar)
+					model.addAttribute("miLlave",pc.getCodigoLlave());
+			}
+		}
+
 		if (cocheMostrar.getFoto() != null) {
 			Resource resource = storageService.load(cocheMostrar.getFoto());
 			String url = MvcUriComponentsBuilder
@@ -151,7 +173,8 @@ public class CochesController {
 			if (a.getCoche().getId() == cocheaEliminar.getId()) {
 				int coche = (int) (Math.random() * misCoches.size());
 				if (misCoches.isEmpty() || misCoches.size() == 1) {
-					Coche cGenerico = new Coche("5678 GHS", "2021 XS", "Nissan");
+					Coche cGenerico = new Coche("2021 XS", "Nissan");
+					cGenerico.generarMatricula();
 					misCoches.add(cGenerico);
 					// misCoches.get(0).setFechaITV(fecha);
 					a.setCoche(cGenerico);

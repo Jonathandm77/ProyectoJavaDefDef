@@ -1,9 +1,9 @@
 package principal.modelo;
 
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -58,7 +58,25 @@ public class Coche {
 	public String url;
 	
 	
-	
+	public void generarMatricula() {
+	    Random random = new Random();
+	    
+	    String numeros = "";
+	    for (int i = 0; i < 4; i++) {
+	        int numero = random.nextInt(10); // Generar un número aleatorio entre 0 y 9
+	        numeros += numero;
+	    }
+	    
+	    String letras = "";
+	    for (int i = 0; i < 3; i++) {
+	        char letra = (char) (random.nextInt(26) + 'A'); // Generar una letra aleatoria entre A y Z
+	        letras += letra;
+	    }
+	    
+	    String matricula = numeros + " " + letras;
+	    
+	   this.setMatricula(matricula);
+	}
 	
 	
 	
@@ -108,7 +126,14 @@ public class Coche {
 		alumnos=new HashSet<Alumno>();
 		profesores=new HashSet<ProfesoresCoches>();
 	}
-
+	
+	public Coche(String modelo, String marca) {
+		super();
+		this.modelo = modelo;
+		this.marca = marca;
+		alumnos=new HashSet<Alumno>();
+		profesores=new HashSet<ProfesoresCoches>();
+	}
 
 	public Integer getId() {
 		return id;

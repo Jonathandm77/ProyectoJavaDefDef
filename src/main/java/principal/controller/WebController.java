@@ -156,6 +156,7 @@ public class WebController {
 		rolRepo.save(rolAdmin);
 		usuarioService.insertarUsuarioAdmin(usuarioAdmin);
 		rolRepo.save(rolBasico);
+		usuarioBasico.setIdAlumno(1);
 		usuarioService.insertarUsuarioBasico(usuarioBasico);
 		rolRepo.save(rolProfesor);
 		usuarioProfesor.setIdProfesor(p1.getId());

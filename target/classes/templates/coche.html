@@ -56,6 +56,11 @@
 										<span>Fecha ITV:<p th:text="${cocheMostrar.fechaITV}"
 												class="card-text mb-2 card-text"></p></span>
 									</span>
+									<span th:if="${miLlave}">
+										<span>Tu llave: <p th:text="${miLlave}"
+												class="card-text mb-2 card-text"></p></span>
+									</span>
+									
 									<form action="#" th:action="@{/coches/edit/photo/{id}(id=${cocheMostrar.id})}"
 										th:object="${cocheaEditar}" class="w-50 p-3" method="post"
 										enctype="multipart/form-data">
