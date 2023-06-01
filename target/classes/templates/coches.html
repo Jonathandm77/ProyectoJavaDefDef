@@ -27,14 +27,14 @@
 					<h5 class="card-title" th:text="${coche.marca}+' '+${coche.modelo}"></h5>
 				</div>
 				<div class="card-body">
-					<div class="d-flex justify-content-around">
-						<a th:href="@{/coches/{id}(id=${coche.id})}" class="btn btn-primary">Ver Coche</a>
+					<div class="d-flex justify-content-around justify-content-md-between">
+						<a th:href="@{/coches/{id}(id=${coche.id})}" class="btn btn-primary btn-sm">Ver Coche</a>
 						<a sec:authorize="hasAuthority('ROLE_ADMIN')" th:attr="data-target='#modal-edit'+${coche.id}" data-toggle="modal" data-target="#modal-edit"
-							class="btn btn-primary text-white pointer">
+							class="btn btn-primary text-white pointer btn-sm">
 							Modificar
 						</a>
 						<a sec:authorize="hasAuthority('ROLE_ADMIN')" th:attr="data-target='#modal-delete'+${coche.id}" data-toggle="modal"
-							data-target="#modal-delete" class="btn btn-danger text-white pointer">
+							data-target="#modal-delete" class="btn btn-danger text-white pointer btn-sm">
 							Eliminar
 						</a>
 					</div>
@@ -43,22 +43,22 @@
 
 		</div>
 
-		<div>
+		<div class="d-flex justify-content-sm-around">
 			<div class="row">
-				<div class="col-md-auto">
-					<button sec:authorize="hasAuthority('ROLE_ADMIN')" class="btn btn-primary" type="button"
+				<div class="col-md-auto d-flex justify-content-around ">
+					<button sec:authorize="hasAuthority('ROLE_ADMIN')" class="btn btn-primary mb-3" type="button"
 						data-toggle="modal" data-target="#crearCoche"> Añadir
 						Coche </button>
 
 				</div>
 
-				<div th:object="${coche}" class="col-md-auto">
-					<button th:attr="data-target='#modal-search'" class="btn btn-primary" type="button"
+				<div th:object="${coche}" class="col-md-auto d-flex justify-content-around">
+					<button th:attr="data-target='#modal-search'" class="btn btn-primary mb-3" type="button"
 						data-toggle="modal" data-target="#buscarCochePorMarca">Buscar por marca</button>
 				</div>
 
-				<div th:object="${coche}" class="col-md-auto">
-					<button th:attr="data-target='#modal-search-matricula'" class="btn btn-primary" type="button"
+				<div th:object="${coche}" class="col-md-auto d-flex justify-content-around">
+					<button th:attr="data-target='#modal-search-matricula'" class="btn btn-primary mb-3" type="button"
 						data-toggle="modal" data-target="#buscarCochePorMatricula">Buscar por Matrícula</button>
 				</div>
 			</div>
