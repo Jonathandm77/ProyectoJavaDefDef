@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,13 +30,10 @@ public class LoginController {
 
 	@GetMapping(value = { "", "/" })
 	String homelogin(Model model) throws SQLException {
-		Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/proyecto","root", "");
-		String sql = "SELECT COUNT(*) FROM usuarios";
-		Statement statement = connection.createStatement();
-		ResultSet resultset = statement.executeQuery(sql);
-		resultset.next();
-		int count = resultset.getInt(1);
-		if (count > 0) {
+
+		List<Usuario> usuarios = userService.listarUsuarios();
+		
+		if (usuarios.size() > 0) {
 
 			return "login";
 		} else {
@@ -63,21 +62,14 @@ public class LoginController {
 
 	@GetMapping({ "/registro" })
 	String mostrarRegistro(Model model, @ModelAttribute("usuarioNuevo") UsuarioDTO usuarioNew) throws SQLException {
-		Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/proyecto", "root", "");
-
-		String sql = "SELECT COUNT(*) FROM usuarios";
-
-		Statement statement = connection.createStatement();
-		ResultSet resultset = statement.executeQuery(sql);
-		resultset.next();
-		int count = resultset.getInt(1);
-		if (count > 0) {
-			connection.close();
-			model.addAttribute("newUserDTO", new UsuarioDTO());
-			return "registro";
-		} else {
-			connection.close();
-			return "redirect:/";
-		}
+		List<Usuario> usuarios = userService.listarUsuarios();
+        
+        if (usuarios.size() > 0) {
+            model.addAttribute("newUserDTO", new UsuarioDTO());
+            return "registro";
+        } else {
+            return "redirect:/";
+        }
+		
 	}
 }

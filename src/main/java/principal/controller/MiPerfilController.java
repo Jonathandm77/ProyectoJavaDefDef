@@ -26,7 +26,7 @@ public class MiPerfilController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Usuario actualUser = (Usuario) auth.getPrincipal();
 	    if(actualUser.getIdAlumno()!=null) {
-		Optional<Alumno> alumnoMostrar=alumnoService.obtenerAlumnoPorId(actualUser.getIdAlumno());
+		Alumno alumnoMostrar=alumnoService.obtenerAlumnoPorId(actualUser.getIdAlumno()).get();
 		model.addAttribute("username",actualUser.getUsername());
 		model.addAttribute("alumnoMostrar",alumnoMostrar);
 	    }

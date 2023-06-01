@@ -29,7 +29,10 @@
 									<form id="formAjax" th:action="@{/alumnos/edit/{id}(id=${alumnoMostrar.id})}"
 										method="POST">
 
-										<input th:field=*{nombre} name="nombre" id="nombreAjax" type="text"
+										<input disabled sec:authorize="!hasAuthority('ROLE_ADMIN')" th:field=*{nombre} name="nombre" id="nombreAjax" type="text"
+											class="form-control" th:attr="placeholder=${alumnoMostrar.nombre}">
+
+										<input sec:authorize="hasAuthority('ROLE_ADMIN')" th:field=*{nombre} name="nombre" id="nombreAjax" type="text"
 											class="form-control" th:attr="placeholder=${alumnoMostrar.nombre}">
 
 										<p><a th:href="@{/alumnos}" class="btn btn-danger mt-3">Cerrar</a></p>
@@ -81,7 +84,7 @@
 											th:text="${alumnoMostrar.profesor.nombre}+' '+${alumnoMostrar.profesor.apellidos}"
 											class="card-text mb-2"></span>
 									</p>
-									
+
 									<hr>
 
 									<p>

@@ -29,11 +29,11 @@
 				<div class="card-body">
 					<div class="d-flex justify-content-around">
 						<a th:href="@{/coches/{id}(id=${coche.id})}" class="btn btn-primary">Ver Coche</a>
-						<a th:attr="data-target='#modal-edit'+${coche.id}" data-toggle="modal" data-target="#modal-edit"
+						<a sec:authorize="hasAuthority('ROLE_ADMIN')" th:attr="data-target='#modal-edit'+${coche.id}" data-toggle="modal" data-target="#modal-edit"
 							class="btn btn-primary text-white pointer">
 							Modificar
 						</a>
-						<a th:attr="data-target='#modal-delete'+${coche.id}" data-toggle="modal"
+						<a sec:authorize="hasAuthority('ROLE_ADMIN')" th:attr="data-target='#modal-delete'+${coche.id}" data-toggle="modal"
 							data-target="#modal-delete" class="btn btn-danger text-white pointer">
 							Eliminar
 						</a>

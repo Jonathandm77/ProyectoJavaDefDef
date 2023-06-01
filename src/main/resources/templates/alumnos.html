@@ -21,7 +21,7 @@
 					<td>Nombre alumno</td>
 					<td>Coche</td>
 					<td>Nombre Profesor</td>
-					<td colspan="2">Acciones</td>
+					<td sec:authorize="hasAuthority('ROLE_ADMIN')" colspan="2">Acciones</td>
 
 				</tr>
 			</thead>
@@ -47,13 +47,13 @@
 						<span th:text="${alumno.profesor.nombre}"></span>
 					</td>
 
-					<td>
-						<button th:attr="data-target='#modal-edit'+${alumno.id}" data-toggle="modal"
+					<td sec:authorize="hasAuthority('ROLE_ADMIN')">
+						<button  th:attr="data-target='#modal-edit'+${alumno.id}" data-toggle="modal"
 							data-target="#modal-edit" class="btn btn-primary btn-sm text-white pointer modifyButton">
 							Modificar
 						</button>
 					</td>
-					<td>
+					<td sec:authorize="hasAuthority('ROLE_ADMIN')">
 						<a th:attr="data-target='#modal-delete'+${alumno.id}" data-toggle="modal"
 							data-target="#modal-delete" class="btn btn-primary btn-sm text-white pointer">
 							Eliminar

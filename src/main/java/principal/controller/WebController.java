@@ -219,7 +219,7 @@ public class WebController {
 		claseService.insertarClase(clase4);
 		
 		/*
-		Bucle carga extrema
+		//Bucle carga extrema
 		 
 		for(int i=0; i<100; i++) {
 			Alumno a = new Alumno("Alba", "523648"+i);
