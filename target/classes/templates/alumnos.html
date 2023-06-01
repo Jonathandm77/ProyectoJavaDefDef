@@ -65,20 +65,20 @@
 		</table>
 
 		<div>
-			<div class="row">
-				<div class="col-md-auto">
+			<div class="row d-flex flex-row">
+				<div class="col-md-auto mb-3">
 					<button sec:authorize="hasAuthority('ROLE_ADMIN')" class="btn btn-primary" type="button"
 						data-toggle="modal" data-target="#crearAlumno"> Añadir
 						alumno </button>
 
 				</div>
 
-				<div th:object="${alumno}" class="col-md-auto">
+				<div th:object="${alumno}" class="col-md-auto mb-3">
 					<button th:attr="data-target='#modal-search'" class="btn btn-primary" type="button"
 						data-toggle="modal" data-target="#buscarAlumnoPorNombre">Buscar por nombre</button>
 				</div>
 
-				<div th:object="${alumnoDni}" class="col-md-auto">
+				<div th:object="${alumnoDni}" class="col-md-auto mb-3">
 					<button th:attr="data-target='#modal-search-Dni'" class="btn btn-primary" type="button"
 						data-toggle="modal" data-target="#buscarAlumnoPorDni">Buscar por DNI</button>
 				</div>

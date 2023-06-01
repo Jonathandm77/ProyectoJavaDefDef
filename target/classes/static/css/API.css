@@ -28,4 +28,19 @@ h2 a{
   cursor: pointer;
 }
 
-/*# sourceMappingURL=a.css.map */
+@media screen and (max-width: 650px) {
+  .article {
+    flex-direction: column;
+    align-items: center;
+  }
+  .article img {
+    width: 100%;
+    height: auto;
+  }
+  .article .articleContent {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+

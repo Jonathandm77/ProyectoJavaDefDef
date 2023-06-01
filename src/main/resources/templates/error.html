@@ -10,8 +10,9 @@
     <script src='main.js'></script>
 </head>
 
-<body id="body" class="d-flex align-items-center justify-content-center vh-100"
-    th:style="'background-image: url(' + ${url} + '); background-repeat: no-repeat;'">
+<body id="body" class=""
+    th:style="'background-image: url(' + ${url} + ');'">
 </body>
 <script th:src="@{/js/error.js}"></script>
+<link rel="stylesheet" th:href="@{/css/error.css}">
 </html>
