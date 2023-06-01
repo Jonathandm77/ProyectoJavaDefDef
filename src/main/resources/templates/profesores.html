@@ -62,18 +62,18 @@
 
 		<div>
 			<div class="row">
-				<div class="col-md-auto">
+				<div class="col-md-auto mb-3">
 					<button sec:authorize="hasAuthority('ROLE_ADMIN')" class="btn btn-primary" type="button"
 						data-toggle="modal" data-target="#crearProfe"> Añadir Profesor </button>
 
 				</div>
 
-				<div th:object="${profe}" class="col-md-auto">
+				<div th:object="${profe}" class="col-md-auto mb-3">
 					<button th:attr="data-target='#modal-search'" class="btn btn-primary" type="button"
 						data-toggle="modal" data-target="#buscarProfePorNombre">Buscar profesor por nombre</button>
 				</div>
 
-				<div th:object="${profe}" class="col-md-auto">
+				<div th:object="${profe}" class="col-md-auto mb-3">
 					<button th:attr="data-target='#modal-search-DNI'" class="btn btn-primary" type="button"
 						data-toggle="modal" data-target="#buscarProfePorDni">Buscar profesor por DNI</button>
 				</div>
