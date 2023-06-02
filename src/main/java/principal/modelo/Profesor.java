@@ -85,8 +85,8 @@ public class Profesor {
 		boolean presente=false;
 			
 			 // Crear una conexión a la base de datos
-		Connection connection = DriverManager.getConnection("jdbc:mysql://mysqldb:3306/proyecto", "usuario","usuario");
-
+            Connection connection = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3307/proyecto", "root", "");
             
             // Preparar la consulta SQL
             String sql = "SELECT * FROM profesores_coches WHERE coche_id = "+c.getId()+" AND profesor_id = "+this.getId();

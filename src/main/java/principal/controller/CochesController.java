@@ -162,6 +162,7 @@ public class CochesController {
 
 	@GetMapping({ "/delete/{id}" })
 	String deleteCoche(Model model, @PathVariable Integer id) throws SQLException {
+		boolean creado=false;
 		Coche cocheaEliminar = cocheService.obtenerCochePorId(id);
 		ArrayList<Alumno> misAlumnos = (ArrayList<Alumno>) alumnoService.listarAlumnos();
 		ArrayList<Coche> misCoches = (ArrayList<Coche>) cocheService.listarCoches();
@@ -184,6 +185,7 @@ public class CochesController {
 					profeTemp.add(a.getProfesor());
 					cocheTemp.add(a.getCoche());
 					cocheService.insertarCoche(cGenerico);
+					creado=true;
 				} else {
 
 					do {
@@ -196,6 +198,8 @@ public class CochesController {
 					profeTemp.add(a.getProfesor());
 					cocheTemp.add(a.getCoche());
 				}
+				
+				
 				misCoches.get(coche).getAlumnos().add(a);
 				alumnoService.insertarAlumno(a);
 				profeService.insertarProfesor(profeService.obtenerProfesorPorId(a.getProfesor().getId()));
@@ -229,8 +233,7 @@ public class CochesController {
 				profeTemp.get(i).juegoLlaves(cocheTemp.get(i));
 			}
 		}
-		Connection connection = DriverManager.getConnection("jdbc:mysql://mysqldb:3306/proyecto", "usuario","usuario");
-
+		Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/proyecto", "root", "");
 
 		String sql = "DELETE FROM profesores_coches WHERE coche_id = " + cocheaEliminar.getId();
 
@@ -238,6 +241,16 @@ public class CochesController {
 		statement.executeUpdate(sql);
 
 		connection.close();
+		if(!creado) {
+			if (misCoches.isEmpty() || misCoches.size() == 1) {
+				Coche cGenerico = new Coche("2021 XS", "Nissan");
+				cGenerico.generarMatricula();
+				misCoches.add(cGenerico);
+				// misCoches.get(0).setFechaITV(fecha);
+				cocheService.insertarCoche(cGenerico);
+				creado=true;
+			}
+		}
 		cocheService.eliminarCoche(cocheaEliminar);
 		return "redirect:/coches";
 	}
