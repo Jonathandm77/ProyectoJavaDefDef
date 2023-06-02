@@ -7,3 +7,7 @@ for (card of cards) {
 		card.style.height = ""
 	}
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+	document.title = 'Coches';
+})

@@ -36,7 +36,6 @@ public class Alumno {
 	@Column (name="Notas")
 	private String notas;
 	
-	
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name ="id_profesor", nullable = false)

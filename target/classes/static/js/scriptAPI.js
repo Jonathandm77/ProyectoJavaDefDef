@@ -24,6 +24,7 @@ function loadMoreArticles() {
 			articleItem.setAttribute("class", "card article")
 			let articleImg = document.createElement("img")
 			articleImg.setAttribute("src", article.urlToImage)
+			articleImg.alt="sss"
 			let articleContent = document.createElement("div")
 			articleContent.setAttribute("class", "articleContent")
 			let articleHeader = document.createElement("h2")
@@ -67,6 +68,7 @@ http.addEventListener('load', (data) => {
 		let articleItem = document.createElement("div")
 		articleItem.setAttribute("class", "card article")
 		let articleImg = document.createElement("img")
+		articleImg.alt=article.title
 		articleImg.setAttribute("src", article.urlToImage)
 		let articleContent = document.createElement("div")
 		articleContent.setAttribute("class", "articleContent")
@@ -99,3 +101,7 @@ http.addEventListener('load', (data) => {
 	}
 
 })
+
+document.addEventListener('DOMContentLoaded', function() {
+            document.title = 'Inicio';
+            })

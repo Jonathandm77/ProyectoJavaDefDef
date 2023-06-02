@@ -26,3 +26,7 @@ for(let form of formEdit){
 		return true;
 	})
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+            document.title = 'Alumnos';
+            })

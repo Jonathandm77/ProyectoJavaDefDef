@@ -114,3 +114,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 //Fin codigo calendario
+		document.addEventListener('DOMContentLoaded', function() {
+            document.title = 'Calendario';
+            })
