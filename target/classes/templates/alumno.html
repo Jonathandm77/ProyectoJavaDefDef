@@ -3,7 +3,7 @@
 <head th:insert="librerias::librerias">
 </head>
 
-<body>
+<body class="container-fluid">
 
 	<div th:insert="top"></div>
 
@@ -35,13 +35,8 @@
 										<input sec:authorize="hasAuthority('ROLE_ADMIN')" th:field=*{nombre} name="nombre" id="nombreAjax" type="text"
 											class="form-control" th:attr="placeholder=${alumnoMostrar.nombre}">
 
-										<p><a th:href="@{/alumnos}" class="btn btn-danger mt-3">Cerrar</a></p>
-										<p><a th:href="@{/alumnosRest/{id}(id=${alumnoMostrar.id})}"
-												class="btn btn-warning mt-3">Consulta JSON</a></p>
+										<input type="submit" value="Editar" class="btn btn-primary float-right mt-2">
 
-										<input type="submit" value="Edit normal" class="btn btn-primary float-right">
-										<button id="editAjax" type="submit" class="btn btn-success">Guardar
-											Ajax</button>
 
 
 
