@@ -44,7 +44,7 @@
 		</div>
 
 		<div class="d-flex justify-content-sm-around">
-			<div class="row">
+			<div class="row mt-3">
 				<div class="col-md-auto d-flex justify-content-around ">
 					<button sec:authorize="hasAuthority('ROLE_ADMIN')" class="btn btn-primary mb-3" type="button"
 						data-toggle="modal" data-target="#crearCoche"> Añadir
@@ -280,8 +280,8 @@
 
 	</div>
 </body>
-<script th:src="@{/js/validaForm.js}"></script>
-<link rel="stylesheet" th:href="@{/css/usuarios.css}">
-<script th:src="@{/js/cardCoche.js}"></script>
+<script th:src="@{/static/js/validaForm.js}"></script>
+<link rel="stylesheet" th:href="@{/static/css/usuarios.css}">
+<script th:src="@{/static/js/cardCoche.js}"></script>
 
 </html>
