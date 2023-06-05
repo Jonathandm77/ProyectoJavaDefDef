@@ -5,7 +5,7 @@
 
 </head>
 
-<body class="container-fluid">
+<body class="container-fluid oscuro blue-letter">
 	<div th:insert="top"></div>
 	<div class="container">
 
@@ -13,8 +13,8 @@
 
 		<h1>Registro de Alumnos</h1>
 
-		<table class="table table-hover">
-			<thead class="table-dark bg-info text-white">
+		<table class="table table-hover blue-letter">
+			<thead class="bg-info oscuro-panel">
 				<tr>
 					<td>ID</td>
 					<td>Dni</td>
@@ -25,7 +25,7 @@
 
 				</tr>
 			</thead>
-			<tbody>
+			<tbody class="blue-letter-light">
 				<tr th:if="${listaAlumnos.Empty}">
 					<td colspan="2">No hay alumnos </td>
 				<tr th:each="alumno:${listaAlumnos}">
