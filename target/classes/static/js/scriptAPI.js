@@ -21,7 +21,7 @@ function loadMoreArticles() {
 		const dataJSON = JSON.parse(data.target.response)
 		for (let article of dataJSON.articles) {
 			let articleItem = document.createElement("div")
-			articleItem.setAttribute("class", "card article")
+			articleItem.setAttribute("class", "card article oscuro-panel")
 			let articleImg = document.createElement("img")
 			articleImg.setAttribute("src", article.urlToImage)
 			articleImg.alt="sss"
@@ -66,12 +66,12 @@ http.addEventListener('load', (data) => {
 	for (let i = 0; i < articlesPerPage; i++) {
 		let article = dataJSON.articles[i]
 		let articleItem = document.createElement("div")
-		articleItem.setAttribute("class", "card article")
+		articleItem.setAttribute("class", "card article oscuro-panel")
 		let articleImg = document.createElement("img")
 		articleImg.alt=article.title
 		articleImg.setAttribute("src", article.urlToImage)
 		let articleContent = document.createElement("div")
-		articleContent.setAttribute("class", "articleContent")
+		articleContent.setAttribute("class", "articleContent blue-letter-light")
 		let articleHeader = document.createElement("h2")
 		let linkHeader = document.createElement("a")
 		linkHeader.setAttribute("href", article.url)
