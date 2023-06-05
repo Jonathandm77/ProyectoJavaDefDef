@@ -1,11 +1,14 @@
-<div th:fragment="top">
+<div class="" th:fragment="top">
 
 	<!-- Navbar -->
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark box-shadow py-3 py-lg-3">
-		<div class="container">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark box-shadow py-3 py-lg-3 w-100">
+		<div class="d-sm-flex align-items-sm-center ms-0 me-0 container-fluid">
 			<!-- Logo -->
 			<!--<img src="/static/img/logo.png">-->
-			<a class="navbar-brand" href="#">DriveStop</a>
+			 <a class="navbar-brand me-5 ms-0" href="#">
+                <img src="/static/img/logo.png" class="me-2" alt="Logo" style="max-height: 80px;">
+                <h2 style="display: inline-block; margin-left: 10px;">DriveStop</h2>
+            </a>
 
 			<!-- Botón para dispositivos móviles -->
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
