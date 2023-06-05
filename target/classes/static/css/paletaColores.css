@@ -17,3 +17,7 @@
 .blue-letter-light{
 	color: #C9D7E3!important;
 }
+.campo-form, ::placeholder{
+	background-color: #0E1826!important;
+	color: #ACD5F2!important;
+}
