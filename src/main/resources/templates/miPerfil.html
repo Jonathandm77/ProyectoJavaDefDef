@@ -3,7 +3,7 @@
 <head th:insert="librerias::librerias">
 </head>
 
-<body class="container-fluid">
+<body class="container-fluid oscuro blue-letter">
 
 	<div th:insert="top"></div>
 
@@ -11,14 +11,14 @@
 		 <div th:if="${alumnoMostrar}" class="row pl-5 pr-5">
             <div class="col-9">
                 <h5 class="mt-4">Mi Perfil</h5>
-                <div class="card">
+                <div class="card oscuro-panel">
                     <div class="card-body row pt-4 pb-4">
                         <div class="col-7">
                             <div class="card">
-                                <div class="card-header bg-light">
+                                <div class="card-header bg-light oscuro-header blue-letter">
                                     Mi Perfil
                                 </div>
-                                <div class="card-body">
+                                <div class="card-body oscuro blue-letter">
                                     <div class="mb-2">
                                         <h5 th:text="${alumnoMostrar.nombre}" class="mb-2 card-text">Nombre:</h5>
                                     </div>
@@ -31,8 +31,8 @@
                         </div>
                         <div class="col-5">
                             <div class="card">
-                                <div class="card-header bg-light">Datos</div>
-                                <div class="card-body">
+                                <div class="card-header bg-light oscuro-header blue-letter">Datos</div>
+                                <div class="card-body oscuro blue-letter">
                                     <p>
                                         <strong>Nombre:</strong>
                                         <span th:text="${alumnoMostrar.nombre}" class="card-text mb-2"></span>
@@ -50,7 +50,7 @@
                                     <hr>
                                      <p>
                                         <strong>Notas:</strong>
-                                        <textarea readonly th:text="${alumnoMostrar.notas}" class="form-control"></textarea>
+                                        <textarea readonly th:text="${alumnoMostrar.notas}" class="form-control campo-form"></textarea>
                                     </p>
                                     <hr>
                                     <p>
