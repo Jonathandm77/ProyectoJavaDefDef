@@ -16,10 +16,6 @@
 			white-space: normal;
 		}
 
-		.fc-event {
-			white-space: normal;
-		}
-
 		@media (max-width: 768px) {
 			.fc-event-title {
 				font-size: 10px;
@@ -29,12 +25,13 @@
 			.fc-event .fc-daygrid-event-dot {
 				display: none;
 			}
+			
 
 		}
 	</style>
 </head>
 
-<body class="container-fluid">
+<body class="container-fluid oscuro blue-letter">
 	<div th:insert="top"></div>
 	<div id='calendar' class="m-3"></div>
 
@@ -43,20 +40,20 @@
 		data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<div class="modal-header">
+				<div class="modal-header oscuro-header">
 					<h1 class="modal-title fs-5" id="exampleModalLabel">Crear Clase</h1>
 					<button id="aboveCancelCreate" type="button" class="btn btn-danger" data-bs-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">x</span>
 					</button>
 				</div>
-				<div class="modal-body">
+				<div class="modal-body oscuro">
 					<p class="error-text">Configura la clase</p>
 					<form action="#" th:action="@{/calendario/add/}" th:object="${claseNueva}" method="post"
 						class="needs-validation" novalidate>
 						<div class="form-group">
 							<label for="alumno">Alumno</label>
-							<select th:field="*{alumno.id}" name="alumno" id="alumno" class="form-select">
+							<select th:field="*{alumno.id}" name="alumno" id="alumno" class="form-select campo-form">
 								<option th:each="alumno:${listaAlumnos}" th:value="${alumno.id}"
 									th:text="${alumno.nombre}" value="">Seleccionar alumno</option>
 							</select>
@@ -64,9 +61,9 @@
 
 						<div class="form-group">
 							<label for="hora">Hora</label>
-							<input type="time" th:field="*{hora}" class="form-control" />
+							<input type="time" th:field="*{hora}" class="form-control campo-form" />
 						</div>
-						<div class="modal-footer">
+						<div class="modal-footer oscuro-header">
 							<button class="btn btn-secondary btn-sm" type="button" id="cancelCreateModal"
 								data-dismiss="modal" aria-hidden="true">Cancelar</button>
 							<input type="submit" value="Crear" class="btn btn-primary float-right" />
@@ -143,6 +140,7 @@
 
 </body>
 <link rel="stylesheet" th:href="@{/static/css/calendario.css}">
+<link th:href='@{/static/css/paletaColores.css}' rel='stylesheet'>
 <script th:src="@{/static/js/calendario.js}"></script>
 
 </html>

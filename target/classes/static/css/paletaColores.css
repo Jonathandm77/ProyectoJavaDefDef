@@ -1,31 +1,68 @@
-.oscuro-header{
-	background-color:#152232!important;
+.oscuro-header {
+	background-color: #152232 !important;
 }
 
-.oscuro{
-	background-color:#0A1625!important;
+.oscuro {
+	background-color: #0A1625 !important;
 }
 
-.oscuro-panel{
-	background-color: #151F2E!important;
+.oscuro-panel {
+	background-color: #151F2E !important;
 }
 
-.blue-letter{
-	color: #ACD5F2!important;
+.blue-letter {
+	color: #ACD5F2 !important;
 }
 
-.blue-letter-light{
-	color: #C9D7E3!important;
-}
-.campo-form, ::placeholder{
-	background-color: #0E1826!important;
-	color: #ACD5F2!important;
+.blue-letter-light {
+	color: #C9D7E3 !important;
 }
 
-.campo-form{
+.campo-form,
+::placeholder {
+	background-color: #0E1826 !important;
+	color: #ACD5F2 !important;
+}
+
+.campo-form {
 	border: 1px solid#ACD5F2;
 }
 
-.campo-form::-webkit-calendar-picker-indicator{
-   	filter: invert(81%) sepia(31%) saturate(474%) hue-rotate(176deg) brightness(97%) contrast(96%);
+.campo-form::-webkit-calendar-picker-indicator {
+	filter: invert(81%) sepia(31%) saturate(474%) hue-rotate(176deg) brightness(97%) contrast(96%);
+}
+
+/*Calendario*/
+
+.fc-day,
+.fc-daygrid,
+.fc-col-header-cell-cushion {
+	background-color: #152232 !important;
+	color: #ACD5F2 !important;
+	text-decoration: none;
+}
+
+.fc-daygrid-day:hover{
+	background-color: #0A1625!important;
+}
+
+.fc-daygrid-day-number {
+	color: #ACD5F2 !important;
+	text-decoration: none;
+}
+
+.fc-day-today {
+	background-color: #ACD5F2 !important;
+}
+
+
+.fc-day-today .fc-daygrid-day-number{
+	color: #0A1625 !important;
+}
+.fc-day-today:hover {
+    background-color: rgb(132, 191, 236)!important;
+}
+
+.event-custom{
+	background-color: #ACD5F2;
 }
