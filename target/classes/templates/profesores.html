@@ -5,7 +5,7 @@
 
 </head>
 
-<body class="container-fluid">
+<body class="container-fluid oscuro blue-letter">
 
 	<div th:insert="top"></div>
 	<div class="container">
@@ -13,8 +13,8 @@
 
 		<h1>Registro de Profesores</h1>
 
-		<table class="table table-hover">
-			<thead class="table-dark bg-info text-white">
+		<table class="table blue-letter">
+			<thead class="bg-info oscuro-panel">
 				<tr>
 					<td>ID</td>
 					<td>Dni</td>
@@ -25,7 +25,7 @@
 
 				</tr>
 			</thead>
-			<tbody>
+			<tbody class="blue-letter-light">
 				<tr th:if="${listaProfesores.Empty}">
 					<td colspan="2">No hay profesores </td>
 				<tr th:each="profe:${listaProfesores}">
@@ -88,13 +88,13 @@
 			<div class="modal fade" th:id="modal-search-DNI">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
-						<div class="modal-header">
+						<div class="modal-header oscuro-header">
 							<h4 class="modal-title" id="exampleModalLabel">Buscar Profesor</h4>
 							<button class="close btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">x</span>
 							</button>
 						</div>
-						<div class="modal-body">
+						<div class="modal-body oscuro">
 							<p class="error-text">Introduce el DNI para buscar</p>
 
 
@@ -104,12 +104,12 @@
 								<div class"form-row">
 									<div class="form-group mt-1">
 										<label for="texto">DNI</label>
-										<input type="text" placeholder="DNI" th:field="*{dni}" class="form-control"
+										<input type="text" placeholder="DNI" th:field="*{dni}" class="form-control campo-form"
 											id="exampleInputDni" />
 									</div>
 								</div>
 						</div>
-						<div class="modal-footer">
+						<div class="modal-footer oscuro-header">
 							<button class="btn btn-secondary btn-sm" data-dismiss="modal"
 								aria-hidden="true">Cancelar</button>
 							<input id="sent" type="submit" th:value="Buscar" class="btn btn-primary float-right" />
@@ -127,13 +127,13 @@
 			<div class="modal fade" th:id="modal-search">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
-						<div class="modal-header">
+						<div class="modal-header oscuro-header">
 							<h4 class="modal-title" id="exampleModalLabel">Buscar Profesor</h4>
 							<button class="close btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">x</span>
 							</button>
 						</div>
-						<div class="modal-body">
+						<div class="modal-body oscuro">
 							<p class="error-text">Introduce el nombre para buscar</p>
 
 
@@ -144,11 +144,11 @@
 									<div class="form-group mt-1">
 										<label for="texto">Nombre</label>
 										<input type="text" placeholder="Nombre" th:field="*{nombre}"
-											class="form-control" id="exampleInputName" />
+											class="form-control campo-form" id="exampleInputName" />
 									</div>
 								</div>
 						</div>
-						<div class="modal-footer">
+						<div class="modal-footer oscuro-header">
 							<button class="btn btn-secondary btn-sm" data-dismiss="modal"
 								aria-hidden="true">Cancelar</button>
 							<input id="sent" type="submit" th:value="Buscar" class="btn btn-primary float-right" />
@@ -171,13 +171,13 @@
 		<div class="modal fade" id="crearProfe">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
-					<div class="modal-header">
+					<div class="modal-header oscuro-header">
 						<h4 class="modal-title" id="exampleModalLabel">Crear profesor/a</h4>
 						<button class="close btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">x</span>
 						</button>
 					</div>
-					<div class="modal-body">
+					<div class="modal-body oscuro">
 						<p class="error-text">Introduce el nombre para el nuevo profesor
 							<!--formulario nombre a editar-->
 						<form action="#" th:action="@{/profesores/add/}" th:object="${profeNuevo}" method="post"
@@ -186,23 +186,23 @@
 								<div class="form-group mt-1">
 									<div class="form-group mt-1">
 										<label for="texto">DNI</label>
-										<input type="text" th:field="*{dni}" class="form-control" id="exampleInputDni"
+										<input type="text" th:field="*{dni}" class="form-control campo-form" id="exampleInputDni"
 											required pattern="[0-9]{8}[a-zA-Z]" placeholder="DNI" />
 										<div class="alert alert-danger invalid-feedback">
 											Un DNI está formado por 8 números seguidos de una letra
 										</div>
 									</div>
 									<label for="nombre">Nombre</label>
-									<input type="text" th:field="*{nombre}" class="form-control" id="nombre"
+									<input type="text" th:field="*{nombre}" class="form-control campo-form" id="nombre"
 										placeholder="Nombre" />
 									<label for="apellidos">Apellidos</label>
-									<input type="text" th:field="*{apellidos}" class="form-control" id="apellidos"
+									<input type="text" th:field="*{apellidos}" class="form-control campo-form" id="apellidos"
 										placeholder="Apellidos" />
 
 								</div>
 							</div>
 					</div>
-					<div class="modal-footer">
+					<div class="modal-footer oscuro-header">
 						<button class="btn btn-secondary btn-sm" data-dismiss="modal"
 							aria-hidden="true">Cancelar</button>
 						<input type="submit" value="Crear" class="btn btn-primary float-right" />
@@ -218,18 +218,18 @@
 			<div class="modal fade" th:id="modal-delete+${profe.id}">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
-						<div class="modal-header">
+						<div class="modal-header oscuro-header">
 							<h4 class="modal-title" id="exampleModalLabel">Borrar</h4>
 							<button class="close btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">x</span>
 							</button>
 						</div>
-						<div class="modal-body">
+						<div class="modal-body oscuro">
 							<p class="error-text">Seguro que quieres borrar a este profesor?
 								<strong><span th:text="${profe.nombre}"> </span></strong>
 							</p>
 						</div>
-						<div class="modal-footer">
+						<div class="modal-footer oscuro-header">
 							<button class="btn btn-secondary btn-sm" data-dismiss="modal"
 								aria-hidden="true">Cancelar</button>
 							<a th:href="@{/profesores/delete/{id}(id=${profe.id})}">
@@ -247,13 +247,13 @@
 			<div class="modal fade" th:id="modal-edit+${profe.id}">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
-						<div class="modal-header">
+						<div class="modal-header oscuro-header">
 							<h4 class="modal-title" id="exampleModalLabel">Modificar</h4>
 							<button class="close btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">x</span>
 							</button>
 						</div>
-						<div class="modal-body">
+						<div class="modal-body oscuro">
 							<p class="error-text">Introduce el nombre nuevo para el profesor:
 								<strong><span th:text="${profe.nombre}"> </span></strong>
 							</p>
@@ -263,17 +263,17 @@
 								<div class"form-row">
 									<div class="form-group mt-1">
 										<label for="texto">Nombre</label>
-										<input type="text" th:field="*{nombre}" class="form-control"
+										<input type="text" th:field="*{nombre}" class="form-control campo-form"
 											id="exampleInputNom" th:attr="placeholder=${profe.nombre}" />
 									</div>
 									<div class="form-group mt-1">
 										<label for="texto">Apellidos</label>
-										<input type="text" th:field="*{apellidos}" class="form-control"
+										<input type="text" th:field="*{apellidos}" class="form-control campo-form"
 											id="exampleInputSurname" th:attr="placeholder=${profe.apellidos}" />
 									</div>
 								</div>
 						</div>
-						<div class="modal-footer">
+						<div class="modal-footer oscuro-header">
 							<button class="btn btn-secondary btn-sm" data-dismiss="modal"
 								aria-hidden="true">Cancelar</button>
 							<input type="submit" value="Modificar" class="btn btn-primary float-right" />
@@ -290,13 +290,13 @@
 		<div class="toast-container position-fixed bottom-0 end-0 p-3">
 			<div th:if="${vacio}" id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true"
 				data-delay="5000">
-				<div class="toast-header">
+				<div class="toast-header oscuro-header blue-letter">
 					<i class="fas fa-exclamation-triangle me-2 fa-beat" style="color: #e00606;"></i>
 					<strong class="me-auto">¡Alerta!</strong>
 					<small>Justo ahora</small>
 					<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
 				</div>
-				<div class="toast-body">
+				<div class="toast-body oscuro-panel">
 					¡No deberías dejar a la escuela sin profesores!
 				</div>
 			</div>

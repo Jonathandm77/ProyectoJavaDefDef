@@ -26,7 +26,7 @@ function loadMoreArticles() {
 			articleImg.setAttribute("src", article.urlToImage)
 			articleImg.alt="sss"
 			let articleContent = document.createElement("div")
-			articleContent.setAttribute("class", "articleContent")
+			articleContent.setAttribute("class", "articleContent blue-letter-light")
 			let articleHeader = document.createElement("h2")
 			let linkHeader = document.createElement("a")
 			linkHeader.setAttribute("href", article.url)
