@@ -3,7 +3,7 @@
 <head th:insert="librerias::librerias">
 </head>
 
-<body class="container-fluid">
+<body class="container-fluid oscuro blue-letter">
 
 	<div th:insert="top"></div>
 
@@ -14,14 +14,14 @@
 		<div class="row pl-5 pr-5">
 			<div class="col-9">
 				<h5> Ficha del coche </h5>
-				<div class="card border border primary" th:object="${cocheMostrar}">
+				<div class="card border border primary oscuro-panel" th:object="${cocheMostrar}">
 					<div class="card-body row pt-4 pb-4">
 						<div class="col-7">
 							<div class="card">
-								<div class="card-header text-dark bg-light">Ficha del coche
+								<div class="card-header oscuro-header blue-letter">Ficha del coche
 
 								</div>
-								<div class="card-body">
+								<div class="card-body oscuro blue-letter">
 									<div class="mb-2">
 										<h5 th:text="*{marca}+' '+*{modelo}" class="mb-2 card-text">Marca del coche</h5>
 									</div>
@@ -36,10 +36,10 @@
 							</div>
 						</div>
 						<div class="col-5">
-							<div class="card">
-								<div class="card-header text-dark bg-light">Datos del coche
+							<div class="card blue-letter">
+								<div class="card-header oscuro-header blue-letter">Datos del coche
 								</div>
-								<div class="card-body">
+								<div class="card-body oscuro">
 									<p>
 										<strong>Marca:</strong>
 									<p th:text="${cocheMostrar.marca}" class="card-text mb-2 card-text">
@@ -74,7 +74,7 @@
 												<span>Cambiar imagen:&nbsp;&nbsp;&nbsp;</span>
 											</div>
 											<div class="form-group mt-3">
-												<input id="input-file" class="form-control" type="file" name="file"
+												<input id="input-file" class="form-control campo-form" type="file" name="file"
 													accept="image/png, image/jpeg" />
 											</div>
 										</div>

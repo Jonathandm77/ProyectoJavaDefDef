@@ -19,7 +19,7 @@
 }
 
 .campo-form,
-::placeholder {
+::placeholder, ::file-selector-button {
 	background-color: #0E1826 !important;
 	color: #ACD5F2 !important;
 }
