@@ -5,7 +5,7 @@
 
 </head>
 
-<body class="container-fluid">
+<body class="container-fluid oscuro blue-letter">
 
 	<div th:insert="top"></div>
 	<div class="container">
@@ -23,10 +23,10 @@
 					<img th:src="@{${coche.url}}" alt="${image.name}" width="300px" height="300px"
 						class="card-img-top img-fluid" />
 				</div>
-				<div class="card-header d-flex align-items-center">
+				<div class="card-header oscuro-header blue-letter d-flex align-items-center">
 					<h5 class="card-title" th:text="${coche.marca}+' '+${coche.modelo}"></h5>
 				</div>
-				<div class="card-body">
+				<div class="card-body oscuro">
 					<div class="d-flex justify-content-around justify-content-md-between">
 						<a th:href="@{/coches/{id}(id=${coche.id})}" class="btn btn-primary btn-sm">Ver Coche</a>
 						<a sec:authorize="hasAuthority('ROLE_ADMIN')" th:attr="data-target='#modal-edit'+${coche.id}" data-toggle="modal" data-target="#modal-edit"
@@ -71,13 +71,13 @@
 		<div class="modal fade" th:id="modal-search">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
-					<div class="modal-header">
+					<div class="modal-header oscuro-header">
 						<h4 class="modal-title" id="exampleModalLabel">Buscar Coche</h4>
 						<button class="close btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">x</span>
 						</button>
 					</div>
-					<div class="modal-body">
+					<div class="modal-body oscuro">
 						<p class="error-text">Introduce la marca para buscar</p>
 
 
@@ -86,12 +86,12 @@
 							<div class"form-row">
 								<div class="form-group mt-1">
 									<label for="texto">Marca</label>
-									<input type="text" th:field="*{marca}" class="form-control" id="exampleInputName"
+									<input type="text" th:field="*{marca}" class="form-control campo-form" id="exampleInputName"
 										placeholder="Marca" />
 								</div>
 							</div>
 
-							<div class="modal-footer">
+							<div class="modal-footer oscuro-header">
 								<button class="btn btn-secondary btn-sm" data-dismiss="modal"
 									aria-hidden="true">Cancelar</button>
 								<input id="sent" type="submit" th:value="Buscar" class="btn btn-primary float-right" />
@@ -108,13 +108,13 @@
 		<div class="modal fade" th:id="modal-search-matricula">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
-					<div class="modal-header">
+					<div class="modal-header oscuro-header">
 						<h4 class="modal-title" id="exampleModalLabel">Buscar Coche</h4>
 						<button class="close btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">x</span>
 						</button>
 					</div>
-					<div class="modal-body">
+					<div class="modal-body oscuro">
 						<p class="error-text">Introduce la matrícula para buscar</p>
 
 
@@ -124,7 +124,7 @@
 							<div class"form-row">
 								<div class="form-group mt-1">
 									<label for="texto">Matrícula</label>
-									<input type="text" th:field="*{matricula}" class="form-control"
+									<input type="text" th:field="*{matricula}" class="form-control campo-form"
 										pattern="[0-9]{4}\s[a-zA-Z]{3}" required id="exampleInputName"
 										placeholder="Matrícula" />
 									<div class="alert alert-danger invalid-feedback">
@@ -133,7 +133,7 @@
 								</div>
 							</div>
 
-							<div class="modal-footer">
+							<div class="modal-footer oscuro-header">
 								<button class="btn btn-secondary btn-sm" data-dismiss="modal"
 									aria-hidden="true">Cancelar</button>
 								<input id="sent" type="submit" th:value="Buscar" class="btn btn-primary float-right" />
@@ -151,13 +151,13 @@
 		<div class="modal fade" id="crearCoche">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
-					<div class="modal-header">
+					<div class="modal-header oscuro-header">
 						<h4 class="modal-title" id="exampleModalLabel">Crear coche/a</h4>
 						<button class="close btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">x</span>
 						</button>
 					</div>
-					<div class="modal-body">
+					<div class="modal-body oscuro">
 						<p class="error-text">Introduce el nombre para el nuevo coche
 							<!--formulario nombre a editar-->
 						<form action="#" th:action="@{/coches/add/}" th:object="${cocheNuevo}" method="post"
@@ -165,11 +165,11 @@
 							<div class"form-row">
 								<div class="form-group mt-1">
 									<label for="Marca">Marca</label>
-									<input type="text" th:field="*{marca}" class="form-control" id="marca"
+									<input type="text" th:field="*{marca}" class="form-control campo-form" id="marca"
 										placeholder="Marca" required />
 									<div class="form-group mt-1">
 										<label for="matricula">Matrícula</label>
-										<input type="text" th:field="*{matricula}" class="form-control"
+										<input type="text" th:field="*{matricula}" class="form-control campo-form"
 											pattern="[0-9]{4}\s[a-zA-Z]{3}" required id="matricula"
 											placeholder="Matrícula" />
 										<div class="invalid-feedback">
@@ -177,16 +177,16 @@
 										</div>
 									</div>
 									<label for="modelo">Modelo</label>
-									<input type="text" th:field="*{modelo}" class="form-control" id="modelo"
+									<input type="text" th:field="*{modelo}" class="form-control campo-form" id="modelo"
 										placeholder="Modelo" required />
 									<label for="fecha">Fecha ITV</label>
-									<input type="date" name="fechaITV" th:field="*{fechaITV}" class="form-control"
+									<input type="date" name="fechaITV" th:field="*{fechaITV}" class="form-control campo-form blue-letter"
 										id="fecha" placeholder="fechaITV" required />
 
 								</div>
 							</div>
 					</div>
-					<div class="modal-footer">
+					<div class="modal-footer oscuro-header">
 						<button class="btn btn-secondary btn-sm" data-dismiss="modal"
 							aria-hidden="true">Cancelar</button>
 						<input type="submit" value="Crear" class="btn btn-primary float-right" />
@@ -202,18 +202,18 @@
 			<div class="modal fade" th:id="modal-delete+${coche.id}">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
-						<div class="modal-header">
+						<div class="modal-header oscuro-header">
 							<h4 class="modal-title" id="exampleModalLabel">Borrar</h4>
 							<button class="close btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">x</span>
 							</button>
 						</div>
-						<div class="modal-body">
+						<div class="modal-body oscuro">
 							<p class="error-text">Seguro que quieres borrar este coche?
 								<strong><span th:text="${coche.marca}+' '+${coche.matricula}"> </span></strong>
 							</p>
 						</div>
-						<div class="modal-footer">
+						<div class="modal-footer oscuro-header">
 							<button class="btn btn-secondary btn-sm" data-dismiss="modal"
 								aria-hidden="true">Cancelar</button>
 							<form th:action="@{/coches/delete/{id}(id=${coche.id})}" th:method="GET">
@@ -233,13 +233,13 @@
 			<div class="modal fade" th:id="modal-edit+${coche.id}">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
-						<div class="modal-header">
+						<div class="modal-header oscuro-header">
 							<h4 class="modal-title" id="exampleModalLabel">Modificar</h4>
 							<button class="close btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">x</span>
 							</button>
 						</div>
-						<div class="modal-body">
+						<div class="modal-body oscuro">
 							<p class="error-text">Introduce matricula nueva para el coche:
 								<strong><span th:text="${coche.matricula}"> </span></strong>
 							</p>
@@ -249,7 +249,7 @@
 								<div class"form-row">
 									<div class="form-group mt-1">
 										<label for="matricula">Matrícula</label>
-										<input type="text" th:field="*{matricula}" class="form-control"
+										<input type="text" th:field="*{matricula}" class="form-control campo-form"
 											pattern="[0-9]{4}\s[a-zA-Z]{3}" id="matricula" placeholder="Matrícula" />
 										<div class="invalid-feedback">
 											Por favor, ingresa 4 números y 3 letras separados por un espacio
@@ -257,12 +257,12 @@
 									</div>
 									<div class="form-group mt-1">
 										<label for="fecha">Fecha ITV</label>
-										<input type="date" name="fechaITV" th:field="*{fechaITV}" class="form-control"
+										<input type="date" name="fechaITV" th:field="*{fechaITV}" class="form-control campo-form"
 											id="fecha" placeholder="fechaITV" />
 									</div>
 								</div>
 
-								<div class="modal-footer">
+								<div class="modal-footer oscuro-header">
 									<button class="btn btn-secondary btn-sm" data-dismiss="modal"
 										aria-hidden="true">Cancelar</button>
 									<input type="submit" value="Modificar" class="btn btn-primary float-right" />
@@ -276,7 +276,7 @@
 			</div>
 
 		</div>
-		<!-- fin delete modal-->
+		<!-- fin edit modal-->
 
 	</div>
 </body>

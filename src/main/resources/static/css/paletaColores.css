@@ -21,3 +21,11 @@
 	background-color: #0E1826!important;
 	color: #ACD5F2!important;
 }
+
+.campo-form{
+	border: 1px solid#ACD5F2;
+}
+
+.campo-form::-webkit-calendar-picker-indicator{
+   	filter: invert(81%) sepia(31%) saturate(474%) hue-rotate(176deg) brightness(97%) contrast(96%);
+}
