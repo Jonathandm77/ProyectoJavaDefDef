@@ -66,3 +66,13 @@
 .event-custom{
 	background-color: #ACD5F2;
 }
+
+/*Alertas*/
+.toast-header{
+		background-color: rgb(32, 52, 77) !important;
+			color: #ACD5F2 !important;
+}
+
+.toast-body{
+		background-color: rgb(29, 43, 63) !important;
+}

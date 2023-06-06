@@ -3,7 +3,7 @@
 <head th:insert="librerias::librerias">
 </head>
 
-<body class="container-fluid">
+<body class="container-fluid oscuro blue-letter">
 
 	<div th:insert="top"></div>
 
@@ -14,14 +14,14 @@
 		<div class="row pl-5 pr-5">
 			<div class="col-9">
 				<h5> Ficha de alumno </h5>
-				<div class="card border border primary" th:object="${alumnoMostrar}">
+				<div class="card border border primary oscuro-panel" th:object="${alumnoMostrar}">
 					<div class="card-body row pt-4 pb-4">
 						<div class="col-7">
 							<div class="card">
-								<div class="card-header text-dark bg-light">Ficha del alumno
+								<div class="card-header oscuro-header blue-letter">Ficha del alumno
 
 								</div>
-								<div class="card-body">
+								<div class="card-body oscuro">
 									<div id="respuestaAjax">
 
 									</div>
@@ -30,10 +30,10 @@
 										method="POST">
 
 										<input disabled sec:authorize="!hasAuthority('ROLE_ADMIN')" th:field=*{nombre} name="nombre" id="nombreAjax" type="text"
-											class="form-control" th:attr="placeholder=${alumnoMostrar.nombre}">
+											class="form-control campo-form" th:attr="placeholder=${alumnoMostrar.nombre}">
 
 										<input sec:authorize="hasAuthority('ROLE_ADMIN')" th:field=*{nombre} name="nombre" id="nombreAjax" type="text"
-											class="form-control" th:attr="placeholder=${alumnoMostrar.nombre}">
+											class="form-control campo-form" th:attr="placeholder=${alumnoMostrar.nombre}">
 
 										<input type="submit" value="Editar" class="btn btn-primary float-right mt-2">
 
@@ -46,10 +46,10 @@
 							</div>
 						</div>
 						<div class="col-5">
-							<div class="card">
-								<div class="card-header text-dark bg-light">Datos del alumno
+							<div class="card blue-letter">
+								<div class="card-header oscuro-header">Datos del alumno
 								</div>
-								<div class="card-body">
+								<div class="card-body oscuro">
 									<p>
 										<strong>ID:</strong>
 										<span id="idAjax" th:text="${alumnoMostrar.id}" class="card-text mb-2"></span>
@@ -92,10 +92,10 @@
 						</div>
 
 						<div sec:authorize="!hasAnyAuthority('ROLE_TEACHER','ROLE_ADMIN')" class="col-5 mt-3">
-							<div class="card">
-								<div class="card-header text-dark bg-light">Notas
+							<div class="card blue-letter">
+								<div class="card-header oscuro-header">Notas
 								</div>
-								<div class="card-body">
+								<div class="card-body oscuro">
 									<span>
 										<span>
 											<p th:text="${alumnoMostrar.notas}" class="card-text mb-2 card-text"></p>
@@ -107,15 +107,15 @@
 						</div>
 
 						<div sec:authorize="hasAnyAuthority('ROLE_TEACHER','ROLE_ADMIN')" class="col-5 mt-3">
-							<div class="card">
-								<div class="card-header text-dark bg-light">Notas
+							<div class="card blue-letter">
+								<div class="card-header oscuro-header">Notas
 								</div>
-								<div class="card-body">
+								<div class="card-body oscuro">
 									<span>
 										<form th:action="@{/alumnos/edit/{id}(id=${alumnoMostrar.id})}" method="POST"
 											class="d-flex justify-content-end">
 											<div class="input-group">
-												<textarea th:field="*{notas}" class="form-control"
+												<textarea th:field="*{notas}" class="form-control campo-form"
 													th:attr="placeholder=${alumnoMostrar.notas}"></textarea>
 												<button type="submit" class="btn btn-primary">Enviar</button>
 											</div>
@@ -132,7 +132,7 @@
 								th:id="'accordionFlushExample-' + ${iter.index}">
 								<div class="accordion-item border" th:name="${clase.id}">
 									<h2 class="accordion-header">
-										<button class="accordion-button collapsed" type="button"
+										<button class="accordion-button collapsed blue-letter oscuro-header" type="button"
 											data-bs-toggle="collapse"
 											th:data-bs-target="'#flush-collapse-' + ${iter.index}" aria-expanded="false"
 											th:aria-controls="'flush-collapse-' + ${iter.index}"
@@ -140,7 +140,7 @@
 
 										</button>
 									</h2>
-									<div th:id="'flush-collapse-' + ${iter.index}" class="accordion-collapse collapse"
+									<div th:id="'flush-collapse-' + ${iter.index}" class="accordion-collapse collapse oscuro blue-letter-light"
 										th:data-bs-parent="'#accordionFlushExample-' + ${iter.index}">
 										<div class="accordion-body"
 											th:text="'Clase a las ' + ${#temporals.format(clase.hora, 'HH:mm')} + ' con ' + ${clase.profesor.nombre} + ' ' + ${clase.profesor.apellidos} + ' y el coche ' + ${clase.coche.marca} + ' ' + ${clase.coche.modelo}">
@@ -168,13 +168,13 @@
 		<div class="modal fade" th:id="modal-create-class">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
-					<div class="modal-header">
+					<div class="modal-header oscuro-header">
 						<h4 class="modal-title" id="exampleModalLabel">Crear</h4>
 						<button class="close btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">x</span>
 						</button>
 					</div>
-					<div class="modal-body">
+					<div class="modal-body oscuro">
 						<p class="error-text">Introduce la informacion para la clase
 						</p>
 						<!--formulario nombre a editar-->
@@ -183,15 +183,15 @@
 							<div class"form-row">
 								<div class="form-group mt-1">
 									<label for="texto">Fecha</label>
-									<input type="date" th:field="*{fecha}" class="form-control exampleInputName" />
+									<input type="date" th:field="*{fecha}" class="form-control campo-form exampleInputName" />
 
 									<label for="texto">Hora</label>
-									<input type="time" th:field="*{hora}" class="form-control"
+									<input type="time" th:field="*{hora}" class="form-control campo-form"
 										id="exampleInputSurname" />
 								</div>
 							</div>
 					</div>
-					<div class="modal-footer">
+					<div class="modal-footer oscuro-header">
 						<button class="btn btn-secondary btn-sm" data-dismiss="modal"
 							aria-hidden="true">Cancelar</button>
 						<input type="submit" value="Modificar" class="btn btn-primary float-right sent" />
