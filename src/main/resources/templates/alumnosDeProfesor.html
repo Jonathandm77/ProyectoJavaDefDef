@@ -4,7 +4,7 @@
 
 </head>
 
-<body class="container-fluid">
+<body class="container-fluid oscuro blue-letter">
 
 	<div th:insert="top"></div>
 	
@@ -21,14 +21,14 @@
 			<div class="w-100">
 				<h5> Datos de los alumnos</h5>
 				<div class="col-8 d-flex justify-content-around w-100 flex-wrap">
-				<div class="card border border primary col-3 user-card" th:each="alumno:${alumnosProfe}">
+				<div class="card border border primary col-3 user-card oscuro-panel" th:each="alumno:${alumnosProfe}">
 					<div class="card-body row pt-4 pb-4">
 						<div class="col-12">
 							<div class="card">
-								<div class="card-header text-dark bg-light">Datos del alumno
+								<div class="card-header text-dark bg-light oscuro-header blue-letter">Datos del alumno
 
 								</div>
-								<div class="card-body">
+								<div class="card-body oscuro blue-letter">
 									<div class="mb-2">
 										<h5 th:text="${alumno.nombre}+' '+${alumno.apellidos}" class="mb-2 card-text">Nombre del alumno</h5>
 									</div>
