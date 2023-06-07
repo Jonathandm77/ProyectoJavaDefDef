@@ -50,6 +50,8 @@ public class Usuario implements UserDetails {
 	public String imagenPerfil;
 	
 	public String url;
+	
+	public String tema;
 
 	@ManyToMany(cascade= {CascadeType.ALL}, fetch = FetchType.EAGER)
 	@JoinTable(
@@ -117,6 +119,20 @@ public class Usuario implements UserDetails {
 
 	public String getUrl() {
 		return url;
+	}
+	
+	
+
+
+
+	public String getTema() {
+		return tema;
+	}
+
+
+
+	public void setTema(String tema) {
+		this.tema = tema;
 	}
 
 

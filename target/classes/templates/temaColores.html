@@ -1,3 +1,1 @@
-
-	<link th:fragment="temaColores" rel="stylesheet" type="text/css" th:href="@{/static/css/temaClaro.css}">
-
+<link th:fragment="temaColores" rel="stylesheet" type="text/css" th:href="@{'/static/css/' + ${tema} + '.css'}">

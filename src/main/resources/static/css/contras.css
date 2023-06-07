@@ -26,6 +26,85 @@ nav,.sidebar-sticky,.container-fluid,.row,.sidebar {
   
 }
 
+@media (max-width: 900px) {
+
+			.sidebar {
+				height: 10vh !important;
+				padding-top: 17px;
+				width: 100%;
+			}
+
+			.sidebar-sticky {
+				display: flex;
+				align-items: center;
+			}
+
+			.nav.pills {
+				flex-direction: row !important;
+			}
+
+			#datos {
+				display: flex;
+				justify-content: center;
+				height: 50vh;
+			}
+
+			#data-container {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+			}
+
+			#formulario {
+				height: 100%;
+			}
+
+			#formulario .form-group {
+				margin-bottom: 20px;
+			}
+		}
+
+		.cuadrado {
+			width: 75px;
+			height: 75px;
+		}
+
+		@media (min-width: 10px) {
+			#ul {
+				height: 100%;
+			}
+		}
+
+		/* SM breakpoint */
+		@media (min-width: 576px) {
+
+			.w-sm-100 {
+				width: 100% !important;
+			}
+
+		}
+
+		/* MD breakpoint*/
+		@media (min-width: 768px) {
+
+			.w-md-75 {
+				width: 75% !important;
+			}
+						#ul{
+				height: 30%;
+			}
+		}
+
+		/* LG breakpoint */
+		@media (min-width: 1500px) {
+
+			.w-lg-25 {
+				width: 25% !important;
+			}
+			
+
+		}
+
 
 
 

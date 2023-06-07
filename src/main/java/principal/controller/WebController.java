@@ -8,7 +8,10 @@ import java.util.Calendar;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import principal.modelo.Alumno;
@@ -49,7 +52,7 @@ public class WebController {
 	boolean created=false;
 	
 	@GetMapping("/")
-	String home() throws SQLException {
+	String home(Model model) throws SQLException {
 		if(!created) {
 		 crearTablas();
 		 created=true;
@@ -157,9 +160,11 @@ public class WebController {
 		usuarioService.insertarUsuarioAdmin(usuarioAdmin);
 		rolRepo.save(rolBasico);
 		usuarioBasico.setIdAlumno(1);
+		usuarioBasico.setTema("temaOscuro");
 		usuarioService.insertarUsuarioBasico(usuarioBasico);
 		rolRepo.save(rolProfesor);
 		usuarioProfesor.setIdProfesor(p1.getId());
+		usuarioProfesor.setTema("temaClaro");
 		usuarioService.insertarUsuarioProfesor(usuarioProfesor);
 		
 		alumnoService.insertarAlumno(a1);
