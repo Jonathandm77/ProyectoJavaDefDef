@@ -5,7 +5,7 @@
 
 </head>
 
-<body class="container-fluid theme blue-letter">
+<body class="container-fluid theme theme-letter">
 	<div th:insert="top"></div>
 	<div class="container">
 
@@ -13,7 +13,7 @@
 
 		<h1>Registro de Alumnos</h1>
 
-		<table class="table blue-letter">
+		<table class="table theme-letter">
 			<thead class="bg-info theme-panel">
 				<tr>
 					<td>ID</td>
@@ -25,7 +25,7 @@
 
 				</tr>
 			</thead>
-			<tbody class="blue-letter-light">
+			<tbody class="theme-letter-light">
 				<tr th:if="${listaAlumnos.Empty}">
 					<td colspan="2">No hay alumnos </td>
 				<tr th:each="alumno:${listaAlumnos}">

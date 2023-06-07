@@ -3,7 +3,7 @@
 <head th:insert="librerias::librerias">
 </head>
 
-<body class="container-fluid theme blue-letter">
+<body class="container-fluid theme theme-letter">
 
 	<div th:insert="top"></div>
 
@@ -18,7 +18,7 @@
 					<div class="card-body row pt-4 pb-4">
 						<div class="col-7">
 							<div class="card">
-								<div class="card-header theme-header blue-letter">Ficha del alumno
+								<div class="card-header theme-header theme-letter">Ficha del alumno
 
 								</div>
 								<div class="card-body theme">
@@ -46,7 +46,7 @@
 							</div>
 						</div>
 						<div class="col-5">
-							<div class="card blue-letter">
+							<div class="card theme-letter">
 								<div class="card-header theme-header">Datos del alumno
 								</div>
 								<div class="card-body theme">
@@ -92,7 +92,7 @@
 						</div>
 
 						<div sec:authorize="!hasAnyAuthority('ROLE_TEACHER','ROLE_ADMIN')" class="col-5 mt-3">
-							<div class="card blue-letter">
+							<div class="card theme-letter">
 								<div class="card-header theme-header">Notas
 								</div>
 								<div class="card-body theme">
@@ -107,7 +107,7 @@
 						</div>
 
 						<div sec:authorize="hasAnyAuthority('ROLE_TEACHER','ROLE_ADMIN')" class="col-5 mt-3">
-							<div class="card blue-letter">
+							<div class="card theme-letter">
 								<div class="card-header theme-header">Notas
 								</div>
 								<div class="card-body theme">
@@ -132,7 +132,7 @@
 								th:id="'accordionFlushExample-' + ${iter.index}">
 								<div class="accordion-item border" th:name="${clase.id}">
 									<h2 class="accordion-header">
-										<button class="accordion-button collapsed blue-letter theme-header" type="button"
+										<button class="accordion-button collapsed theme-letter theme-header" type="button"
 											data-bs-toggle="collapse"
 											th:data-bs-target="'#flush-collapse-' + ${iter.index}" aria-expanded="false"
 											th:aria-controls="'flush-collapse-' + ${iter.index}"
@@ -140,7 +140,7 @@
 
 										</button>
 									</h2>
-									<div th:id="'flush-collapse-' + ${iter.index}" class="accordion-collapse collapse theme blue-letter-light"
+									<div th:id="'flush-collapse-' + ${iter.index}" class="accordion-collapse collapse theme theme-letter-light"
 										th:data-bs-parent="'#accordionFlushExample-' + ${iter.index}">
 										<div class="accordion-body"
 											th:text="'Clase a las ' + ${#temporals.format(clase.hora, 'HH:mm')} + ' con ' + ${clase.profesor.nombre} + ' ' + ${clase.profesor.apellidos} + ' y el coche ' + ${clase.coche.marca} + ' ' + ${clase.coche.modelo}">

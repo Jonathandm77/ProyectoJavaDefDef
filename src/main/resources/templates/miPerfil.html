@@ -3,7 +3,7 @@
 <head th:insert="librerias::librerias">
 </head>
 
-<body class="container-fluid theme blue-letter">
+<body class="container-fluid theme theme-letter">
 
 	<div th:insert="top"></div>
 
@@ -15,10 +15,10 @@
                     <div class="card-body row pt-4 pb-4">
                         <div class="col-7">
                             <div class="card">
-                                <div class="card-header bg-light theme-header blue-letter">
+                                <div class="card-header bg-light theme-header theme-letter">
                                     Mi Perfil
                                 </div>
-                                <div class="card-body theme blue-letter">
+                                <div class="card-body theme theme-letter">
                                     <div class="mb-2">
                                         <h5 th:text="${alumnoMostrar.nombre}" class="mb-2 card-text">Nombre:</h5>
                                     </div>
@@ -31,8 +31,8 @@
                         </div>
                         <div class="col-5">
                             <div class="card">
-                                <div class="card-header bg-light theme-header blue-letter">Datos</div>
-                                <div class="card-body theme blue-letter">
+                                <div class="card-header bg-light theme-header theme-letter">Datos</div>
+                                <div class="card-body theme theme-letter">
                                     <p>
                                         <strong>Nombre:</strong>
                                         <span th:text="${alumnoMostrar.nombre}" class="card-text mb-2"></span>

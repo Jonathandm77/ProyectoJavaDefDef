@@ -5,7 +5,7 @@
 		<div class="d-sm-flex align-items-sm-center ms-0 me-0 container-fluid">
 			<!-- Logo -->
 			<!--<img src="/static/img/logo.png">-->
-			 <a class="navbar-brand me-5 ms-0 blue-letter" href="#">
+			 <a class="navbar-brand me-5 ms-0 theme-letter" href="#">
                 <img src="/static/img/logo.png" class="me-2" alt="Logo" style="max-height: 80px;">
                 <h2 style="display: inline-block; margin-left: 10px;">DriveStop</h2>
             </a>
@@ -20,14 +20,14 @@
 			<div class="collapse navbar-collapse justify-content-center" id="navbarNav">
 				<ul class="navbar-nav">
 					<li class="nav-item">
-						<a class="nav-link text-gray-600 blue-letter" href="/" role="button">
+						<a class="nav-link text-gray-600 theme-letter" href="/" role="button">
 							<i class="fas fa-home fa-sm fa-fw mr-3 text-gray-600"></i>
 							Inicio
 						</a>
 					</li>
 					<li sec:authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_TEACHER')"
 						class="nav-item dropdown no-arrow">
-						<a class="nav-link text-gray-600 blue-letter" href="/alumnos" role="button">
+						<a class="nav-link text-gray-600 theme-letter" href="/alumnos" role="button">
 							<i class="fas fa-graduation-cap fa-sm fa-fw mr-3 text-gray-600"></i>
 							Alumnos
 						</a>
@@ -35,7 +35,7 @@
 
 					<li sec:authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_TEACHER')"
 						class="nav-item dropdown no-arrow">
-						<a class="nav-link text-gray-600 blue-letter" href="/profesores" role="button">
+						<a class="nav-link text-gray-600 theme-letter" href="/profesores" role="button">
 							<i class="fas fa-chalkboard-user fa-sm fa-fw mr-3 text-gray-600"></i>
 							Profesores
 						</a>
@@ -43,7 +43,7 @@
 
 					<li sec:authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_TEACHER')"
 						class="nav-item dropdown no-arrow">
-						<a class="nav-link text-gray-600 blue-letter" href="/coches" role="button">
+						<a class="nav-link text-gray-600 theme-letter" href="/coches" role="button">
 							<i class="fas fa-car fa-sm fa-fw mr-3 text-gray-600"></i>
 							Coches
 						</a>
@@ -51,28 +51,28 @@
 
 					<li sec:authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_TEACHER', 'ROLE_USER')"
 						class="nav-item dropdown no-arrow">
-						<a class="nav-link text-gray-600 blue-letter" href="/calendario" role="button">
+						<a class="nav-link text-gray-600 theme-letter" href="/calendario" role="button">
 							<i class="fas fa-calendar-days fa-sm fa-fw mr-3 text-gray-600"></i>
 							Calendario
 						</a>
 					</li>
 
 					<li sec:authorize="hasAuthority('ROLE_TEACHER')" class="nav-item dropdown no-arrow">
-						<a class="nav-link text-gray-600 blue-letter" href="/misAlumnos" role="button">
+						<a class="nav-link text-gray-600 theme-letter" href="/misAlumnos" role="button">
 							<i class="fas fa-users fa-sm fa-fw mr-3 text-gray-600"></i>
 							Mis alumnos
 						</a>
 					</li>
 
 					<li sec:authorize="hasAuthority('ROLE_USER')" class="nav-item dropdown no-arrow">
-						<a class="nav-link text-gray-600 blue-letter" href="/miPerfil" role="button">
+						<a class="nav-link text-gray-600 theme-letter" href="/miPerfil" role="button">
 							<i class="fas fa-user-secret fa-sm fa-fw mr-3 text-gray-600"></i>
 							Mi Perfil
 						</a>
 					</li>
 
 					<li sec:authorize="hasAuthority('ROLE_ADMIN')" class="nav-item dropdown no-arrow">
-						<a class="nav-link text-gray-600 blue-letter" href="/usuarios" role="button">
+						<a class="nav-link text-gray-600 theme-letter" href="/usuarios" role="button">
 							<i class="fas fa-user fa-sm fa-fw mr-3 text-gray-600"></i>
 							Usuarios
 						</a>
@@ -80,7 +80,7 @@
 
 					<li sec:authorize="isAuthenticated()" class="nav-item dropdown text-gray-900">
 
-						<a class="nav-link dropdown-toggle text-gray-900 blue-letter" href="#" id="userDropdown" role="button"
+						<a class="nav-link dropdown-toggle text-gray-900 theme-letter" href="#" id="userDropdown" role="button"
 							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
 							Hola: <span sec:authentication="principal.username" />
@@ -90,25 +90,25 @@
 						<!-- Dropdown - User Information -->
 						<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in theme-header"
 							aria-labelledby="userDropdown">
-							<a class="dropdown-item blue-letter" href="/seguridad/password#contras">
+							<a class="dropdown-item theme-letter" href="/seguridad/password#contras">
 								<i class="fas fa-lock fa-sm fa-fw mr-3 text-gray-600"></i>
 								Contraseña
 							</a>
 
-							<a class="dropdown-item blue-letter" href="/seguridad/password#data">
+							<a class="dropdown-item theme-letter" href="/seguridad/password#data">
 								<i class="fas fa-address-card fa-sm fa-fw mr-3 text-gray-600"></i>
 								Configurar datos
 							</a>
 							<div class="dropdown-divider"></div>
 
 							<div sec:authorize="hasAuthority('ROLE_ADMIN')">
-								<a class="dropdown-item blue-letter" href="/seguridad/password#operat">
+								<a class="dropdown-item theme-letter" href="/seguridad/password#operat">
 									<i class="fas fa-cog fa-sm fa-fw mr-3 text-gray-600"></i>
 									Operaciones Admin
 								</a>
 								<div class="dropdown-divider"></div>
 							</div>
-							<a class="dropdown-item blue-letter" th:href="@{/logout}">
+							<a class="dropdown-item theme-letter" th:href="@{/logout}">
 								<i class="fas fa-sign-out-alt fa-sm fa-fw mr-3 text-gray-600"></i>
 								<span>Cerrar Sesión</span>
 							</a>
