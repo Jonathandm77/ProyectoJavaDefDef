@@ -3,7 +3,7 @@
 <head th:insert="librerias::librerias">
 </head>
 
-<body class="container-fluid oscuro blue-letter">
+<body class="container-fluid theme blue-letter">
 
 	<div th:insert="top"></div>
 
@@ -14,14 +14,14 @@
 		<div class="row pl-5 pr-5">
 			<div class="col-9">
 				<h5> Ficha del coche </h5>
-				<div class="card border border primary oscuro-panel" th:object="${cocheMostrar}">
+				<div class="card border border primary theme-panel" th:object="${cocheMostrar}">
 					<div class="card-body row pt-4 pb-4">
 						<div class="col-7">
 							<div class="card">
-								<div class="card-header oscuro-header blue-letter">Ficha del coche
+								<div class="card-header theme-header blue-letter">Ficha del coche
 
 								</div>
-								<div class="card-body oscuro blue-letter">
+								<div class="card-body theme blue-letter">
 									<div class="mb-2">
 										<h5 th:text="*{marca}+' '+*{modelo}" class="mb-2 card-text">Marca del coche</h5>
 									</div>
@@ -37,9 +37,9 @@
 						</div>
 						<div class="col-5">
 							<div class="card blue-letter">
-								<div class="card-header oscuro-header blue-letter">Datos del coche
+								<div class="card-header theme-header blue-letter">Datos del coche
 								</div>
-								<div class="card-body oscuro">
+								<div class="card-body theme">
 									<p>
 										<strong>Marca:</strong>
 									<p th:text="${cocheMostrar.marca}" class="card-text mb-2 card-text">

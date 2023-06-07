@@ -4,7 +4,7 @@
 
 </head>
 
-<body class="container-fluid oscuro blue-letter">
+<body class="container-fluid theme blue-letter">
 
 	<div th:insert="top"></div>
 
@@ -15,14 +15,14 @@
 		<div class="row pl-5 pr-5">
 			<div class="col-9">
 				<h5> Información del usuario </h5>
-				<div class="card border border primary oscuro-panel" th:object="${usuarioMostrar}">
+				<div class="card border border primary theme-panel" th:object="${usuarioMostrar}">
 					<div class="card-body row pt-4 pb-4">
 						<div class="col-7">
 							<div class="card">
-								<div class="card-header oscuro-header blue-letter">Información del usuario
+								<div class="card-header theme-header blue-letter">Información del usuario
 
 								</div>
-								<div class="card-body oscuro blue-letter">
+								<div class="card-body theme blue-letter">
 									<div class="mb-2">
 										<h5 th:text="*{nombre}" class="mb-2 card-text"></h5>
 									</div>
@@ -32,9 +32,9 @@
 						</div>
 						<div class="col-5">
 							<div class="card blue-letter">
-								<div class="card-header oscuro-header">Datos del usuario
+								<div class="card-header theme-header">Datos del usuario
 								</div>
-								<div class="card-body oscuro">
+								<div class="card-body theme">
 									<span>
 										<strong>Nombre:</strong>
 										<p th:text="${usuarioMostrar.nombre}"

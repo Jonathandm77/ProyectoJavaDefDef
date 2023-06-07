@@ -5,7 +5,7 @@
 
 </head>
 
-<body class="container-fluid oscuro blue-letter">
+<body class="container-fluid theme blue-letter">
 
 	<div th:insert="top"></div>
 	<div class="container">
@@ -23,10 +23,10 @@
 					<img th:src="@{${coche.url}}" alt="${image.name}" width="300px" height="300px"
 						class="card-img-top img-fluid" />
 				</div>
-				<div class="card-header oscuro-header blue-letter d-flex align-items-center">
+				<div class="card-header theme-header blue-letter d-flex align-items-center">
 					<h5 class="card-title" th:text="${coche.marca}+' '+${coche.modelo}"></h5>
 				</div>
-				<div class="card-body oscuro">
+				<div class="card-body theme">
 					<div class="d-flex justify-content-around justify-content-md-between">
 						<a th:href="@{/coches/{id}(id=${coche.id})}" class="btn btn-primary btn-sm">Ver Coche</a>
 						<a sec:authorize="hasAuthority('ROLE_ADMIN')" th:attr="data-target='#modal-edit'+${coche.id}" data-toggle="modal" data-target="#modal-edit"
@@ -71,13 +71,13 @@
 		<div class="modal fade" th:id="modal-search">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
-					<div class="modal-header oscuro-header">
+					<div class="modal-header theme-header">
 						<h4 class="modal-title" id="exampleModalLabel">Buscar Coche</h4>
 						<button class="close btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">x</span>
 						</button>
 					</div>
-					<div class="modal-body oscuro">
+					<div class="modal-body theme">
 						<p class="error-text">Introduce la marca para buscar</p>
 
 
@@ -91,7 +91,7 @@
 								</div>
 							</div>
 
-							<div class="modal-footer oscuro-header">
+							<div class="modal-footer theme-header">
 								<button class="btn btn-secondary btn-sm" data-dismiss="modal"
 									aria-hidden="true">Cancelar</button>
 								<input id="sent" type="submit" th:value="Buscar" class="btn btn-primary float-right" />
@@ -108,13 +108,13 @@
 		<div class="modal fade" th:id="modal-search-matricula">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
-					<div class="modal-header oscuro-header">
+					<div class="modal-header theme-header">
 						<h4 class="modal-title" id="exampleModalLabel">Buscar Coche</h4>
 						<button class="close btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">x</span>
 						</button>
 					</div>
-					<div class="modal-body oscuro">
+					<div class="modal-body theme">
 						<p class="error-text">Introduce la matrícula para buscar</p>
 
 
@@ -133,7 +133,7 @@
 								</div>
 							</div>
 
-							<div class="modal-footer oscuro-header">
+							<div class="modal-footer theme-header">
 								<button class="btn btn-secondary btn-sm" data-dismiss="modal"
 									aria-hidden="true">Cancelar</button>
 								<input id="sent" type="submit" th:value="Buscar" class="btn btn-primary float-right" />
@@ -151,13 +151,13 @@
 		<div class="modal fade" id="crearCoche">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
-					<div class="modal-header oscuro-header">
+					<div class="modal-header theme-header">
 						<h4 class="modal-title" id="exampleModalLabel">Crear coche/a</h4>
 						<button class="close btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">x</span>
 						</button>
 					</div>
-					<div class="modal-body oscuro">
+					<div class="modal-body theme">
 						<p class="error-text">Introduce el nombre para el nuevo coche
 							<!--formulario nombre a editar-->
 						<form action="#" th:action="@{/coches/add/}" th:object="${cocheNuevo}" method="post"
@@ -186,7 +186,7 @@
 								</div>
 							</div>
 					</div>
-					<div class="modal-footer oscuro-header">
+					<div class="modal-footer theme-header">
 						<button class="btn btn-secondary btn-sm" data-dismiss="modal"
 							aria-hidden="true">Cancelar</button>
 						<input type="submit" value="Crear" class="btn btn-primary float-right" />
@@ -202,18 +202,18 @@
 			<div class="modal fade" th:id="modal-delete+${coche.id}">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
-						<div class="modal-header oscuro-header">
+						<div class="modal-header theme-header">
 							<h4 class="modal-title" id="exampleModalLabel">Borrar</h4>
 							<button class="close btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">x</span>
 							</button>
 						</div>
-						<div class="modal-body oscuro">
+						<div class="modal-body theme">
 							<p class="error-text">Seguro que quieres borrar este coche?
 								<strong><span th:text="${coche.marca}+' '+${coche.matricula}"> </span></strong>
 							</p>
 						</div>
-						<div class="modal-footer oscuro-header">
+						<div class="modal-footer theme-header">
 							<button class="btn btn-secondary btn-sm" data-dismiss="modal"
 								aria-hidden="true">Cancelar</button>
 							<form th:action="@{/coches/delete/{id}(id=${coche.id})}" th:method="GET">
@@ -233,13 +233,13 @@
 			<div class="modal fade" th:id="modal-edit+${coche.id}">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
-						<div class="modal-header oscuro-header">
+						<div class="modal-header theme-header">
 							<h4 class="modal-title" id="exampleModalLabel">Modificar</h4>
 							<button class="close btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">x</span>
 							</button>
 						</div>
-						<div class="modal-body oscuro">
+						<div class="modal-body theme">
 							<p class="error-text">Introduce matricula nueva para el coche:
 								<strong><span th:text="${coche.matricula}"> </span></strong>
 							</p>
@@ -262,7 +262,7 @@
 									</div>
 								</div>
 
-								<div class="modal-footer oscuro-header">
+								<div class="modal-footer theme-header">
 									<button class="btn btn-secondary btn-sm" data-dismiss="modal"
 										aria-hidden="true">Cancelar</button>
 									<input type="submit" value="Modificar" class="btn btn-primary float-right" />

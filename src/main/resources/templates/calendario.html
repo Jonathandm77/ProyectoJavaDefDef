@@ -31,7 +31,7 @@
 	</style>
 </head>
 
-<body class="container-fluid oscuro blue-letter">
+<body class="container-fluid theme blue-letter">
 	<div th:insert="top"></div>
 	<div id='calendar' class="m-3"></div>
 
@@ -40,14 +40,14 @@
 		data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<div class="modal-header oscuro-header">
+				<div class="modal-header theme-header">
 					<h1 class="modal-title fs-5" id="exampleModalLabel">Crear Clase</h1>
 					<button id="aboveCancelCreate" type="button" class="btn btn-danger" data-bs-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">x</span>
 					</button>
 				</div>
-				<div class="modal-body oscuro">
+				<div class="modal-body theme">
 					<p class="error-text">Configura la clase</p>
 					<form action="#" th:action="@{/calendario/add/}" th:object="${claseNueva}" method="post"
 						class="needs-validation" novalidate>
@@ -63,7 +63,7 @@
 							<label for="hora">Hora</label>
 							<input type="time" th:field="*{hora}" class="form-control campo-form" />
 						</div>
-						<div class="modal-footer oscuro-header">
+						<div class="modal-footer theme-header">
 							<button class="btn btn-secondary btn-sm" type="button" id="cancelCreateModal"
 								data-dismiss="modal" aria-hidden="true">Cancelar</button>
 							<input type="submit" value="Crear" class="btn btn-primary float-right" />
@@ -83,19 +83,19 @@
 		tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<div class="modal-header oscuro-header">
+				<div class="modal-header theme-header">
 					<h1 class="modal-title fs-5" id="exampleModalLabel">Borrar Clase</h1>
 					<button id="aboveCancelDelete" type="button" class="btn btn-danger" data-bs-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">x</span>
 					</button>
 				</div>
-				<div class="modal-body oscuro">
+				<div class="modal-body theme">
 					<p class="error-text">¿Seguro que quieres borrar la clase?</p>
 					<form action="#" th:action="@{/calendario/delete/}" th:object="${claseBorrar}" method="post">
 						<input type="hidden" id="delete-mes" name="mes" value="">
 						<input type="hidden" id="delete-anio" name="anio" value="">
-						<div class="modal-footer oscuro-header">
+						<div class="modal-footer theme-header">
 							<button class="btn btn-secondary btn-sm" type="button" id="cancelDeleteModal"
 								data-dismiss="modal" aria-hidden="true">Cancelar</button>
 							<input type="submit" value="Borrar" class="btn btn-danger float-right" />

@@ -4,7 +4,7 @@
 
 </head>
 
-<body class="container-fluid oscuro blue-letter">
+<body class="container-fluid theme blue-letter">
 
 	<div th:insert="top"></div>
 
@@ -33,14 +33,14 @@
 		<h5>Usuarios de la aplicación</h5>
 
 		<div class="col-8 d-flex justify-content-around w-100 flex-wrap">
-			<div class="card exter border border primary col-3 user-card oscuro-panel" th:each="user:${listaUsuarios}">
+			<div class="card exter border border primary col-3 user-card theme-panel" th:each="user:${listaUsuarios}">
 				<div class="card-body row pt-4 pb-4">
 					<div class="col-12">
 						<div class="card inter">
-							<div class="card-header oscuro-header blue-letter">Datos del usuario
+							<div class="card-header theme-header blue-letter">Datos del usuario
 
 							</div>
-							<div class="card-body oscuro blue-letter">
+							<div class="card-body theme blue-letter">
 								<div class="mb-2 d-flex justify-content-between w-75">
 									<h5 th:text="${user.nombre}+', '+${user.username}" class="mb-2 card-text">Usuario
 									</h5>

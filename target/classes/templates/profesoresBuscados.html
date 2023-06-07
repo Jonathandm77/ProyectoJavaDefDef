@@ -3,7 +3,7 @@
 <head th:insert="librerias::librerias">
 </head>
 
-<body class="container-fluid oscuro blue-letter">
+<body class="container-fluid theme blue-letter">
 
 	<div th:insert="top"></div>
 
@@ -24,14 +24,14 @@
 		<div th:unless="${profesBuscados.empty}" class="row col-5">
 			<div class="col-9">
 				<h5> Datos del profesor </h5>
-				<div class="card border border primary oscuro-panel" th:each="profe:${profesBuscados}">
+				<div class="card border border primary theme-panel" th:each="profe:${profesBuscados}">
 					<div class="card-body row pt-4 pb-4">
 						<div class="col-12">
 							<div class="card">
-								<div class="card-header text-dark bg-light oscuro-header blue-letter">Datos del profesor
+								<div class="card-header text-dark bg-light theme-header blue-letter">Datos del profesor
 
 								</div>
-								<div class="card-body oscuro blue-letter">
+								<div class="card-body theme blue-letter">
 									<div class="mb-2">
 										<h5 th:text="${profe.nombre}+' '+${profe.apellidos}" class="mb-2 card-text">
 											Nombre del alumno</h5>

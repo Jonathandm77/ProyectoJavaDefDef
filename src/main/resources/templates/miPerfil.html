@@ -3,7 +3,7 @@
 <head th:insert="librerias::librerias">
 </head>
 
-<body class="container-fluid oscuro blue-letter">
+<body class="container-fluid theme blue-letter">
 
 	<div th:insert="top"></div>
 
@@ -11,14 +11,14 @@
 		 <div th:if="${alumnoMostrar}" class="row pl-5 pr-5">
             <div class="col-9">
                 <h5 class="mt-4">Mi Perfil</h5>
-                <div class="card oscuro-panel">
+                <div class="card theme-panel">
                     <div class="card-body row pt-4 pb-4">
                         <div class="col-7">
                             <div class="card">
-                                <div class="card-header bg-light oscuro-header blue-letter">
+                                <div class="card-header bg-light theme-header blue-letter">
                                     Mi Perfil
                                 </div>
-                                <div class="card-body oscuro blue-letter">
+                                <div class="card-body theme blue-letter">
                                     <div class="mb-2">
                                         <h5 th:text="${alumnoMostrar.nombre}" class="mb-2 card-text">Nombre:</h5>
                                     </div>
@@ -31,8 +31,8 @@
                         </div>
                         <div class="col-5">
                             <div class="card">
-                                <div class="card-header bg-light oscuro-header blue-letter">Datos</div>
-                                <div class="card-body oscuro blue-letter">
+                                <div class="card-header bg-light theme-header blue-letter">Datos</div>
+                                <div class="card-body theme blue-letter">
                                     <p>
                                         <strong>Nombre:</strong>
                                         <span th:text="${alumnoMostrar.nombre}" class="card-text mb-2"></span>
