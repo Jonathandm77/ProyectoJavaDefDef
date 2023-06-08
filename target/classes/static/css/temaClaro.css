@@ -18,6 +18,10 @@
 	color: rgb(116, 122, 143) !important;
 }
 
+.theme-table-row{
+			background-color: rgb(223, 231, 238) !important;
+}
+
 .campo-form,
 ::placeholder, ::file-selector-button {
 	background-color: #FBFBFB !important;

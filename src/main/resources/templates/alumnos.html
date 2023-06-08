@@ -28,7 +28,7 @@
 			<tbody class="theme-letter-light">
 				<tr th:if="${listaAlumnos.Empty}">
 					<td colspan="2">No hay alumnos </td>
-				<tr th:each="alumno:${listaAlumnos}">
+				<tr class="theme-table-row" th:each="alumno:${listaAlumnos}">
 					<td>
 						<a th:href="@{/alumnos/{id}(id=${alumno.id})}" class="btn btn-primary btn-sm">
 							<span th:text="${alumno.id}"></span>
