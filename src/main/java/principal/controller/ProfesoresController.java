@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -85,14 +86,14 @@ import springfox.documentation.annotations.ApiIgnore;
 		
 		@GetMapping({"/{id}"})
 		String idProfesor(Model model, @PathVariable Integer id) {
-			Profesor profeMostrar=profeService.obtenerProfesorPorId(id);
+			Profesor profeMostrar=profeService.obtenerProfesorPorId(id).get();
 			model.addAttribute("profeMostrar", profeMostrar);
 			return "profesor";
 		}
 		
 		@PostMapping("/edit/{id}")
 		public String editarProfe(@PathVariable Integer id, @ModelAttribute("profeaEditar") EntidadNombreApellidoDTO profeEditado, BindingResult bidingresult) {
-			Profesor profeaEditar=profeService.obtenerProfesorPorId(id);
+			Profesor profeaEditar=profeService.obtenerProfesorPorId(id).get();
 			if(!profeEditado.getNombre().equals(""))
 			profeaEditar.setNombre(profeEditado.getNombre());
 			if(!profeEditado.getApellidos().equals(""))
@@ -103,7 +104,7 @@ import springfox.documentation.annotations.ApiIgnore;
 		
 		@GetMapping({"/delete/{id}"})
 		String deleteProfe(Model model, @PathVariable Integer id, @ApiIgnore RedirectAttributes redirectAttributes) throws SQLException {
-			Profesor profeaEliminar=profeService.obtenerProfesorPorId(id);
+			Optional<Profesor> profeaEliminar=profeService.obtenerProfesorPorId(id);
 			ArrayList<Alumno> misAlumnos= (ArrayList<Alumno>) alumnoService.listarAlumnos();
 			ArrayList<Profesor> misProfesores= (ArrayList<Profesor>) profeService.listarProfesores();
 			ArrayList<Coche> misCoches=(ArrayList<Coche>) cocheService.listarCoches();
@@ -111,10 +112,11 @@ import springfox.documentation.annotations.ApiIgnore;
 			ArrayList<Profesor> profeTemp=new ArrayList<Profesor>();
 			ArrayList<Coche> cocheTemp=new ArrayList<Coche>();
 			boolean vacio=false;
-	
+			
+			if(!profeaEliminar.isEmpty()) {
 			if(misProfesores.size()!=1) {
 			for(Alumno a:misAlumnos) {//para que los alumnos no se queden sin profesor
-				if(a.getProfesor().getId()==profeaEliminar.getId()) {
+				if(a.getProfesor().getId()==profeaEliminar.get().getId()) {
 					
 					
 					do {
@@ -137,7 +139,7 @@ import springfox.documentation.annotations.ApiIgnore;
 			for(Coche a: misCoches) {
 			    if(!a.getProfesores().isEmpty()) {
 			        for(ProfesoresCoches c: a.getProfesores()) {
-			            if(c.getProfesor().getId() == profeaEliminar.getId()) {
+			            if(c.getProfesor().getId() == profeaEliminar.get().getId()) {
 			                c.setCoche(null);
 			                c.setProfesor(null);
 			                elementosAEliminar.add(c);
@@ -150,8 +152,8 @@ import springfox.documentation.annotations.ApiIgnore;
 			}
 
 			
-			profeaEliminar.getAlumnos().clear();
-			profeaEliminar.getCoches().clear();
+			profeaEliminar.get().getAlumnos().clear();
+			profeaEliminar.get().getCoches().clear();
 			if(profeTemp!=null) {
 			for(int i=0;i<profeTemp.size();i++) {
 				profeTemp.get(i).juegoLlaves(cocheTemp.get(i));
@@ -160,16 +162,18 @@ import springfox.documentation.annotations.ApiIgnore;
 			
 			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/proyecto", "root","");
 
-		      String sql = "DELETE FROM profesores_coches WHERE profesor_id = "+profeaEliminar.getId();
+		      String sql = "DELETE FROM profesores_coches WHERE profesor_id = "+profeaEliminar.get().getId();
 
 		      Statement statement = connection.createStatement();
 		      statement.executeUpdate(sql);
 
 		      connection.close();
-			profeService.eliminarProfesor(profeaEliminar);
+			profeService.eliminarProfesor(profeaEliminar.get());
 			}else {
 				vacio=true;
 			}
+			}else
+				redirectAttributes.addFlashAttribute("error", "El profesor no existe.");
 			redirectAttributes.addFlashAttribute("vacio", vacio);
 			return "redirect:/profesores";
 		}

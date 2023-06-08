@@ -27,7 +27,7 @@ public class MisAlumnosController {
 	String obtenerMisAlumnos(Model model) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Usuario actualUser = (Usuario) auth.getPrincipal();
-	    Profesor profeUsuario=profeService.obtenerProfesorPorId(actualUser.getIdProfesor());
+	    Profesor profeUsuario=profeService.obtenerProfesorPorId(actualUser.getIdProfesor()).get();
 	    Set<Alumno> alumnosProfe=profeUsuario.getAlumnos();
 	    ArrayList<Alumno> misAlumnos=new ArrayList<Alumno>();
 	    for(Alumno a:alumnosProfe) {

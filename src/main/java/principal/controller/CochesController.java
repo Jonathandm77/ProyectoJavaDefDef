@@ -142,7 +142,7 @@ public class CochesController {
 		}
 
 		if (tieneRolProfesor) {
-			Profesor profeUsuario=profeService.obtenerProfesorPorId(actualUser.getIdProfesor());
+			Profesor profeUsuario=profeService.obtenerProfesorPorId(actualUser.getIdProfesor()).get();
 			for(ProfesoresCoches pc:profeUsuario.getCoches()) {
 				if(pc.getCoche()==cocheMostrar)
 					model.addAttribute("miLlave",pc.getCodigoLlave());
@@ -202,7 +202,7 @@ public class CochesController {
 				
 				misCoches.get(coche).getAlumnos().add(a);
 				alumnoService.insertarAlumno(a);
-				profeService.insertarProfesor(profeService.obtenerProfesorPorId(a.getProfesor().getId()));
+				profeService.insertarProfesor(profeService.obtenerProfesorPorId(a.getProfesor().getId()).get());
 				cocheService.insertarCoche(cocheService.obtenerCochePorId(misCoches.get(coche).getId()));//
 			}
 		}

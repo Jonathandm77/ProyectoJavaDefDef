@@ -36,9 +36,9 @@ public class ProfesorServiceImpl implements ProfesorService{
 	}
 
 	@Override
-	public Profesor obtenerProfesorPorId(Integer id) {
+	public Optional<Profesor> obtenerProfesorPorId(Integer id) {
 		// TODO Auto-generated method stub
-		return profeRepo.findById(id).get();
+		return profeRepo.findById(id);
 	}
 
 	@Override
