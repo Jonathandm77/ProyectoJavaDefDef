@@ -76,7 +76,7 @@ import springfox.documentation.annotations.ApiIgnore;
 		public String addAlumno(@ModelAttribute("alumnoNuevo") Alumno alumnoNew,RedirectAttributes redirectAttributes,Model model, BindingResult bidingresult) throws SQLException {
 			try {
 			Profesor profeNuevo=profeService.obtenerProfesorPorId(alumnoNew.getProfesor().getId()).get();
-			Coche cocheNuevo=cocheService.obtenerCochePorId(alumnoNew.getCoche().getId());
+			Coche cocheNuevo=cocheService.obtenerCochePorId(alumnoNew.getCoche().getId()).get();
 			String dni=alumnoNew.getDni();
 			char letra=dni.charAt(8);
 			letra=Character.toUpperCase(letra);

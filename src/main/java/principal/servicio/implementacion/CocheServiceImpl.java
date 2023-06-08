@@ -38,9 +38,9 @@ public class CocheServiceImpl implements CocheService {
 	}
 
 	@Override
-	public Coche obtenerCochePorId(Integer id) {
+	public Optional<Coche> obtenerCochePorId(Integer id) {
 		// TODO Auto-generated method stub
-		return cocheRepo.findById(id).get();
+		return cocheRepo.findById(id);
 	}
 
 	@Override

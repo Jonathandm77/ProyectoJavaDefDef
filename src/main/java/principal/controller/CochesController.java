@@ -106,7 +106,7 @@ public class CochesController {
 	public String editarCoche(@PathVariable Integer id,
 			@ModelAttribute("cocheaEditar") CocheAEditarMatriculaFechaImgDTO cocheEditado, BindingResult bidingresult,
 			Model model) {
-		Coche cocheaEditar = cocheService.obtenerCochePorId(id);
+		Coche cocheaEditar = cocheService.obtenerCochePorId(id).get();
 		if (cocheEditado.getMatricula() != null && cocheEditado.getMatricula() != "")
 			cocheaEditar.setMatricula(cocheEditado.getMatricula());
 		if (cocheEditado.getFechaITV() != null)
@@ -117,7 +117,7 @@ public class CochesController {
 
 	@PostMapping("/edit/photo/{id}")
 	public String editarFotoCoche(@PathVariable Integer id, @RequestParam("file") MultipartFile file) {
-		Coche cocheaEditar = cocheService.obtenerCochePorId(id);
+		Coche cocheaEditar = cocheService.obtenerCochePorId(id).get();
 		if (!file.getOriginalFilename().equals("")) {
 			if (cocheaEditar.getFoto() != null)
 				storageService.delete(cocheaEditar.getFoto());
@@ -132,7 +132,7 @@ public class CochesController {
 	String idCoche(Model model, @PathVariable Integer id) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Usuario actualUser = (Usuario) auth.getPrincipal();
-		Coche cocheMostrar = cocheService.obtenerCochePorId(id);
+		Coche cocheMostrar = cocheService.obtenerCochePorId(id).get();
 		model.addAttribute("cocheMostrar", cocheMostrar);
 		boolean tieneRolProfesor = false;
 		
@@ -161,17 +161,18 @@ public class CochesController {
 	}
 
 	@GetMapping({ "/delete/{id}" })
-	String deleteCoche(Model model, @PathVariable Integer id) throws SQLException {
+	String deleteCoche(Model model, @PathVariable Integer id, RedirectAttributes redirectAttributes) throws SQLException {
 		boolean creado=false;
-		Coche cocheaEliminar = cocheService.obtenerCochePorId(id);
+		Optional<Coche> cocheaEliminar = cocheService.obtenerCochePorId(id);
 		ArrayList<Alumno> misAlumnos = (ArrayList<Alumno>) alumnoService.listarAlumnos();
 		ArrayList<Coche> misCoches = (ArrayList<Coche>) cocheService.listarCoches();
 		ArrayList<Profesor> misProfes = (ArrayList<Profesor>) profeService.listarProfesores();
+		if (!cocheaEliminar.isEmpty()) {
 		ArrayList<Profesor> profeTemp = new ArrayList<Profesor>();// almacenamos las nuevas combinaciones de profesores
 																	// y coches
 		ArrayList<Coche> cocheTemp = new ArrayList<Coche>();
 		for (Alumno a : misAlumnos) {
-			if (a.getCoche().getId() == cocheaEliminar.getId()) {
+			if (a.getCoche().getId() == cocheaEliminar.get().getId()) {
 				int coche = (int) (Math.random() * misCoches.size());
 				if (misCoches.isEmpty() || misCoches.size() == 1) {
 					Coche cGenerico = new Coche("2021 XS", "Nissan");
@@ -203,7 +204,7 @@ public class CochesController {
 				misCoches.get(coche).getAlumnos().add(a);
 				alumnoService.insertarAlumno(a);
 				profeService.insertarProfesor(profeService.obtenerProfesorPorId(a.getProfesor().getId()).get());
-				cocheService.insertarCoche(cocheService.obtenerCochePorId(misCoches.get(coche).getId()));//
+				cocheService.insertarCoche(cocheService.obtenerCochePorId(misCoches.get(coche).getId()).get());//
 			}
 		}
 
@@ -212,7 +213,7 @@ public class CochesController {
 		for (Profesor a : misProfes) {
 			if (!a.getCoches().isEmpty()) {
 				for (ProfesoresCoches c : a.getCoches()) {
-					if (c.getCoche().getId() == cocheaEliminar.getId()) {
+					if (c.getCoche().getId() == cocheaEliminar.get().getId()) {
 						c.setCoche(null);
 						c.setProfesor(null);
 						elementosAEliminar.add(c);
@@ -225,8 +226,8 @@ public class CochesController {
 			profeService.insertarProfesor(a);
 		}
 
-		cocheaEliminar.getAlumnos().clear();
-		cocheaEliminar.getProfesores().clear();
+		cocheaEliminar.get().getAlumnos().clear();
+		cocheaEliminar.get().getProfesores().clear();
 		if (profeTemp != null) {
 			for (int i = 0; i < profeTemp.size(); i++) {
 
@@ -235,7 +236,7 @@ public class CochesController {
 		}
 		Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/proyecto", "root", "");
 
-		String sql = "DELETE FROM profesores_coches WHERE coche_id = " + cocheaEliminar.getId();
+		String sql = "DELETE FROM profesores_coches WHERE coche_id = " + cocheaEliminar.get().getId();
 
 		Statement statement = connection.createStatement();
 		statement.executeUpdate(sql);
@@ -251,7 +252,10 @@ public class CochesController {
 				creado=true;
 			}
 		}
-		cocheService.eliminarCoche(cocheaEliminar);
+		cocheService.eliminarCoche(cocheaEliminar.get());
+		}else
+			redirectAttributes.addFlashAttribute("error", "El coche no existe");
+			
 		return "redirect:/coches";
 	}
 
