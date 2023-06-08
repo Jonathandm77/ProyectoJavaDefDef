@@ -31,6 +31,7 @@ import principal.modelo.dto.ProfesorBuscarNameDTO;
 import principal.servicio.implementacion.AlumnoServiceImpl;
 import principal.servicio.implementacion.CocheServiceImpl;
 import principal.servicio.implementacion.ProfesorServiceImpl;
+import principal.servicio.implementacion.UsuarioServiceImpl;
 import springfox.documentation.annotations.ApiIgnore;
 
 
@@ -49,6 +50,8 @@ import springfox.documentation.annotations.ApiIgnore;
 		private ProfesorServiceImpl profeService;
 		@Autowired
 		private CocheServiceImpl cocheService;
+		@Autowired
+		UsuarioServiceImpl usuarioService;
 		
 		
 		@GetMapping(value={"","/"})
@@ -104,6 +107,7 @@ import springfox.documentation.annotations.ApiIgnore;
 		
 		@GetMapping({"/delete/{id}"})
 		String deleteProfe(Model model, @PathVariable Integer id, @ApiIgnore RedirectAttributes redirectAttributes) throws SQLException {
+			if(usuarioService.esAdmin()) {
 			Optional<Profesor> profeaEliminar=profeService.obtenerProfesorPorId(id);
 			ArrayList<Alumno> misAlumnos= (ArrayList<Alumno>) alumnoService.listarAlumnos();
 			ArrayList<Profesor> misProfesores= (ArrayList<Profesor>) profeService.listarProfesores();
@@ -175,6 +179,7 @@ import springfox.documentation.annotations.ApiIgnore;
 			}else
 				redirectAttributes.addFlashAttribute("error", "El profesor no existe.");
 			redirectAttributes.addFlashAttribute("vacio", vacio);
+			}
 			return "redirect:/profesores";
 		}
 		
