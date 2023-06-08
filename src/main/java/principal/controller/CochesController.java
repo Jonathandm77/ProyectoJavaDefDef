@@ -40,6 +40,7 @@ import principal.modelo.dto.CocheBuscarMatriculaDTO;
 import principal.servicio.implementacion.AlumnoServiceImpl;
 import principal.servicio.implementacion.CocheServiceImpl;
 import principal.servicio.implementacion.ProfesorServiceImpl;
+import principal.servicio.implementacion.UsuarioServiceImpl;
 import principal.servicio.interfaces.FileStorageService;
 
 @Controller
@@ -58,6 +59,8 @@ public class CochesController {
 	private CocheServiceImpl cocheService;
 	@Autowired
 	private FileStorageService storageService;
+	@Autowired
+	private UsuarioServiceImpl usuarioService;
 
 	@GetMapping(value = { "", "/" })
 	String homecoches(Model model) {
@@ -162,6 +165,7 @@ public class CochesController {
 
 	@GetMapping({ "/delete/{id}" })
 	String deleteCoche(Model model, @PathVariable Integer id, RedirectAttributes redirectAttributes) throws SQLException {
+		if (usuarioService.esAdmin()) {
 		boolean creado=false;
 		Optional<Coche> cocheaEliminar = cocheService.obtenerCochePorId(id);
 		ArrayList<Alumno> misAlumnos = (ArrayList<Alumno>) alumnoService.listarAlumnos();
@@ -255,6 +259,7 @@ public class CochesController {
 		cocheService.eliminarCoche(cocheaEliminar.get());
 		}else
 			redirectAttributes.addFlashAttribute("error", "El coche no existe");
+		}
 			
 		return "redirect:/coches";
 	}
