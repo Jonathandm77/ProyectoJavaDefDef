@@ -1,4 +1,4 @@
-/*package principal.controller;
+package principal.controller;
 
 
 import javax.servlet.RequestDispatcher;
@@ -105,4 +105,3 @@ public class CustomErrorController implements ErrorController {
 		        .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"").body(file);
 		  }
 }
-*/

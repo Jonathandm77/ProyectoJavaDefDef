@@ -10,6 +10,8 @@ let elemPrefer = document.getElementById("preference")
 elemPasswd.style.display = "none"
 elemOp.style.display = "none"
 
+//si se abre una seccion se cierran las demas
+
 buttonDatos.addEventListener('focus', function() {
 	elemDatos.style.display = "block"
 	elemPasswd.style.display = "none"
@@ -92,45 +94,48 @@ document.addEventListener('DOMContentLoaded', function() {
 			}
 		}
 
-		console.log(status)
-
-		// Obtener todos los contenedores de cuadrados
+	//Manejar seleccion de temas estilos
 		var cuadradoContainers = document.getElementsByClassName("cuadrado");
 
-		// Función para agregar el borde al cuadrado seleccionado
 		function seleccionarCuadrado() {
-			// Remover el borde de todos los cuadrados
 			for (var i = 0; i < cuadradoContainers.length; i++) {
 				cuadradoContainers[i].classList.remove("seleccionado");
 			}
 
-			// Agregar el borde al cuadrado seleccionado
 			this.classList.add("seleccionado");
 		}
 
-		// Agregar el evento de clic a cada cuadrado
 		for (var i = 0; i < cuadradoContainers.length; i++) {
 			cuadradoContainers[i].addEventListener("click", seleccionarCuadrado);
 		}
 
-		// Manejar el envío del formulario
 		document.getElementById("tema-form").addEventListener("submit", function (event) {
-			event.preventDefault(); // Evitar que el formulario se envíe de forma predeterminada
-
-			// Obtener el valor seleccionado
-			var temaSeleccionado = document.querySelector('input[name="tema"]:checked').value;
-
-			// Crear el objeto XMLHttpRequest
-			var request = new XMLHttpRequest();
-			
-			var url="/seguridad/password/cambioTema"
-
-			// Configurar la solicitud
-			request.open("POST",url, true);
-
-			// Enviar la solicitud con los datos del formulario
-			request.send(temaSeleccionado);
-			location.href="#preferencias"
+		  event.preventDefault(); 
+		
+		  var temaSeleccionado = document.querySelector('input[name="tema"]:checked').value;
+		
+		  var request = new XMLHttpRequest();
+		
+		  var url = "/seguridad/password/cambioTema";
+		
+		  request.open("POST", url, true);//true es asincrona
+		
+		  request.addEventListener("load", function () {
+		    if (request.status >= 200 && request.status < 400) {
+		     
+		      localStorage.setItem("formularioEnviado", "true");//datos persistentes, aunque recargue o cierre el navegador, se mantiene, así a pesar de que el controlador devuelva la página, la sección se mantiene
+		
+		      // Recargar la página
+		      location.reload();
+		    }
+		  });
+		  request.send(temaSeleccionado);
 		});
 		
-
+		// Redirigir a seccion preferencias si se envio formulario
+		window.onload = function () {
+		  if (localStorage.getItem("formularioEnviado") === "true") {
+		    localStorage.removeItem("formularioEnviado");
+		    location.href = "#preferencias";
+		  }
+		};

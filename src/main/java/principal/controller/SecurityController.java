@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -100,7 +101,6 @@ public class SecurityController {
     model.addAttribute("vacio", vacio);
     int status= (int) model.asMap().getOrDefault("status", 0);
     model.addAttribute("status",status);
-    
     if(actualUser.getImagenPerfil()!=null) {
 		Resource resource = storageService.load(actualUser.getImagenPerfil());
 		String url = MvcUriComponentsBuilder.fromMethodName(SecurityController.class, "serveFile", resource.getFilename())
@@ -491,14 +491,14 @@ public class SecurityController {
 	}
 	
 	@PostMapping("/cambioTema")
-	public String cambioTema(@RequestBody String temaSeleccionado, RedirectAttributes redirectAttributes) {
+	public String cambioTema(@RequestBody String temaSeleccionado, RedirectAttributes redirectAttributes, HttpSession session) {
 	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Usuario actualUser = (Usuario) auth.getPrincipal();
 	    ArrayList<String> temas = new ArrayList<>(List.of("temaClaro", "temaOscuro"));
 	    if (temas.contains(temaSeleccionado)) {
 	        actualUser.setTema(temaSeleccionado);
 	    }
-	    return "redirect:/seguridad/password#preferencias";
+	    return "redirect:/seguridad/password";
 	}
 
 }
