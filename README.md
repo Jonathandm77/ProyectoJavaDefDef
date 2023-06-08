@@ -18,3 +18,4 @@ logo, puerto
 server port a 8080
 URL spring.datasource.url=jdbc:mysql://mysqldb:3306/proyecto
 datasource username y password = usuario
+poner el ddl update
