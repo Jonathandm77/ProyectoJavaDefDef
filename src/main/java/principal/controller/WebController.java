@@ -4,12 +4,11 @@ import java.io.File;
 import java.sql.SQLException;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -49,13 +48,11 @@ public class WebController {
 	@Autowired
 	ClaseServiceImpl claseService;
 	
-	boolean created=false;
-	
 	@GetMapping("/")
 	String home(Model model) throws SQLException {
-		if(!created) {
+		ArrayList<Usuario> listaUsuarios = (ArrayList<Usuario>) usuarioService.listarUsuarios();
+		if(listaUsuarios.isEmpty()) {
 		 crearTablas();
-		 created=true;
 		 File uploadsDir = new File("uploads");
 		 if (uploadsDir.exists() && uploadsDir.isDirectory()) {
 			 File[] files = uploadsDir.listFiles();
