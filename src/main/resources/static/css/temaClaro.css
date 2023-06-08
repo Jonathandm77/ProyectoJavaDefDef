@@ -20,7 +20,8 @@
 
 .theme-table-row{
 			background-color: rgb(223, 231, 238) !important;
-}
+			border-bottom: rgb(200, 211, 225) !important;
+			}
 
 .campo-form,
 ::placeholder, ::file-selector-button {

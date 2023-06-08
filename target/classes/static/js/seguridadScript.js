@@ -15,6 +15,7 @@ elemOp.style.display = "none"
 buttonDatos.addEventListener('focus', function() {
 	elemDatos.style.display = "block"
 	elemPasswd.style.display = "none"
+	if(elemOp!=null)
 	elemOp.style.display = "none"
 	elemPrefer.style.display="none"
 })
@@ -22,19 +23,22 @@ buttonDatos.addEventListener('focus', function() {
 buttonContras.addEventListener('focus', function() {
 	elemPasswd.style.display = "flex"
 	elemDatos.style.display = "none"
+	if(elemOp!=null)
 	elemOp.style.display = "none"
 	elemPrefer.style.display="none"
 })
 
+if(buttonOp!=null){
 buttonOp.addEventListener('focus', function() {
 	elemOp.style.display = "flex"
 	elemPasswd.style.display = "none"
 	elemDatos.style.display = "none"
 	elemPrefer.style.display="none"
 })
-
+}
 buttonPrefer.addEventListener('focus', function() {
 	elemPrefer.style.display="flex"
+	if(elemOp!=null)
 	elemOp.style.display = "none"
 	elemPasswd.style.display = "none"
 	elemDatos.style.display = "none"
