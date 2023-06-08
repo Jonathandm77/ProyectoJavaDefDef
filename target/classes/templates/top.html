@@ -99,11 +99,16 @@
 								<i class="fas fa-address-card fa-sm fa-fw mr-3 text-gray-600"></i>
 								Configurar datos
 							</a>
+							
+							<a class="dropdown-item theme-letter" href="/seguridad/password#preferencias">
+								<i class="fas fa-address-card fa-sm fa-fw mr-3 text-gray-600"></i>
+								Preferencias
+							</a>
 							<div class="dropdown-divider"></div>
 
 							<div sec:authorize="hasAuthority('ROLE_ADMIN')">
 								<a class="dropdown-item theme-letter" href="/seguridad/password#operat">
-									<i class="fas fa-cog fa-sm fa-fw mr-3 text-gray-600"></i>
+									<i class="fas fa-sliders-h fa-sm fa-fw mr-3 text-gray-600"></i>
 									Operaciones Admin
 								</a>
 								<div class="dropdown-divider"></div>
