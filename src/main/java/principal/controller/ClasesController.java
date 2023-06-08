@@ -18,6 +18,7 @@ import principal.modelo.Alumno;
 import principal.modelo.Clase;
 import principal.modelo.dto.ClaseDTO;
 import principal.servicio.implementacion.ClaseServiceImpl;
+import principal.servicio.implementacion.UsuarioServiceImpl;
 import springfox.documentation.annotations.ApiIgnore;
 
 
@@ -27,6 +28,8 @@ public class ClasesController {
 	
 	@Autowired
 	ClaseServiceImpl claseService;
+	@Autowired
+	UsuarioServiceImpl usuarioService;
 	
 	@PostMapping("/add")
 	public String addClase(@ModelAttribute("claseNueva") ClaseDTO claseNew, @ApiIgnore BindingResult bidingresult, @ApiIgnore HttpSession session) throws SQLException {
@@ -42,9 +45,11 @@ public class ClasesController {
 	
 	@GetMapping({"/delete/{id}"})
 	String deleteClase(Model model, @PathVariable Integer id) {
+		if(usuarioService.esAdmin()) {
 		Clase claseaEliminar=claseService.obtenerClasePorId(id);
 		if (claseaEliminar!=null)
 			claseService.eliminarClasePorId(id);
+		}
 		return "redirect:/alumnos";
 	}
 }

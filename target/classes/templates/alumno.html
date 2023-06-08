@@ -149,7 +149,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="d-flex justify-content-evenly">
+							<div sec:authorize="hasAuthority('ROLE_ADMIN')" class="d-flex justify-content-evenly">
 								<button th:attr="data-target='#modal-create-class'" data-toggle="modal"
 									data-target="#modal-create-class" class="btn btn-primary float-end mt-3">
 									Añadir clase
