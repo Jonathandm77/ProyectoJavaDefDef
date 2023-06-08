@@ -3,6 +3,7 @@ package principal.controller;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
@@ -116,9 +117,12 @@ import springfox.documentation.annotations.ApiIgnore;
 		}
 		
 		@GetMapping({"/delete/{id}"})
-		String deleteAlumno(Model model, @PathVariable Integer id) {
-			Alumno alumnoaEliminar=alumnoService.obtenerAlumnoPorId(id).get();
-			alumnoService.eliminarAlumno(alumnoaEliminar);
+		String deleteAlumno(Model model, @PathVariable Integer id, RedirectAttributes redirectAttributes) {
+			Optional<Alumno> alumnoaEliminar=alumnoService.obtenerAlumnoPorId(id);
+			if (!alumnoaEliminar.isEmpty())
+			alumnoService.eliminarAlumno(alumnoaEliminar.get());
+			else
+				redirectAttributes.addFlashAttribute("error", "El alumno no existe.");
 			return "redirect:/alumnos";
 		}
 		
@@ -183,7 +187,7 @@ import springfox.documentation.annotations.ApiIgnore;
 			alumnoEditado.setNombre(alumno.getNombre());
 			alumnoService.insertarAlumno(alumnoEditado);
 			
-			alumnoJSON.setMensaje("ta bien");
+			alumnoJSON.setMensaje("Correcto");
 			
 			alumnoJSON.setAlumnoJSON(alumnoEditado);
 			

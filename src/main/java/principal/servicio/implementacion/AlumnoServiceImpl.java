@@ -28,8 +28,8 @@ public class AlumnoServiceImpl implements AlumnoService{
 	private AlumnoRepo alumnoRepo;
 	
 	@Override
-	public Alumno insertarAlumno(Alumno user) {
-		return alumnoRepo.save(user);
+	public Alumno insertarAlumno(Alumno alumno) {
+		return alumnoRepo.save(alumno);
 	}
 	@Override
 	public Alumno insertarAlumnoDTO(AlumnoDTO a) {
@@ -53,8 +53,8 @@ public class AlumnoServiceImpl implements AlumnoService{
 		return alumnoRepo.findByNombre(nombre).get();
 	}
 	@Override
-	public void eliminarAlumno(Alumno user) {
-		alumnoRepo.delete(user);
+	public void eliminarAlumno(Alumno alumno) {
+		alumnoRepo.delete(alumno);
 		
 	}
 	@Override

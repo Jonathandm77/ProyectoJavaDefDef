@@ -87,9 +87,9 @@ public class UsuarioServiceImpl implements UsuarioService{
 		return usuarioRepo.findAll();
 	}
 	@Override
-	public Usuario obtenerUsuarioPorId(Integer id) {
+	public Optional<Usuario> obtenerUsuarioPorId(Integer id) {
 		
-		return usuarioRepo.findById(id).get();
+		return usuarioRepo.findById(id);
 	}
 	@Override
 	public Usuario obtenerUsuarioPorNombre(String nombre) {

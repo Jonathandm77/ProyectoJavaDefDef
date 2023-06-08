@@ -197,8 +197,12 @@ public class SecurityController {
 	}
 
 	@GetMapping("/deleteAlumno")
-	String deleteAlumno(@ModelAttribute("alumnoaEliminar") EntityIdDTO a) {
-		alumnoService.eliminarAlumnoPorId(a.getId());
+	String deleteAlumno(@ModelAttribute("alumnoaEliminar") EntityIdDTO a, RedirectAttributes redirectAttributes) {
+		Optional<Alumno> alumnoaEliminar = alumnoService.obtenerAlumnoPorId(a.getId());
+		if(!alumnoaEliminar.isEmpty())
+		alumnoService.eliminarAlumno(alumnoaEliminar.get());
+		else
+			redirectAttributes.addFlashAttribute("error", "El alumno no existe.");
 
 		return "redirect:/seguridad/password#operat";
 	}
@@ -485,8 +489,9 @@ public class SecurityController {
 
 	@GetMapping({ "/deleteUsuario" })
 	String deleteUsuario(Model model, @ModelAttribute("userDelete") EntityIdDTO user) {
-		Usuario usuarioaEliminar = userService.obtenerUsuarioPorId(user.getId());
-		userService.eliminarUsuario(usuarioaEliminar);
+		Optional<Usuario> usuarioaEliminar = userService.obtenerUsuarioPorId(user.getId());
+		if (!usuarioaEliminar.isEmpty())
+		userService.eliminarUsuario(usuarioaEliminar.get());
 		return "redirect:/seguridad/password#operat";
 	}
 	

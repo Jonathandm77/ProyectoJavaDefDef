@@ -61,7 +61,7 @@ return "usuarios";
 	@PostMapping("/edit/{id}")
 	public String editarUsuario(@PathVariable Integer id, @ModelAttribute("usuarioaEditar") UsuarioUsernamePasswordDTO usuarioEditado,
 			BindingResult bidingresult) {
-		Usuario usuarioaEditar =userService.obtenerUsuarioPorId(id);
+		Usuario usuarioaEditar =userService.obtenerUsuarioPorId(id).get();
 		usuarioaEditar.setUsername(usuarioEditado.getUsername());
 		usuarioaEditar.setPassword(usuarioEditado.getPassword());
 		userService.insertarUsuario(usuarioaEditar);
@@ -70,7 +70,7 @@ return "usuarios";
 
 	@GetMapping({"/{id}" })
 	String idUsuario(Model model, @PathVariable Integer id) {
-		Usuario usuarioMostrar = userService.obtenerUsuarioPorId(id);
+		Usuario usuarioMostrar = userService.obtenerUsuarioPorId(id).get();
 		model.addAttribute("usuarioMostrar", usuarioMostrar);
 		return "usuario";
 	}
@@ -80,7 +80,7 @@ return "usuarios";
 		
 		if(isAdmin()) {
 		
-		Usuario usuarioaEliminar = userService.obtenerUsuarioPorId(id);
+		Usuario usuarioaEliminar = userService.obtenerUsuarioPorId(id).get();
 		userService.eliminarUsuario(usuarioaEliminar);
 		}
 		return "redirect:/usuarios";
