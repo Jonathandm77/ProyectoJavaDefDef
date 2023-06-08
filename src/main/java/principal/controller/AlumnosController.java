@@ -10,8 +10,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,7 +26,6 @@ import principal.modelo.Alumno;
 import principal.modelo.Clase;
 import principal.modelo.Coche;
 import principal.modelo.Profesor;
-import principal.modelo.Usuario;
 import principal.modelo.dto.AlumnoAjaxDTO;
 import principal.modelo.dto.AlumnoBuscarDniDTO;
 import principal.modelo.dto.AlumnoBuscarNameDTO;
@@ -36,6 +33,7 @@ import principal.modelo.dto.AlumnoEditarNotasNombreApellidoDTO;
 import principal.servicio.implementacion.AlumnoServiceImpl;
 import principal.servicio.implementacion.CocheServiceImpl;
 import principal.servicio.implementacion.ProfesorServiceImpl;
+import principal.servicio.implementacion.UsuarioServiceImpl;
 import springfox.documentation.annotations.ApiIgnore;
 
 
@@ -54,6 +52,8 @@ import springfox.documentation.annotations.ApiIgnore;
 		private ProfesorServiceImpl profeService;
 		@Autowired
 		private CocheServiceImpl cocheService;
+		@Autowired
+		private UsuarioServiceImpl usuarioService;
 		
 		@GetMapping({"","/"})
 		String homealumnos(Model model) {
@@ -118,22 +118,25 @@ import springfox.documentation.annotations.ApiIgnore;
 		
 		@GetMapping({"/delete/{id}"})
 		String deleteAlumno(Model model, @PathVariable Integer id, RedirectAttributes redirectAttributes) {
+			if(usuarioService.esAdmin()) {
 			Optional<Alumno> alumnoaEliminar=alumnoService.obtenerAlumnoPorId(id);
 			if (!alumnoaEliminar.isEmpty())
 			alumnoService.eliminarAlumno(alumnoaEliminar.get());
 			else
 				redirectAttributes.addFlashAttribute("error", "El alumno no existe.");
+			}
+			
 			return "redirect:/alumnos";
 		}
 		
 		@GetMapping({"/{id}"})
 		String idAlumno(@ApiIgnore Model model, @PathVariable Integer id, @ApiIgnore HttpSession session) {
-			Alumno alumnoMostrar=alumnoService.obtenerAlumnoPorId(id).get();
-			Object[]clases= alumnoMostrar.getClases().toArray();
-			model.addAttribute("alumnoMostrar", alumnoMostrar);
-			model.addAttribute("listaClases",clases);
-			model.addAttribute("claseNueva",new Clase());
-			session.setAttribute("alumnoaImpartir", alumnoMostrar);
+				Alumno alumnoMostrar = alumnoService.obtenerAlumnoPorId(id).get();
+				Object[] clases = alumnoMostrar.getClases().toArray();
+				model.addAttribute("alumnoMostrar", alumnoMostrar);
+				model.addAttribute("listaClases", clases);
+				model.addAttribute("claseNueva", new Clase());
+				session.setAttribute("alumnoaImpartir", alumnoMostrar);
 			return "alumno";
 		}
 		

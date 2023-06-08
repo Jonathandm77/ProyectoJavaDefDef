@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -106,7 +107,21 @@ public class UsuarioServiceImpl implements UsuarioService{
 		usuarioRepo.delete(usuarioRepo.findById(id).get());
 		
 	}
-
+	
+	public boolean esAdmin() {
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserDetails userDetails = null;
+		if(principal instanceof UserDetails) {
+		userDetails = (UserDetails) principal;
+		Usuario u = this.obtenerUsuarioPorNombre(userDetails.getUsername());
+		for (Rol r: u.getRoles()) {
+		if(r.getNombre().compareTo("ROLE_ADMIN") == 0){
+		return true;
+		}
+		}
+		}
+		return false;
+		}
 	
 
 }
