@@ -110,8 +110,8 @@ nav,
 /* LG breakpoint */
 @media (min-width: 1500px) {
 
-	.w-lg-25 {
-		width: 25% !important;
+	.w-lg-50 {
+		width: 50% !important;
 	}
 
 

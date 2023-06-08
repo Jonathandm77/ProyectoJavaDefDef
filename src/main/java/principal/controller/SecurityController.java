@@ -504,7 +504,7 @@ public class SecurityController {
 	public String cambioTema(@RequestBody String temaSeleccionado, RedirectAttributes redirectAttributes, HttpSession session) {
 	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Usuario actualUser = (Usuario) auth.getPrincipal();
-	    ArrayList<String> temas = new ArrayList<>(List.of("temaClaro", "temaOscuro", "temaMinimalista", "temaElegante"));
+	    ArrayList<String> temas = new ArrayList<>(List.of("temaClaro", "temaOscuro", "temaMinimalista", "temaElegante","temaShock"));
 	    if (temas.contains(temaSeleccionado)) {
 	        actualUser.setTema(temaSeleccionado);
 	    }
