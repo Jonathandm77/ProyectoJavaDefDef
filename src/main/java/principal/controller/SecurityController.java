@@ -502,10 +502,12 @@ public class SecurityController {
 	}
 
 	@GetMapping({ "/deleteUsuario" })
-	String deleteUsuario(Model model, @ModelAttribute("userDelete") EntityIdDTO user) {
+	String deleteUsuario(Model model, @ModelAttribute("userDelete") EntityIdDTO user, RedirectAttributes redirectAttributes) {
 		Optional<Usuario> usuarioaEliminar = userService.obtenerUsuarioPorId(user.getId());
-		if (!usuarioaEliminar.isEmpty())
+		if (!usuarioaEliminar.isEmpty() && !usuarioaEliminar.get().esAdmin())
 		userService.eliminarUsuario(usuarioaEliminar.get());
+		else
+			redirectAttributes.addFlashAttribute("error", "No puedes borrar a un administrador.");
 		return "redirect:/seguridad/password#operat";
 	}
 	

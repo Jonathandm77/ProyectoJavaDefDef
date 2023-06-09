@@ -107,7 +107,7 @@ import springfox.documentation.annotations.ApiIgnore;
 		
 		@GetMapping({"/delete/{id}"})
 		String deleteProfe(Model model, @PathVariable Integer id, @ApiIgnore RedirectAttributes redirectAttributes) throws SQLException {
-			if(usuarioService.esAdmin()) {
+			if(usuarioService.esAdminActual()) {
 			Optional<Profesor> profeaEliminar=profeService.obtenerProfesorPorId(id);
 			ArrayList<Alumno> misAlumnos= (ArrayList<Alumno>) alumnoService.listarAlumnos();
 			ArrayList<Profesor> misProfesores= (ArrayList<Profesor>) profeService.listarProfesores();

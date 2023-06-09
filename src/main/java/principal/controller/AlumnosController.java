@@ -118,7 +118,7 @@ import springfox.documentation.annotations.ApiIgnore;
 		
 		@GetMapping({"/delete/{id}"})
 		String deleteAlumno(Model model, @PathVariable Integer id, RedirectAttributes redirectAttributes) {
-			if(usuarioService.esAdmin()) {
+			if(usuarioService.esAdminActual()) {
 			Optional<Alumno> alumnoaEliminar=alumnoService.obtenerAlumnoPorId(id);
 			if (!alumnoaEliminar.isEmpty())
 			alumnoService.eliminarAlumno(alumnoaEliminar.get());

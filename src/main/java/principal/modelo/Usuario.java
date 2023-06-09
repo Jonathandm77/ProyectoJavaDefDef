@@ -19,6 +19,7 @@ import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -243,6 +244,16 @@ public class Usuario implements UserDetails {
 	return false;
 	
 	}
+	
+	
+	public boolean esAdmin() {
+		for (Rol r: this.getRoles()) {
+		if(r.getNombre().compareTo("ROLE_ADMIN") == 0){
+		return true;
+		}
+		}
+		return false;
+		}
 }
 	 
 	

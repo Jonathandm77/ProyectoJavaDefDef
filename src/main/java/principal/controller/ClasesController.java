@@ -45,7 +45,7 @@ public class ClasesController {
 	
 	@GetMapping({"/delete/{id}"})
 	String deleteClase(Model model, @PathVariable Integer id) {
-		if(usuarioService.esAdmin()) {
+		if(usuarioService.esAdminActual()) {
 		Clase claseaEliminar=claseService.obtenerClasePorId(id);
 		if (claseaEliminar!=null)
 			claseService.eliminarClasePorId(id);

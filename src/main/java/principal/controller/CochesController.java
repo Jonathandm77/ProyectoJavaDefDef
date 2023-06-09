@@ -168,7 +168,7 @@ public class CochesController {
 
 	@GetMapping({ "/delete/{id}" })
 	String deleteCoche(Model model, @PathVariable Integer id, RedirectAttributes redirectAttributes) throws SQLException {
-		if (usuarioService.esAdmin()) {
+		if (usuarioService.esAdminActual()) {
 		boolean creado=false;
 		Optional<Coche> cocheaEliminar = cocheService.obtenerCochePorId(id);
 		ArrayList<Alumno> misAlumnos = (ArrayList<Alumno>) alumnoService.listarAlumnos();

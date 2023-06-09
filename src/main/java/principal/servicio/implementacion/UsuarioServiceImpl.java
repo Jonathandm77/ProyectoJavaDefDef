@@ -108,7 +108,7 @@ public class UsuarioServiceImpl implements UsuarioService{
 		
 	}
 	
-	public boolean esAdmin() {
+	public boolean esAdminActual() {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		UserDetails userDetails = null;
 		if(principal instanceof UserDetails) {
