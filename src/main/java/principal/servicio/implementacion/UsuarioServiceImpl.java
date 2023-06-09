@@ -108,7 +108,7 @@ public class UsuarioServiceImpl implements UsuarioService{
 		
 	}
 	
-	public boolean esAdminActual() {
+	public boolean esAdminActual() {//verifica si el usuario actualmente logueado es administrador
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		UserDetails userDetails = null;
 		if(principal instanceof UserDetails) {

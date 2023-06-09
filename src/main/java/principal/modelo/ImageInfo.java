@@ -2,8 +2,8 @@ package principal.modelo;
 
 public class ImageInfo {
   
-  private String name;
-  private String url;
+  private String name; 
+  private String url; //url generada dinámicamente
 
   public ImageInfo(String name, String url) {
     this.name = name;

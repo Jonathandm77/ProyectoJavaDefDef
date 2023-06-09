@@ -33,13 +33,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     protected void configure(HttpSecurity http) throws Exception {
            
             http.authorizeRequests()
-                    .antMatchers("/alumnos/**","/coches/**","/profesores/**").hasAnyRole("ADMIN","TEACHER").antMatchers("/calendario/**","/seguridad/**").hasAnyRole("ADMIN","TEACHER","USER").antMatchers("/seguridad/password#operat","/usuarios/**").hasRole("ADMIN").antMatchers("/miPerfil/**").hasRole("USER").antMatchers("/misAlumnos/**").hasRole("TEACHER")             
+                    .antMatchers("/alumnos/**","/coches/**","/profesores/**").hasAnyRole("ADMIN","TEACHER").antMatchers("/calendario/**","/seguridad/**")
+                    .hasAnyRole("ADMIN","TEACHER","USER").antMatchers("/seguridad/password#operat","/usuarios/**").hasRole("ADMIN").antMatchers("/miPerfil/**")
+                    .hasRole("USER").antMatchers("/misAlumnos/**").hasRole("TEACHER")       //definimos que roles pueden acceder a cada URL      
                     .and()
                     .formLogin()
                         .loginPage("/login")
                         .permitAll()
                         .defaultSuccessUrl("/")
-                        .failureUrl("/login?error=true")
+                        .failureUrl("/login?error=true")//si intenta acceder sin permisos se le redirige a login
                         .usernameParameter("username")
                         .passwordParameter("password")
                         .and()

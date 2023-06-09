@@ -31,15 +31,15 @@ public class ClasesController {
 	@Autowired
 	UsuarioServiceImpl usuarioService;
 	
-	@PostMapping("/add")
+	@PostMapping("/add")//añadir clase
 	public String addClase(@ModelAttribute("claseNueva") ClaseDTO claseNew, @ApiIgnore BindingResult bidingresult, @ApiIgnore HttpSession session) throws SQLException {
-		Alumno alumno=(Alumno) session.getAttribute("alumnoaImpartir");
+		Alumno alumno=(Alumno) session.getAttribute("alumnoaImpartir");//obtiene el alumno desde el que se mando la solicitud
 		Clase claseaAñadir=new Clase();
 		claseaAñadir.setAlumno(alumno);
 		alumno.añadirClase(claseaAñadir);
 		claseaAñadir.setFecha(claseNew.getFecha());
 		claseaAñadir.setHora(claseNew.getHora());
-		claseService.insertarClase(claseaAñadir);
+		claseService.insertarClase(claseaAñadir);//la guardamos a la base de datos
 		return "redirect:/alumnos/"+alumno.getId();
 	}
 	
@@ -47,7 +47,7 @@ public class ClasesController {
 	String deleteClase(Model model, @PathVariable Integer id) {
 		if(usuarioService.esAdminActual()) {
 		Clase claseaEliminar=claseService.obtenerClasePorId(id);
-		if (claseaEliminar!=null)
+		if (claseaEliminar!=null)//si la clase existe la borramos
 			claseService.eliminarClasePorId(id);
 		}
 		return "redirect:/alumnos";

@@ -39,10 +39,10 @@ public class Profesor {
 	private String apellidos;
 
 	@OneToMany(mappedBy = "profesor", fetch = FetchType.EAGER)
-	private Set<Alumno> alumnos;
+	private Set<Alumno> alumnos; //un profesor a muchos alumnos
 
 	@OneToMany(mappedBy = "coche", cascade = CascadeType.ALL, orphanRemoval = true)
-	private Set<ProfesoresCoches> coches;
+	private Set<ProfesoresCoches> coches; //un profesor a muchos coches
 
 	public Profesor() {
 		alumnos = new HashSet<Alumno>();
@@ -84,27 +84,27 @@ public class Profesor {
 		ProfesoresCoches pc=new ProfesoresCoches(this,c,l);
 		boolean presente=false;
 			
-			 // Crear una conexión a la base de datos
+			 // crear una conexión a la base de datos
             Connection connection = DriverManager.getConnection(
                 "jdbc:mysql://localhost:3307/proyecto", "root", "");
             
-            // Preparar la consulta SQL
+            // preparar la consulta SQL
             String sql = "SELECT * FROM profesores_coches WHERE coche_id = "+c.getId()+" AND profesor_id = "+this.getId();
             PreparedStatement statement = connection.prepareStatement(sql);
             
-            // Ejecutar la consulta y obtener el resultado
+            // ejecutar la consulta y obtener el resultado
             ResultSet resultSet = statement.executeQuery();
             
-            // Comprobar si hay resultados y mostrarlos
+            // comprobar si hay resultados y mostrarlos
             if (resultSet.next()) {
             	presente = true;
             } else {
                 System.out.println("La combinación de coche_id = "  +
-                                   " y profesor_id = "  + " no existe en la tabla.");
+                                   " y profesor_id = "  + " no existe en la tabla."); //fines de debug
             }
 			
 			
-			if (!presente) {
+			if (!presente) { //si no está presente, añade la combinación
 			coches.add(pc);
 			c.getProfesores().add(pc);
 			}

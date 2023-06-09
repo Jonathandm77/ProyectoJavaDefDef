@@ -56,7 +56,7 @@ import springfox.documentation.annotations.ApiIgnore;
 		private UsuarioServiceImpl usuarioService;
 		
 		@GetMapping({"","/"})
-		String homealumnos(Model model) {
+		String homealumnos(Model model) {//lista de alumnos
 			ArrayList<Coche> misCoches=(ArrayList<Coche>) cocheService.listarCoches();
 	        ArrayList<Alumno> misAlumnos= (ArrayList<Alumno>) alumnoService.listarAlumnos();
 	        ArrayList<Profesor> misProfesores= (ArrayList<Profesor>) profeService.listarProfesores();
@@ -67,41 +67,43 @@ import springfox.documentation.annotations.ApiIgnore;
 	        
 			model.addAttribute("alumnoNuevo", new Alumno());
 			model.addAttribute("alumnoaEditar", new Alumno());
-			model.addAttribute("alumnoaBuscar", new Alumno());
+			model.addAttribute("alumnoaBuscar", new Alumno());//carga de recursos
 			return "alumnos";
 		}
 		
 		@SuppressWarnings("unlikely-arg-type")
 		@PostMapping("/add")
 		public String addAlumno(@ModelAttribute("alumnoNuevo") Alumno alumnoNew,RedirectAttributes redirectAttributes,Model model, BindingResult bidingresult) throws SQLException {
+			//añadir alumno
 			try {
-			Profesor profeNuevo=profeService.obtenerProfesorPorId(alumnoNew.getProfesor().getId()).get();
-			Coche cocheNuevo=cocheService.obtenerCochePorId(alumnoNew.getCoche().getId()).get();
+			Profesor profeNuevo=profeService.obtenerProfesorPorId(alumnoNew.getProfesor().getId()).get();//profe del alumno
+			Coche cocheNuevo=cocheService.obtenerCochePorId(alumnoNew.getCoche().getId()).get();//coche del alumno
 			String dni=alumnoNew.getDni();
 			char letra=dni.charAt(8);
 			letra=Character.toUpperCase(letra);
 			dni=dni.substring(0,8)+letra;
-			alumnoNew.setDni(dni);
+			alumnoNew.setDni(dni);//conversion de letra minuscula a mayuscula
 			alumnoNew.setProfesor(profeNuevo);
 			profeNuevo.getAlumnos().add(alumnoNew);
 			alumnoNew.setCoche(cocheNuevo);
 			cocheNuevo.getAlumnos().add(alumnoNew);
-			if(!profeNuevo.getCoches().contains(cocheNuevo)) {
+			if(!profeNuevo.getCoches().contains(cocheNuevo)) {//si el profesor aun no usa el coche nuevo
 				cocheService.insertarCoche(cocheNuevo);
 				profeService.insertarProfesor(profeNuevo);
-				profeNuevo.juegoLlaves(cocheNuevo);
+				profeNuevo.juegoLlaves(cocheNuevo);//crea la combinacion y altera las tablas de la BDD
 			}
 			alumnoService.insertarAlumno(alumnoNew);
 			}catch (DataIntegrityViolationException e) {
-				redirectAttributes.addFlashAttribute("error", "El DNI ya existe.");
+				redirectAttributes.addFlashAttribute("error", "El DNI ya existe.");//controlar DNI duplicado
 		    }
 			return "redirect:/alumnos";
 		}
 		
 		@PostMapping("/edit/{id}")
 		public String editarAlumno(@PathVariable Integer id, @ModelAttribute("alumnoaEditar") AlumnoEditarNotasNombreApellidoDTO alumnoEditado, BindingResult bidingresult) {
+			//editar alumno
 			Alumno alumnoaEditar=alumnoService.obtenerAlumnoPorId(id).get();
-			if(alumnoEditado.getNombre()!=null)
+			if(alumnoEditado.getNombre()!=null)//verificamos datos y asignamos
 			if(!alumnoEditado.getNombre().equals(""))
 			alumnoaEditar.setNombre(alumnoEditado.getNombre());
 			
@@ -112,36 +114,42 @@ import springfox.documentation.annotations.ApiIgnore;
 			if(alumnoEditado.getNotas()!=null)
 			if(!alumnoEditado.getNotas().equals(""))
 			alumnoaEditar.setNotas(alumnoEditado.getNotas());
-			alumnoService.insertarAlumno(alumnoaEditar);
+			alumnoService.insertarAlumno(alumnoaEditar);//guardamos
 			return "redirect:/alumnos/"+id;
 		}
 		
 		@GetMapping({"/delete/{id}"})
-		String deleteAlumno(Model model, @PathVariable Integer id, RedirectAttributes redirectAttributes) {
-			if(usuarioService.esAdminActual()) {
+		String deleteAlumno(Model model, @PathVariable Integer id, RedirectAttributes redirectAttributes) {//borrar alumno
+			if(usuarioService.esAdminActual()) {//solo se ejecuta si lo hace el admin
 			Optional<Alumno> alumnoaEliminar=alumnoService.obtenerAlumnoPorId(id);
-			if (!alumnoaEliminar.isEmpty())
+			if (!alumnoaEliminar.isEmpty())//si existe el alumno lo borra
 			alumnoService.eliminarAlumno(alumnoaEliminar.get());
 			else
-				redirectAttributes.addFlashAttribute("error", "El alumno no existe.");
+				redirectAttributes.addFlashAttribute("error", "El alumno no existe.");// controlar alumno inexistente
 			}
 			
 			return "redirect:/alumnos";
 		}
 		
 		@GetMapping({"/{id}"})
-		String idAlumno(@ApiIgnore Model model, @PathVariable Integer id, @ApiIgnore HttpSession session) {
-				Alumno alumnoMostrar = alumnoService.obtenerAlumnoPorId(id).get();
-				Object[] clases = alumnoMostrar.getClases().toArray();
+		String idAlumno(@ApiIgnore Model model, @PathVariable Integer id, @ApiIgnore HttpSession session, RedirectAttributes redirectAttributes) {//ver alumno
+				Optional<Alumno> alumnoMostrar = alumnoService.obtenerAlumnoPorId(id);
+				if (!alumnoMostrar.isEmpty()) {//si existe el alumno
+				Object[] clases = alumnoMostrar.get().getClases().toArray();//lista de sus clases
 				model.addAttribute("alumnoMostrar", alumnoMostrar);
 				model.addAttribute("listaClases", clases);
 				model.addAttribute("claseNueva", new Clase());
-				session.setAttribute("alumnoaImpartir", alumnoMostrar);
+				session.setAttribute("alumnoaImpartir", alumnoMostrar);//se sube a la sesión para acceder desde el controlador clases y establecer el alumno si se crea una clase
+				}else {
+					redirectAttributes.addFlashAttribute("error", "El alumno no existe.");// controlar alumno inexistente
+					return "redirect:/alumnos";
+				}
+					
 			return "alumno";
 		}
 		
 		@PostMapping({"/searchName"})
-		String buscarAlumnoPorNombre(Model model,@ModelAttribute("alumnoaBuscar") AlumnoBuscarNameDTO alumnoBuscado, BindingResult bidingresult) {
+		String buscarAlumnoPorNombre(Model model,@ModelAttribute("alumnoaBuscar") AlumnoBuscarNameDTO alumnoBuscado, BindingResult bidingresult) {//buscar alumno por nombre
 			ArrayList<Alumno> misAlumnos= alumnoService.encontrarAlumnosPorNombre(alumnoBuscado.getNombre());
 			model.addAttribute("alumnosBuscados",misAlumnos);
 			
@@ -161,7 +169,7 @@ import springfox.documentation.annotations.ApiIgnore;
 		}
 		
 		@PostMapping({"/searchDni"})
-		String buscarAlumnoPorDni(Model model,@ModelAttribute("alumnoaBuscar") AlumnoBuscarDniDTO alumnoBuscado, BindingResult bidingresult) {
+		String buscarAlumnoPorDni(Model model,@ModelAttribute("alumnoaBuscar") AlumnoBuscarDniDTO alumnoBuscado, BindingResult bidingresult) {//buscar alumno por dni
 			ArrayList<Alumno> misAlumnos= alumnoService.encontrarAlumnosPorDni(alumnoBuscado.getDni());
 			model.addAttribute("alumnosBuscados",misAlumnos);
 			
@@ -172,7 +180,7 @@ import springfox.documentation.annotations.ApiIgnore;
 		}
 		
 		@GetMapping({"/getAll"})
-		List<Alumno> obtenerTodosAlumnos(Model model,BindingResult bidingresult) {
+		List<Alumno> obtenerTodosAlumnos(Model model,BindingResult bidingresult) {//listar todos los alumnos
 			List<Alumno> misAlumnos= alumnoService.listarAlumnos();
 			
 			
@@ -182,7 +190,7 @@ import springfox.documentation.annotations.ApiIgnore;
 		}
 		
 		@PostMapping(value={"/guardarAjax"})
-		public ResponseEntity<?> ajaxAlumno(@RequestBody AlumnoAjaxDTO alumno) {
+		public ResponseEntity<?> ajaxAlumno(@RequestBody AlumnoAjaxDTO alumno) {//guardar alumno AJAX
 			
 			AjaxResponseBody alumnoJSON=new AjaxResponseBody();
 			

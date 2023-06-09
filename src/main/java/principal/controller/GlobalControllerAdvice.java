@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import principal.modelo.Usuario;
-
+//controlador auxiliar para que el atributo tema esté disponible en todas las url
 @ControllerAdvice
 public class GlobalControllerAdvice {
 

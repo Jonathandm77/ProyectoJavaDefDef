@@ -57,7 +57,7 @@ import principal.servicio.implementacion.ProfesorServiceImpl;
 import principal.servicio.implementacion.UsuarioServiceImpl;
 import principal.servicio.interfaces.FileStorageService;
 import springfox.documentation.annotations.ApiIgnore;
-
+//un controlador que actua como controlador global, acoge casi todas las operaciones, se ha creado aparte por variaciones en la gestion de entidades y porque devuelve distintas páginas
 @RequestMapping("/seguridad/password")
 @Controller
 public class SecurityController {
@@ -75,7 +75,7 @@ public class SecurityController {
 
 	private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-	@GetMapping(value = { "", "/" })
+	@GetMapping(value = { "", "/" })//carga de recursos
 	String homeSecurity(Model model, HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Usuario actualUser = (Usuario) auth.getPrincipal();
@@ -98,7 +98,7 @@ public class SecurityController {
 	model.addAttribute("userDelete", new UsuarioDTO());
 	model.addAttribute("listaAlumnos",alumnoService.listarAlumnos());
 	boolean vacio = (Boolean) model.asMap().getOrDefault("vacio", false);
-    model.addAttribute("vacio", vacio);
+    model.addAttribute("vacio", vacio);//modelo para ultimo profesor
     int status= (int) model.asMap().getOrDefault("status", 0);
     model.addAttribute("status",status);
     if(actualUser.getImagenPerfil()!=null) {
@@ -112,7 +112,7 @@ public class SecurityController {
 	return "cambioPassword";
 	}
 	
-	  @GetMapping("/images/{filename:.+}")
+	  @GetMapping("/images/{filename:.+}")//carga de imagenes
 	  public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
 		    Resource file = storageService.load(filename);
 
@@ -120,24 +120,24 @@ public class SecurityController {
 		        .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"").body(file);
 		  }
 
-	@PostMapping("/changePassword")
+	@PostMapping("/changePassword")//cambio de contraseña
 	public String cambioPassword(@ModelAttribute("usuarioPassword") CambioContrasenaDTO userDTO, BindingResult bidingresult,Model model,RedirectAttributes redirec) {
 		 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		    Usuario actualUser =(Usuario) auth.getPrincipal();
-		    int status=0;
-		    if(encoder.matches(userDTO.getActual(), actualUser.getPassword()) && userDTO.getNueva().equals(userDTO.getConfirm())) {
+		    int status=0;//estado de la operacion para mostrar el mensaje
+		    if(encoder.matches(userDTO.getActual(), actualUser.getPassword()) && userDTO.getNueva().equals(userDTO.getConfirm())) {//si la contraseña actual es correcta y la nueva es la misma que la de confirmacion
 		    	
-		    	actualUser.setPassword(encoder.encode(userDTO.getNueva()));
+		    	actualUser.setPassword(encoder.encode(userDTO.getNueva()));//la encripta
 		    	userService.insertarUsuario((Usuario) actualUser);
 		    	status=1;
 		    }else {
 		    	status=2;
 		    }
-		    redirec.addFlashAttribute("status",status);
+		    redirec.addFlashAttribute("status",status);//subimos el estado para mostrar en la pagina
 		return "redirect:/seguridad/password#contras";
 	}
 
-	@PostMapping("/changeData")
+	@PostMapping("/changeData")//cambios de datos
 	public String cambioDatos(@ModelAttribute("usuarioActual") UsuarioNombreUsernameImageDTO user,
 			BindingResult bidingresult, @RequestParam(value="file", required=false) MultipartFile file,Model model, RedirectAttributes redirectAttributes) throws IOException {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -148,13 +148,13 @@ public class SecurityController {
 		try {
 			if(actualUser.extensionValida(file)) {
 			storageService.save(file);
-			if(actualUser.getImagenPerfil()!=null) {
+			if(actualUser.getImagenPerfil()!=null) {//si ya tenia imagen de perfil la borra
 				storageService.delete(actualUser.getImagenPerfil());
 			}
 			actualUser.setImagenPerfil(file.getOriginalFilename());
 			}
 			else
-				redirectAttributes.addFlashAttribute("error", "La imagen no es válida");
+				redirectAttributes.addFlashAttribute("error", "La imagen no es válida");//controlamos el error
 
 		} catch (Exception e) {
 		}
@@ -166,6 +166,8 @@ public class SecurityController {
 
 		return "redirect:/seguridad/password#data";
 	}
+	
+	//los siguientes metodos son copias de los controllers especificos con pequeñas variaciones
 
 	@PostMapping("/addAlumno")
 	public String addAlumno(@ModelAttribute("alumnoNuevo") Alumno alumnoNew, BindingResult bidingresult, RedirectAttributes redirectAttributes) throws SQLException
@@ -511,12 +513,12 @@ public class SecurityController {
 		return "redirect:/seguridad/password#operat";
 	}
 	
-	@PostMapping("/cambioTema")
+	@PostMapping("/cambioTema")//cambio de tema de la pagina
 	public String cambioTema(@RequestBody String temaSeleccionado, RedirectAttributes redirectAttributes, HttpSession session) {
 	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Usuario actualUser = (Usuario) auth.getPrincipal();
-	    ArrayList<String> temas = new ArrayList<>(List.of("temaClaro", "temaOscuro", "temaMinimalista", "temaElegante","temaShock"));
-	    if (temas.contains(temaSeleccionado)) {
+	    ArrayList<String> temas = new ArrayList<>(List.of("temaClaro", "temaOscuro", "temaMinimalista", "temaElegante","temaShock"));//lista de temas aceptados
+	    if (temas.contains(temaSeleccionado)) {//si se ha seleccionado un tema valido se establece para el usuario
 	        actualUser.setTema(temaSeleccionado);
 	        userService.insertarUsuario(actualUser);
 	    }

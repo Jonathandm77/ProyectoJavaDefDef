@@ -42,7 +42,7 @@ public class Coche {
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(iso = ISO.DATE)
 	@Column(name="FechaITV")
-	private Date fechaITV;
+	private Date fechaITV; //fecha adaptada
 	
 	@Column(name="HoraITV")
 	private LocalTime horaITV;
@@ -54,23 +54,23 @@ public class Coche {
 	private Set<ProfesoresCoches> profesores;
 	
 	@Column(name="foto")
-	public String foto;
+	public String foto; //ruta de la que se extraerá la foto
 	
-	public String url;
+	public String url; //url generada dinámicamente para visualizarlas
 	
 	
-	public void generarMatricula() {
+	public void generarMatricula() { //generador de matrículas para los coches genéricos
 	    Random random = new Random();
 	    
 	    String numeros = "";
 	    for (int i = 0; i < 4; i++) {
-	        int numero = random.nextInt(10); // Generar un número aleatorio entre 0 y 9
+	        int numero = random.nextInt(10); // generar un número aleatorio entre 0 y 9
 	        numeros += numero;
 	    }
 	    
 	    String letras = "";
 	    for (int i = 0; i < 3; i++) {
-	        char letra = (char) (random.nextInt(26) + 'A'); // Generar una letra aleatoria entre A y Z
+	        char letra = (char) (random.nextInt(26) + 'A'); // generar una letra aleatoria entre A y Z
 	        letras += letra;
 	    }
 	    
@@ -99,15 +99,6 @@ public class Coche {
 		profesores=new HashSet<ProfesoresCoches>();
 	}
 	
-	/*public void addLlave(Profesor p, Llave l) {
-		ProfesoresCoches pc=new ProfesoresCoches(p,this,l);
-		if(llaves.contains(pc)) {
-			llaves.remove(pc);
-		}
-		llaves.add(pc);
-		p.getLlaves().add(pc);
-		p.getCoches().add(pc);
-	}*/
 	
 	
 	//getters setters
@@ -223,14 +214,14 @@ public class Coche {
 				+ ", fechaITV=" + fechaITV + ", alumnos=" + alumnos + ", profesores=" + profesores + "]";
 	}
 	
-	public boolean extensionValida(MultipartFile file) {
+	public boolean extensionValida(MultipartFile file) { //comprobador de si la foto es valida
 		
 	if (file != null) {
 	    String fotoNombre = file.getOriginalFilename();
 	    int indicePunto = fotoNombre.lastIndexOf(".");
 	    if (indicePunto > 0 && indicePunto < fotoNombre.length() - 1) {
 	        String extension = fotoNombre.substring(indicePunto + 1).toLowerCase();
-	        if (extension.equals("jpg") || extension.equals("jpeg") || extension.equals("png")) {
+	        if (extension.equals("jpg") || extension.equals("jpeg") || extension.equals("png")) { //si su extension es jpg, jpeg o png es válida
 	        	return true;
 	        } else {
 	            return false;

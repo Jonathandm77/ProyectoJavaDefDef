@@ -39,16 +39,16 @@ public class Alumno {
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name ="id_profesor", nullable = false)
-	private Profesor profesor;
+	private Profesor profesor; //relacion muchos alumnos con un profesor
 	
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "id_Coche", nullable = false)
-	private Coche coche;
+	private Coche coche; //relacion muchos alumnos con un coche
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "alumno", cascade=CascadeType.REMOVE)
-	private Set<Clase> clases;
+	private Set<Clase> clases; //relacion un alumno con muchas clases
 	
 	
 	

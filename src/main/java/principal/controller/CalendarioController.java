@@ -43,7 +43,7 @@ public class CalendarioController {
 	ProfesorServiceImpl profeService;
 	
 	@GetMapping({"","/"})
-	String homeCalendar(Model model,@RequestParam(value = "fechaActual", required = false) Long fecha) {
+	String homeCalendar(Model model,@RequestParam(value = "fechaActual", required = false) Long fecha) {//carga de recursos con fecha para situarse en la fecha necesaria
 		ArrayList<Alumno> listaAlumnos=(ArrayList<Alumno>) alumnoService.listarAlumnos();
 		
 		model.addAttribute("listaAlumnos",listaAlumnos);
@@ -56,14 +56,14 @@ public class CalendarioController {
 		return "calendario";
 	}
 	
-	@PostMapping({"/add"})
+	@PostMapping({"/add"})//añadir clase
 	String añadirClase(@ModelAttribute("claseNueva") ClaseDTO clase,@RequestParam("fecha") String fecha,@ApiIgnore RedirectAttributes redirectAttributes) throws ParseException {
 		Alumno alumnoClase=alumnoService.obtenerAlumnoPorId(clase.getAlumno().getId()).get();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		Date fechaDate=dateFormat.parse(fecha);
+		Date fechaDate=dateFormat.parse(fecha);//formatear fecha recibida
 		boolean error = false;
 		for (Clase c:alumnoClase.getClases()) {
-			if(c.getHora().equals(clase.getHora()) && c.getFecha().equals(fechaDate)) {
+			if(c.getHora().equals(clase.getHora()) && c.getFecha().equals(fechaDate)) {//evitar clase ya existente
 				error=true;
 			}
 		}
@@ -73,19 +73,19 @@ public class CalendarioController {
 		claseAñadir.setHora(clase.getHora());
 		claseService.insertarClase(claseAñadir);
 		}
-		redirectAttributes.addAttribute("fechaActual", fechaDate.getTime());
-		redirectAttributes.addFlashAttribute("error",error);
+		redirectAttributes.addAttribute("fechaActual", fechaDate.getTime());//se sube la fecha actual para evitar recargar el calendario con la fecha de hoy por comodidad
+		redirectAttributes.addFlashAttribute("error",error);//añadir mensaje de error
 		
 		return "redirect:/calendario";
 		
 	}
 	
-	@PostMapping({"/delete"})
+	@PostMapping({"/delete"})//eliminar clase
 	String borrarClase(@ModelAttribute("claseBorrar") Clase clase,@RequestParam("id") int id, RedirectAttributes redirectAttributes) throws ParseException {
 		Clase claseBorrar=claseService.obtenerClasePorId(clase.getId());
-		redirectAttributes.addAttribute("fechaActual", claseBorrar.getFecha().getTime());
+		redirectAttributes.addAttribute("fechaActual", claseBorrar.getFecha().getTime()); //añadir la fecha actual para evitar recargar el calendario con la fecha de hoy
 
-		if(claseBorrar!=null)
+		if(claseBorrar!=null)//validar si la clase existe
 			claseService.eliminarClasePorId(id);
 		
 		return "redirect:/calendario";
@@ -94,16 +94,16 @@ public class CalendarioController {
 	
 	@GetMapping({"/clases"})
 	@ResponseBody
-	Object[] obtenerClases() {
+	Object[] obtenerClases() {//listar clases
 		boolean esAdmin=false;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Usuario actualUser = (Usuario) auth.getPrincipal();
-	    if(actualUser.getIdAlumno()!=null) {
+	    if(actualUser.getIdAlumno()!=null) {//si es alumno mostrar solo sus clases
 	    	Object[] misClasesAlumno= alumnoService.obtenerAlumnoPorId(actualUser.getIdAlumno()).get().getClases().toArray();
 	    		return misClasesAlumno;
 	    }
 	    
-	    if (actualUser.getIdProfesor() != null) {
+	    if (actualUser.getIdProfesor() != null) {//si es profesor mostrar solo sus clases
 	        ArrayList<Alumno> listaAlumnos = (ArrayList<Alumno>) alumnoService.listarAlumnos();
 	        ArrayList<Object> misClasesProfesor = new ArrayList<>();
 
@@ -122,11 +122,11 @@ public class CalendarioController {
 	    		esAdmin=true;
 	    }
 	    
-	    if(esAdmin) {
+	    if(esAdmin) {//si es admin mostrar todas los clases
 		Object[] clases =claseService.listarClases().toArray();
 		return clases;
 	    }else {
-		return new ArrayList<Object>().toArray();
+		return new ArrayList<Object>().toArray();//si no esta logueado no devuelve nada
 	    }
 	}
 }

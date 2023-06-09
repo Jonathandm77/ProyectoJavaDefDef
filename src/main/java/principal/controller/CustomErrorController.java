@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
 import principal.servicio.implementacion.FileStorageServiceImpl;
-
+//controlador para lanzar nuestras propias paginas de error
 @Controller
 public class CustomErrorController implements ErrorController {
 
@@ -28,7 +28,7 @@ public class CustomErrorController implements ErrorController {
 
 
     @RequestMapping("/error")
-    public String handleError(HttpServletRequest request,Model model) {
+    public String handleError(HttpServletRequest request,Model model) {//dependiendo del codigo del error subirá una u otra imagen a la página de error
         if(is400(request)) {
         Resource resource = storageService.loadError("400.png");
 		String url = MvcUriComponentsBuilder
@@ -80,6 +80,7 @@ public class CustomErrorController implements ErrorController {
         return "redirect:/";
     }
 
+    //metodos para comprobar si el código del error es 400, 403..
     private boolean is400(HttpServletRequest request)  {
         return HttpStatus.BAD_REQUEST
                 .value() == (int) request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);

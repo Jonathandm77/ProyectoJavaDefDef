@@ -43,15 +43,15 @@ public class Usuario implements UserDetails {
 	private String password;
 	
 	@Column(name="id_profesor")
-	private Integer idProfesor;
+	private Integer idProfesor; //en caso de que un profesor sea usuario, se vinculará con su id mediante este atributo
 	
 	@Column(name="id_alumno")
-	private Integer idAlumno;
+	private Integer idAlumno; //en caso de que un alumno sea usuario, se vinculará con su id mediante este atributo
 	
 	@Column(name="imagenPerfil")
-	public String imagenPerfil;
+	public String imagenPerfil; //ruta de la imagen de perfil
 	
-	public String url;
+	public String url; //url de la imagen generada automaticamente
 	
 	public String tema;
 

@@ -55,7 +55,7 @@ import springfox.documentation.annotations.ApiIgnore;
 		
 		
 		@GetMapping(value={"","/"})
-		String homealumnos(Model model) {
+		String homealumnos(Model model) {//carga de recursos
 			ArrayList<Coche> misCoches=(ArrayList<Coche>) cocheService.listarCoches();
 	        ArrayList<Alumno> misAlumnos= (ArrayList<Alumno>) alumnoService.listarAlumnos();
 	        ArrayList<Profesor> misProfesores= (ArrayList<Profesor>) profeService.listarProfesores();
@@ -67,54 +67,54 @@ import springfox.documentation.annotations.ApiIgnore;
 			model.addAttribute("profeNuevo", new Profesor());
 			model.addAttribute("profeaEditar", new Profesor());
 			model.addAttribute("profeaBuscar", new Profesor());
-			boolean vacio = (Boolean) model.asMap().getOrDefault("vacio", false);
+			boolean vacio = (Boolean) model.asMap().getOrDefault("vacio", false);//accedemos al atributo subido por si era el ultimo profesor para mostrar el mensaje
 		    model.addAttribute("vacio", vacio);
 			return "profesores";
 		}
 		
-		@PostMapping("/add")
+		@PostMapping("/add")//añade un nuevo profesor
 		public String addProfesor(@ModelAttribute("profeNuevo") Profesor profeNew, BindingResult bidingresult, @ApiIgnore RedirectAttributes redirectAttributes) {
 			try {
 			String dni=profeNew.getDni();
 			char letra=dni.charAt(8);
 			letra=Character.toUpperCase(letra);
 			dni=dni.substring(0,8)+letra;
-			profeNew.setDni(dni);
+			profeNew.setDni(dni);//adaptamos el DNI a mayusculas
 			profeService.insertarProfesor(profeNew);
 			}catch (DataIntegrityViolationException e) {
-				redirectAttributes.addFlashAttribute("error", "El DNI ya existe.");
+				redirectAttributes.addFlashAttribute("error", "El DNI ya existe.");//controlamos si el dni ya existe
 		    }
 			return "redirect:/profesores";
 		}
 		
-		@GetMapping({"/{id}"})
+		@GetMapping({"/{id}"})//ver profesor
 		String idProfesor(Model model, @PathVariable Integer id) {
 			Profesor profeMostrar=profeService.obtenerProfesorPorId(id).get();
 			model.addAttribute("profeMostrar", profeMostrar);
 			return "profesor";
 		}
 		
-		@PostMapping("/edit/{id}")
+		@PostMapping("/edit/{id}")//editar profesor
 		public String editarProfe(@PathVariable Integer id, @ModelAttribute("profeaEditar") EntidadNombreApellidoDTO profeEditado, BindingResult bidingresult) {
 			Profesor profeaEditar=profeService.obtenerProfesorPorId(id).get();
 			if(!profeEditado.getNombre().equals(""))
 			profeaEditar.setNombre(profeEditado.getNombre());
-			if(!profeEditado.getApellidos().equals(""))
+			if(!profeEditado.getApellidos().equals(""))//validamos campos
 				profeaEditar.setApellidos(profeEditado.getApellidos());
-			profeService.insertarProfesor(profeaEditar);
+			profeService.insertarProfesor(profeaEditar);//actualizamos
 			return "redirect:/profesores";
 		}
 		
 		@GetMapping({"/delete/{id}"})
 		String deleteProfe(Model model, @PathVariable Integer id, @ApiIgnore RedirectAttributes redirectAttributes) throws SQLException {
-			if(usuarioService.esAdminActual()) {
+			if(usuarioService.esAdminActual()) {//si el usuario es admin, como medida de seguridad
 			Optional<Profesor> profeaEliminar=profeService.obtenerProfesorPorId(id);
 			ArrayList<Alumno> misAlumnos= (ArrayList<Alumno>) alumnoService.listarAlumnos();
 			ArrayList<Profesor> misProfesores= (ArrayList<Profesor>) profeService.listarProfesores();
 			ArrayList<Coche> misCoches=(ArrayList<Coche>) cocheService.listarCoches();
 			int profe=(int) (Math.random()*misProfesores.size());
 			ArrayList<Profesor> profeTemp=new ArrayList<Profesor>();
-			ArrayList<Coche> cocheTemp=new ArrayList<Coche>();
+			ArrayList<Coche> cocheTemp=new ArrayList<Coche>();//combinaciones de coches y profesores a borrar
 			boolean vacio=false;
 			
 			if(!profeaEliminar.isEmpty()) {
@@ -124,23 +124,23 @@ import springfox.documentation.annotations.ApiIgnore;
 					
 					
 					do {
-						 profe=(int)(Math.random()*(misProfesores.size()));
-					}while(profe==misProfesores.indexOf(a.getProfesor()));//si solo queda un profesor no elimina, solucionar
+						 profe=(int)(Math.random()*(misProfesores.size()));//asigna un nuevo profesor a los alumnos del profesor que vamos a borrar
+					}while(profe==misProfesores.indexOf(a.getProfesor()));
 					a.setProfesor(misProfesores.get(profe));
 					for(Clase c:a.getClases()) {
-						c.setProfesor(a.getProfesor());
+						c.setProfesor(a.getProfesor());//lo mismo con las clases del alumno
 					}
 					profeTemp.add(a.getProfesor());
 					cocheTemp.add(a.getCoche());
 					
 					misProfesores.get(profe).getAlumnos().add(a);
-					alumnoService.insertarAlumno(a);
+					alumnoService.insertarAlumno(a);//actualizamos el alumno
 				}
 				}
 			
 			List<ProfesoresCoches> elementosAEliminar = new ArrayList<>();
 
-			for(Coche a: misCoches) {
+			for(Coche a: misCoches) {//repite el proceso con los coches
 			    if(!a.getProfesores().isEmpty()) {
 			        for(ProfesoresCoches c: a.getProfesores()) {
 			            if(c.getProfesor().getId() == profeaEliminar.get().getId()) {
@@ -160,7 +160,7 @@ import springfox.documentation.annotations.ApiIgnore;
 			profeaEliminar.get().getCoches().clear();
 			if(profeTemp!=null) {
 			for(int i=0;i<profeTemp.size();i++) {
-				profeTemp.get(i).juegoLlaves(cocheTemp.get(i));
+				profeTemp.get(i).juegoLlaves(cocheTemp.get(i));//crea las asociaciones entre los profesores y los coches que se juntan al haber eliminado el profesor
 			}
 			}
 			
@@ -169,21 +169,21 @@ import springfox.documentation.annotations.ApiIgnore;
 		      String sql = "DELETE FROM profesores_coches WHERE profesor_id = "+profeaEliminar.get().getId();
 
 		      Statement statement = connection.createStatement();
-		      statement.executeUpdate(sql);
+		      statement.executeUpdate(sql);//ejecutamos la consulta para limpiar la tabla de registros inservibles
 
 		      connection.close();
 			profeService.eliminarProfesor(profeaEliminar.get());
 			}else {
-				vacio=true;
+				vacio=true;//si es el ultimo profesor
 			}
 			}else
-				redirectAttributes.addFlashAttribute("error", "El profesor no existe.");
-			redirectAttributes.addFlashAttribute("vacio", vacio);
+				redirectAttributes.addFlashAttribute("error", "El profesor no existe.");//controlamos si el profesor no existe
+			redirectAttributes.addFlashAttribute("vacio", vacio);//añadimos la variable vacio para mostrar el mensaje de que es el ultimo profesor
 			}
 			return "redirect:/profesores";
 		}
 		
-		@PostMapping({"/searchName"})
+		@PostMapping({"/searchName"})//buscar profesor por nombre
 		String buscarProfesorPorNombre(Model model,@ModelAttribute("profeaBuscar") ProfesorBuscarNameDTO profeBuscado, BindingResult bidingresult) {
 			ArrayList<Profesor> misProfesores= (ArrayList<Profesor>) profeService.encontrarProfesoresPorNombre(profeBuscado.getNombre());
 			
@@ -194,7 +194,7 @@ import springfox.documentation.annotations.ApiIgnore;
 			
 		}
 		
-		@PostMapping({"/searchDni"})
+		@PostMapping({"/searchDni"})//buscar profesor por DNI
 		String buscarProfesorPorDni(Model model,@ModelAttribute("profeaBuscar") ProfesorBuscarDniDTO profeBuscado, BindingResult bidingresult) {
 			ArrayList<Profesor> profesor= profeService.encontrarProfesorPorDni(profeBuscado.getDni());
 			

@@ -21,14 +21,14 @@ public class MiPerfilController {
 	@Autowired 
 	AlumnoServiceImpl alumnoService;
 	
-	@GetMapping(value= {"/",""})
+	@GetMapping(value= {"/",""})//pagina de mi perfil
 	String miPerfil(Model model) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Usuario actualUser = (Usuario) auth.getPrincipal();
-	    if(actualUser.getIdAlumno()!=null) {
+	    if(actualUser.getIdAlumno()!=null) {//si el usuario esta logueado, como seguridad adicional
 		Alumno alumnoMostrar=alumnoService.obtenerAlumnoPorId(actualUser.getIdAlumno()).get();
 		model.addAttribute("username",actualUser.getUsername());
-		model.addAttribute("alumnoMostrar",alumnoMostrar);
+		model.addAttribute("alumnoMostrar",alumnoMostrar);//lo subimos a la pagina
 	    }
 		return "miPerfil";
 		

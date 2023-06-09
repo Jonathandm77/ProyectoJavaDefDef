@@ -19,7 +19,7 @@ import principal.servicio.interfaces.FileStorageService;
 @Service
 public class FileStorageServiceImpl implements FileStorageService {
   private final Path root = Paths.get("./uploads");
-  private final Path errorRoot = Paths.get("./Errores");
+  private final Path errorRoot = Paths.get("./Errores"); //son rutas distintas para imágenes de carpetas distintas
 
   @Override
   public void init() {

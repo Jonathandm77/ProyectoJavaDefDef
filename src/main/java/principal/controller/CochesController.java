@@ -62,13 +62,13 @@ public class CochesController {
 	@Autowired
 	private UsuarioServiceImpl usuarioService;
 
-	@GetMapping(value = { "", "/" })
+	@GetMapping(value = { "", "/" })//carga de recursos
 	String homecoches(Model model) {
 		ArrayList<Coche> misCoches = (ArrayList<Coche>) cocheService.listarCoches();
 		ArrayList<Alumno> misAlumnos = (ArrayList<Alumno>) alumnoService.listarAlumnos();
 		ArrayList<Profesor> misProfesores = (ArrayList<Profesor>) profeService.listarProfesores();
 
-		for (Coche Coche : misCoches) {
+		for (Coche Coche : misCoches) {//carga de las imagenes de los coches
 			if (Coche.getFoto() != null) {
 
 				Resource resource = storageService.load(Coche.getFoto());
@@ -90,32 +90,37 @@ public class CochesController {
 		return "coches";
 	}
 
-	@PostMapping("/add")
+	@PostMapping("/add")//añade un nuevo coche
 	public String addCoche(@ModelAttribute("cocheNuevo") Coche cocheNew, BindingResult bidingresult,
 			RedirectAttributes redirectAttributes) {
 		try {
 			String matricula = cocheNew.getMatricula();
 			String numeros = matricula.substring(0, 4);
 			String letras = matricula.substring(5, 8).toUpperCase();
-			String matriculaFinal = numeros + " " + letras;
+			String matriculaFinal = numeros + " " + letras;//convertimos las letras a mayusculas
 			cocheNew.setMatricula(matriculaFinal);
 			cocheService.insertarCoche(cocheNew);
 		} catch (DataIntegrityViolationException e) {
-			redirectAttributes.addFlashAttribute("error", "La matrícula ya existe.");
+			redirectAttributes.addFlashAttribute("error", "La matrícula ya existe.");//controlamos si la matricula ya existe
 		}
 		return "redirect:/coches";
 	}
 
-	@PostMapping("/edit/{id}")
+	@PostMapping("/edit/{id}")//edita un coche
 	public String editarCoche(@PathVariable Integer id,
 			@ModelAttribute("cocheaEditar") CocheAEditarMatriculaFechaImgDTO cocheEditado, BindingResult bidingresult,
 			Model model) {
 		Coche cocheaEditar = cocheService.obtenerCochePorId(id).get();
-		if (cocheEditado.getMatricula() != null && cocheEditado.getMatricula() != "")
-			cocheaEditar.setMatricula(cocheEditado.getMatricula());
+		if (cocheEditado.getMatricula() != null && cocheEditado.getMatricula() != "") {
+			String matricula = cocheEditado.getMatricula();
+			String numeros = matricula.substring(0, 4);
+			String letras = matricula.substring(5, 8).toUpperCase();
+			String matriculaFinal = numeros + " " + letras;//convertimos las letras a mayusculas
+			cocheaEditar.setMatricula(matriculaFinal);
+		}
 		if (cocheEditado.getFechaITV() != null)
 			cocheaEditar.setFechaITV(cocheEditado.getFechaITV());
-		cocheService.insertarCoche(cocheaEditar);
+		cocheService.insertarCoche(cocheaEditar);//guardamos
 		return "redirect:/coches/" + cocheaEditar.getId();
 	}
 
@@ -123,13 +128,13 @@ public class CochesController {
 	public String editarFotoCoche(@PathVariable Integer id, @RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
 		Coche cocheaEditar = cocheService.obtenerCochePorId(id).get();
 		if (cocheaEditar.extensionValida(file)) {
-			if (cocheaEditar.getFoto() != null)
-				storageService.delete(cocheaEditar.getFoto());
+			if (cocheaEditar.getFoto() != null)//si el coche tiene foto
+				storageService.delete(cocheaEditar.getFoto());//borramos la anterior
 			cocheaEditar.setFoto(file.getOriginalFilename());
-			storageService.save(file);
+			storageService.save(file);//la guardamos en el servidor
 			cocheService.insertarCoche(cocheaEditar);
 		}else {
-			redirectAttributes.addFlashAttribute("error", "El archivo no es válido.");
+			redirectAttributes.addFlashAttribute("error", "El archivo no es válido.");//controlamos si el archivo es válido
 		}
 		return "redirect:/coches/" + cocheaEditar.getId();
 	}
@@ -147,7 +152,7 @@ public class CochesController {
 				tieneRolProfesor=true;
 		}
 
-		if (tieneRolProfesor) {
+		if (tieneRolProfesor) {//si es un profesor mostrara la llave de ese coche 
 			Profesor profeUsuario=profeService.obtenerProfesorPorId(actualUser.getIdProfesor()).get();
 			for(ProfesoresCoches pc:profeUsuario.getCoches()) {
 				if(pc.getCoche()==cocheMostrar)
@@ -155,7 +160,7 @@ public class CochesController {
 			}
 		}
 
-		if (cocheMostrar.getFoto() != null) {
+		if (cocheMostrar.getFoto() != null) {//si el coche tiene foto, para decidir si mostrar o no en la pagina
 			Resource resource = storageService.load(cocheMostrar.getFoto());
 			String url = MvcUriComponentsBuilder
 					.fromMethodName(SecurityController.class, "serveFile", resource.getFilename()).build().toString();
@@ -166,7 +171,7 @@ public class CochesController {
 		return "coche";
 	}
 
-	@GetMapping({ "/delete/{id}" })
+	@GetMapping({ "/delete/{id}" })//borrar coche
 	String deleteCoche(Model model, @PathVariable Integer id, RedirectAttributes redirectAttributes) throws SQLException {
 		if (usuarioService.esAdminActual()) {
 		boolean creado=false;
@@ -181,56 +186,55 @@ public class CochesController {
 		for (Alumno a : misAlumnos) {
 			if (a.getCoche().getId() == cocheaEliminar.get().getId()) {
 				int coche = (int) (Math.random() * misCoches.size());
-				if (misCoches.isEmpty() || misCoches.size() == 1) {
+				if (misCoches.isEmpty() || misCoches.size() == 1) {//si el coche a borrar es el ultimo, crea un coche genérico
 					Coche cGenerico = new Coche("2021 XS", "Nissan");
-					cGenerico.generarMatricula();
+					cGenerico.generarMatricula();//generamos la matrícula aleatoriamente
 					misCoches.add(cGenerico);
-					// misCoches.get(0).setFechaITV(fecha);
 					a.setCoche(cGenerico);
 					for (Clase c : a.getClases()) {
 						c.setCoche(cGenerico);
 					}
 					profeTemp.add(a.getProfesor());
-					cocheTemp.add(a.getCoche());
+					cocheTemp.add(a.getCoche());//añadimos el coche y profesor a las listas de combinaciones
 					cocheService.insertarCoche(cGenerico);
 					creado=true;
-				} else {
+				} else {//si no es el ultimo, no se crea el coche generico
 
 					do {
-						coche = (int) (Math.random() * misCoches.size());
-					} while (coche == misCoches.indexOf(a.getCoche()));
+						coche = (int) (Math.random() * misCoches.size());//establecemos el nuevo coche de los alummnos que usan el coche que vamos a borrar
+					} while (coche == misCoches.indexOf(a.getCoche()));//nos aseguramos de que no es el mismo coche que vamos a borrar
 					a.setCoche(misCoches.get(coche));
 					for (Clase c : a.getClases()) {
-						c.setCoche(misCoches.get(coche));
+						c.setCoche(misCoches.get(coche));//tambien cambiamos el coche en las clases
 					}
 					profeTemp.add(a.getProfesor());
-					cocheTemp.add(a.getCoche());
+					cocheTemp.add(a.getCoche());//añadimos el coche y profesor a las listas de combinaciones
 				}
 				
 				
 				misCoches.get(coche).getAlumnos().add(a);
 				alumnoService.insertarAlumno(a);
 				profeService.insertarProfesor(profeService.obtenerProfesorPorId(a.getProfesor().getId()).get());
-				cocheService.insertarCoche(cocheService.obtenerCochePorId(misCoches.get(coche).getId()).get());//
+				cocheService.insertarCoche(cocheService.obtenerCochePorId(misCoches.get(coche).getId()).get());//actualizamos
 			}
 		}
 
-		List<ProfesoresCoches> elementosAEliminar = new ArrayList<>();
+		List<ProfesoresCoches> elementosAEliminar = new ArrayList<>();//guardamos las combinaciones de profesores y coches que vamos a borrar
 
 		for (Profesor a : misProfes) {
 			if (!a.getCoches().isEmpty()) {
-				for (ProfesoresCoches c : a.getCoches()) {
-					if (c.getCoche().getId() == cocheaEliminar.get().getId()) {
-						c.setCoche(null);
-						c.setProfesor(null);
-						elementosAEliminar.add(c);
+				for (ProfesoresCoches pc : a.getCoches()) {
+					if (pc.getCoche().getId() == cocheaEliminar.get().getId()) {//si el coche de la combinacion es el coche que vamos a borrar
+						pc.setCoche(null);
+						pc.setProfesor(null);
+						elementosAEliminar.add(pc);//se añade para eliminarlo despues
 					}
 
 				}
-				a.getCoches().removeAll(elementosAEliminar);
-				elementosAEliminar.clear();
+				a.getCoches().removeAll(elementosAEliminar);//se eliminan todos los profesorescoches que contengan ese coche del profesor
+				elementosAEliminar.clear();//vaciamos para optimizar
 			}
-			profeService.insertarProfesor(a);
+			profeService.insertarProfesor(a);//guardamos
 		}
 
 		cocheaEliminar.get().getAlumnos().clear();
@@ -238,7 +242,7 @@ public class CochesController {
 		if (profeTemp != null) {
 			for (int i = 0; i < profeTemp.size(); i++) {
 
-				profeTemp.get(i).juegoLlaves(cocheTemp.get(i));
+				profeTemp.get(i).juegoLlaves(cocheTemp.get(i));//para cada nueva combinacion se genera la llave y la asociacion en la BBDD
 			}
 		}
 		Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/proyecto", "root", "");
@@ -246,10 +250,10 @@ public class CochesController {
 		String sql = "DELETE FROM profesores_coches WHERE coche_id = " + cocheaEliminar.get().getId();
 
 		Statement statement = connection.createStatement();
-		statement.executeUpdate(sql);
+		statement.executeUpdate(sql);//ejecutamos la consulta para dejar la tabla completamente limpia de asociaciones inservibles
 
 		connection.close();
-		if(!creado) {
+		if(!creado) {//se vuelve a ejecutar ya que si no existen alumnos no se ejecutaría antes
 			if (misCoches.isEmpty() || misCoches.size() == 1) {
 				Coche cGenerico = new Coche("2021 XS", "Nissan");
 				cGenerico.generarMatricula();
@@ -259,15 +263,15 @@ public class CochesController {
 				creado=true;
 			}
 		}
-		cocheService.eliminarCoche(cocheaEliminar.get());
+		cocheService.eliminarCoche(cocheaEliminar.get());//eliminamos el coche
 		}else
-			redirectAttributes.addFlashAttribute("error", "El coche no existe");
+			redirectAttributes.addFlashAttribute("error", "El coche no existe");//controlamos si el coche no existe
 		}
 			
 		return "redirect:/coches";
 	}
 
-	@PostMapping({ "/searchMarca" })
+	@PostMapping({ "/searchMarca" })//buscar coche por marca
 	String buscarCochePorMarca(Model model, @ModelAttribute("cocheaBuscar") CocheBuscarMarcaDTO cocheBuscado,
 			BindingResult bidingresult) {
 		ArrayList<Coche> cochesMarca = cocheService.obtenerCochesPorMarca(cocheBuscado.getMarca());
@@ -277,17 +281,17 @@ public class CochesController {
 
 	}
 
-	@PostMapping({ "/searchMatricula" })
+	@PostMapping({ "/searchMatricula" })//buscar coche por matricula
 	String buscarCochePorMatricula(@ModelAttribute("cocheaBuscar") CocheBuscarMatriculaDTO cocheBuscado,
 			BindingResult bidingresult, Model model) {
 		String matricula = cocheBuscado.getMatricula();
 		String letras = matricula.substring(5, 8).toUpperCase();
-		String mat = matricula.substring(0, 4) + " " + letras;
+		String mat = matricula.substring(0, 4) + " " + letras;//adaptamos matricula por si acaso a mayusculas
 		Optional<Coche> cochematricula = cocheService.encontrarCochePorMatricula(mat);
-		if (!cochematricula.isEmpty()) {
+		if (!cochematricula.isEmpty()) {//si existe
 			Integer id = cochematricula.get().getId();
 			return "redirect:/coches/" + id;
-		} else {
+		} else {//si no existe
 			ArrayList<Coche> cocheVacio = new ArrayList<Coche>();
 			model.addAttribute("cochesMarca", cocheVacio);
 			return "cochesBuscadosPorMarca";

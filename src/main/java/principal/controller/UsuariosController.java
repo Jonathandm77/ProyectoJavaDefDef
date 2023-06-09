@@ -21,6 +21,7 @@ import principal.modelo.ImageInfo;
 import principal.modelo.Profesor;
 import principal.modelo.Rol;
 import principal.modelo.Usuario;
+import principal.modelo.dto.UsuarioAddDTO;
 import principal.modelo.dto.UsuarioDTO;
 import principal.modelo.dto.UsuarioUsernamePasswordDTO;
 import principal.servicio.implementacion.ProfesorServiceImpl;
@@ -37,9 +38,9 @@ public class UsuariosController {
 	@Autowired
 	FileStorageService storageService;
 
-@GetMapping(value={"","/"})
+@GetMapping(value={"","/"})//carga de recursos
 String homeusuarios(Model model) {
-	if(isAdmin()) {
+	if(isAdmin()) {//si es admin la ejecuta
 ArrayList<Usuario> listaUsuarios=(ArrayList<Usuario>) userService.listarUsuarios();
 for(Usuario user:listaUsuarios) {
 	if(user.getImagenPerfil()!=null) {
@@ -58,27 +59,17 @@ return "usuarios";
 	return "redirect:/";
 }
 
-	@PostMapping("/edit/{id}")
-	public String editarUsuario(@PathVariable Integer id, @ModelAttribute("usuarioaEditar") UsuarioUsernamePasswordDTO usuarioEditado,
-			BindingResult bidingresult) {
-		Usuario usuarioaEditar =userService.obtenerUsuarioPorId(id).get();
-		usuarioaEditar.setUsername(usuarioEditado.getUsername());
-		usuarioaEditar.setPassword(usuarioEditado.getPassword());
-		userService.insertarUsuario(usuarioaEditar);
-		return "redirect:/usuarios";
-	}
-
-	@GetMapping({"/{id}" })
+	@GetMapping({"/{id}" })//ver usuario
 	String idUsuario(Model model, @PathVariable Integer id) {
 		Usuario usuarioMostrar = userService.obtenerUsuarioPorId(id).get();
 		model.addAttribute("usuarioMostrar", usuarioMostrar);
 		return "usuario";
 	}
 
-	@GetMapping({"/delete/{id}" })
+	@GetMapping({"/delete/{id}" })//borrar usuario
 	String deleteUsuario(Model model, @PathVariable Integer id) {
 		
-		if(isAdmin()) {
+		if(isAdmin()) {//evitar que se borre el administrador
 		
 		Usuario usuarioaEliminar = userService.obtenerUsuarioPorId(id).get();
 		userService.eliminarUsuario(usuarioaEliminar);
@@ -87,7 +78,7 @@ return "usuarios";
 	}
 
 
-	@PostMapping("/add")
+	@PostMapping("/add")//añadir usuario
 	public String addUsuario(@ModelAttribute("usuarioNuevo") UsuarioAddDTO usuarioNew, BindingResult bidingresult) {
 		Usuario usuarioaInsertar=new Usuario();
 		usuarioaInsertar.setNombre(usuarioNew.getNombre());
@@ -97,13 +88,15 @@ return "usuarios";
 		userService.insertarUsuarioBasico(usuarioaInsertar);
 		return "redirect:/usuarios";
 	}
-	@GetMapping({"/registro" })
+	@GetMapping({"/registro" })//carga de recursos para la pagina de registro
 	String mostrarRegistro(Model model, @ModelAttribute("usuarioNuevo") UsuarioDTO usuarioNew) {
 		ArrayList<Profesor> listaProfes=(ArrayList<Profesor>) profeService.listarProfesores();
 		model.addAttribute("listaProfesores",listaProfes);
 		model.addAttribute("newUserDTO", new UsuarioDTO());
 		return "registro";
 	}
+	
+	//metodos de respaldo
 	@PostMapping("/addRegistro")
 	public String addRegistro(@ModelAttribute("usuarioNuevo") UsuarioDTO usuarioNew, BindingResult bindingResult, Model model) {
 	    try {
@@ -125,7 +118,7 @@ return "usuarios";
 	    }
 	}
 
-	
+	//comprobador de si el usuario logueado actual es administrador
 	private boolean isAdmin(){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Usuario actualUser = (Usuario) auth.getPrincipal();

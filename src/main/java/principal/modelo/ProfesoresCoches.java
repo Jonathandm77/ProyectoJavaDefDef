@@ -21,7 +21,7 @@ public class ProfesoresCoches {
 	private ProfesoresCochesId id;
 	
 	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-	@MapsId("profesor_id")
+	@MapsId("profesor_id") //mapear id para que otra clase pueda usarla
 	private Profesor profesor;
 	
 	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
@@ -29,7 +29,7 @@ public class ProfesoresCoches {
 	private Coche coche;
 	
 	@JoinColumn(name="codigoLlave")
-	private String codigoLlave;
+	private String codigoLlave; //código de la llave 
 	
 
 	public ProfesoresCoches() {

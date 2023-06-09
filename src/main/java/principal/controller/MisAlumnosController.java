@@ -23,15 +23,15 @@ public class MisAlumnosController {
 	@Autowired
 	private ProfesorServiceImpl profeService;
 	
-	@GetMapping({"","/"})
+	@GetMapping({"","/"})//pagina de mis alumnos
 	String obtenerMisAlumnos(Model model) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Usuario actualUser = (Usuario) auth.getPrincipal();
-	    Profesor profeUsuario=profeService.obtenerProfesorPorId(actualUser.getIdProfesor()).get();
+	    Profesor profeUsuario=profeService.obtenerProfesorPorId(actualUser.getIdProfesor()).get();//obtener el profesor asociado con el usuario
 	    Set<Alumno> alumnosProfe=profeUsuario.getAlumnos();
 	    ArrayList<Alumno> misAlumnos=new ArrayList<Alumno>();
 	    for(Alumno a:alumnosProfe) {
-	    	misAlumnos.add(a);
+	    	misAlumnos.add(a);//añadimos cada alumno a un arraylist por compatibilidad
 	    }
 	    model.addAttribute("alumnosProfe",misAlumnos);
 	    return "alumnosDeProfesor";

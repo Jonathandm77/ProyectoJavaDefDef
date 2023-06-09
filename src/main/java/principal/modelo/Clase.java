@@ -43,7 +43,7 @@ public class Clase {
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(iso = ISO.DATE)
 	@Column(name="Fecha", nullable=false)
-	private Date fecha;
+	private Date fecha; //fecha adaptada para poder enviarse por formularios y bases de datos
 
 	@Column(name="Hora", nullable=false)
 	private LocalTime hora;

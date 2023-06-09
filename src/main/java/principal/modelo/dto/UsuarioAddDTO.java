@@ -1,4 +1,4 @@
-package principal.controller;
+package principal.modelo.dto;
 
 public class UsuarioAddDTO {
 	
