@@ -8,7 +8,12 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -49,7 +54,12 @@ public class WebController {
 	ClaseServiceImpl claseService;
 	
 	@GetMapping("/")
-	String home(Model model) throws SQLException {
+	String home(Model model, HttpSession sesion) throws SQLException {
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserDetails actualUser = null;
+		if(principal instanceof UserDetails) {
+		actualUser = (UserDetails) principal;
+		}
 		ArrayList<Usuario> listaUsuarios = (ArrayList<Usuario>) usuarioService.listarUsuarios();
 		if(listaUsuarios.isEmpty()) {
 		 crearTablas();
@@ -62,6 +72,9 @@ public class WebController {
 				 }
 			 }
 		 }
+		}
+		if (actualUser!= null) {
+		sesion.setAttribute("tema",((Usuario) actualUser).getTema());
 		}
 		return "index";
 			

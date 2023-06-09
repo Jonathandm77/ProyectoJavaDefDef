@@ -507,6 +507,7 @@ public class SecurityController {
 	    ArrayList<String> temas = new ArrayList<>(List.of("temaClaro", "temaOscuro", "temaMinimalista", "temaElegante","temaShock"));
 	    if (temas.contains(temaSeleccionado)) {
 	        actualUser.setTema(temaSeleccionado);
+	        userService.insertarUsuario(actualUser);
 	    }
 	    return "redirect:/seguridad/password";
 	}
