@@ -20,6 +20,7 @@ import javax.persistence.Table;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -221,6 +222,26 @@ public class Usuario implements UserDetails {
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
 		return true;
+	}
+	
+	public boolean extensionValida(MultipartFile file) {
+		
+	if (file != null) {
+	    String fotoNombre = file.getOriginalFilename();
+	    int indicePunto = fotoNombre.lastIndexOf(".");
+	    if (indicePunto > 0 && indicePunto < fotoNombre.length() - 1) {
+	        String extension = fotoNombre.substring(indicePunto + 1).toLowerCase();
+	        if (extension.equals("jpg") || extension.equals("jpeg") || extension.equals("png")) {
+	        	return true;
+	        } else {
+	            return false;
+	        }
+	    } else {
+	        return false;
+	    }
+	}
+	return false;
+	
 	}
 }
 	 

@@ -139,31 +139,29 @@ public class SecurityController {
 
 	@PostMapping("/changeData")
 	public String cambioDatos(@ModelAttribute("usuarioActual") UsuarioNombreUsernameImageDTO user,
-			BindingResult bidingresult, @RequestParam(value="file", required=false) MultipartFile file,Model model) throws IOException {
+			BindingResult bidingresult, @RequestParam(value="file", required=false) MultipartFile file,Model model, RedirectAttributes redirectAttributes) throws IOException {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Usuario actualUser = (Usuario) auth.getPrincipal();
 
 		// Guardar imagen
-		String message = "";
 
 		try {
-			if(!file.getOriginalFilename().equals(""))
+			if(actualUser.extensionValida(file)) {
 			storageService.save(file);
+			if(actualUser.getImagenPerfil()!=null) {
+				storageService.delete(actualUser.getImagenPerfil());
+			}
+			actualUser.setImagenPerfil(file.getOriginalFilename());
+			}
+			else
+				redirectAttributes.addFlashAttribute("error", "La imagen no es válida");
 
-			message = "Uploaded the image successfully: " + file.getOriginalFilename();
-			model.addAttribute("message", message);
 		} catch (Exception e) {
-			message = "Could not upload the image: " + file.getOriginalFilename() + ". Error: " + e.getMessage();
-			model.addAttribute("message", message);
 		}
-		if(actualUser.getImagenPerfil()!=null) {
-			storageService.delete(actualUser.getImagenPerfil());
-		}
+		
 
 		actualUser.setNombre(user.getNombre());
 		actualUser.setUsername(user.getUsername());
-		if(!file.getOriginalFilename().equals(""))
-		actualUser.setImagenPerfil(file.getOriginalFilename());
 		userService.insertarUsuario(actualUser);
 
 		return "redirect:/seguridad/password#data";

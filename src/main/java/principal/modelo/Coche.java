@@ -20,6 +20,7 @@ import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name="Coches")
@@ -220,6 +221,26 @@ public class Coche {
 	public String toString() {
 		return "Coche [id=" + id + ", matricula=" + matricula + ", modelo=" + modelo + ", marca=" + marca
 				+ ", fechaITV=" + fechaITV + ", alumnos=" + alumnos + ", profesores=" + profesores + "]";
+	}
+	
+	public boolean extensionValida(MultipartFile file) {
+		
+	if (file != null) {
+	    String fotoNombre = file.getOriginalFilename();
+	    int indicePunto = fotoNombre.lastIndexOf(".");
+	    if (indicePunto > 0 && indicePunto < fotoNombre.length() - 1) {
+	        String extension = fotoNombre.substring(indicePunto + 1).toLowerCase();
+	        if (extension.equals("jpg") || extension.equals("jpeg") || extension.equals("png")) {
+	        	return true;
+	        } else {
+	            return false;
+	        }
+	    } else {
+	        return false;
+	    }
+	}
+	return false;
+	
 	}
 
 

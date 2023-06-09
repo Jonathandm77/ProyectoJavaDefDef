@@ -70,6 +70,7 @@ public class CochesController {
 
 		for (Coche Coche : misCoches) {
 			if (Coche.getFoto() != null) {
+
 				Resource resource = storageService.load(Coche.getFoto());
 				String url = MvcUriComponentsBuilder
 						.fromMethodName(SecurityController.class, "serveFile", resource.getFilename()).build()
@@ -119,15 +120,17 @@ public class CochesController {
 	}
 
 	@PostMapping("/edit/photo/{id}")
-	public String editarFotoCoche(@PathVariable Integer id, @RequestParam("file") MultipartFile file) {
+	public String editarFotoCoche(@PathVariable Integer id, @RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
 		Coche cocheaEditar = cocheService.obtenerCochePorId(id).get();
-		if (!file.getOriginalFilename().equals("")) {
+		if (cocheaEditar.extensionValida(file)) {
 			if (cocheaEditar.getFoto() != null)
 				storageService.delete(cocheaEditar.getFoto());
 			cocheaEditar.setFoto(file.getOriginalFilename());
 			storageService.save(file);
+			cocheService.insertarCoche(cocheaEditar);
+		}else {
+			redirectAttributes.addFlashAttribute("error", "El archivo no es válido.");
 		}
-		cocheService.insertarCoche(cocheaEditar);
 		return "redirect:/coches/" + cocheaEditar.getId();
 	}
 

@@ -91,6 +91,35 @@
 			</div>
 		</div>
 	</div>
+			<div class="toast-container position-fixed bottom-0 end-0 p-3">
+			<div th:if="${error}" id="toastDuplicateDNI" class="toast" role="alert" aria-live="assertive"
+				aria-atomic="true" data-delay="5000" style="background-color: #f8d7da; border-color: #f1aeb5;">
+				<div class="toast-header">
+					<i class="fa-sharp fa-solid fa-xmark fa-fade" style="color: #e6707c;"></i>
+					<strong class="me-auto">&nbsp;¡Error!</strong>
+					<small>Justo ahora</small>
+					<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+				</div>
+				<div class="toast-body">
+					[[${error}]]
+				</div>
+			</div>
+		</div>
+		
+		<script th:inline="javascript">
+			var error = /*[[${error}]]*/ "";
+					if (error) {
+			const toastLiveExample = document.getElementById('toastDuplicateDNI');
+			const toastBootstrap = new bootstrap.Toast(toastLiveExample);
+			const toastCloseButton = toastLiveExample.querySelector('.btn-close');
+
+			toastCloseButton.addEventListener('click', function () {
+				toastBootstrap.hide();
+			});
+
+			toastBootstrap.show();
+		}
+		</script>
 </body>
 
 </html>
