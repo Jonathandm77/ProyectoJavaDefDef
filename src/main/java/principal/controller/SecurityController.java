@@ -467,7 +467,17 @@ public class SecurityController {
 	}
 
 	@PostMapping("/addUsuario")
-	public String addUsuario(@ModelAttribute("newUserDTO") UsuarioDTO usuarioNew, BindingResult bidingresult) {
+	public String addUsuario(@ModelAttribute("newUserDTO") UsuarioDTO usuarioNew, BindingResult bidingresult, RedirectAttributes redirectAttributes) {
+		List<Usuario> usuarios = userService.listarUsuarios();
+		boolean duplicado = false;
+		for (Usuario u : usuarios) {
+			if (u.getNombre().equals(usuarioNew.getNombre())) {
+                redirectAttributes.addFlashAttribute("error", "El usuario ya existe.");
+                duplicado = true;}
+		}
+		
+		if (!duplicado) {
+		
 		if (usuarioNew.isEsProfesor()) {
 			Usuario userProfesor = new Usuario();
 			userProfesor.setNombre(usuarioNew.getNombre());
@@ -487,6 +497,7 @@ public class SecurityController {
 
 			userService.insertarUsuarioDTO(usuarioNew);
 			}
+		}
 		}
 
 		return "redirect:/seguridad/password#operat";
