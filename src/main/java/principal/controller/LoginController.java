@@ -1,11 +1,6 @@
 package principal.controller;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import principal.modelo.Usuario;
 import principal.modelo.dto.UsuarioDTO;
@@ -32,7 +28,7 @@ public class LoginController {
 	String homelogin(Model model) throws SQLException {
 
 		List<Usuario> usuarios = userService.listarUsuarios();
-		
+
 		if (usuarios.size() > 0) {
 
 			return "login";
@@ -49,27 +45,40 @@ public class LoginController {
 	}
 
 	@PostMapping("/add")
-	public String addUsuario(@ModelAttribute("usuarioNuevo") UsuarioAddDTO usuarioNew, BindingResult bidingresult) {
-		Usuario usuarioaInsertar = new Usuario();
-		usuarioaInsertar.setNombre(usuarioNew.getNombre());
-		usuarioaInsertar.setUsername(usuarioNew.getUsername());
-		usuarioaInsertar.setIdAlumno(usuarioNew.getIdAlumno());
-		usuarioaInsertar.setPassword(usuarioNew.getPassword());
+	public String addUsuario(@ModelAttribute("usuarioNuevo") UsuarioAddDTO usuarioNew,RedirectAttributes redirectAttributtes, BindingResult bidingresult) {
+		List<Usuario> usuarios = userService.listarUsuarios();
+		boolean duplicado = false;
 
-		userService.insertarUsuarioBasico(usuarioaInsertar);
+		for (Usuario usuario : usuarios) {
+			if (usuario.getNombre().equals(usuarioNew.getNombre())) {
+				duplicado = true;
+			}
+		}
+		if (!duplicado) {
+			Usuario usuarioaInsertar = new Usuario();
+			usuarioaInsertar.setNombre(usuarioNew.getNombre());
+			usuarioaInsertar.setUsername(usuarioNew.getUsername());
+			usuarioaInsertar.setIdAlumno(usuarioNew.getIdAlumno());
+			usuarioaInsertar.setPassword(usuarioNew.getPassword());
+			userService.insertarUsuarioBasico(usuarioaInsertar);
+		} else {
+			redirectAttributtes.addFlashAttribute("error", "El nombre de usuario ya existe");
+			return "redirect:/login/registro";
+		}
+
 		return "redirect:/login";
 	}
 
 	@GetMapping({ "/registro" })
 	String mostrarRegistro(Model model, @ModelAttribute("usuarioNuevo") UsuarioDTO usuarioNew) throws SQLException {
 		List<Usuario> usuarios = userService.listarUsuarios();
-        
-        if (usuarios.size() > 0) {
-            model.addAttribute("newUserDTO", new UsuarioDTO());
-            return "registro";
-        } else {
-            return "redirect:/";
-        }
-		
+
+		if (usuarios.size() > 0) {
+			model.addAttribute("newUserDTO", new UsuarioDTO());
+			return "registro";
+		} else {
+			return "redirect:/";
+		}
+
 	}
 }

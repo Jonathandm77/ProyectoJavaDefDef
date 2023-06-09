@@ -20,9 +20,6 @@
 	<div class="row">
 		<div class="col-4 mt-5 m-auto">
 			<h1 class="h3 text-grey-900">Nuevo Registro</h1>
-			<div id="error-message" class="alert alert-danger" th:if="${error}">
-				[[${error}]]
-			</div>
 			<form method="post" th:action="@{/login/add}" th:object="${newUserDTO}">
 				<div class="form-row">
 					<div class="form-group col-8">
@@ -66,6 +63,9 @@
 						th:href="@{/usuarios/registro}" />
 				</div>
 			</form>
+			<div id="error-message" class="alert alert-danger w-100 m-auto text-center p-5 mt-3" th:if="${error}">
+				[[${error}]]
+			</div>
 		</div>
 	</div>
 	<script>
