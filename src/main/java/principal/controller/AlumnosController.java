@@ -136,10 +136,10 @@ import springfox.documentation.annotations.ApiIgnore;
 				Optional<Alumno> alumnoMostrar = alumnoService.obtenerAlumnoPorId(id);
 				if (!alumnoMostrar.isEmpty()) {//si existe el alumno
 				Object[] clases = alumnoMostrar.get().getClases().toArray();//lista de sus clases
-				model.addAttribute("alumnoMostrar", alumnoMostrar);
+				model.addAttribute("alumnoMostrar", alumnoMostrar.get());
 				model.addAttribute("listaClases", clases);
 				model.addAttribute("claseNueva", new Clase());
-				session.setAttribute("alumnoaImpartir", alumnoMostrar);//se sube a la sesión para acceder desde el controlador clases y establecer el alumno si se crea una clase
+				session.setAttribute("alumnoaImpartir", alumnoMostrar.get());//se sube a la sesión para acceder desde el controlador clases y establecer el alumno si se crea una clase
 				}else {
 					redirectAttributes.addFlashAttribute("error", "El alumno no existe.");// controlar alumno inexistente
 					return "redirect:/alumnos";

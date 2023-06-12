@@ -25,4 +25,23 @@ public class GlobalControllerAdvice {
         // Valor predeterminado del tema si no se encuentra ningún tema personalizado
         return "temaClaro";
     }
+    
+    @ModelAttribute("logo")
+    public String setLogo(@ModelAttribute("tema") String tema,Model model) {
+		if(tema.equals("temaOscuro")) {
+			return "logoOscuro";
+		}
+		
+		if(tema.equals("temaMinimalista")) {
+			return "logoMinimalista";
+		}
+    	
+		if(tema.equals("temaElegante")) {
+			return "logoElegante";
+		}
+		if(tema.equals("temaShock")) {
+			return "logoShock";
+		}
+		return "logoClaro";
+    }
 }

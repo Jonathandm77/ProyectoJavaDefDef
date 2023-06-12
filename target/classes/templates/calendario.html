@@ -47,7 +47,7 @@
 						<span aria-hidden="true">x</span>
 					</button>
 				</div>
-				<div class="modal-body theme">
+				<div class="modal-body text-break text-break theme">
 					<p class="error-text">Configura la clase</p>
 					<form action="#" th:action="@{/calendario/add/}" th:object="${claseNueva}" method="post"
 						class="needs-validation" novalidate>
@@ -90,7 +90,7 @@
 						<span aria-hidden="true">x</span>
 					</button>
 				</div>
-				<div class="modal-body theme">
+				<div class="modal-body text-break text-break theme">
 					<p class="error-text">¿Seguro que quieres borrar la clase?</p>
 					<form action="#" th:action="@{/calendario/delete/}" th:object="${claseBorrar}" method="post">
 						<input type="hidden" id="delete-mes" name="mes" value="">
