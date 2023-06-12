@@ -125,17 +125,6 @@
 	<script th:inline="javascript">
 		var error = /*[[${error}]]*/ false;
 
-		if (error) {
-			const toastLiveExample = document.getElementById('toastDuplicateClass');
-			const toastBootstrap = new bootstrap.Toast(toastLiveExample);
-			const toastCloseButton = toastLiveExample.querySelector('.btn-close');
-
-			toastCloseButton.addEventListener('click', function () {
-				toastBootstrap.hide();
-			});
-
-			toastBootstrap.show();
-		}
 	</script>
 
 </body>

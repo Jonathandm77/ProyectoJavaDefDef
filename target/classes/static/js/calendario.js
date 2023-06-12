@@ -113,6 +113,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 
+		if (error) {
+			const toastLiveExample = document.getElementById('toastDuplicateClass');
+			const toastBootstrap = new bootstrap.Toast(toastLiveExample);
+			const toastCloseButton = toastLiveExample.querySelector('.btn-close');
+
+			toastCloseButton.addEventListener('click', function () {
+				toastBootstrap.hide();
+			});
+
+			toastBootstrap.show();
+		}
+
 //Fin codigo calendario
 		document.addEventListener('DOMContentLoaded', function() {
             document.title = 'Calendario';
