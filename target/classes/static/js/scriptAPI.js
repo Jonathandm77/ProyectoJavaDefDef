@@ -24,7 +24,7 @@ function loadMoreArticles() {
 			articleItem.setAttribute("class", "card article theme-panel")
 			let articleImg = document.createElement("img")
 			articleImg.setAttribute("src", article.urlToImage)
-			articleImg.alt="sss"
+			articleImg.alt = "sss"
 			let articleContent = document.createElement("div")
 			articleContent.setAttribute("class", "articleContent theme-letter-light")
 			let articleHeader = document.createElement("h2")
@@ -42,21 +42,21 @@ function loadMoreArticles() {
 			articleItem.style.marginTop = "5px"
 			articleDiv.appendChild(articleItem)
 		}
-		
-			if (dataJSON.articles.length >= articlesPerPage) {
-		let deleteButton=document.getElementById("loadMore")
-		if(deleteButton!=null)
-		deleteButton.remove()
-		let loadMoreButton = document.createElement("button")
-		loadMoreButton.setAttribute("id", "loadMore")
 
-		loadMoreButton.classList.add("btn", "btn-primary", "position-relative","bottom-0")
-		loadMoreButton.textContent = "Cargar más"
-		loadMoreButton.addEventListener("click", () => {
-			loadMoreArticles()
-		})
-		articleDiv.appendChild(loadMoreButton)
-	}
+		if (dataJSON.articles.length >= articlesPerPage) {
+			let deleteButton = document.getElementById("loadMore")
+			if (deleteButton != null)
+				deleteButton.remove()
+			let loadMoreButton = document.createElement("button")
+			loadMoreButton.setAttribute("id", "loadMore")
+
+			loadMoreButton.classList.add("btn", "btn-primary", "position-relative", "bottom-0")
+			loadMoreButton.textContent = "Cargar más"
+			loadMoreButton.addEventListener("click", () => {
+				loadMoreArticles()
+			})
+			articleDiv.appendChild(loadMoreButton)
+		}
 	})
 	articlesLoaded = newArticlesLoaded
 }
@@ -68,7 +68,7 @@ http.addEventListener('load', (data) => {
 		let articleItem = document.createElement("div")
 		articleItem.setAttribute("class", "card article theme-panel")
 		let articleImg = document.createElement("img")
-		articleImg.alt=article.title
+		articleImg.alt = article.title
 		articleImg.setAttribute("src", article.urlToImage)
 		let articleContent = document.createElement("div")
 		articleContent.setAttribute("class", "articleContent theme-letter-light")
@@ -91,7 +91,7 @@ http.addEventListener('load', (data) => {
 		let loadMoreButton = document.createElement("button")
 		loadMoreButton.setAttribute("id", "loadMore")
 
-		loadMoreButton.classList.add("btn", "btn-primary", "position-relative","bottom-0")
+		loadMoreButton.classList.add("btn", "btn-primary", "position-relative", "bottom-0")
 		loadMoreButton.textContent = "Cargar más"
 		loadMoreButton.addEventListener("click", () => {
 			loadMoreArticles()
@@ -103,5 +103,8 @@ http.addEventListener('load', (data) => {
 })
 
 document.addEventListener('DOMContentLoaded', function() {
-            document.title = 'Inicio';
-            })
+	document.title = 'Inicio';
+
+})
+
+

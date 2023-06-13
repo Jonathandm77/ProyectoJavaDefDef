@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <head th:insert="librerias::librerias">
+	<link rel="icon" href="/static/img/favicon.png">
 </head>
 
 <body class="container-fluid theme theme-letter">
@@ -229,9 +230,13 @@
 
 			toastBootstrap.show();
 		}
+		
+		document.addEventListener('DOMContentLoaded', function() {
+	document.title = 'Ficha de alumno';
+})
 	</script>
 
 </body>
 <script th:src="@{/static/js/alumnoScript.js}"></script>
-
+<script th:src="@{static/js/icono.js}"></script>
 </html>
