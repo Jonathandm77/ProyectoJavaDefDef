@@ -2893,3 +2893,941 @@ java.io.NotSerializableException: principal.modelo.Rol
 2023-06-13 10:02:52.352 TRACE 25176 --- [http-nio-8095-exec-9] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
 2023-06-13 10:02:52.352 TRACE 25176 --- [http-nio-8095-exec-9] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
 2023-06-13 10:02:52.353 TRACE 25176 --- [http-nio-8095-exec-9] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:29:02.006  INFO 32076 --- [restartedMain] principal.App                            : Starting App using Java 17.0.6 on IOT-PC08 with PID 32076 (C:\Users\practicasiot05\Documents\workspace-spring-tool-suite-4-4.18.0.RELEASE\ProyectoDEF\target\classes started by practicasiot05 in C:\Users\practicasiot05\Documents\workspace-spring-tool-suite-4-4.18.0.RELEASE\ProyectoDEF)
+2023-06-13 12:29:02.007  INFO 32076 --- [restartedMain] principal.App                            : No active profile set, falling back to 1 default profile: "default"
+2023-06-13 12:29:02.056  INFO 32076 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-06-13 12:29:02.056  INFO 32076 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-06-13 12:29:02.953  INFO 32076 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-06-13 12:29:03.053  INFO 32076 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 89 ms. Found 7 JPA repository interfaces.
+2023-06-13 12:29:03.673  INFO 32076 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8095 (http)
+2023-06-13 12:29:03.684  INFO 32076 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-06-13 12:29:03.685  INFO 32076 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.65]
+2023-06-13 12:29:03.798  INFO 32076 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-06-13 12:29:03.798  INFO 32076 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1741 ms
+2023-06-13 12:29:04.005  INFO 32076 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-06-13 12:29:04.068  INFO 32076 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.10.Final
+2023-06-13 12:29:04.231  INFO 32076 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-06-13 12:29:04.339  INFO 32076 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-06-13 12:29:04.481  INFO 32076 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-06-13 12:29:04.518  INFO 32076 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL55Dialect
+2023-06-13 12:29:05.492  INFO 32076 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-06-13 12:29:05.502  INFO 32076 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-06-13 12:29:05.977  WARN 32076 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-13 12:29:06.240  INFO 32076 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2023-06-13 12:29:06.342  WARN 32076 --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/ignore1']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-06-13 12:29:06.343  INFO 32076 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/ignore1']
+2023-06-13 12:29:06.343  WARN 32076 --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/ignore2']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-06-13 12:29:06.343  INFO 32076 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/ignore2']
+2023-06-13 12:29:06.392  INFO 32076 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4b560a9b, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@61b16371, org.springframework.security.web.context.SecurityContextPersistenceFilter@47cc8b53, org.springframework.security.web.header.HeaderWriterFilter@5861e31, org.springframework.security.web.authentication.logout.LogoutFilter@c4a08d5, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@1b92b991, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4a9ac3df, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@111b63a5, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6d7eec78, org.springframework.security.web.session.SessionManagementFilter@58a15b, org.springframework.security.web.access.ExceptionTranslationFilter@1e050204, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@50ee25e3]
+2023-06-13 12:29:06.520  INFO 32076 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-06-13 12:29:06.554  INFO 32076 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-06-13 12:29:06.848  INFO 32076 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8095 (http) with context path ''
+2023-06-13 12:29:06.849  INFO 32076 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2023-06-13 12:29:06.872  INFO 32076 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2023-06-13 12:29:06.890  INFO 32076 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2023-06-13 12:29:07.047  INFO 32076 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: homealumnosUsingGET_1
+2023-06-13 12:29:07.092  INFO 32076 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: homeCalendarUsingGET_1
+2023-06-13 12:29:07.117  INFO 32076 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: homecochesUsingGET_1
+2023-06-13 12:29:07.139  INFO 32076 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: homeloginUsingGET_1
+2023-06-13 12:29:07.145  INFO 32076 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: miPerfilUsingGET_1
+2023-06-13 12:29:07.147  INFO 32076 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: obtenerMisAlumnosUsingGET_1
+2023-06-13 12:29:07.166  INFO 32076 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: homealumnosUsingGET_2
+2023-06-13 12:29:07.167  INFO 32076 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: homealumnosUsingGET_3
+2023-06-13 12:29:07.179  INFO 32076 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: addAlumnoUsingPOST_1
+2023-06-13 12:29:07.186  INFO 32076 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: addCocheUsingPOST_1
+2023-06-13 12:29:07.191  INFO 32076 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: addProfesorUsingPOST_1
+2023-06-13 12:29:07.192  INFO 32076 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: addUsuarioUsingPOST_1
+2023-06-13 12:29:07.193  INFO 32076 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: buscarAlumnoPorDniUsingPOST_1
+2023-06-13 12:29:07.194  INFO 32076 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: buscarAlumnoPorNombreUsingPOST_1
+2023-06-13 12:29:07.195  INFO 32076 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: buscarCochePorMarcaUsingPOST_1
+2023-06-13 12:29:07.195  INFO 32076 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: buscarCochePorMatriculaUsingPOST_1
+2023-06-13 12:29:07.196  INFO 32076 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: buscarProfesorPorDniUsingPOST_1
+2023-06-13 12:29:07.197  INFO 32076 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: buscarProfesorPorNombreUsingPOST_1
+2023-06-13 12:29:07.222  INFO 32076 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteAlumnoUsingGET_1
+2023-06-13 12:29:07.223  INFO 32076 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteCocheUsingGET_1
+2023-06-13 12:29:07.224  INFO 32076 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteProfeUsingGET_1
+2023-06-13 12:29:07.225  INFO 32076 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: homeSecurityUsingGET_1
+2023-06-13 12:29:07.227  INFO 32076 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: serveFileUsingGET_1
+2023-06-13 12:29:07.229  INFO 32076 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: addUsuarioUsingPOST_2
+2023-06-13 12:29:07.230  INFO 32076 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsuarioUsingGET_1
+2023-06-13 12:29:07.231  INFO 32076 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: homeusuariosUsingGET_1
+2023-06-13 12:29:07.233  INFO 32076 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: mostrarRegistroUsingGET_1
+2023-06-13 12:29:07.252  INFO 32076 --- [restartedMain] principal.App                            : Started App in 5.634 seconds (JVM running for 6.74)
+2023-06-13 12:29:18.799  INFO 32076 --- [http-nio-8095-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-06-13 12:29:18.799  INFO 32076 --- [http-nio-8095-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-06-13 12:29:18.802  INFO 32076 --- [http-nio-8095-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2023-06-13 12:29:18.986  WARN 32076 --- [http-nio-8095-exec-1] o.a.c.util.SessionIdGeneratorBase        : Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [131] milliseconds.
+2023-06-13 12:29:19.146 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [DATE] - [Thu May 23 12:29:19 CEST 2024]
+2023-06-13 12:29:19.147 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [VARCHAR] - [null]
+2023-06-13 12:29:19.148 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [TIME] - [null]
+2023-06-13 12:29:19.148 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [Peugeot]
+2023-06-13 12:29:19.148 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [5894 GHL]
+2023-06-13 12:29:19.148 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [VARCHAR] - [2023]
+2023-06-13 12:29:19.149 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [VARCHAR] - [null]
+2023-06-13 12:29:19.168 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [DATE] - [Mon Apr 15 12:29:19 CEST 2024]
+2023-06-13 12:29:19.168 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [VARCHAR] - [null]
+2023-06-13 12:29:19.168 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [TIME] - [11:30]
+2023-06-13 12:29:19.168 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [Seat]
+2023-06-13 12:29:19.169 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [5894 DSF]
+2023-06-13 12:29:19.169 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [VARCHAR] - [2021]
+2023-06-13 12:29:19.169 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [VARCHAR] - [null]
+2023-06-13 12:29:19.175 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [Gonzalez Fernandez]
+2023-06-13 12:29:19.176 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [VARCHAR] - [56239874M]
+2023-06-13 12:29:19.176 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [Pedro]
+2023-06-13 12:29:19.179 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [Rodriguez Palacios]
+2023-06-13 12:29:19.179 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [VARCHAR] - [53624477N]
+2023-06-13 12:29:19.179 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [Alejandro]
+2023-06-13 12:29:19.195 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [ROLE_ADMIN]
+2023-06-13 12:29:19.203 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [RL-99]
+2023-06-13 12:29:19.204 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [1]
+2023-06-13 12:29:19.204 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [INTEGER] - [1]
+2023-06-13 12:29:19.205 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [BT-19]
+2023-06-13 12:29:19.205 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [2]
+2023-06-13 12:29:19.205 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [INTEGER] - [2]
+2023-06-13 12:29:19.284 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [null]
+2023-06-13 12:29:19.284 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [null]
+2023-06-13 12:29:19.285 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [null]
+2023-06-13 12:29:19.285 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [admin]
+2023-06-13 12:29:19.285 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [$2a$10$LGzTEcuAfakqgrdrXCCKMuHIeLR3wiXqiqwkdbLtzjEYs7NgzSL9q]
+2023-06-13 12:29:19.285 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [VARCHAR] - [null]
+2023-06-13 12:29:19.285 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [VARCHAR] - [null]
+2023-06-13 12:29:19.285 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [VARCHAR] - [admin]
+2023-06-13 12:29:19.290 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:29:19.290 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [1]
+2023-06-13 12:29:19.293 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [ROLE_USER]
+2023-06-13 12:29:19.364 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:29:19.364 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [null]
+2023-06-13 12:29:19.364 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [null]
+2023-06-13 12:29:19.364 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [basic]
+2023-06-13 12:29:19.364 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [$2a$10$HF9QAnXmzyo7TdqSQ3P2kuIUq1SmQnCybLXEWYa5YQ2SgeVxOv4Dm]
+2023-06-13 12:29:19.365 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [VARCHAR] - [temaOscuro]
+2023-06-13 12:29:19.365 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [VARCHAR] - [null]
+2023-06-13 12:29:19.365 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [VARCHAR] - [basic]
+2023-06-13 12:29:19.377 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:29:19.377 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [2]
+2023-06-13 12:29:19.379 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [ROLE_TEACHER]
+2023-06-13 12:29:19.451 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [null]
+2023-06-13 12:29:19.451 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [1]
+2023-06-13 12:29:19.451 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [null]
+2023-06-13 12:29:19.451 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [profesor]
+2023-06-13 12:29:19.451 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [$2a$10$g0qoqiOez1cmkL81b/rM1.xPdQGgzURqKqsSRaSOObmRQ5g2Ms0wi]
+2023-06-13 12:29:19.452 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [VARCHAR] - [temaClaro]
+2023-06-13 12:29:19.452 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [VARCHAR] - [null]
+2023-06-13 12:29:19.452 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [VARCHAR] - [profesor]
+2023-06-13 12:29:19.454 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [3]
+2023-06-13 12:29:19.454 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [3]
+2023-06-13 12:29:19.460 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [Menendez Palacios]
+2023-06-13 12:29:19.460 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [1]
+2023-06-13 12:29:19.460 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [52364897K]
+2023-06-13 12:29:19.460 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [Alba]
+2023-06-13 12:29:19.460 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [null]
+2023-06-13 12:29:19.461 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [INTEGER] - [1]
+2023-06-13 12:29:19.465 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [Gonzalez Rodriguez]
+2023-06-13 12:29:19.465 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [2]
+2023-06-13 12:29:19.465 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [85612478L]
+2023-06-13 12:29:19.465 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [David]
+2023-06-13 12:29:19.465 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [null]
+2023-06-13 12:29:19.466 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [INTEGER] - [2]
+2023-06-13 12:29:19.472 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:29:19.473 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [1]
+2023-06-13 12:29:19.473 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [DATE] - [Sun Jul 23 12:29:19 CEST 2023]
+2023-06-13 12:29:19.473 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [TIME] - [15:30]
+2023-06-13 12:29:19.473 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [INTEGER] - [1]
+2023-06-13 12:29:19.476 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:29:19.476 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [2]
+2023-06-13 12:29:19.476 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [DATE] - [Sun Jul 23 12:29:19 CEST 2023]
+2023-06-13 12:29:19.476 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [TIME] - [17:30]
+2023-06-13 12:29:19.476 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [INTEGER] - [2]
+2023-06-13 12:29:19.479 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:29:19.479 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [1]
+2023-06-13 12:29:19.479 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [DATE] - [Thu Jul 27 12:29:19 CEST 2023]
+2023-06-13 12:29:19.479 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [TIME] - [16:30]
+2023-06-13 12:29:19.479 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [INTEGER] - [1]
+2023-06-13 12:29:19.481 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:29:19.481 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [2]
+2023-06-13 12:29:19.481 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [DATE] - [Fri Jul 28 12:29:19 CEST 2023]
+2023-06-13 12:29:19.482 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [TIME] - [16:30]
+2023-06-13 12:29:19.482 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [INTEGER] - [2]
+2023-06-13 12:29:20.909 TRACE 32076 --- [http-nio-8095-exec-9] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [3]
+2023-06-13 12:29:20.917 TRACE 32076 --- [http-nio-8095-exec-9] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [3]
+2023-06-13 12:29:20.919 TRACE 32076 --- [http-nio-8095-exec-9] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:29:20.920 TRACE 32076 --- [http-nio-8095-exec-9] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:29:20.921 TRACE 32076 --- [http-nio-8095-exec-9] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:29:20.922 TRACE 32076 --- [http-nio-8095-exec-9] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:29:23.889 TRACE 32076 --- [http-nio-8095-exec-2] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [admin]
+2023-06-13 12:29:23.890 TRACE 32076 --- [http-nio-8095-exec-2] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:29:23.891 TRACE 32076 --- [http-nio-8095-exec-2] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:29:23.965 TRACE 32076 --- [http-nio-8095-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [3]
+2023-06-13 12:29:23.966 TRACE 32076 --- [http-nio-8095-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [3]
+2023-06-13 12:29:23.967 TRACE 32076 --- [http-nio-8095-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:29:23.968 TRACE 32076 --- [http-nio-8095-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:29:23.969 TRACE 32076 --- [http-nio-8095-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:29:23.970 TRACE 32076 --- [http-nio-8095-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:29:25.290 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [3]
+2023-06-13 12:29:25.292 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [3]
+2023-06-13 12:29:25.294 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:29:25.295 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:29:25.296 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:29:25.298 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:29:25.632 TRACE 32076 --- [http-nio-8095-exec-3] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:29:25.633 TRACE 32076 --- [http-nio-8095-exec-3] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:29:25.635 TRACE 32076 --- [http-nio-8095-exec-3] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:29:25.636 TRACE 32076 --- [http-nio-8095-exec-3] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:29:28.960 TRACE 32076 --- [http-nio-8095-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:29:28.962 TRACE 32076 --- [http-nio-8095-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:29:28.964 TRACE 32076 --- [http-nio-8095-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:29:28.965 TRACE 32076 --- [http-nio-8095-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:29:29.912 TRACE 32076 --- [http-nio-8095-exec-2] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:29:29.914 TRACE 32076 --- [http-nio-8095-exec-2] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:29:29.937  WARN 32076 --- [http-nio-8095-exec-5] o.s.web.servlet.PageNotFound             : No mapping for GET /coches/static/js/icono.js
+2023-06-13 12:29:29.975  WARN 32076 --- [http-nio-8095-exec-8] o.s.web.servlet.PageNotFound             : No mapping for GET /coches/static/js/icono.js
+2023-06-13 12:29:36.087 TRACE 32076 --- [http-nio-8095-exec-7] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:29:36.089 TRACE 32076 --- [http-nio-8095-exec-7] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:29:36.101 TRACE 32076 --- [http-nio-8095-exec-7] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [DATE] - [2024-05-23]
+2023-06-13 12:29:36.101 TRACE 32076 --- [http-nio-8095-exec-7] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [VARCHAR] - [logger.png]
+2023-06-13 12:29:36.101 TRACE 32076 --- [http-nio-8095-exec-7] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [TIME] - [null]
+2023-06-13 12:29:36.101 TRACE 32076 --- [http-nio-8095-exec-7] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [Peugeot]
+2023-06-13 12:29:36.101 TRACE 32076 --- [http-nio-8095-exec-7] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [5894 GHL]
+2023-06-13 12:29:36.101 TRACE 32076 --- [http-nio-8095-exec-7] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [VARCHAR] - [2023]
+2023-06-13 12:29:36.101 TRACE 32076 --- [http-nio-8095-exec-7] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [VARCHAR] - [null]
+2023-06-13 12:29:36.101 TRACE 32076 --- [http-nio-8095-exec-7] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [INTEGER] - [1]
+2023-06-13 12:29:36.111 TRACE 32076 --- [http-nio-8095-exec-10] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:29:36.112 TRACE 32076 --- [http-nio-8095-exec-10] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:29:36.133  WARN 32076 --- [http-nio-8095-exec-1] o.s.web.servlet.PageNotFound             : No mapping for GET /coches/static/js/icono.js
+2023-06-13 12:29:36.154  WARN 32076 --- [http-nio-8095-exec-4] o.s.web.servlet.PageNotFound             : No mapping for GET /coches/static/js/icono.js
+2023-06-13 12:29:37.905 TRACE 32076 --- [http-nio-8095-exec-2] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:29:37.908 TRACE 32076 --- [http-nio-8095-exec-2] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:29:37.910 TRACE 32076 --- [http-nio-8095-exec-2] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:29:37.911 TRACE 32076 --- [http-nio-8095-exec-2] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:31:34.909 TRACE 32076 --- [http-nio-8095-exec-10] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:31:34.911 TRACE 32076 --- [http-nio-8095-exec-10] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:31:34.933  WARN 32076 --- [http-nio-8095-exec-3] o.s.web.servlet.PageNotFound             : No mapping for GET /coches/static/js/icono.js
+2023-06-13 12:31:34.997  WARN 32076 --- [http-nio-8095-exec-6] o.s.web.servlet.PageNotFound             : No mapping for GET /coches/static/js/icono.js
+2023-06-13 12:31:39.001 TRACE 32076 --- [http-nio-8095-exec-7] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:31:39.003 TRACE 32076 --- [http-nio-8095-exec-7] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:32:51.237 TRACE 32076 --- [http-nio-8095-exec-7] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [DATE] - [2024-05-23]
+2023-06-13 12:32:51.238 TRACE 32076 --- [http-nio-8095-exec-7] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [VARCHAR] - [loger (1).png]
+2023-06-13 12:32:51.240 TRACE 32076 --- [http-nio-8095-exec-7] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [TIME] - [null]
+2023-06-13 12:32:51.241 TRACE 32076 --- [http-nio-8095-exec-7] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [Peugeot]
+2023-06-13 12:32:51.242 TRACE 32076 --- [http-nio-8095-exec-7] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [5894 GHL]
+2023-06-13 12:32:51.243 TRACE 32076 --- [http-nio-8095-exec-7] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [VARCHAR] - [2023]
+2023-06-13 12:32:51.244 TRACE 32076 --- [http-nio-8095-exec-7] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [VARCHAR] - [null]
+2023-06-13 12:32:51.245 TRACE 32076 --- [http-nio-8095-exec-7] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [INTEGER] - [1]
+2023-06-13 12:32:51.265 TRACE 32076 --- [http-nio-8095-exec-10] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:32:51.267 TRACE 32076 --- [http-nio-8095-exec-10] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:32:51.290  WARN 32076 --- [http-nio-8095-exec-1] o.s.web.servlet.PageNotFound             : No mapping for GET /coches/static/js/icono.js
+2023-06-13 12:32:51.375  WARN 32076 --- [http-nio-8095-exec-6] o.s.web.servlet.PageNotFound             : No mapping for GET /coches/static/js/icono.js
+2023-06-13 12:33:43.302 TRACE 32076 --- [http-nio-8095-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:33:43.303 TRACE 32076 --- [http-nio-8095-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:33:43.324  WARN 32076 --- [http-nio-8095-exec-5] o.s.web.servlet.PageNotFound             : No mapping for GET /coches/static/js/icono.js
+2023-06-13 12:33:43.347  WARN 32076 --- [http-nio-8095-exec-9] o.s.web.servlet.PageNotFound             : No mapping for GET /coches/static/js/icono.js
+2023-06-13 12:34:03.262 TRACE 32076 --- [http-nio-8095-exec-3] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:34:03.266 TRACE 32076 --- [http-nio-8095-exec-3] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:34:03.289  WARN 32076 --- [http-nio-8095-exec-1] o.s.web.servlet.PageNotFound             : No mapping for GET /coches/static/js/icono.js
+2023-06-13 12:34:03.351  WARN 32076 --- [http-nio-8095-exec-10] o.s.web.servlet.PageNotFound             : No mapping for GET /coches/static/js/icono.js
+2023-06-13 12:34:04.181 TRACE 32076 --- [http-nio-8095-exec-2] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:34:04.184 TRACE 32076 --- [http-nio-8095-exec-2] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:34:04.202  WARN 32076 --- [http-nio-8095-exec-5] o.s.web.servlet.PageNotFound             : No mapping for GET /coches/static/js/icono.js
+2023-06-13 12:34:04.223  WARN 32076 --- [http-nio-8095-exec-4] o.s.web.servlet.PageNotFound             : No mapping for GET /coches/static/js/icono.js
+2023-06-13 12:34:04.604 TRACE 32076 --- [http-nio-8095-exec-6] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:34:04.607 TRACE 32076 --- [http-nio-8095-exec-6] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:34:04.625  WARN 32076 --- [http-nio-8095-exec-1] o.s.web.servlet.PageNotFound             : No mapping for GET /coches/static/js/icono.js
+2023-06-13 12:34:04.650  WARN 32076 --- [http-nio-8095-exec-7] o.s.web.servlet.PageNotFound             : No mapping for GET /coches/static/js/icono.js
+2023-06-13 12:34:04.781 TRACE 32076 --- [http-nio-8095-exec-3] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:34:04.783 TRACE 32076 --- [http-nio-8095-exec-3] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:34:04.800  WARN 32076 --- [http-nio-8095-exec-5] o.s.web.servlet.PageNotFound             : No mapping for GET /coches/static/js/icono.js
+2023-06-13 12:34:04.825  WARN 32076 --- [http-nio-8095-exec-8] o.s.web.servlet.PageNotFound             : No mapping for GET /coches/static/js/icono.js
+2023-06-13 12:34:09.136 TRACE 32076 --- [http-nio-8095-exec-2] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:34:09.138 TRACE 32076 --- [http-nio-8095-exec-2] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:34:09.140 TRACE 32076 --- [http-nio-8095-exec-2] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:34:09.141 TRACE 32076 --- [http-nio-8095-exec-2] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:34:09.164  WARN 32076 --- [http-nio-8095-exec-9] o.s.web.servlet.PageNotFound             : No mapping for GET /loger%20(1).png
+2023-06-13 12:34:52.686 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:34:52.688 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:34:52.689 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:34:52.692 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:34:52.717  WARN 32076 --- [http-nio-8095-exec-5] o.s.web.servlet.PageNotFound             : No mapping for GET /loger%20(1).png
+2023-06-13 12:35:19.121 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:35:19.124 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:35:19.126 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:35:19.129 TRACE 32076 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:35:36.729 TRACE 32076 --- [http-nio-8095-exec-9] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:35:36.731 TRACE 32076 --- [http-nio-8095-exec-9] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:35:36.732 TRACE 32076 --- [http-nio-8095-exec-9] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:35:36.733 TRACE 32076 --- [http-nio-8095-exec-9] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:35:48.745  INFO 11716 --- [restartedMain] principal.App                            : Starting App using Java 17.0.6 on IOT-PC08 with PID 11716 (C:\Users\practicasiot05\Documents\workspace-spring-tool-suite-4-4.18.0.RELEASE\ProyectoDEF\target\classes started by practicasiot05 in C:\Users\practicasiot05\Documents\workspace-spring-tool-suite-4-4.18.0.RELEASE\ProyectoDEF)
+2023-06-13 12:35:48.747  INFO 11716 --- [restartedMain] principal.App                            : No active profile set, falling back to 1 default profile: "default"
+2023-06-13 12:35:48.792  INFO 11716 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-06-13 12:35:48.792  INFO 11716 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-06-13 12:35:49.652  INFO 11716 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-06-13 12:35:49.755  INFO 11716 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 91 ms. Found 7 JPA repository interfaces.
+2023-06-13 12:35:50.361  INFO 11716 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8095 (http)
+2023-06-13 12:35:50.369  INFO 11716 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-06-13 12:35:50.370  INFO 11716 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.65]
+2023-06-13 12:35:50.481  INFO 11716 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-06-13 12:35:50.481  INFO 11716 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1688 ms
+2023-06-13 12:35:50.678  INFO 11716 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-06-13 12:35:50.733  INFO 11716 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.10.Final
+2023-06-13 12:35:50.882  INFO 11716 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-06-13 12:35:50.983  INFO 11716 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-06-13 12:35:51.133  INFO 11716 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-06-13 12:35:51.166  INFO 11716 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL55Dialect
+2023-06-13 12:35:52.117  INFO 11716 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-06-13 12:35:52.128  INFO 11716 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-06-13 12:35:52.604  WARN 11716 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-13 12:35:52.869  INFO 11716 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2023-06-13 12:35:52.961  WARN 11716 --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/ignore1']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-06-13 12:35:52.962  INFO 11716 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/ignore1']
+2023-06-13 12:35:52.962  WARN 11716 --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/ignore2']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-06-13 12:35:52.962  INFO 11716 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/ignore2']
+2023-06-13 12:35:53.015  INFO 11716 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@119ec020, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@12d8f8d7, org.springframework.security.web.context.SecurityContextPersistenceFilter@7908964c, org.springframework.security.web.header.HeaderWriterFilter@4eba432e, org.springframework.security.web.authentication.logout.LogoutFilter@7af5e1f4, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@281fd265, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@8db6387, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@e543518, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2e207489, org.springframework.security.web.session.SessionManagementFilter@5d8bccc, org.springframework.security.web.access.ExceptionTranslationFilter@223814df, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@594650e3]
+2023-06-13 12:35:53.142  INFO 11716 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-06-13 12:35:53.175  INFO 11716 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-06-13 12:35:53.441  INFO 11716 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8095 (http) with context path ''
+2023-06-13 12:35:53.441  INFO 11716 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2023-06-13 12:35:53.462  INFO 11716 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2023-06-13 12:35:53.478  INFO 11716 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2023-06-13 12:35:53.642  INFO 11716 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: homealumnosUsingGET_1
+2023-06-13 12:35:53.682  INFO 11716 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: homeCalendarUsingGET_1
+2023-06-13 12:35:53.709  INFO 11716 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: homecochesUsingGET_1
+2023-06-13 12:35:53.729  INFO 11716 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: homeloginUsingGET_1
+2023-06-13 12:35:53.736  INFO 11716 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: miPerfilUsingGET_1
+2023-06-13 12:35:53.737  INFO 11716 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: obtenerMisAlumnosUsingGET_1
+2023-06-13 12:35:53.755  INFO 11716 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: homealumnosUsingGET_2
+2023-06-13 12:35:53.755  INFO 11716 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: homealumnosUsingGET_3
+2023-06-13 12:35:53.768  INFO 11716 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: addAlumnoUsingPOST_1
+2023-06-13 12:35:53.774  INFO 11716 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: addCocheUsingPOST_1
+2023-06-13 12:35:53.780  INFO 11716 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: addProfesorUsingPOST_1
+2023-06-13 12:35:53.782  INFO 11716 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: addUsuarioUsingPOST_1
+2023-06-13 12:35:53.783  INFO 11716 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: buscarAlumnoPorDniUsingPOST_1
+2023-06-13 12:35:53.783  INFO 11716 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: buscarAlumnoPorNombreUsingPOST_1
+2023-06-13 12:35:53.784  INFO 11716 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: buscarCochePorMarcaUsingPOST_1
+2023-06-13 12:35:53.785  INFO 11716 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: buscarCochePorMatriculaUsingPOST_1
+2023-06-13 12:35:53.786  INFO 11716 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: buscarProfesorPorDniUsingPOST_1
+2023-06-13 12:35:53.787  INFO 11716 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: buscarProfesorPorNombreUsingPOST_1
+2023-06-13 12:35:53.812  INFO 11716 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteAlumnoUsingGET_1
+2023-06-13 12:35:53.813  INFO 11716 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteCocheUsingGET_1
+2023-06-13 12:35:53.814  INFO 11716 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteProfeUsingGET_1
+2023-06-13 12:35:53.815  INFO 11716 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: homeSecurityUsingGET_1
+2023-06-13 12:35:53.817  INFO 11716 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: serveFileUsingGET_1
+2023-06-13 12:35:53.819  INFO 11716 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: addUsuarioUsingPOST_2
+2023-06-13 12:35:53.820  INFO 11716 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsuarioUsingGET_1
+2023-06-13 12:35:53.821  INFO 11716 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: homeusuariosUsingGET_1
+2023-06-13 12:35:53.822  INFO 11716 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: mostrarRegistroUsingGET_1
+2023-06-13 12:35:53.840  INFO 11716 --- [restartedMain] principal.App                            : Started App in 5.491 seconds (JVM running for 6.478)
+2023-06-13 12:35:58.028  INFO 11716 --- [http-nio-8095-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-06-13 12:35:58.029  INFO 11716 --- [http-nio-8095-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-06-13 12:35:58.031  INFO 11716 --- [http-nio-8095-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2023-06-13 12:35:58.197  WARN 11716 --- [http-nio-8095-exec-1] o.a.c.util.SessionIdGeneratorBase        : Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [123] milliseconds.
+2023-06-13 12:35:58.358 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [DATE] - [Thu May 23 12:35:58 CEST 2024]
+2023-06-13 12:35:58.359 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [VARCHAR] - [null]
+2023-06-13 12:35:58.359 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [TIME] - [null]
+2023-06-13 12:35:58.359 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [Peugeot]
+2023-06-13 12:35:58.360 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [5894 GHL]
+2023-06-13 12:35:58.360 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [VARCHAR] - [2023]
+2023-06-13 12:35:58.360 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [VARCHAR] - [null]
+2023-06-13 12:35:58.382 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [DATE] - [Mon Apr 15 12:35:58 CEST 2024]
+2023-06-13 12:35:58.383 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [VARCHAR] - [null]
+2023-06-13 12:35:58.383 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [TIME] - [11:30]
+2023-06-13 12:35:58.383 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [Seat]
+2023-06-13 12:35:58.383 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [5894 DSF]
+2023-06-13 12:35:58.383 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [VARCHAR] - [2021]
+2023-06-13 12:35:58.384 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [VARCHAR] - [null]
+2023-06-13 12:35:58.390 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [Gonzalez Fernandez]
+2023-06-13 12:35:58.391 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [VARCHAR] - [56239874M]
+2023-06-13 12:35:58.391 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [Pedro]
+2023-06-13 12:35:58.394 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [Rodriguez Palacios]
+2023-06-13 12:35:58.394 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [VARCHAR] - [53624477N]
+2023-06-13 12:35:58.394 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [Alejandro]
+2023-06-13 12:35:58.409 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [ROLE_ADMIN]
+2023-06-13 12:35:58.419 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [ZL-12]
+2023-06-13 12:35:58.419 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [1]
+2023-06-13 12:35:58.419 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [INTEGER] - [1]
+2023-06-13 12:35:58.421 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [TZ-5]
+2023-06-13 12:35:58.421 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [2]
+2023-06-13 12:35:58.421 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [INTEGER] - [2]
+2023-06-13 12:35:58.508 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [null]
+2023-06-13 12:35:58.509 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [null]
+2023-06-13 12:35:58.509 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [null]
+2023-06-13 12:35:58.509 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [admin]
+2023-06-13 12:35:58.509 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [$2a$10$Ec0qW9aRQzewwuqm8yDt9.A5HDSC4nEcoiIkdCBu3EYOa5VcY2cEG]
+2023-06-13 12:35:58.510 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [VARCHAR] - [null]
+2023-06-13 12:35:58.510 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [VARCHAR] - [null]
+2023-06-13 12:35:58.510 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [VARCHAR] - [admin]
+2023-06-13 12:35:58.516 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:35:58.516 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [1]
+2023-06-13 12:35:58.520 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [ROLE_USER]
+2023-06-13 12:35:58.593 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:35:58.593 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [null]
+2023-06-13 12:35:58.593 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [null]
+2023-06-13 12:35:58.593 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [basic]
+2023-06-13 12:35:58.594 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [$2a$10$MjN9YmcGrkO2BAZ178Ip.OU8YiwJnoK.aOdHnyz9I0J2YGp66qsWC]
+2023-06-13 12:35:58.594 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [VARCHAR] - [temaOscuro]
+2023-06-13 12:35:58.594 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [VARCHAR] - [null]
+2023-06-13 12:35:58.594 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [VARCHAR] - [basic]
+2023-06-13 12:35:58.606 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:35:58.607 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [2]
+2023-06-13 12:35:58.609 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [ROLE_TEACHER]
+2023-06-13 12:35:58.689 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [null]
+2023-06-13 12:35:58.690 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [1]
+2023-06-13 12:35:58.690 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [null]
+2023-06-13 12:35:58.690 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [profesor]
+2023-06-13 12:35:58.690 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [$2a$10$nUh6HQsFhFSjDToqobi5..0nKhijF4WBIaUZe8O1bgD0XU8h9IrtS]
+2023-06-13 12:35:58.690 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [VARCHAR] - [temaClaro]
+2023-06-13 12:35:58.690 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [VARCHAR] - [null]
+2023-06-13 12:35:58.690 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [VARCHAR] - [profesor]
+2023-06-13 12:35:58.702 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [3]
+2023-06-13 12:35:58.702 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [3]
+2023-06-13 12:35:58.709 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [Menendez Palacios]
+2023-06-13 12:35:58.709 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [1]
+2023-06-13 12:35:58.709 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [52364897K]
+2023-06-13 12:35:58.709 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [Alba]
+2023-06-13 12:35:58.709 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [null]
+2023-06-13 12:35:58.710 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [INTEGER] - [1]
+2023-06-13 12:35:58.715 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [Gonzalez Rodriguez]
+2023-06-13 12:35:58.715 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [2]
+2023-06-13 12:35:58.715 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [85612478L]
+2023-06-13 12:35:58.715 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [David]
+2023-06-13 12:35:58.716 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [null]
+2023-06-13 12:35:58.716 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [INTEGER] - [2]
+2023-06-13 12:35:58.723 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:35:58.723 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [1]
+2023-06-13 12:35:58.723 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [DATE] - [Sun Jul 23 12:35:58 CEST 2023]
+2023-06-13 12:35:58.723 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [TIME] - [15:30]
+2023-06-13 12:35:58.723 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [INTEGER] - [1]
+2023-06-13 12:35:58.727 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:35:58.727 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [2]
+2023-06-13 12:35:58.727 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [DATE] - [Sun Jul 23 12:35:58 CEST 2023]
+2023-06-13 12:35:58.727 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [TIME] - [17:30]
+2023-06-13 12:35:58.727 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [INTEGER] - [2]
+2023-06-13 12:35:58.730 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:35:58.731 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [1]
+2023-06-13 12:35:58.731 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [DATE] - [Thu Jul 27 12:35:58 CEST 2023]
+2023-06-13 12:35:58.731 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [TIME] - [16:30]
+2023-06-13 12:35:58.731 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [INTEGER] - [1]
+2023-06-13 12:35:58.734 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:35:58.734 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [2]
+2023-06-13 12:35:58.734 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [DATE] - [Fri Jul 28 12:35:58 CEST 2023]
+2023-06-13 12:35:58.734 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [TIME] - [16:30]
+2023-06-13 12:35:58.734 TRACE 11716 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [INTEGER] - [2]
+2023-06-13 12:35:59.871 TRACE 11716 --- [http-nio-8095-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [3]
+2023-06-13 12:35:59.878 TRACE 11716 --- [http-nio-8095-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [3]
+2023-06-13 12:35:59.879 TRACE 11716 --- [http-nio-8095-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:35:59.880 TRACE 11716 --- [http-nio-8095-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:35:59.880 TRACE 11716 --- [http-nio-8095-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:35:59.883 TRACE 11716 --- [http-nio-8095-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:36:03.476 TRACE 11716 --- [http-nio-8095-exec-2] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [admin]
+2023-06-13 12:36:03.477 TRACE 11716 --- [http-nio-8095-exec-2] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:36:03.478 TRACE 11716 --- [http-nio-8095-exec-2] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:36:03.557 TRACE 11716 --- [http-nio-8095-exec-3] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [3]
+2023-06-13 12:36:03.558 TRACE 11716 --- [http-nio-8095-exec-3] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [3]
+2023-06-13 12:36:03.559 TRACE 11716 --- [http-nio-8095-exec-3] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:36:03.560 TRACE 11716 --- [http-nio-8095-exec-3] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:36:03.561 TRACE 11716 --- [http-nio-8095-exec-3] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:36:03.562 TRACE 11716 --- [http-nio-8095-exec-3] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:36:04.246 TRACE 11716 --- [http-nio-8095-exec-9] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:36:04.247 TRACE 11716 --- [http-nio-8095-exec-9] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:36:04.248 TRACE 11716 --- [http-nio-8095-exec-9] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:36:04.249 TRACE 11716 --- [http-nio-8095-exec-9] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:36:05.166 TRACE 11716 --- [http-nio-8095-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:36:05.168 TRACE 11716 --- [http-nio-8095-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:36:05.169 TRACE 11716 --- [http-nio-8095-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:36:05.172 TRACE 11716 --- [http-nio-8095-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:36:06.094 TRACE 11716 --- [http-nio-8095-exec-9] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:36:06.096 TRACE 11716 --- [http-nio-8095-exec-9] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:36:06.117  WARN 11716 --- [http-nio-8095-exec-5] o.s.web.servlet.PageNotFound             : No mapping for GET /coches/static/js/icono.js
+2023-06-13 12:36:06.155  WARN 11716 --- [http-nio-8095-exec-7] o.s.web.servlet.PageNotFound             : No mapping for GET /coches/static/js/icono.js
+2023-06-13 12:36:10.227 TRACE 11716 --- [http-nio-8095-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:36:10.230 TRACE 11716 --- [http-nio-8095-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:36:14.646 TRACE 11716 --- [http-nio-8095-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [DATE] - [2024-05-23]
+2023-06-13 12:36:14.647 TRACE 11716 --- [http-nio-8095-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [VARCHAR] - [logger.png]
+2023-06-13 12:36:14.647 TRACE 11716 --- [http-nio-8095-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [TIME] - [null]
+2023-06-13 12:36:14.647 TRACE 11716 --- [http-nio-8095-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [Peugeot]
+2023-06-13 12:36:14.647 TRACE 11716 --- [http-nio-8095-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [5894 GHL]
+2023-06-13 12:36:14.647 TRACE 11716 --- [http-nio-8095-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [VARCHAR] - [2023]
+2023-06-13 12:36:14.647 TRACE 11716 --- [http-nio-8095-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [VARCHAR] - [null]
+2023-06-13 12:36:14.647 TRACE 11716 --- [http-nio-8095-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [INTEGER] - [1]
+2023-06-13 12:36:14.664 TRACE 11716 --- [http-nio-8095-exec-2] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:36:14.665 TRACE 11716 --- [http-nio-8095-exec-2] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:36:14.687  WARN 11716 --- [http-nio-8095-exec-1] o.s.web.servlet.PageNotFound             : No mapping for GET /coches/static/js/icono.js
+2023-06-13 12:36:14.710  WARN 11716 --- [http-nio-8095-exec-6] o.s.web.servlet.PageNotFound             : No mapping for GET /coches/static/js/icono.js
+2023-06-13 12:36:18.246 TRACE 11716 --- [http-nio-8095-exec-4] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:36:18.249 TRACE 11716 --- [http-nio-8095-exec-4] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:36:18.251 TRACE 11716 --- [http-nio-8095-exec-4] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:36:18.252 TRACE 11716 --- [http-nio-8095-exec-4] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:36:50.508 TRACE 11716 --- [http-nio-8095-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:36:50.509 TRACE 11716 --- [http-nio-8095-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:36:50.510 TRACE 11716 --- [http-nio-8095-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:36:50.512 TRACE 11716 --- [http-nio-8095-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:36:53.913 TRACE 11716 --- [http-nio-8095-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:36:53.914 TRACE 11716 --- [http-nio-8095-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:36:53.916 TRACE 11716 --- [http-nio-8095-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:36:53.918 TRACE 11716 --- [http-nio-8095-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:36:58.398 TRACE 11716 --- [http-nio-8095-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:36:58.400 TRACE 11716 --- [http-nio-8095-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:36:58.402 TRACE 11716 --- [http-nio-8095-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:36:58.405 TRACE 11716 --- [http-nio-8095-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:36:59.041 TRACE 11716 --- [http-nio-8095-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:36:59.042 TRACE 11716 --- [http-nio-8095-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:36:59.043 TRACE 11716 --- [http-nio-8095-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:36:59.044 TRACE 11716 --- [http-nio-8095-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:36:59.233 TRACE 11716 --- [http-nio-8095-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:36:59.235 TRACE 11716 --- [http-nio-8095-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:36:59.236 TRACE 11716 --- [http-nio-8095-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:36:59.237 TRACE 11716 --- [http-nio-8095-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:36:59.417 TRACE 11716 --- [http-nio-8095-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:36:59.418 TRACE 11716 --- [http-nio-8095-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:36:59.418 TRACE 11716 --- [http-nio-8095-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:36:59.419 TRACE 11716 --- [http-nio-8095-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:36:59.880 TRACE 11716 --- [http-nio-8095-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:36:59.881 TRACE 11716 --- [http-nio-8095-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:36:59.882 TRACE 11716 --- [http-nio-8095-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:36:59.883 TRACE 11716 --- [http-nio-8095-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:37:04.311  INFO 32072 --- [restartedMain] principal.App                            : Starting App using Java 17.0.6 on IOT-PC08 with PID 32072 (C:\Users\practicasiot05\Documents\workspace-spring-tool-suite-4-4.18.0.RELEASE\ProyectoDEF\target\classes started by practicasiot05 in C:\Users\practicasiot05\Documents\workspace-spring-tool-suite-4-4.18.0.RELEASE\ProyectoDEF)
+2023-06-13 12:37:04.313  INFO 32072 --- [restartedMain] principal.App                            : No active profile set, falling back to 1 default profile: "default"
+2023-06-13 12:37:04.356  INFO 32072 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-06-13 12:37:04.356  INFO 32072 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-06-13 12:37:05.199  INFO 32072 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-06-13 12:37:05.296  INFO 32072 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 86 ms. Found 7 JPA repository interfaces.
+2023-06-13 12:37:05.886  INFO 32072 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8095 (http)
+2023-06-13 12:37:05.894  INFO 32072 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-06-13 12:37:05.895  INFO 32072 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.65]
+2023-06-13 12:37:06.005  INFO 32072 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-06-13 12:37:06.005  INFO 32072 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1648 ms
+2023-06-13 12:37:06.201  INFO 32072 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-06-13 12:37:06.257  INFO 32072 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.10.Final
+2023-06-13 12:37:06.405  INFO 32072 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-06-13 12:37:06.509  INFO 32072 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-06-13 12:37:06.645  INFO 32072 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-06-13 12:37:06.679  INFO 32072 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL55Dialect
+2023-06-13 12:37:07.620  INFO 32072 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-06-13 12:37:07.631  INFO 32072 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-06-13 12:37:08.096  WARN 32072 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-13 12:37:08.356  INFO 32072 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2023-06-13 12:37:08.449  WARN 32072 --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/ignore1']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-06-13 12:37:08.451  INFO 32072 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/ignore1']
+2023-06-13 12:37:08.451  WARN 32072 --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/ignore2']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-06-13 12:37:08.452  INFO 32072 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/ignore2']
+2023-06-13 12:37:08.499  INFO 32072 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5560efb, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6feda048, org.springframework.security.web.context.SecurityContextPersistenceFilter@567ce21a, org.springframework.security.web.header.HeaderWriterFilter@328d4471, org.springframework.security.web.authentication.logout.LogoutFilter@4624bc5f, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@5a5a0ba2, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@101ab689, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@28aa17c8, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@e7595fe, org.springframework.security.web.session.SessionManagementFilter@7fa22a58, org.springframework.security.web.access.ExceptionTranslationFilter@1aa59af5, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4913032a]
+2023-06-13 12:37:08.616  INFO 32072 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-06-13 12:37:08.648  INFO 32072 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-06-13 12:37:08.908  INFO 32072 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8095 (http) with context path ''
+2023-06-13 12:37:08.909  INFO 32072 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2023-06-13 12:37:08.929  INFO 32072 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2023-06-13 12:37:08.946  INFO 32072 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2023-06-13 12:37:09.098  INFO 32072 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: homealumnosUsingGET_1
+2023-06-13 12:37:09.136  INFO 32072 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: homeCalendarUsingGET_1
+2023-06-13 12:37:09.164  INFO 32072 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: homecochesUsingGET_1
+2023-06-13 12:37:09.183  INFO 32072 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: homeloginUsingGET_1
+2023-06-13 12:37:09.189  INFO 32072 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: miPerfilUsingGET_1
+2023-06-13 12:37:09.190  INFO 32072 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: obtenerMisAlumnosUsingGET_1
+2023-06-13 12:37:09.207  INFO 32072 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: homealumnosUsingGET_2
+2023-06-13 12:37:09.207  INFO 32072 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: homealumnosUsingGET_3
+2023-06-13 12:37:09.219  INFO 32072 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: addAlumnoUsingPOST_1
+2023-06-13 12:37:09.224  INFO 32072 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: addCocheUsingPOST_1
+2023-06-13 12:37:09.230  INFO 32072 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: addProfesorUsingPOST_1
+2023-06-13 12:37:09.231  INFO 32072 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: addUsuarioUsingPOST_1
+2023-06-13 12:37:09.232  INFO 32072 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: buscarAlumnoPorDniUsingPOST_1
+2023-06-13 12:37:09.233  INFO 32072 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: buscarAlumnoPorNombreUsingPOST_1
+2023-06-13 12:37:09.233  INFO 32072 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: buscarCochePorMarcaUsingPOST_1
+2023-06-13 12:37:09.234  INFO 32072 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: buscarCochePorMatriculaUsingPOST_1
+2023-06-13 12:37:09.235  INFO 32072 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: buscarProfesorPorDniUsingPOST_1
+2023-06-13 12:37:09.236  INFO 32072 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: buscarProfesorPorNombreUsingPOST_1
+2023-06-13 12:37:09.264  INFO 32072 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteAlumnoUsingGET_1
+2023-06-13 12:37:09.265  INFO 32072 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteCocheUsingGET_1
+2023-06-13 12:37:09.266  INFO 32072 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteProfeUsingGET_1
+2023-06-13 12:37:09.268  INFO 32072 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: homeSecurityUsingGET_1
+2023-06-13 12:37:09.269  INFO 32072 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: serveFileUsingGET_1
+2023-06-13 12:37:09.271  INFO 32072 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: addUsuarioUsingPOST_2
+2023-06-13 12:37:09.272  INFO 32072 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsuarioUsingGET_1
+2023-06-13 12:37:09.273  INFO 32072 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: homeusuariosUsingGET_1
+2023-06-13 12:37:09.275  INFO 32072 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: mostrarRegistroUsingGET_1
+2023-06-13 12:37:09.293  INFO 32072 --- [restartedMain] principal.App                            : Started App in 5.339 seconds (JVM running for 6.34)
+2023-06-13 12:37:09.804  INFO 32072 --- [http-nio-8095-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-06-13 12:37:09.805  INFO 32072 --- [http-nio-8095-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-06-13 12:37:09.806  INFO 32072 --- [http-nio-8095-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-06-13 12:37:09.972  WARN 32072 --- [http-nio-8095-exec-1] o.a.c.util.SessionIdGeneratorBase        : Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [126] milliseconds.
+2023-06-13 12:37:10.132 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [DATE] - [Thu May 23 12:37:10 CEST 2024]
+2023-06-13 12:37:10.133 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [VARCHAR] - [null]
+2023-06-13 12:37:10.134 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [TIME] - [null]
+2023-06-13 12:37:10.134 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [Peugeot]
+2023-06-13 12:37:10.134 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [5894 GHL]
+2023-06-13 12:37:10.134 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [VARCHAR] - [2023]
+2023-06-13 12:37:10.134 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [VARCHAR] - [null]
+2023-06-13 12:37:10.162 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [DATE] - [Mon Apr 15 12:37:10 CEST 2024]
+2023-06-13 12:37:10.163 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [VARCHAR] - [null]
+2023-06-13 12:37:10.163 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [TIME] - [11:30]
+2023-06-13 12:37:10.164 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [Seat]
+2023-06-13 12:37:10.164 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [5894 DSF]
+2023-06-13 12:37:10.164 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [VARCHAR] - [2021]
+2023-06-13 12:37:10.164 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [VARCHAR] - [null]
+2023-06-13 12:37:10.172 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [Gonzalez Fernandez]
+2023-06-13 12:37:10.172 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [VARCHAR] - [56239874M]
+2023-06-13 12:37:10.172 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [Pedro]
+2023-06-13 12:37:10.175 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [Rodriguez Palacios]
+2023-06-13 12:37:10.176 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [VARCHAR] - [53624477N]
+2023-06-13 12:37:10.176 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [Alejandro]
+2023-06-13 12:37:10.191 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [ROLE_ADMIN]
+2023-06-13 12:37:10.201 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [BQ-81]
+2023-06-13 12:37:10.202 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [1]
+2023-06-13 12:37:10.202 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [INTEGER] - [1]
+2023-06-13 12:37:10.203 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [UN-58]
+2023-06-13 12:37:10.204 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [2]
+2023-06-13 12:37:10.204 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [INTEGER] - [2]
+2023-06-13 12:37:10.286 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [null]
+2023-06-13 12:37:10.287 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [null]
+2023-06-13 12:37:10.287 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [null]
+2023-06-13 12:37:10.287 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [admin]
+2023-06-13 12:37:10.287 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [$2a$10$me8lN7RFrznUQKRxzNl3wu/f9kY5Cxt7RN0awEhu9n2eZTZg7MxLy]
+2023-06-13 12:37:10.287 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [VARCHAR] - [null]
+2023-06-13 12:37:10.287 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [VARCHAR] - [null]
+2023-06-13 12:37:10.287 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [VARCHAR] - [admin]
+2023-06-13 12:37:10.292 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:37:10.292 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [1]
+2023-06-13 12:37:10.304 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [ROLE_USER]
+2023-06-13 12:37:10.373 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:37:10.373 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [null]
+2023-06-13 12:37:10.373 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [null]
+2023-06-13 12:37:10.373 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [basic]
+2023-06-13 12:37:10.373 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [$2a$10$TB/LpnPUog0gYcn9.NX6sORi.EfgD9n1.vRU9KTWWRhGXfw5OVpPa]
+2023-06-13 12:37:10.374 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [VARCHAR] - [temaOscuro]
+2023-06-13 12:37:10.374 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [VARCHAR] - [null]
+2023-06-13 12:37:10.374 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [VARCHAR] - [basic]
+2023-06-13 12:37:10.376 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:37:10.376 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [2]
+2023-06-13 12:37:10.379 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [ROLE_TEACHER]
+2023-06-13 12:37:10.448 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [null]
+2023-06-13 12:37:10.448 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [1]
+2023-06-13 12:37:10.448 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [null]
+2023-06-13 12:37:10.448 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [profesor]
+2023-06-13 12:37:10.448 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [$2a$10$DMX0fyb8WF0LEAMM2gl2i.YegnMaurMUgMej9v.54B0jprgKxEmBu]
+2023-06-13 12:37:10.448 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [VARCHAR] - [temaClaro]
+2023-06-13 12:37:10.448 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [VARCHAR] - [null]
+2023-06-13 12:37:10.448 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [VARCHAR] - [profesor]
+2023-06-13 12:37:10.461 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [3]
+2023-06-13 12:37:10.461 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [3]
+2023-06-13 12:37:10.468 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [Menendez Palacios]
+2023-06-13 12:37:10.468 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [1]
+2023-06-13 12:37:10.468 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [52364897K]
+2023-06-13 12:37:10.468 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [Alba]
+2023-06-13 12:37:10.468 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [null]
+2023-06-13 12:37:10.468 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [INTEGER] - [1]
+2023-06-13 12:37:10.473 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [Gonzalez Rodriguez]
+2023-06-13 12:37:10.473 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [2]
+2023-06-13 12:37:10.473 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [85612478L]
+2023-06-13 12:37:10.473 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [David]
+2023-06-13 12:37:10.473 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [null]
+2023-06-13 12:37:10.473 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [INTEGER] - [2]
+2023-06-13 12:37:10.480 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:37:10.480 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [1]
+2023-06-13 12:37:10.480 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [DATE] - [Sun Jul 23 12:37:10 CEST 2023]
+2023-06-13 12:37:10.480 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [TIME] - [15:30]
+2023-06-13 12:37:10.480 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [INTEGER] - [1]
+2023-06-13 12:37:10.484 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:37:10.484 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [2]
+2023-06-13 12:37:10.484 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [DATE] - [Sun Jul 23 12:37:10 CEST 2023]
+2023-06-13 12:37:10.484 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [TIME] - [17:30]
+2023-06-13 12:37:10.484 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [INTEGER] - [2]
+2023-06-13 12:37:10.487 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:37:10.487 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [1]
+2023-06-13 12:37:10.487 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [DATE] - [Thu Jul 27 12:37:10 CEST 2023]
+2023-06-13 12:37:10.487 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [TIME] - [16:30]
+2023-06-13 12:37:10.487 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [INTEGER] - [1]
+2023-06-13 12:37:10.489 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:37:10.489 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [2]
+2023-06-13 12:37:10.490 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [DATE] - [Fri Jul 28 12:37:10 CEST 2023]
+2023-06-13 12:37:10.490 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [TIME] - [16:30]
+2023-06-13 12:37:10.490 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [INTEGER] - [2]
+2023-06-13 12:37:11.679 TRACE 32072 --- [http-nio-8095-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [3]
+2023-06-13 12:37:11.690 TRACE 32072 --- [http-nio-8095-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [3]
+2023-06-13 12:37:11.691 TRACE 32072 --- [http-nio-8095-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:37:11.692 TRACE 32072 --- [http-nio-8095-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:37:11.693 TRACE 32072 --- [http-nio-8095-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:37:11.694 TRACE 32072 --- [http-nio-8095-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:37:13.816 TRACE 32072 --- [http-nio-8095-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [admin]
+2023-06-13 12:37:13.818 TRACE 32072 --- [http-nio-8095-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:37:13.819 TRACE 32072 --- [http-nio-8095-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:37:13.893 TRACE 32072 --- [http-nio-8095-exec-2] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [3]
+2023-06-13 12:37:13.894 TRACE 32072 --- [http-nio-8095-exec-2] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [3]
+2023-06-13 12:37:13.895 TRACE 32072 --- [http-nio-8095-exec-2] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:37:13.896 TRACE 32072 --- [http-nio-8095-exec-2] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:37:13.897 TRACE 32072 --- [http-nio-8095-exec-2] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:37:13.898 TRACE 32072 --- [http-nio-8095-exec-2] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:37:58.664 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:37:58.666 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:37:58.668 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:37:58.669 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:37:59.480 TRACE 32072 --- [http-nio-8095-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:37:59.481 TRACE 32072 --- [http-nio-8095-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:37:59.483 TRACE 32072 --- [http-nio-8095-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:37:59.484 TRACE 32072 --- [http-nio-8095-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:38:00.871 TRACE 32072 --- [http-nio-8095-exec-9] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:38:00.874 TRACE 32072 --- [http-nio-8095-exec-9] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:38:00.875 TRACE 32072 --- [http-nio-8095-exec-9] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:38:00.877 TRACE 32072 --- [http-nio-8095-exec-9] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:38:01.671 TRACE 32072 --- [http-nio-8095-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:38:01.672 TRACE 32072 --- [http-nio-8095-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:38:01.694  WARN 32072 --- [http-nio-8095-exec-9] o.s.web.servlet.PageNotFound             : No mapping for GET /coches/static/js/icono.js
+2023-06-13 12:38:01.724  WARN 32072 --- [http-nio-8095-exec-6] o.s.web.servlet.PageNotFound             : No mapping for GET /coches/static/js/icono.js
+2023-06-13 12:38:05.282 TRACE 32072 --- [http-nio-8095-exec-3] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:38:05.285 TRACE 32072 --- [http-nio-8095-exec-3] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:38:05.296 TRACE 32072 --- [http-nio-8095-exec-3] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [DATE] - [2024-05-23]
+2023-06-13 12:38:05.296 TRACE 32072 --- [http-nio-8095-exec-3] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [VARCHAR] - [logger.png]
+2023-06-13 12:38:05.296 TRACE 32072 --- [http-nio-8095-exec-3] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [TIME] - [null]
+2023-06-13 12:38:05.296 TRACE 32072 --- [http-nio-8095-exec-3] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [Peugeot]
+2023-06-13 12:38:05.296 TRACE 32072 --- [http-nio-8095-exec-3] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [5894 GHL]
+2023-06-13 12:38:05.296 TRACE 32072 --- [http-nio-8095-exec-3] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [VARCHAR] - [2023]
+2023-06-13 12:38:05.297 TRACE 32072 --- [http-nio-8095-exec-3] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [VARCHAR] - [null]
+2023-06-13 12:38:05.297 TRACE 32072 --- [http-nio-8095-exec-3] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [INTEGER] - [1]
+2023-06-13 12:38:05.316 TRACE 32072 --- [http-nio-8095-exec-10] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:38:05.318 TRACE 32072 --- [http-nio-8095-exec-10] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:38:05.337  WARN 32072 --- [http-nio-8095-exec-4] o.s.web.servlet.PageNotFound             : No mapping for GET /coches/static/js/icono.js
+2023-06-13 12:38:05.360  WARN 32072 --- [http-nio-8095-exec-2] o.s.web.servlet.PageNotFound             : No mapping for GET /coches/static/js/icono.js
+2023-06-13 12:38:06.159 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:38:06.160 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:38:06.161 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:38:06.162 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:38:36.806 TRACE 32072 --- [http-nio-8095-exec-6] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:38:36.807 TRACE 32072 --- [http-nio-8095-exec-6] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:38:36.809 TRACE 32072 --- [http-nio-8095-exec-6] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:38:36.810 TRACE 32072 --- [http-nio-8095-exec-6] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:38:40.210 TRACE 32072 --- [http-nio-8095-exec-6] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:38:40.212 TRACE 32072 --- [http-nio-8095-exec-6] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:38:40.213 TRACE 32072 --- [http-nio-8095-exec-6] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:38:40.216 TRACE 32072 --- [http-nio-8095-exec-6] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:38:40.420 TRACE 32072 --- [http-nio-8095-exec-6] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:38:40.422 TRACE 32072 --- [http-nio-8095-exec-6] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:38:40.423 TRACE 32072 --- [http-nio-8095-exec-6] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:38:40.424 TRACE 32072 --- [http-nio-8095-exec-6] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:38:40.589 TRACE 32072 --- [http-nio-8095-exec-9] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:38:40.590 TRACE 32072 --- [http-nio-8095-exec-9] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:38:40.591 TRACE 32072 --- [http-nio-8095-exec-9] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:38:40.592 TRACE 32072 --- [http-nio-8095-exec-9] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:38:40.796 TRACE 32072 --- [http-nio-8095-exec-9] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:38:40.798 TRACE 32072 --- [http-nio-8095-exec-9] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:38:40.801 TRACE 32072 --- [http-nio-8095-exec-9] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:38:40.803 TRACE 32072 --- [http-nio-8095-exec-9] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:38:40.955 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:38:40.956 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:38:40.957 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:38:40.958 TRACE 32072 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:38:41.484 TRACE 32072 --- [http-nio-8095-exec-9] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:38:41.486 TRACE 32072 --- [http-nio-8095-exec-9] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:38:41.487 TRACE 32072 --- [http-nio-8095-exec-9] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:38:41.488 TRACE 32072 --- [http-nio-8095-exec-9] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:38:41.696 TRACE 32072 --- [http-nio-8095-exec-9] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:38:41.697 TRACE 32072 --- [http-nio-8095-exec-9] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:38:41.699 TRACE 32072 --- [http-nio-8095-exec-9] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:38:41.701 TRACE 32072 --- [http-nio-8095-exec-9] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:38:41.887 TRACE 32072 --- [http-nio-8095-exec-7] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:38:41.889 TRACE 32072 --- [http-nio-8095-exec-7] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:38:41.891 TRACE 32072 --- [http-nio-8095-exec-7] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:38:41.892 TRACE 32072 --- [http-nio-8095-exec-7] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:38:42.039 TRACE 32072 --- [http-nio-8095-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:38:42.040 TRACE 32072 --- [http-nio-8095-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:38:42.042 TRACE 32072 --- [http-nio-8095-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:38:42.043 TRACE 32072 --- [http-nio-8095-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:38:48.116  INFO 31092 --- [restartedMain] principal.App                            : Starting App using Java 17.0.6 on IOT-PC08 with PID 31092 (C:\Users\practicasiot05\Documents\workspace-spring-tool-suite-4-4.18.0.RELEASE\ProyectoDEF\target\classes started by practicasiot05 in C:\Users\practicasiot05\Documents\workspace-spring-tool-suite-4-4.18.0.RELEASE\ProyectoDEF)
+2023-06-13 12:38:48.117  INFO 31092 --- [restartedMain] principal.App                            : No active profile set, falling back to 1 default profile: "default"
+2023-06-13 12:38:48.161  INFO 31092 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-06-13 12:38:48.161  INFO 31092 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-06-13 12:38:49.009  INFO 31092 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-06-13 12:38:49.109  INFO 31092 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 89 ms. Found 7 JPA repository interfaces.
+2023-06-13 12:38:49.705  INFO 31092 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8095 (http)
+2023-06-13 12:38:49.713  INFO 31092 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-06-13 12:38:49.714  INFO 31092 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.65]
+2023-06-13 12:38:49.826  INFO 31092 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-06-13 12:38:49.827  INFO 31092 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1665 ms
+2023-06-13 12:38:50.019  INFO 31092 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-06-13 12:38:50.071  INFO 31092 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.10.Final
+2023-06-13 12:38:50.225  INFO 31092 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-06-13 12:38:50.326  INFO 31092 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-06-13 12:38:50.476  INFO 31092 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-06-13 12:38:50.509  INFO 31092 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL55Dialect
+2023-06-13 12:38:51.444  INFO 31092 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-06-13 12:38:51.454  INFO 31092 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-06-13 12:38:51.932  WARN 31092 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-13 12:38:52.184  INFO 31092 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2023-06-13 12:38:52.297  WARN 31092 --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/ignore1']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-06-13 12:38:52.298  INFO 31092 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/ignore1']
+2023-06-13 12:38:52.299  WARN 31092 --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/ignore2']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-06-13 12:38:52.299  INFO 31092 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/ignore2']
+2023-06-13 12:38:52.349  INFO 31092 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3c702113, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1c72be1e, org.springframework.security.web.context.SecurityContextPersistenceFilter@3a253387, org.springframework.security.web.header.HeaderWriterFilter@5cbe4811, org.springframework.security.web.authentication.logout.LogoutFilter@475b32c7, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@7677f093, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6e9a5ebd, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6c504d91, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@441b9a44, org.springframework.security.web.session.SessionManagementFilter@31b5e95f, org.springframework.security.web.access.ExceptionTranslationFilter@19a092ff, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@34b0481]
+2023-06-13 12:38:52.476  INFO 31092 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-06-13 12:38:52.517  INFO 31092 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-06-13 12:38:52.785  INFO 31092 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8095 (http) with context path ''
+2023-06-13 12:38:52.786  INFO 31092 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2023-06-13 12:38:52.805  INFO 31092 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2023-06-13 12:38:52.821  INFO 31092 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2023-06-13 12:38:52.974  INFO 31092 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: homealumnosUsingGET_1
+2023-06-13 12:38:53.011  INFO 31092 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: homeCalendarUsingGET_1
+2023-06-13 12:38:53.040  INFO 31092 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: homecochesUsingGET_1
+2023-06-13 12:38:53.059  INFO 31092 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: homeloginUsingGET_1
+2023-06-13 12:38:53.065  INFO 31092 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: miPerfilUsingGET_1
+2023-06-13 12:38:53.067  INFO 31092 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: obtenerMisAlumnosUsingGET_1
+2023-06-13 12:38:53.086  INFO 31092 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: homealumnosUsingGET_2
+2023-06-13 12:38:53.086  INFO 31092 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: homealumnosUsingGET_3
+2023-06-13 12:38:53.098  INFO 31092 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: addAlumnoUsingPOST_1
+2023-06-13 12:38:53.104  INFO 31092 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: addCocheUsingPOST_1
+2023-06-13 12:38:53.110  INFO 31092 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: addProfesorUsingPOST_1
+2023-06-13 12:38:53.111  INFO 31092 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: addUsuarioUsingPOST_1
+2023-06-13 12:38:53.112  INFO 31092 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: buscarAlumnoPorDniUsingPOST_1
+2023-06-13 12:38:53.113  INFO 31092 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: buscarAlumnoPorNombreUsingPOST_1
+2023-06-13 12:38:53.114  INFO 31092 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: buscarCochePorMarcaUsingPOST_1
+2023-06-13 12:38:53.115  INFO 31092 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: buscarCochePorMatriculaUsingPOST_1
+2023-06-13 12:38:53.116  INFO 31092 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: buscarProfesorPorDniUsingPOST_1
+2023-06-13 12:38:53.117  INFO 31092 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: buscarProfesorPorNombreUsingPOST_1
+2023-06-13 12:38:53.144  INFO 31092 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteAlumnoUsingGET_1
+2023-06-13 12:38:53.145  INFO 31092 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteCocheUsingGET_1
+2023-06-13 12:38:53.146  INFO 31092 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteProfeUsingGET_1
+2023-06-13 12:38:53.148  INFO 31092 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: homeSecurityUsingGET_1
+2023-06-13 12:38:53.149  INFO 31092 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: serveFileUsingGET_1
+2023-06-13 12:38:53.151  INFO 31092 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: addUsuarioUsingPOST_2
+2023-06-13 12:38:53.152  INFO 31092 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsuarioUsingGET_1
+2023-06-13 12:38:53.153  INFO 31092 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: homeusuariosUsingGET_1
+2023-06-13 12:38:53.155  INFO 31092 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: mostrarRegistroUsingGET_1
+2023-06-13 12:38:53.179  INFO 31092 --- [restartedMain] principal.App                            : Started App in 5.429 seconds (JVM running for 6.483)
+2023-06-13 12:38:53.672  INFO 31092 --- [http-nio-8095-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-06-13 12:38:53.672  INFO 31092 --- [http-nio-8095-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-06-13 12:38:53.673  INFO 31092 --- [http-nio-8095-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2023-06-13 12:38:53.843  WARN 31092 --- [http-nio-8095-exec-1] o.a.c.util.SessionIdGeneratorBase        : Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [125] milliseconds.
+2023-06-13 12:38:54.010 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [DATE] - [Thu May 23 12:38:53 CEST 2024]
+2023-06-13 12:38:54.011 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [VARCHAR] - [null]
+2023-06-13 12:38:54.013 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [TIME] - [null]
+2023-06-13 12:38:54.013 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [Peugeot]
+2023-06-13 12:38:54.013 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [5894 GHL]
+2023-06-13 12:38:54.013 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [VARCHAR] - [2023]
+2023-06-13 12:38:54.013 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [VARCHAR] - [null]
+2023-06-13 12:38:54.042 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [DATE] - [Mon Apr 15 12:38:53 CEST 2024]
+2023-06-13 12:38:54.042 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [VARCHAR] - [null]
+2023-06-13 12:38:54.042 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [TIME] - [11:30]
+2023-06-13 12:38:54.042 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [Seat]
+2023-06-13 12:38:54.043 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [5894 DSF]
+2023-06-13 12:38:54.043 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [VARCHAR] - [2021]
+2023-06-13 12:38:54.043 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [VARCHAR] - [null]
+2023-06-13 12:38:54.051 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [Gonzalez Fernandez]
+2023-06-13 12:38:54.051 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [VARCHAR] - [56239874M]
+2023-06-13 12:38:54.051 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [Pedro]
+2023-06-13 12:38:54.054 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [Rodriguez Palacios]
+2023-06-13 12:38:54.054 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [VARCHAR] - [53624477N]
+2023-06-13 12:38:54.055 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [Alejandro]
+2023-06-13 12:38:54.072 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [ROLE_ADMIN]
+2023-06-13 12:38:54.083 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [EN-96]
+2023-06-13 12:38:54.083 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [1]
+2023-06-13 12:38:54.084 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [INTEGER] - [1]
+2023-06-13 12:38:54.085 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [SR-98]
+2023-06-13 12:38:54.085 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [2]
+2023-06-13 12:38:54.085 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [INTEGER] - [2]
+2023-06-13 12:38:54.170 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [null]
+2023-06-13 12:38:54.170 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [null]
+2023-06-13 12:38:54.170 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [null]
+2023-06-13 12:38:54.170 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [admin]
+2023-06-13 12:38:54.170 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [$2a$10$HNGJkrYBanywSNzmDEHSpuSI3T3LnoCrsHaxha8xaHvVPQSKlyF3a]
+2023-06-13 12:38:54.171 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [VARCHAR] - [null]
+2023-06-13 12:38:54.171 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [VARCHAR] - [null]
+2023-06-13 12:38:54.171 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [VARCHAR] - [admin]
+2023-06-13 12:38:54.176 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:38:54.176 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [1]
+2023-06-13 12:38:54.189 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [ROLE_USER]
+2023-06-13 12:38:54.257 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:38:54.257 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [null]
+2023-06-13 12:38:54.257 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [null]
+2023-06-13 12:38:54.258 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [basic]
+2023-06-13 12:38:54.258 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [$2a$10$ne5d6XdqlB8xvQEZwTSboeHP9o06OgzpJUfu8YLBmq32ajDQuSUzO]
+2023-06-13 12:38:54.258 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [VARCHAR] - [temaOscuro]
+2023-06-13 12:38:54.258 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [VARCHAR] - [null]
+2023-06-13 12:38:54.258 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [VARCHAR] - [basic]
+2023-06-13 12:38:54.260 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:38:54.261 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [2]
+2023-06-13 12:38:54.263 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [ROLE_TEACHER]
+2023-06-13 12:38:54.332 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [null]
+2023-06-13 12:38:54.333 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [1]
+2023-06-13 12:38:54.333 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [null]
+2023-06-13 12:38:54.333 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [profesor]
+2023-06-13 12:38:54.333 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [$2a$10$v5Uk1GBsaLsE77G3qrt4QuubpVumlBD2DohmjOQv5x0HSfk.RYmjK]
+2023-06-13 12:38:54.333 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [VARCHAR] - [temaClaro]
+2023-06-13 12:38:54.333 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [VARCHAR] - [null]
+2023-06-13 12:38:54.333 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [VARCHAR] - [profesor]
+2023-06-13 12:38:54.335 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [3]
+2023-06-13 12:38:54.335 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [3]
+2023-06-13 12:38:54.342 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [Menendez Palacios]
+2023-06-13 12:38:54.342 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [1]
+2023-06-13 12:38:54.342 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [52364897K]
+2023-06-13 12:38:54.342 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [Alba]
+2023-06-13 12:38:54.342 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [null]
+2023-06-13 12:38:54.342 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [INTEGER] - [1]
+2023-06-13 12:38:54.347 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [Gonzalez Rodriguez]
+2023-06-13 12:38:54.348 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [2]
+2023-06-13 12:38:54.348 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [85612478L]
+2023-06-13 12:38:54.348 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [David]
+2023-06-13 12:38:54.348 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [null]
+2023-06-13 12:38:54.348 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [INTEGER] - [2]
+2023-06-13 12:38:54.354 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:38:54.355 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [1]
+2023-06-13 12:38:54.355 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [DATE] - [Sun Jul 23 12:38:54 CEST 2023]
+2023-06-13 12:38:54.355 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [TIME] - [15:30]
+2023-06-13 12:38:54.355 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [INTEGER] - [1]
+2023-06-13 12:38:54.359 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:38:54.359 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [2]
+2023-06-13 12:38:54.359 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [DATE] - [Sun Jul 23 12:38:54 CEST 2023]
+2023-06-13 12:38:54.359 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [TIME] - [17:30]
+2023-06-13 12:38:54.359 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [INTEGER] - [2]
+2023-06-13 12:38:54.362 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:38:54.362 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [1]
+2023-06-13 12:38:54.362 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [DATE] - [Thu Jul 27 12:38:54 CEST 2023]
+2023-06-13 12:38:54.362 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [TIME] - [16:30]
+2023-06-13 12:38:54.363 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [INTEGER] - [1]
+2023-06-13 12:38:54.365 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:38:54.366 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [2]
+2023-06-13 12:38:54.366 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [DATE] - [Fri Jul 28 12:38:54 CEST 2023]
+2023-06-13 12:38:54.366 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [TIME] - [16:30]
+2023-06-13 12:38:54.366 TRACE 31092 --- [http-nio-8095-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [INTEGER] - [2]
+2023-06-13 12:38:55.485 TRACE 31092 --- [http-nio-8095-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [3]
+2023-06-13 12:38:55.492 TRACE 31092 --- [http-nio-8095-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [3]
+2023-06-13 12:38:55.493 TRACE 31092 --- [http-nio-8095-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:38:55.494 TRACE 31092 --- [http-nio-8095-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:38:55.495 TRACE 31092 --- [http-nio-8095-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:38:55.497 TRACE 31092 --- [http-nio-8095-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:38:57.769 TRACE 31092 --- [http-nio-8095-exec-4] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [admin]
+2023-06-13 12:38:57.771 TRACE 31092 --- [http-nio-8095-exec-4] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:38:57.772 TRACE 31092 --- [http-nio-8095-exec-4] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:38:57.846 TRACE 31092 --- [http-nio-8095-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [3]
+2023-06-13 12:38:57.847 TRACE 31092 --- [http-nio-8095-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [3]
+2023-06-13 12:38:57.849 TRACE 31092 --- [http-nio-8095-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:38:57.850 TRACE 31092 --- [http-nio-8095-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:38:57.851 TRACE 31092 --- [http-nio-8095-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:38:57.852 TRACE 31092 --- [http-nio-8095-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:38:59.338 TRACE 31092 --- [http-nio-8095-exec-10] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:38:59.340 TRACE 31092 --- [http-nio-8095-exec-10] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:38:59.341 TRACE 31092 --- [http-nio-8095-exec-10] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:38:59.343 TRACE 31092 --- [http-nio-8095-exec-10] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:39:00.201 TRACE 31092 --- [http-nio-8095-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:39:00.205 TRACE 31092 --- [http-nio-8095-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:39:00.226  WARN 31092 --- [http-nio-8095-exec-4] o.s.web.servlet.PageNotFound             : No mapping for GET /coches/static/js/icono.js
+2023-06-13 12:39:00.263  WARN 31092 --- [http-nio-8095-exec-5] o.s.web.servlet.PageNotFound             : No mapping for GET /coches/static/js/icono.js
+2023-06-13 12:39:03.945 TRACE 31092 --- [http-nio-8095-exec-10] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:39:03.947 TRACE 31092 --- [http-nio-8095-exec-10] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:39:03.959 TRACE 31092 --- [http-nio-8095-exec-10] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [DATE] - [2024-05-23]
+2023-06-13 12:39:03.959 TRACE 31092 --- [http-nio-8095-exec-10] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [VARCHAR] - [logger.png]
+2023-06-13 12:39:03.959 TRACE 31092 --- [http-nio-8095-exec-10] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [TIME] - [null]
+2023-06-13 12:39:03.959 TRACE 31092 --- [http-nio-8095-exec-10] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [Peugeot]
+2023-06-13 12:39:03.960 TRACE 31092 --- [http-nio-8095-exec-10] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [5894 GHL]
+2023-06-13 12:39:03.960 TRACE 31092 --- [http-nio-8095-exec-10] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [VARCHAR] - [2023]
+2023-06-13 12:39:03.960 TRACE 31092 --- [http-nio-8095-exec-10] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [VARCHAR] - [null]
+2023-06-13 12:39:03.960 TRACE 31092 --- [http-nio-8095-exec-10] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [INTEGER] - [1]
+2023-06-13 12:39:03.979 TRACE 31092 --- [http-nio-8095-exec-6] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:39:03.980 TRACE 31092 --- [http-nio-8095-exec-6] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:39:04.000  WARN 31092 --- [http-nio-8095-exec-2] o.s.web.servlet.PageNotFound             : No mapping for GET /coches/static/js/icono.js
+2023-06-13 12:39:04.021  WARN 31092 --- [http-nio-8095-exec-1] o.s.web.servlet.PageNotFound             : No mapping for GET /coches/static/js/icono.js
+2023-06-13 12:39:05.013 TRACE 31092 --- [http-nio-8095-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:39:05.015 TRACE 31092 --- [http-nio-8095-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:39:05.016 TRACE 31092 --- [http-nio-8095-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:39:05.017 TRACE 31092 --- [http-nio-8095-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:39:16.996 TRACE 31092 --- [http-nio-8095-exec-9] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:39:16.997 TRACE 31092 --- [http-nio-8095-exec-9] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:39:17.021  WARN 31092 --- [http-nio-8095-exec-4] o.s.web.servlet.PageNotFound             : No mapping for GET /coches/static/js/icono.js
+2023-06-13 12:39:17.042  WARN 31092 --- [http-nio-8095-exec-6] o.s.web.servlet.PageNotFound             : No mapping for GET /coches/static/js/icono.js
+2023-06-13 12:39:18.402 TRACE 31092 --- [http-nio-8095-exec-7] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:39:18.404 TRACE 31092 --- [http-nio-8095-exec-7] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [2]
+2023-06-13 12:39:18.406 TRACE 31092 --- [http-nio-8095-exec-7] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]
+2023-06-13 12:39:18.407 TRACE 31092 --- [http-nio-8095-exec-7] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [1]

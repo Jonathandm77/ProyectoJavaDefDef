@@ -12,6 +12,7 @@ URLS a cambiar
 profesoresController 161
 profesor 81
 cochesController 232
+alumnoScript fetch
 logo, puerto
 
 .properties
