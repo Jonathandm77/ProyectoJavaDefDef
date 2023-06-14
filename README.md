@@ -12,11 +12,12 @@ URLS a cambiar
 profesoresController 161
 profesor 81
 cochesController 232
+securityController deletes
 alumnoScript fetch
 logo, puerto
 
 .properties
-server port a 8080
+server port a 8080 
 URL spring.datasource.url=jdbc:mysql://mysqldb:3306/proyecto
 datasource username y password = usuario
 poner el ddl update

@@ -164,7 +164,7 @@ import springfox.documentation.annotations.ApiIgnore;
 			}
 			}
 			
-			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/proyecto", "root","");
+			Connection connection = DriverManager.getConnection("jdbc:mysql://mysqldb:3306/proyecto", "usuario","usuario");
 
 		      String sql = "DELETE FROM profesores_coches WHERE profesor_id = "+profeaEliminar.get().getId();
 

@@ -245,7 +245,7 @@ public class CochesController {
 				profeTemp.get(i).juegoLlaves(cocheTemp.get(i));//para cada nueva combinacion se genera la llave y la asociacion en la BBDD
 			}
 		}
-		Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/proyecto", "root", "");
+		Connection connection = DriverManager.getConnection("jdbc:mysql://mysqldb:3306/proyecto", "usuario","usuario");
 
 		String sql = "DELETE FROM profesores_coches WHERE coche_id = " + cocheaEliminar.get().getId();
 

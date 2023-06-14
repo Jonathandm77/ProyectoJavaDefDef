@@ -300,7 +300,7 @@ public class SecurityController {
 		}
 		}
 		
-		Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/proyecto", "root","");
+		Connection connection = DriverManager.getConnection("jdbc:mysql://mysqldb:3306/proyecto", "usuario","usuario");
 
 	      String sql = "DELETE FROM profesores_coches WHERE profesor_id = "+profeaEliminar.get().getId();
 
@@ -422,7 +422,7 @@ public class SecurityController {
 				profeTemp.get(i).juegoLlaves(cocheTemp.get(i));
 			}
 		}
-		Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/proyecto", "root", "");
+		Connection connection = DriverManager.getConnection("jdbc:mysql://mysqldb:3306/proyecto", "usuario","usuario");
 
 		String sql = "DELETE FROM profesores_coches WHERE coche_id = " + cocheaEliminar.get().getId();
 
